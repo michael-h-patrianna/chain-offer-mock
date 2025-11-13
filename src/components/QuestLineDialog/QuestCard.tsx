@@ -59,7 +59,7 @@ export const QuestCard: React.FC<QuestCardProps> = ({
     <div
       className={cx('quest-card', { 'quest-card--completed': isCompleted })}
     >
-      <div className="quest-card__wrapper">
+      <div className={isLocked ? 'quest-card__wrapper quest-card__wrapper__locked' : 'quest-card__wrapper'}>
         <div className="quest-card__header">
           <div className="quest-card__header-content">
             <div className="quest-card__header-info">
