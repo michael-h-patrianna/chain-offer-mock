@@ -67,18 +67,16 @@ export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
   return (
     <div ref={wrapperRefCallback} className={getWrapperClass()}>
       <div ref={itemRefCallback} className={getItemClass()}>
-        <div className="chain-offer-map-item__content">
-          <div className="chain-offer-map-item__offers">
-            <ChainOfferMapRewards rewards={rewards} />
-          </div>
-          <div className="chain-offer-map-item__button-container">
-            <ChainOfferMapButton
-              status={status}
-              type={type}
-              price={price}
-              onClick={handleButtonClick}
-            />
-          </div>
+        <div className="chain-offer-map-item__offers">
+          <ChainOfferMapRewards rewards={rewards} />
+        </div>
+        <div className="chain-offer-map-item__button-container">
+          <ChainOfferMapButton
+            status={status}
+            type={type}
+            price={price}
+            onClick={handleButtonClick}
+          />
         </div>
       </div>
       {showDivider && (
