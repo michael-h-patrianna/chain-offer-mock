@@ -61,7 +61,7 @@ export function AppSimpleIsolated() {
   return (
     <div className="app-container">
       <div className="app-content">
-        <h1 className="app-title">Chain Offer Dialog - Isolated Components</h1>
+
 
         {/* Trigger buttons */}
         <div className="trigger-container">
@@ -78,7 +78,7 @@ export function AppSimpleIsolated() {
           )}
           <div className="offer-trigger">
             <img
-              src="/questline-icon.png"
+              src="/assets/images/questline-icon.png"
               alt='Questline'
               className="offer-icon"
               onClick={handleOpenQuestlineDialog}

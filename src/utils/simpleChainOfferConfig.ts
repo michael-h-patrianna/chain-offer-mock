@@ -1,11 +1,12 @@
-import coBackground1 from '../assets/images/co-background1.png'
-import coBackground2 from '../assets/images/co-background2.png'
-import coBackground3 from '../assets/images/co-background3.png'
 import { ChainOfferDialogProps } from '../components'
 import type { Reward } from '../components/ChainOfferMapRewards'
 
 // Local background images to use for map items
-const localBackgroundImages = [coBackground1, coBackground2, coBackground3]
+const localBackgroundImages = [
+  '/assets/images/co-background1.png',
+  '/assets/images/co-background2.png',
+  '/assets/images/co-background3.png'
+]
 
 // Simplified configuration types for easier test setup
 export interface SimpleChainOfferConfig {

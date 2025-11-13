@@ -1,10 +1,11 @@
-import coBackground1 from '../assets/images/co-background1.png'
-import coBackground2 from '../assets/images/co-background2.png'
-import coBackground3 from '../assets/images/co-background3.png'
 import type { ChainOfferDialogProps, ChainOfferMapItemProps } from '../components'
 
 // Local background images to use for map items
-const localBackgroundImages = [coBackground1, coBackground2, coBackground3]
+const localBackgroundImages = [
+  '/assets/images/co-background1.png',
+  '/assets/images/co-background2.png',
+  '/assets/images/co-background3.png'
+]
 
 /**
  * Transform raw chain offer data into component props format
