@@ -3,6 +3,8 @@ import { useAnimationParameters } from '../hooks/useAnimationParameters'
 import {
   baseParameterConfigs,
   springParameterConfigs,
+  wobbleParameterConfigs,
+  orbitalParameterConfigs,
 } from '../types/animationParameters'
 import './AnimationParameterForm.css'
 import { ParameterGroup } from './ParameterControls/ParameterGroup'
@@ -13,11 +15,13 @@ interface AnimationParameterFormProps {
 }
 
 export function AnimationParameterForm({ animationType }: AnimationParameterFormProps) {
-  const { getParameters, updateParameter, updateSpringParameter, resetToDefaults } =
+  const { getParameters, updateParameter, updateSpringParameter, updateWobbleParameter, updateOrbitalParameter, resetToDefaults } =
     useAnimationParameters()
 
   const parameters = getParameters(animationType)
   const isSpringAnimation = animationType === 'spring-physics'
+  const isWobbleAnimation = animationType === 'elastic-bounce'
+  const isOrbitalAnimation = animationType === 'orbital-reveal'
   const isNoneAnimation = animationType === 'none'
 
   const handleReset = () => {
@@ -40,7 +44,7 @@ export function AnimationParameterForm({ animationType }: AnimationParameterForm
   return (
     <div className="animation-parameter-form">
       <div className="animation-parameter-form__header">
-        <h2 className="animation-parameter-form__title">Animation Parameters</h2>
+        <h2 className="animation-parameter-form__title">Parameters</h2>
         <button className="animation-parameter-form__reset" onClick={handleReset}>
           Reset
         </button>
@@ -123,6 +127,36 @@ export function AnimationParameterForm({ animationType }: AnimationParameterForm
             step={springParameterConfigs[2].step}
             description={springParameterConfigs[2].description}
             onChange={(value) => updateSpringParameter(animationType, 'mass', value)}
+          />
+        </ParameterGroup>
+      )}
+
+      {isWobbleAnimation && parameters.wobble && (
+        <ParameterGroup title="Wobble Effect" >
+          <ParameterSlider
+            key={`${animationType}-wobbleIntensity`}
+            label={wobbleParameterConfigs[0].label}
+            value={parameters.wobble.wobbleIntensity}
+            min={wobbleParameterConfigs[0].min}
+            max={wobbleParameterConfigs[0].max}
+            step={wobbleParameterConfigs[0].step}
+            description={wobbleParameterConfigs[0].description}
+            onChange={(value) => updateWobbleParameter(animationType, 'wobbleIntensity', value)}
+          />
+        </ParameterGroup>
+      )}
+
+      {isOrbitalAnimation && parameters.orbital && (
+        <ParameterGroup title="Orbital Motion" >
+          <ParameterSlider
+            key={`${animationType}-orbitDistance`}
+            label={orbitalParameterConfigs[0].label}
+            value={parameters.orbital.orbitDistance}
+            min={orbitalParameterConfigs[0].min}
+            max={orbitalParameterConfigs[0].max}
+            step={orbitalParameterConfigs[0].step}
+            description={orbitalParameterConfigs[0].description}
+            onChange={(value) => updateOrbitalParameter(animationType, 'orbitDistance', value)}
           />
         </ParameterGroup>
       )}

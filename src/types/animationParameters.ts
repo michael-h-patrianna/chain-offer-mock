@@ -27,17 +27,35 @@ export interface SpringPhysicsParameters {
 }
 
 /**
+ * Additional parameters for wobble-based animations
+ */
+export interface WobbleParameters {
+  /** Intensity of the wobble effect (0.5 = subtle, 2.0 = extreme) */
+  wobbleIntensity: number
+}
+
+/**
+ * Additional parameters for orbital animations
+ */
+export interface OrbitalParameters {
+  /** Distance of orbital motion in pixels (50 = small orbit, 200 = large orbit) */
+  orbitDistance: number
+}
+
+/**
  * Complete parameter set for an animation type
  */
 export type AnimationParameters = BaseAnimationParameters & {
   spring?: SpringPhysicsParameters
+  wobble?: WobbleParameters
+  orbital?: OrbitalParameters
 }
 
 /**
  * Parameter metadata for UI rendering
  */
 export interface ParameterConfig {
-  key: keyof AnimationParameters | keyof SpringPhysicsParameters
+  key: keyof AnimationParameters | keyof SpringPhysicsParameters | keyof WobbleParameters | keyof OrbitalParameters
   label: string
   description: string
   min: number
@@ -84,6 +102,30 @@ export const defaultAnimationParameters: Record<AnimationType, AnimationParamete
     delayOffset: 0,
     staggerChildren: 0.1,
     delayChildren: 0.15,
+  },
+  'elastic-bounce': {
+    durationScale: 1.0,
+    delayOffset: 0,
+    staggerChildren: 0.08,
+    delayChildren: 0,
+    wobble: {
+      wobbleIntensity: 1.0,
+    },
+  },
+  'orbital-reveal': {
+    durationScale: 1.0,
+    delayOffset: 0,
+    staggerChildren: 0.12,
+    delayChildren: 0.1,
+    orbital: {
+      orbitDistance: 100,
+    },
+  },
+  'glitch-snap': {
+    durationScale: 1.0,
+    delayOffset: 0,
+    staggerChildren: 0.06,
+    delayChildren: 0.05,
   },
   'none': {
     durationScale: 1.0,
@@ -162,5 +204,29 @@ export const springParameterConfigs: ParameterConfig[] = [
     max: 3.0,
     step: 0.1,
     defaultValue: 1.0,
+  },
+]
+
+export const wobbleParameterConfigs: ParameterConfig[] = [
+  {
+    key: 'wobbleIntensity',
+    label: 'Wobble Intensity',
+    description: 'How extreme the wobble effect is',
+    min: 0.5,
+    max: 2.0,
+    step: 0.1,
+    defaultValue: 1.0,
+  },
+]
+
+export const orbitalParameterConfigs: ParameterConfig[] = [
+  {
+    key: 'orbitDistance',
+    label: 'Orbit Distance',
+    description: 'Size of the circular motion path',
+    min: 50,
+    max: 200,
+    step: 10,
+    defaultValue: 100,
   },
 ]

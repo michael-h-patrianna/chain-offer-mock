@@ -62,6 +62,51 @@ function applyToState(state: any, parameters: AnimationParameters, isContainer: 
 
   const result: any = { ...state }
 
+  // Apply wobble intensity to scale and rotate arrays
+  if (parameters.wobble) {
+    const intensity = parameters.wobble.wobbleIntensity
+
+    // Scale arrays: multiply deviations from 1.0 by intensity
+    if (Array.isArray(result.scale)) {
+      result.scale = result.scale.map((val: number) => {
+        if (val === 0) return 0 // Keep start at 0
+        const deviation = val - 1.0
+        return 1.0 + deviation * intensity
+      })
+    }
+    if (Array.isArray(result.scaleX)) {
+      result.scaleX = result.scaleX.map((val: number) => {
+        if (val === 0) return 0
+        const deviation = val - 1.0
+        return 1.0 + deviation * intensity
+      })
+    }
+    if (Array.isArray(result.scaleY)) {
+      result.scaleY = result.scaleY.map((val: number) => {
+        if (val === 0 || val === 1) return val // Keep start/end values
+        const deviation = val - 1.0
+        return 1.0 + deviation * intensity
+      })
+    }
+
+    // Rotate arrays: multiply by intensity
+    if (Array.isArray(result.rotate)) {
+      result.rotate = result.rotate.map((val: number) => val * intensity)
+    }
+  }
+
+  // Apply orbital distance to x/y position values
+  if (parameters.orbital) {
+    const distanceScale = parameters.orbital.orbitDistance / 100 // Normalize to default of 100
+
+    if (typeof result.x === 'number' && result.x !== 0) {
+      result.x = result.x * distanceScale
+    }
+    if (typeof result.y === 'number' && result.y !== 0) {
+      result.y = result.y * distanceScale
+    }
+  }
+
   // If this state has a transition, apply parameters to it
   if (result.transition && typeof result.transition === 'object') {
     result.transition = applyToTransition(result.transition, parameters, isContainer)

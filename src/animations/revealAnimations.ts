@@ -6,6 +6,9 @@ export type AnimationType =
   | 'flip-reveal'
   | 'spring-physics'
   | 'fade-slide'
+  | 'elastic-bounce'
+  | 'orbital-reveal'
+  | 'glitch-snap'
   | 'none'
 
 export interface RevealAnimation {
@@ -979,6 +982,635 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
           duration: 0.4,
           delay: 1.0,
           ease: [0.25, 0.46, 0.45, 0.94],
+        },
+      },
+    },
+  },
+
+  'elastic-bounce': {
+    id: 'elastic-bounce',
+    name: 'Jello Wobble',
+    description: 'Extreme jello-like wobble',
+    containerVariants: {
+      hidden: {},
+      visible: {
+        transition: {
+          staggerChildren: 0.08,
+          delayChildren: 0,
+        },
+      },
+    },
+    itemVariants: {
+      hidden: {
+        opacity: 0,
+        scale: 0,
+        rotate: 0,
+      },
+      visible: {
+        opacity: 1,
+        scale: [0, 1.5, 0.75, 1.2, 0.9, 1],
+        rotate: [0, 25, -15, 10, -5, 0],
+        transition: {
+          duration: 0.6,
+          ease: 'easeOut',
+        },
+      },
+    },
+    headerImageVariants: {
+      hidden: {
+        opacity: 0,
+        scale: 0,
+      },
+      visible: {
+        opacity: 1,
+        scale: [0, 1.6, 0.8, 1.25, 0.95, 1],
+        scaleY: [1, 0.75, 1.25, 0.9, 1.05, 1],
+        rotate: [0, -20, 12, -6, 0],
+        transition: {
+          duration: 0.7,
+          delay: 0,
+          ease: 'easeOut',
+        },
+      },
+    },
+    timerVariants: {
+      hidden: {
+        opacity: 0,
+        scale: 0,
+      },
+      visible: {
+        opacity: 1,
+        scale: [0, 1.7, 0.7, 1.3, 0.9, 1],
+        rotate: [0, 20, -12, 6, 0],
+        transition: {
+          duration: 0.65,
+          delay: 0.08,
+          ease: 'easeOut',
+        },
+      },
+    },
+    titleVariants: {
+      hidden: {
+        opacity: 0,
+        scaleX: 0,
+      },
+      visible: {
+        opacity: 1,
+        scaleX: [0, 1.5, 0.8, 1.2, 0.95, 1],
+        scaleY: [1, 0.7, 1.3, 0.9, 1],
+        transition: {
+          duration: 0.6,
+          delay: 0.15,
+          ease: 'easeOut',
+        },
+      },
+    },
+    footerVariants: {
+      hidden: {
+        opacity: 0,
+        scale: 0,
+      },
+      visible: {
+        opacity: 1,
+        scale: [0, 1.4, 0.85, 1.15, 0.95, 1],
+        rotate: [0, 15, -8, 4, 0],
+        transition: {
+          duration: 0.6,
+          delay: 0.45,
+          ease: 'easeOut',
+        },
+      },
+    },
+    questlineHeaderImageVariants: {
+      hidden: {
+        opacity: 0,
+        scale: 0,
+      },
+      visible: {
+        opacity: 1,
+        scale: [0, 1.7, 0.75, 1.3, 0.9, 1],
+        scaleY: [1, 0.7, 1.3, 0.9, 1.05, 1],
+        rotate: [0, -25, 15, -8, 0],
+        transition: {
+          duration: 0.75,
+          delay: 0,
+          ease: 'easeOut',
+        },
+      },
+    },
+    questlineTimerVariants: {
+      hidden: {
+        opacity: 0,
+        scale: 0,
+      },
+      visible: {
+        opacity: 1,
+        scale: [0, 1.8, 0.6, 1.35, 0.85, 1],
+        rotate: [0, 22, -13, 7, 0],
+        transition: {
+          duration: 0.7,
+          delay: 0.06,
+          ease: 'easeOut',
+        },
+      },
+    },
+    questlineDescriptionVariants: {
+      hidden: {
+        opacity: 0,
+        scaleX: 0,
+      },
+      visible: {
+        opacity: 1,
+        scaleX: [0, 1.5, 0.8, 1.2, 0.95, 1],
+        scaleY: [1, 0.7, 1.3, 0.9, 1],
+        transition: {
+          duration: 0.65,
+          delay: 0.12,
+          ease: 'easeOut',
+        },
+      },
+    },
+    questlineBonusRewardsVariants: {
+      hidden: {
+        opacity: 0,
+        scale: 0,
+      },
+      visible: {
+        opacity: 1,
+        scale: [0, 1.6, 0.75, 1.25, 0.9, 1],
+        rotate: [0, -18, 10, -5, 0],
+        transition: {
+          duration: 0.7,
+          delay: 0.1,
+          ease: 'easeOut',
+        },
+      },
+    },
+    questlineProgressBarVariants: {
+      hidden: {
+        opacity: 0,
+        scaleX: 0,
+        scaleY: 1,
+      },
+      visible: {
+        opacity: 1,
+        scaleX: [0, 1.4, 0.8, 1.15, 0.95, 1],
+        scaleY: [1, 1.5, 0.7, 1.25, 0.95, 1],
+        transition: {
+          duration: 0.65,
+          delay: 0.2,
+          ease: 'easeOut',
+        },
+      },
+    },
+    questlineFooterVariants: {
+      hidden: {
+        opacity: 0,
+        scale: 0,
+      },
+      visible: {
+        opacity: 1,
+        scale: [0, 1.45, 0.8, 1.18, 0.94, 1],
+        rotate: [0, 18, -10, 5, 0],
+        transition: {
+          duration: 0.65,
+          delay: 0.4,
+          ease: 'easeOut',
+        },
+      },
+    },
+  },
+
+  'orbital-reveal': {
+    id: 'orbital-reveal',
+    name: 'Orbital Reveal',
+    description: 'Elements orbit into position',
+    containerVariants: {
+      hidden: {},
+      visible: {
+        transition: {
+          staggerChildren: 0.12,
+          delayChildren: 0.1,
+        },
+      },
+    },
+    itemVariants: {
+      hidden: {
+        opacity: 0,
+        x: 100,
+        y: -100,
+        scale: 0.5,
+        rotate: -180,
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        scale: 1,
+        rotate: 0,
+        transition: {
+          duration: 0.9,
+          ease: [0.34, 1.56, 0.64, 1],
+        },
+      },
+    },
+    headerImageVariants: {
+      hidden: {
+        opacity: 0,
+        y: -200,
+        x: -50,
+        scale: 0.4,
+        rotate: -90,
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        x: 0,
+        scale: 1,
+        rotate: 0,
+        transition: {
+          duration: 1.0,
+          delay: 0.1,
+          ease: [0.34, 1.56, 0.64, 1],
+        },
+      },
+    },
+    timerVariants: {
+      hidden: {
+        opacity: 0,
+        x: 150,
+        y: 50,
+        scale: 0.3,
+        rotate: 180,
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        scale: 1,
+        rotate: 0,
+        transition: {
+          duration: 0.9,
+          delay: 0.3,
+          ease: [0.34, 1.56, 0.64, 1],
+        },
+      },
+    },
+    titleVariants: {
+      hidden: {
+        opacity: 0,
+        x: -80,
+        y: 40,
+        rotate: -45,
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        rotate: 0,
+        transition: {
+          duration: 0.8,
+          delay: 0.5,
+          ease: [0.34, 1.56, 0.64, 1],
+        },
+      },
+    },
+    footerVariants: {
+      hidden: {
+        opacity: 0,
+        y: 60,
+        x: 40,
+        rotate: 20,
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        x: 0,
+        rotate: 0,
+        transition: {
+          duration: 0.7,
+          delay: 1.1,
+          ease: [0.34, 1.56, 0.64, 1],
+        },
+      },
+    },
+    questlineHeaderImageVariants: {
+      hidden: {
+        opacity: 0,
+        y: -250,
+        x: -80,
+        scale: 0.3,
+        rotate: -120,
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        x: 0,
+        scale: 1,
+        rotate: 0,
+        transition: {
+          duration: 1.1,
+          delay: 0.1,
+          ease: [0.34, 1.56, 0.64, 1],
+        },
+      },
+    },
+    questlineTimerVariants: {
+      hidden: {
+        opacity: 0,
+        x: 180,
+        y: 70,
+        scale: 0.2,
+        rotate: 200,
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        scale: 1,
+        rotate: 0,
+        transition: {
+          duration: 1.0,
+          delay: 0.25,
+          ease: [0.34, 1.56, 0.64, 1],
+        },
+      },
+    },
+    questlineDescriptionVariants: {
+      hidden: {
+        opacity: 0,
+        x: -100,
+        y: 50,
+        rotate: -60,
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        rotate: 0,
+        transition: {
+          duration: 0.8,
+          delay: 0.45,
+          ease: [0.34, 1.56, 0.64, 1],
+        },
+      },
+    },
+    questlineBonusRewardsVariants: {
+      hidden: {
+        opacity: 0,
+        x: 120,
+        y: -80,
+        scale: 0.4,
+        rotate: -150,
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        scale: 1,
+        rotate: 0,
+        transition: {
+          duration: 0.9,
+          delay: 0.4,
+          ease: [0.34, 1.56, 0.64, 1],
+        },
+      },
+    },
+    questlineProgressBarVariants: {
+      hidden: {
+        opacity: 0,
+        x: -100,
+        scaleX: 0.2,
+        rotate: -10,
+      },
+      visible: {
+        opacity: 1,
+        x: 0,
+        scaleX: 1,
+        rotate: 0,
+        transition: {
+          duration: 0.8,
+          delay: 0.6,
+          ease: [0.34, 1.56, 0.64, 1],
+        },
+      },
+    },
+    questlineFooterVariants: {
+      hidden: {
+        opacity: 0,
+        y: 70,
+        x: 50,
+        rotate: 30,
+      },
+      visible: {
+        opacity: 1,
+        y: 0,
+        x: 0,
+        rotate: 0,
+        transition: {
+          duration: 0.7,
+          delay: 1.0,
+          ease: [0.34, 1.56, 0.64, 1],
+        },
+      },
+    },
+  },
+
+  'glitch-snap': {
+    id: 'glitch-snap',
+    name: 'Glitch Snap',
+    description: 'Sharp digital glitch effect',
+    containerVariants: {
+      hidden: {},
+      visible: {
+        transition: {
+          staggerChildren: 0.04,
+          delayChildren: 0.05,
+        },
+      },
+    },
+    itemVariants: {
+      hidden: {
+        opacity: 0,
+        x: 0,
+        y: 0,
+      },
+      visible: {
+        opacity: [0, 1, 0.3, 1, 0.5, 1],
+        x: [0, 20, -15, 8, -5, 0],
+        y: [0, -12, 15, -8, 5, 0],
+        transition: {
+          duration: 0.25,
+          times: [0, 0.15, 0.3, 0.5, 0.7, 1],
+          ease: 'linear',
+        },
+      },
+    },
+    headerImageVariants: {
+      hidden: {
+        opacity: 0,
+        x: 0,
+        y: 0,
+      },
+      visible: {
+        opacity: [0, 1, 0.4, 1, 0.6, 1],
+        x: [0, -25, 30, -12, 8, 0],
+        y: [0, 15, -20, 10, -5, 0],
+        scale: [0.9, 1.1, 0.95, 1.05, 0.98, 1],
+        transition: {
+          duration: 0.3,
+          delay: 0.05,
+          times: [0, 0.15, 0.3, 0.5, 0.75, 1],
+          ease: 'linear',
+        },
+      },
+    },
+    timerVariants: {
+      hidden: {
+        opacity: 0,
+        scale: 0.8,
+      },
+      visible: {
+        opacity: [0, 1, 0.3, 1, 0.4, 1],
+        x: [0, 30, -20, 15, -8, 0],
+        scale: [0.8, 1.2, 0.9, 1.1, 0.95, 1],
+        transition: {
+          duration: 0.28,
+          delay: 0.15,
+          times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+          ease: 'linear',
+        },
+      },
+    },
+    titleVariants: {
+      hidden: {
+        opacity: 0,
+      },
+      visible: {
+        opacity: [0, 1, 0.5, 1, 0.7, 1],
+        x: [0, -18, 22, -10, 6, 0],
+        y: [0, 12, -15, 8, -4, 0],
+        transition: {
+          duration: 0.26,
+          delay: 0.25,
+          times: [0, 0.18, 0.36, 0.6, 0.8, 1],
+          ease: 'linear',
+        },
+      },
+    },
+    footerVariants: {
+      hidden: {
+        opacity: 0,
+      },
+      visible: {
+        opacity: [0, 1, 0.4, 1, 0.6, 1],
+        x: [0, 15, -12, 8, -5, 0],
+        y: [0, -10, 12, -6, 3, 0],
+        transition: {
+          duration: 0.24,
+          delay: 0.7,
+          times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+          ease: 'linear',
+        },
+      },
+    },
+    questlineHeaderImageVariants: {
+      hidden: {
+        opacity: 0,
+      },
+      visible: {
+        opacity: [0, 1, 0.3, 1, 0.5, 1],
+        x: [0, -30, 35, -15, 10, 0],
+        y: [0, 20, -25, 12, -8, 0],
+        scale: [0.85, 1.15, 0.9, 1.08, 0.96, 1],
+        transition: {
+          duration: 0.32,
+          delay: 0.05,
+          times: [0, 0.15, 0.3, 0.5, 0.75, 1],
+          ease: 'linear',
+        },
+      },
+    },
+    questlineTimerVariants: {
+      hidden: {
+        opacity: 0,
+        scale: 0.75,
+      },
+      visible: {
+        opacity: [0, 1, 0.4, 1, 0.5, 1],
+        x: [0, 35, -25, 18, -10, 0],
+        scale: [0.75, 1.25, 0.85, 1.12, 0.94, 1],
+        transition: {
+          duration: 0.3,
+          delay: 0.12,
+          times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+          ease: 'linear',
+        },
+      },
+    },
+    questlineDescriptionVariants: {
+      hidden: {
+        opacity: 0,
+      },
+      visible: {
+        opacity: [0, 1, 0.5, 1, 0.6, 1],
+        x: [0, -20, 25, -12, 8, 0],
+        y: [0, 15, -18, 10, -5, 0],
+        transition: {
+          duration: 0.28,
+          delay: 0.22,
+          times: [0, 0.18, 0.36, 0.6, 0.8, 1],
+          ease: 'linear',
+        },
+      },
+    },
+    questlineBonusRewardsVariants: {
+      hidden: {
+        opacity: 0,
+      },
+      visible: {
+        opacity: [0, 1, 0.4, 1, 0.5, 1],
+        x: [0, 22, -28, 15, -8, 0],
+        y: [0, -15, 20, -10, 6, 0],
+        scale: [0.9, 1.1, 0.92, 1.06, 0.97, 1],
+        transition: {
+          duration: 0.3,
+          delay: 0.18,
+          times: [0, 0.17, 0.34, 0.55, 0.75, 1],
+          ease: 'linear',
+        },
+      },
+    },
+    questlineProgressBarVariants: {
+      hidden: {
+        opacity: 0,
+        scaleX: 0.5,
+      },
+      visible: {
+        opacity: [0, 1, 0.5, 1, 0.7, 1],
+        x: [0, -15, 20, -10, 5, 0],
+        scaleX: [0.5, 1.2, 0.8, 1.1, 0.95, 1],
+        transition: {
+          duration: 0.28,
+          delay: 0.35,
+          times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+          ease: 'linear',
+        },
+      },
+    },
+    questlineFooterVariants: {
+      hidden: {
+        opacity: 0,
+      },
+      visible: {
+        opacity: [0, 1, 0.4, 1, 0.6, 1],
+        x: [0, 18, -15, 10, -5, 0],
+        y: [0, -12, 15, -8, 4, 0],
+        transition: {
+          duration: 0.26,
+          delay: 0.65,
+          times: [0, 0.2, 0.4, 0.6, 0.8, 1],
+          ease: 'linear',
         },
       },
     },

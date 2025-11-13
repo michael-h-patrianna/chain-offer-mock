@@ -17,6 +17,18 @@ interface AnimationParametersContextValue {
     key: 'stiffness' | 'damping' | 'mass',
     value: number
   ) => void
+  /** Update a wobble parameter for an animation type */
+  updateWobbleParameter: (
+    animationType: AnimationType,
+    key: 'wobbleIntensity',
+    value: number
+  ) => void
+  /** Update an orbital parameter for an animation type */
+  updateOrbitalParameter: (
+    animationType: AnimationType,
+    key: 'orbitDistance',
+    value: number
+  ) => void
   /** Reset all parameters for a specific animation type to defaults */
   resetToDefaults: (animationType: AnimationType) => void
 }
@@ -74,6 +86,38 @@ export function AnimationParametersProvider({ children }: AnimationParametersPro
     []
   )
 
+  const updateWobbleParameter = useCallback(
+    (animationType: AnimationType, key: 'wobbleIntensity', value: number) => {
+      setParametersMap((prev) => ({
+        ...prev,
+        [animationType]: {
+          ...prev[animationType],
+          wobble: {
+            ...(prev[animationType].wobble || { wobbleIntensity: 1.0 }),
+            [key]: value,
+          },
+        },
+      }))
+    },
+    []
+  )
+
+  const updateOrbitalParameter = useCallback(
+    (animationType: AnimationType, key: 'orbitDistance', value: number) => {
+      setParametersMap((prev) => ({
+        ...prev,
+        [animationType]: {
+          ...prev[animationType],
+          orbital: {
+            ...(prev[animationType].orbital || { orbitDistance: 100 }),
+            [key]: value,
+          },
+        },
+      }))
+    },
+    []
+  )
+
   const resetToDefaults = useCallback((animationType: AnimationType) => {
     setParametersMap((prev) => ({
       ...prev,
@@ -85,6 +129,8 @@ export function AnimationParametersProvider({ children }: AnimationParametersPro
     getParameters,
     updateParameter,
     updateSpringParameter,
+    updateWobbleParameter,
+    updateOrbitalParameter,
     resetToDefaults,
   }
 
