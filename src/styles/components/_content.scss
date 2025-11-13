@@ -13,7 +13,7 @@
   // Safari doesn't support scrollbar-* properties
   @supports (scrollbar-color: auto) {
     scrollbar-color: var(--chain-offers-scrollbar-color, var(--chain-offers-scrollbar-default-color)) transparent;
-    scrollbar-width: var(--chain-offers-scrollbar-width, auto);
+    scrollbar-width: var(--chain-offers-scrollbar-width, thin);
     scroll-behavior: smooth;
   }
 
@@ -21,7 +21,7 @@
   @supports selector(::-webkit-scrollbar) {
     &::-webkit-scrollbar {
       background: transparent;
-      width: var(--chain-offers-scrollbar-width-safari, 7px);
+      width: var(--chain-offers-scrollbar-width-safari, 6px);
     }
 
     &::-webkit-scrollbar-thumb {

@@ -5,7 +5,7 @@
   --offer-step-background-size: cover;
   --offer-step-background-position: center;
   --offer-step-background-repeat: no-repeat;
-
+  --offer-step-border-radius: 0.5rem; /* 8px */
   --offer-step-width: 100%;
   --offer-step-max-width: 28.125rem; /* 450px */
   --offer-step-max-width-mobile: 18.375rem; /* 294px */
@@ -45,6 +45,7 @@
 
 .offerStepWrapper {
   order: var(--offer-step-order);
+  border-radius: var(--offer-step-border-radius);
   width: var(--offer-step-width);
   max-width: var(--offer-step-max-width);
   aspect-ratio: var(--offer-step-aspect-ratio);

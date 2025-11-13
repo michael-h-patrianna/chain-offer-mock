@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { ChainOfferMapButton } from './ChainOfferMapButton'
 import { ChainOfferMapRewards, type Reward } from './ChainOfferMapRewards'
 
@@ -33,6 +33,10 @@ export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
     }
   }
 
+  const getWrapperClass = () => {
+    return 'chain-offer-map-item-wrapper'
+  }
+
   const getItemClass = () => {
     const baseClass = 'chain-offer-map-item'
     const classes = [baseClass, className]
@@ -45,15 +49,24 @@ export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
     return classes.filter(Boolean).join(' ')
   }
 
-  const itemStyle = backgroundImage ? {
-    '--offer-step-background-image': `url(${backgroundImage})`,
-    '--offer-step-order': position,
-    '--offer-step-total': 6
-  } as React.CSSProperties : undefined
+  const wrapperRefCallback = useCallback((node: HTMLDivElement | null) => {
+    if (node) {
+      node.style.setProperty('--offer-step-order', `${position}`)
+      node.style.setProperty('--offer-step-total', '6')
+    }
+  }, [position])
+
+  const itemRefCallback = useCallback((node: HTMLDivElement | null) => {
+    if (node && backgroundImage) {
+      node.style.setProperty('--offer-step-background-image', `url(${backgroundImage})`)
+    }
+  }, [backgroundImage])
+
+  const showDivider = position < 6
 
   return (
-    <div className="chain-offer-map-item-wrapper">
-      <div className={getItemClass()} style={itemStyle}>
+    <div ref={wrapperRefCallback} className={getWrapperClass()}>
+      <div ref={itemRefCallback} className={getItemClass()}>
         <div className="chain-offer-map-item__content">
           <div className="chain-offer-map-item__offers">
             <ChainOfferMapRewards rewards={rewards} />
@@ -68,7 +81,7 @@ export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
           </div>
         </div>
       </div>
-      {position < 6 && (
+      {showDivider && (
         <div className="chain-offer-map-item__divider" aria-hidden>
           <img
             alt="Next step"
