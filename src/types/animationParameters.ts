@@ -127,6 +127,24 @@ export const defaultAnimationParameters: Record<AnimationType, AnimationParamete
     staggerChildren: 0.06,
     delayChildren: 0.05,
   },
+  'silk-unfold': {
+    durationScale: 1.0,
+    delayOffset: 0,
+    staggerChildren: 0.12,
+    delayChildren: 0.15,
+  },
+  'crystal-shimmer': {
+    durationScale: 1.0,
+    delayOffset: 0,
+    staggerChildren: 0.1,
+    delayChildren: 0.2,
+  },
+  'velvet-cascade': {
+    durationScale: 1.0,
+    delayOffset: 0,
+    staggerChildren: 0.08,
+    delayChildren: 0.25,
+  },
   'none': {
     durationScale: 1.0,
     delayOffset: 0,
