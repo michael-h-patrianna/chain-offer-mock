@@ -1,6 +1,7 @@
 import cx from 'classnames'
 import React from 'react'
 import type { Quest } from '../../types/questline'
+import { ModalCelebrationsCoinsFountain } from '../rewards/modal-celebrations/framer/ModalCelebrationsCoinsFountain'
 import { CompletedOverlay } from './CompletedOverlay'
 import { LockedOverlay } from './LockedOverlay'
 import './QuestCard.css'
@@ -20,16 +21,35 @@ export const QuestCard: React.FC<QuestCardProps> = ({
   onAction,
 }) => {
   const [isExpanded, setIsExpanded] = React.useState(false)
+  const [showCoinFountain, setShowCoinFountain] = React.useState(false)
+  const [fountainOrigin, setFountainOrigin] = React.useState({ x: 0, y: 0 })
+  const [animationKey, setAnimationKey] = React.useState(0)
+  const claimButtonRef = React.useRef<HTMLButtonElement>(null)
 
   const isLocked = status === 'locked'
   const isCompleted = status === 'completed'
   const hasRewards = rewards.length > 0
   const canExpand = !isLocked && (description || hasRewards)
 
-  const handleActionClick = () => {
+  const handleActionClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (status === 'in_progress' && onAction) {
       onAction(questCode, 'go')
     } else if (status === 'unclaimed' && onAction) {
+      console.log('[QuestCard] Claim button clicked!')
+      // Get button position for fountain origin
+      const button = claimButtonRef.current
+      if (button) {
+        const rect = button.getBoundingClientRect()
+        console.log('[QuestCard] Button position:', { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 })
+        setFountainOrigin({
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2,
+        })
+        // Increment key to force remount and replay animation
+        setAnimationKey(prev => prev + 1)
+        setShowCoinFountain(true)
+        console.log('[QuestCard] showCoinFountain set to true')
+      }
       onAction(questCode, 'claim')
     }
   }
@@ -69,7 +89,11 @@ export const QuestCard: React.FC<QuestCardProps> = ({
               )}
             </div>
             {!isLocked && status !== 'completed' && (
-              <button className={getActionButtonClass()} onClick={handleActionClick}>
+              <button
+                ref={claimButtonRef}
+                className={getActionButtonClass()}
+                onClick={handleActionClick}
+              >
                 {getActionButtonText()}
               </button>
             )}
@@ -100,6 +124,22 @@ export const QuestCard: React.FC<QuestCardProps> = ({
         {isLocked && <LockedOverlay />}
         {isCompleted && <CompletedOverlay hasRewards={hasRewards} />}
       </div>
+
+      {/* Coin Fountain Animation */}
+      {showCoinFountain && (
+        <>
+          {console.log('[QuestCard] Rendering ModalCelebrationsCoinsFountain with origin:', fountainOrigin)}
+          <ModalCelebrationsCoinsFountain
+            key={animationKey}
+            originX={fountainOrigin.x}
+            originY={fountainOrigin.y}
+            onComplete={() => {
+              console.log('[QuestCard] Animation complete, hiding fountain')
+              setShowCoinFountain(false)
+            }}
+          />
+        </>
+      )}
     </div>
   )
 }
