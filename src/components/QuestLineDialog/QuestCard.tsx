@@ -35,12 +35,10 @@ export const QuestCard: React.FC<QuestCardProps> = ({
     if (status === 'in_progress' && onAction) {
       onAction(questCode, 'go')
     } else if (status === 'unclaimed' && onAction) {
-      console.log('[QuestCard] Claim button clicked!')
       // Get button position for fountain origin
       const button = claimButtonRef.current
       if (button) {
         const rect = button.getBoundingClientRect()
-        console.log('[QuestCard] Button position:', { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 })
         setFountainOrigin({
           x: rect.left + rect.width / 2,
           y: rect.top + rect.height / 2,
@@ -48,7 +46,6 @@ export const QuestCard: React.FC<QuestCardProps> = ({
         // Increment key to force remount and replay animation
         setAnimationKey(prev => prev + 1)
         setShowCoinFountain(true)
-        console.log('[QuestCard] showCoinFountain set to true')
       }
       onAction(questCode, 'claim')
     }
@@ -127,18 +124,12 @@ export const QuestCard: React.FC<QuestCardProps> = ({
 
       {/* Coin Fountain Animation */}
       {showCoinFountain && (
-        <>
-          {console.log('[QuestCard] Rendering ModalCelebrationsCoinsFountain with origin:', fountainOrigin)}
-          <ModalCelebrationsCoinsFountain
-            key={animationKey}
-            originX={fountainOrigin.x}
-            originY={fountainOrigin.y}
-            onComplete={() => {
-              console.log('[QuestCard] Animation complete, hiding fountain')
-              setShowCoinFountain(false)
-            }}
-          />
-        </>
+        <ModalCelebrationsCoinsFountain
+          key={animationKey}
+          originX={fountainOrigin.x}
+          originY={fountainOrigin.y}
+          onComplete={() => setShowCoinFountain(false)}
+        />
       )}
     </div>
   )
