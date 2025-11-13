@@ -59,95 +59,91 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
           </svg>
         </button>
 
-        <motion.img
-          src={headerImageUrl}
-          alt={title}
-          className="questline-dialog__header-image"
-          variants={animation.questlineHeaderImageVariants}
-          initial="hidden"
-          animate="visible"
-        />
-
+        {/* Stagger container wrapping all content */}
         <motion.div
-          variants={animation.questlineTimerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <ChainOfferTimer
-            endTime={endTime}
-            onCountdownEnd={() => {}}
-            className="questline-dialog__timer"
-          />
-        </motion.div>
-
-        <motion.div
-          className="questline-dialog__description-wrapper"
-          variants={animation.questlineDescriptionVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <p className="questline-dialog__description">{description}</p>
-        </motion.div>
-
-        <motion.div
-          style={{ width: '100%', padding: '0 16px' }}
-          variants={animation.questlineBonusRewardsVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <BonusRewards
-            {...bonusReward}
-            completedQuests={completedQuests}
-            onClaim={onClaimBonus}
-          />
-        </motion.div>
-
-        <motion.div
-          style={{ width: '100%', padding: '0 16px' }}
-          variants={animation.questlineProgressBarVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <MilestoneProgressBar
-            totalQuests={quests.length}
-            completedQuests={completedQuests}
-          />
-        </motion.div>
-
-        <motion.div
-          key={`quest-container-${animationType}`}
-          className="questline-dialog__quests"
+          key={`questline-stagger-${animationType}`}
           variants={animation.containerVariants}
           initial="hidden"
           animate="visible"
+          style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'visible', alignItems: 'center' }}
         >
-          {quests.map((quest) => (
-            <motion.div key={quest.questCode} variants={animation.itemVariants}>
-              <QuestCard
-                {...quest}
-                onAction={onQuestAction}
-              />
-            </motion.div>
-          ))}
-        </motion.div>
+          {/* Header Image - staggered */}
+          <motion.img
+            src={headerImageUrl}
+            alt={title}
+            className="questline-dialog__header-image"
+            variants={animation.itemVariants}
+          />
 
-        {termsUrl && (
-          <motion.div
-            className="questline-dialog__footer"
-            variants={animation.questlineFooterVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <a
-              href={termsUrl}
-              className="questline-dialog__terms-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Terms & Conditions
-            </a>
+          {/* Timer - staggered */}
+          <motion.div variants={animation.itemVariants}>
+            <ChainOfferTimer
+              endTime={endTime}
+              onCountdownEnd={() => {}}
+              className="questline-dialog__timer"
+            />
           </motion.div>
-        )}
+
+          {/* Description - staggered */}
+          <motion.div
+            className="questline-dialog__description-wrapper"
+            variants={animation.itemVariants}
+          >
+            <p className="questline-dialog__description">{description}</p>
+          </motion.div>
+
+          {/* Bonus Rewards - staggered */}
+          <motion.div
+            style={{ width: '100%', padding: '0 16px' }}
+            variants={animation.itemVariants}
+          >
+            <BonusRewards
+              {...bonusReward}
+              completedQuests={completedQuests}
+              onClaim={onClaimBonus}
+            />
+          </motion.div>
+
+          {/* Progress Bar - staggered */}
+          <motion.div
+            style={{ width: '100%', padding: '0 16px' }}
+            variants={animation.itemVariants}
+          >
+            <MilestoneProgressBar
+              totalQuests={quests.length}
+              completedQuests={completedQuests}
+            />
+          </motion.div>
+
+          {/* Quest Cards - each staggered */}
+          <div className="questline-dialog__quests">
+            {quests.map((quest) => (
+              <motion.div key={quest.questCode} variants={animation.itemVariants}>
+                <QuestCard
+                  {...quest}
+                  onAction={onQuestAction}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Footer - staggered */}
+          {termsUrl && (
+            <motion.div
+              className="questline-dialog__footer"
+              variants={animation.itemVariants}
+            >
+              <a
+                href={termsUrl}
+                className="questline-dialog__terms-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Terms & Conditions
+              </a>
+            </motion.div>
+          )}
+        </motion.div>
       </div>
     </div>
   )

@@ -14,7 +14,7 @@
 
 .chain-offer-dialog {
   margin: auto;
-  max-width: 500px;
+  max-width: 414px;
   padding: 16px;
   width: 100%;
   border: none;
@@ -23,7 +23,7 @@
   display: flex;
   flex-direction: column;
   max-height: calc(100vh - 40px);
-  overflow: hidden;
+  overflow: visible;
   box-sizing: border-box;
 }
 
@@ -69,7 +69,7 @@
   padding-bottom: 6px;
   flex: 1;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: visible;
   overscroll-behavior: contain;
   width: 100%;
 }

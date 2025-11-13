@@ -6,6 +6,7 @@ import { App } from './ui/App';
 import { AppSimpleIsolated } from './ui/AppSimpleIsolated';
 import { Comparison } from './ui/Comparison';
 import { SimpleHarness } from './ui/SimpleHarness';
+import './styles/scrollbar.css';
 // Minimal process polyfill for code referencing process.env.*
 if (!(window as any).process) {
   ;(window as any).process = { env: { IMG_ORIGIN: '' } }

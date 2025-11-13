@@ -1,18 +1,19 @@
 @import '../variables/variables';
 
 .content {
-  --chain-offers-scrollbar-default-color: #999999;
+  --chain-offers-scrollbar-default-color: #5a3d7a;
+  --chain-offers-scrollbar-track-color: #1a0833;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem; // 16px
-  overflow-y: scroll;
+  overflow: visible; // Let parent handle scrolling to avoid clipping scaled items
 
 
   // Safari doesn't support scrollbar-* properties
   @supports (scrollbar-color: auto) {
-    scrollbar-color: var(--chain-offers-scrollbar-color, var(--chain-offers-scrollbar-default-color)) transparent;
+    scrollbar-color: var(--chain-offers-scrollbar-color, var(--chain-offers-scrollbar-default-color)) var(--chain-offers-scrollbar-track-color);
     scrollbar-width: var(--chain-offers-scrollbar-width, thin);
     scroll-behavior: smooth;
   }
@@ -20,13 +21,28 @@
   // Scrollbar styles for Safari and Opera
   @supports selector(::-webkit-scrollbar) {
     &::-webkit-scrollbar {
-      background: transparent;
-      width: var(--chain-offers-scrollbar-width-safari, 6px);
+      background: var(--chain-offers-scrollbar-track-color);
+      width: var(--chain-offers-scrollbar-width-safari, 12px);
+      border-radius: 6px;
     }
 
     &::-webkit-scrollbar-thumb {
-      background: var(--chain-offers-scrollbar-color, var(--chain-offers-scrollbar-default-color));
-      border-radius: 4px;
+      background: linear-gradient(180deg, #7a5d9a 0%, var(--chain-offers-scrollbar-color, var(--chain-offers-scrollbar-default-color)) 100%);
+      border-radius: 6px;
+      border: 2px solid var(--chain-offers-scrollbar-track-color);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #9a7dba 0%, #7a5d9a 100%);
+    }
+
+    &::-webkit-scrollbar-thumb:active {
+      background: linear-gradient(180deg, #aa8dca 0%, #8a6daa 100%);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--chain-offers-scrollbar-track-color);
+      border-radius: 6px;
     }
   }
 }
