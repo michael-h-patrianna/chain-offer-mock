@@ -5,6 +5,7 @@ import { ChainOfferDialog } from '../components'
 import { HamburgerButton } from '../components/HamburgerButton'
 import { Sidebar } from '../components/Sidebar'
 import { QuestLineDialog } from '../components/QuestLineDialog'
+import { AnimationParametersProvider } from '../contexts/AnimationParametersContext'
 import chainOffersRawData from '../data/chainOffersData.json'
 import questlineRawData from '../data/questlineData.json'
 import { RootState } from '../store'
@@ -13,7 +14,7 @@ import '../styles/chain-offers.scss'
 import { transformChainOfferData } from '../utils/transformChainOfferData'
 import { transformQuestLineData } from '../utils/transformQuestLineData'
 
-export function AppSimpleIsolated() {
+function AppSimpleIsolatedInner() {
   const dispatch = useDispatch()
   const [isChainOfferDialogOpen, setIsChainOfferDialogOpen] = useState(false)
   const [isQuestlineDialogOpen, setIsQuestlineDialogOpen] = useState(false)
@@ -82,7 +83,7 @@ export function AppSimpleIsolated() {
   return (
     <div className="app-container">
       {/* Sidebar */}
-      <Sidebar isOpen={isSidebarOpen} onClose={handleCloseSidebar} />
+      <Sidebar isOpen={isSidebarOpen} onClose={handleCloseSidebar} selectedAnimation={selectedAnimation} />
 
       {/* Hamburger Menu Button */}
       <HamburgerButton isOpen={isSidebarOpen} onClick={handleToggleSidebar} />
@@ -252,5 +253,13 @@ export function AppSimpleIsolated() {
         }
       `}</style>
     </div>
+  )
+}
+
+export function AppSimpleIsolated() {
+  return (
+    <AnimationParametersProvider>
+      <AppSimpleIsolatedInner />
+    </AnimationParametersProvider>
   )
 }

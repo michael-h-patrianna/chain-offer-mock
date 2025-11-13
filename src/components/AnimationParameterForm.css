@@ -1,0 +1,51 @@
+/* Animation Parameter Form Styles */
+
+.animation-parameter-form {
+  padding: 0;
+}
+
+.animation-parameter-form__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #5a3d7a;
+}
+
+.animation-parameter-form__title {
+  color: #ecc3ff;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.animation-parameter-form__reset {
+  background: rgba(90, 61, 122, 0.4);
+  border: 1px solid #7a5d9a;
+  color: #ecc3ff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.animation-parameter-form__reset:hover {
+  background: rgba(90, 61, 122, 0.6);
+  border-color: #9a7dba;
+  transform: translateY(-1px);
+}
+
+.animation-parameter-form__reset:active {
+  transform: translateY(0);
+}
+
+.animation-parameter-form__empty {
+  color: #b8a0c8;
+  font-size: 14px;
+  text-align: center;
+  padding: 40px 20px;
+  font-style: italic;
+}

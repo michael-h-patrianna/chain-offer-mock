@@ -1,7 +1,9 @@
 import { motion } from 'motion/react'
-import React from 'react'
+import React, { useMemo } from 'react'
 import type { AnimationType } from '../animations/revealAnimations'
 import { getRevealAnimation } from '../animations/revealAnimations'
+import { useAnimationParameters } from '../hooks/useAnimationParameters'
+import { applyAnimationParameters } from '../utils/applyAnimationParameters'
 import { ChainOfferHeader } from './ChainOfferHeader'
 import { ChainOfferList } from './ChainOfferList'
 import type { ChainOfferMapItemProps } from './ChainOfferMapItem'
@@ -34,9 +36,15 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
   className = '',
   animationType = 'none'
 }) => {
-  if (!isOpen) return null
+  const { getParameters } = useAnimationParameters()
 
-  const animation = getRevealAnimation(animationType)
+  const animation = useMemo(() => {
+    const baseAnimation = getRevealAnimation(animationType)
+    const parameters = getParameters(animationType)
+    return applyAnimationParameters(baseAnimation, parameters)
+  }, [animationType, getParameters])
+
+  if (!isOpen) return null
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {

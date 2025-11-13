@@ -1,6 +1,8 @@
 import { motion } from 'motion/react'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { AnimationType, getRevealAnimation } from '../animations/revealAnimations'
+import { useAnimationParameters } from '../hooks/useAnimationParameters'
+import { applyAnimationParameters } from '../utils/applyAnimationParameters'
 import { ChainOfferMapItem, type ChainOfferMapItemProps } from './ChainOfferMapItem'
 
 export interface ChainOfferListProps {
@@ -16,7 +18,13 @@ export const ChainOfferList: React.FC<ChainOfferListProps> = ({
   className = '',
   animationType = 'none'
 }) => {
-  const animation = getRevealAnimation(animationType)
+  const { getParameters } = useAnimationParameters()
+
+  const animation = useMemo(() => {
+    const baseAnimation = getRevealAnimation(animationType)
+    const parameters = getParameters(animationType)
+    return applyAnimationParameters(baseAnimation, parameters)
+  }, [animationType, getParameters])
 
   return (
     <motion.section

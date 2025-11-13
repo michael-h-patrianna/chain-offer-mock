@@ -2,6 +2,8 @@ import { motion } from 'motion/react'
 import React, { useMemo } from 'react'
 import type { AnimationType } from '../../animations/revealAnimations'
 import { getRevealAnimation } from '../../animations/revealAnimations'
+import { useAnimationParameters } from '../../hooks/useAnimationParameters'
+import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
 import type { QuestLineDialogProps } from '../../types/questline'
 import { ChainOfferTimer } from '../ChainOfferTimer'
 import { BonusRewards } from './BonusRewards'
@@ -23,12 +25,18 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
   onClaimBonus,
   animationType = 'none',
 }) => {
+  const { getParameters } = useAnimationParameters()
+
   const completedQuests = useMemo(
     () => quests.filter((quest) => quest.status === 'completed').length,
     [quests]
   )
 
-  const animation = getRevealAnimation(animationType)
+  const animation = useMemo(() => {
+    const baseAnimation = getRevealAnimation(animationType)
+    const parameters = getParameters(animationType)
+    return applyAnimationParameters(baseAnimation, parameters)
+  }, [animationType, getParameters])
 
   if (!isOpen) return null
 

@@ -1,0 +1,25 @@
+/* Parameter Group Styles */
+
+.parameter-group {
+  margin-bottom: 32px;
+}
+
+.parameter-group__title {
+  color: #ecc3ff;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(90, 61, 122, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.parameter-group__icon {
+  font-size: 18px;
+}
+
+.parameter-group__content {
+  padding-left: 4px;
+}

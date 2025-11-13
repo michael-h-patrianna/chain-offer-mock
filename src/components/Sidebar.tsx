@@ -1,11 +1,14 @@
+import { AnimationType } from '../animations/revealAnimations'
+import { AnimationParameterForm } from './AnimationParameterForm'
 import './Sidebar.css'
 
 interface SidebarProps {
   isOpen: boolean
   onClose: () => void
+  selectedAnimation: AnimationType
 }
 
-export function Sidebar({ isOpen, onClose }: SidebarProps) {
+export function Sidebar({ isOpen, onClose, selectedAnimation }: SidebarProps) {
   return (
     <>
       {/* Backdrop for mobile - click to close */}
@@ -20,7 +23,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       {/* Sidebar */}
       <aside className={`sidebar ${isOpen ? 'sidebar--open' : ''}`}>
         <div className="sidebar__content">
-          {/* Sidebar content can be added here */}
+          <AnimationParameterForm key={selectedAnimation} animationType={selectedAnimation} />
         </div>
       </aside>
     </>
