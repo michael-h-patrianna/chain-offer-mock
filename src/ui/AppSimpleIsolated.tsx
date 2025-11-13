@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AnimationType, getAnimationOptions } from '../animations/revealAnimations'
 import { ChainOfferDialog } from '../components'
+import { HamburgerButton } from '../components/HamburgerButton'
+import { Sidebar } from '../components/Sidebar'
 import { QuestLineDialog } from '../components/QuestLineDialog'
 import chainOffersRawData from '../data/chainOffersData.json'
 import questlineRawData from '../data/questlineData.json'
@@ -16,9 +18,24 @@ export function AppSimpleIsolated() {
   const [isChainOfferDialogOpen, setIsChainOfferDialogOpen] = useState(false)
   const [isQuestlineDialogOpen, setIsQuestlineDialogOpen] = useState(false)
   const [selectedAnimation, setSelectedAnimation] = useState<AnimationType>('stagger-inview')
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
+    // Default to open on desktop, closed on mobile
+    return typeof window !== 'undefined' && window.innerWidth > 768
+  })
   const chainOffersState = useSelector((state: RootState) => state.chainOffers)
 
   const animationOptions = getAnimationOptions()
+
+  const handleToggleSidebar = () => {
+    setIsSidebarOpen(prev => !prev)
+  }
+
+  const handleCloseSidebar = () => {
+    // Only close on mobile
+    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+      setIsSidebarOpen(false)
+    }
+  }
 
   useEffect(() => {
     // Inject realistic expiry (6d 5h) so timer formatting matches production presentation
@@ -64,6 +81,12 @@ export function AppSimpleIsolated() {
 
   return (
     <div className="app-container">
+      {/* Sidebar */}
+      <Sidebar isOpen={isSidebarOpen} onClose={handleCloseSidebar} />
+
+      {/* Hamburger Menu Button */}
+      <HamburgerButton isOpen={isSidebarOpen} onClick={handleToggleSidebar} />
+
       <div className="app-content">
 
         {/* Animation Selector */}
@@ -138,7 +161,6 @@ export function AppSimpleIsolated() {
           display: flex;
           align-items: center;
           justify-content: center;
-
           box-sizing: border-box;
         }
 
@@ -146,6 +168,14 @@ export function AppSimpleIsolated() {
           text-align: center;
           width: 100%;
           max-width: 800px;
+          transition: margin-left 0.3s ease-in-out;
+        }
+
+        /* Desktop: adjust content when sidebar is open */
+        @media (min-width: 769px) {
+          .app-content {
+            margin-left: ${isSidebarOpen ? '280px' : '0'};
+          }
         }
 
         .app-title {
