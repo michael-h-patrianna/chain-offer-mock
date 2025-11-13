@@ -1,0 +1,162 @@
+@import '../variables/variables';
+
+.vars {
+  --offer-step-background-image: none;
+  --offer-step-background-size: cover;
+  --offer-step-background-position: center;
+  --offer-step-background-repeat: no-repeat;
+
+  --offer-step-width: 100%;
+  --offer-step-max-width: 28.125rem; /* 450px */
+  --offer-step-max-width-mobile: 18.375rem; /* 294px */
+  --offer-step-aspect-ratio: 450 / 156;
+  --offer-step-overflow: visible;
+  --offer-step-flex: 0 0 auto;
+  --offer-step-order: 0;
+  --offer-step-total: 0;
+  --offer-step-mobile-breakpoint: 25.875rem; /* 414px */
+  --offer-step-position: relative;
+
+  --claimed-filter: brightness(60%);
+  --claimed-pointer-events: none;
+
+  --offers-content: 'offers';
+  --offers-display: flex;
+  --offers-align-items: center;
+  --offers-justify-content: center;
+  --offers-gap: 0.5rem; /* 8px */
+  --offers-min-height: 61%;
+
+  --offer-item-display: flex;
+  --offer-item-flex-direction: column;
+  --offer-item-align-items: center;
+
+  --btn-box-display: flex;
+  --btn-box-justify-content: center;
+  --btn-box-align-items: center;
+  --btn-box-min-height: 39%;
+  --btn-box-min-height-mobile: 43%;
+
+  --step-divider-margin: 0;
+  --step-divider-width: 100%;
+  --step-divider-bottom: -1.6rem;
+  --step-divider-z-index: 10;
+}
+
+.offerStepWrapper {
+  order: var(--offer-step-order);
+  width: var(--offer-step-width);
+  max-width: var(--offer-step-max-width);
+  aspect-ratio: var(--offer-step-aspect-ratio);
+  overflow: var(--offer-step-overflow);
+  box-shadow: var(--offer-step-box-shadow, none);
+  flex: var(--offer-step-flex);
+  position: var(--offer-step-position);
+
+  @media screen and (max-width: var(--offer-step-mobile-breakpoint)) and (orientation: portrait) {
+    max-width: var(--offer-step-max-width-mobile);
+  }
+}
+
+.offerStepWrapperAnimated {
+  animation-duration: var(--offer-step-animation-duration, 0.3s);
+  animation-timing-function: var(--offer-step-animation-timing-function, ease-out);
+  animation-delay: var(--offer-step-animation-delay, calc((var(--offer-step-order) * 0.3s) + 0.1s));
+  animation-fill-mode: var(--offer-step-animation-fill-mode, forwards);
+  opacity: var(--offer-step-animation-opacity, 0);
+  z-index: calc(var(--offer-step-total) - var(--offer-step-order)); /* needed to properly position elements due to the same stacking context created by transform property in the animation */
+}
+
+.springAnimation {
+  animation-name: spring;
+}
+
+.flipAnimation {
+  animation-name: flip;
+  perspective: 1000px;
+}
+
+@keyframes spring {
+  0% {
+    transform: translateY(var(--offer-step-animation-spring-start-point, 32px));
+    opacity: 0;
+  }
+
+  66% {
+    transform: translateY(var(--offer-step-animation-spring-mid-point, -8px));
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(var(--offer-step-animation-spring-end-point, 0));
+    opacity: 1;
+  }
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(var(--offer-step-animation-flip-start-angle, 90deg));
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotateX(var(--offer-step-animation-flip-end-angle, 0deg));
+    opacity: 1;
+  }
+}
+
+.offerStep {
+  background-image: var(--offer-step-background-image);
+  background-size: var(--offer-step-background-size);
+  background-position: var(--offer-step-background-position);
+  background-repeat: var(--offer-step-background-repeat);
+  width: 100%;
+  height: 100%;
+}
+
+.claimed {
+  filter: var(--claimed-filter);
+  pointer-events: var(--claimed-pointer-events);
+}
+
+.offers {
+  content: var(--offers-content);
+  display: var(--offers-display);
+  align-items: var(--offers-align-items);
+  justify-content: var(--offers-justify-content);
+  gap: var(--offers-gap);
+  min-height: var(--offers-min-height);
+}
+
+.offerItem {
+  display: var(--offer-item-display);
+  flex-direction: var(--offer-item-flex-direction);
+  align-items: var(--offer-item-align-items);
+}
+
+.btnBox {
+  display: var(--btn-box-display);
+  justify-content: var(--btn-box-justify-content);
+  align-items: var(--btn-box-align-items);
+  min-height: var(--btn-box-min-height);
+
+  @media screen and (max-width: var(--offer-step-mobile-breakpoint)) and (orientation: portrait) {
+    min-height: var(--btn-box-min-height-mobile);
+  }
+}
+
+.stepDivider {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  margin: var(--step-divider-margin);
+  width: var(--step-divider-width);
+  bottom: var(--step-divider-bottom);
+  z-index: var(--step-divider-z-index);
+}
+
+.stepDividerImage {
+  object-fit: cover;
+}

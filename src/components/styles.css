@@ -1,0 +1,431 @@
+/* Chain Offer Dialog Styles */
+
+.chain-offer-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(29, 9, 47, 0.9);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 20px 0;
+}
+
+.chain-offer-dialog {
+  margin: auto;
+  max-width: 500px;
+  padding: 16px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 40px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 413px) {
+  .chain-offer-dialog {
+    padding: 12px;
+  }
+}
+
+.chain-offer-dialog__close-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  color: #fff;
+  background: rgba(0,0,0,0);
+  border: none;
+  padding: 4px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 400;
+  z-index: 10;
+}
+
+.chain-offer-dialog__close-button:hover {
+  filter: brightness(1.2);
+}
+
+@media (max-width: 933px) {
+  .chain-offer-dialog__close-button {
+    top: 0;
+  }
+}
+
+.chain-offer-dialog__content {
+
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  width: 100%;
+}
+
+@media (max-width: 413px) {
+  .chain-offer-dialog__content {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+}
+
+.chain-offer-dialog__footer {
+  --footer-margin-top: 0;
+  --terms-link-color: #ceb6d8;
+  --terms-link-font-size: 10px;
+  --terms-link-font-size-mobile: 10px;
+  --terms-link-font-weight: 700;
+  --terms-link-line-height: 1.4;
+  text-align: center;
+  margin-top: var(--footer-margin-top);
+}
+
+.chain-offer-dialog__terms-link {
+  color: var(--terms-link-color);
+  font-size: var(--terms-link-font-size);
+  font-weight: var(--terms-link-font-weight);
+  line-height: var(--terms-link-line-height);
+  text-decoration: none;
+}
+
+@media (max-width: 413px) {
+  .chain-offer-dialog__terms-link {
+    font-size: var(--terms-link-font-size-mobile);
+  }
+}
+
+/* Chain Offer Header Styles */
+
+.chain-offer-header {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.chain-offer-header__image-box {
+  position: relative;
+  padding: 0 20px;
+  margin-bottom: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+  .chain-offer-header__image-box {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 413px) {
+  .chain-offer-header__image-box {
+    padding: 0 10px;
+  }
+}
+
+.chain-offer-header__image {
+  aspect-ratio: 382/121;
+  object-fit: contain;
+  width: 100%;
+  max-width: 440px; /* allow a bit larger for better centering impact */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.chain-offer-header__timer-box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.chain-offer-header__timer {
+  padding: 2px 8px;
+  border-radius: 1em;
+  background-color: #d84568;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+}
+
+@media (max-width: 413px) {
+  .chain-offer-header__timer {
+    font-size: 14px;
+  }
+}
+
+.chain-offer-header__title {
+  margin: 12px 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ecc3ff;
+}
+
+/* Chain Offer Timer Styles */
+
+.chain-offer-timer {
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  font-weight: 900;
+}
+
+/* Chain Offer List Styles */
+
+.chain-offer-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 413px) {
+  .chain-offer-list {
+    gap: 0;
+  }
+}
+
+/* Chain Offer Map Item Styles */
+
+.chain-offer-map-item {
+  --offer-step-aspect-ratio: 450/158;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 450px;
+  min-height: 158px;
+
+  background: var(--offer-step-background-image) center/100% 100% no-repeat;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Wrapper to control spacing between card and arrow */
+.chain-offer-map-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 450px;
+}
+
+/* Removed gradient & overlays; pure background image */
+.chain-offer-map-item__content { position: relative; }
+/* Subtle locked state */
+.chain-offer-map-item--locked { filter: grayscale(0.2) brightness(0.9); }
+/* No purchase border accent per parity request */
+
+.chain-offer-map-button__lock-icon { display: block; }
+
+.chain-offer-map-item--locked {
+  opacity: 0.7;
+}
+
+.chain-offer-map-item--claimed {
+  opacity: 0.8;
+  filter: grayscale(0.3);
+}
+
+.chain-offer-map-item__content {
+  display: grid;
+  grid-template-rows: 1fr auto; /* allow rewards to size naturally, button sticks to bottom */
+  height: 100%;
+  padding: 14px 16px 12px;
+}
+
+.chain-offer-map-item__offers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.chain-offer-map-item__button-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+}
+
+.chain-offer-map-item__divider {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 14px 0;
+  width: 100%;
+}
+
+.chain-offer-map-item__divider-image {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
+/* Chain Offer Map Rewards Styles */
+
+.chain-offer-rewards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.chain-offer-reward {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.chain-offer-reward__icon {
+  height: 48px;
+  width: auto;
+}
+
+@media (max-width: 413px) {
+  .chain-offer-reward__icon {
+    height: 11vw;
+  }
+}
+
+.chain-offer-reward__icon-fallback {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chain-offer-reward__amount {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+@media (max-width: 413px) {
+  .chain-offer-reward__amount {
+    font-size: 10px;
+  }
+}
+
+.chain-offer-reward--gc .chain-offer-reward__amount {
+  color: #25ecff;
+}
+
+.chain-offer-reward--sc .chain-offer-reward__amount {
+  color: #c6ff77;
+}
+
+.chain-offer-reward--fs .chain-offer-reward__amount,
+.chain-offer-reward--xp .chain-offer-reward__amount {
+  color: #f2f2f2;
+}
+
+/* Chain Offer Map Button Styles */
+
+.chain-offer-map-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  border-radius: 12px;
+  border: 2px solid #ff7495;
+  width: 200px;
+  height: 50px; /* max height; actual will scale if container shorter */
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(180deg, #ff5981, #c83558);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  transition: background 0.15s, border-color 0.15s;
+  font-size: 16px;
+}
+
+.chain-offer-map-button:hover:not(:disabled) {
+  background: #d92453;
+  border-color: #d04569;
+}
+
+.chain-offer-map-button:active:not(:disabled) {
+  background: #ae143e;
+  border-color: #a23a56;
+}
+
+.chain-offer-map-button:disabled {
+  background: linear-gradient(180deg, rgba(255,89,129,.4), rgba(200,53,88,.4));
+  color: hsla(0,0%,100%,.4);
+  border-color: rgba(255,116,149,.15);
+  cursor: default;
+}
+
+.chain-offer-map-button--claimed {
+  background: linear-gradient(180deg,#666,#444);
+  border-color:#888;
+  color: hsla(0,0%,100%,.55);
+}
+
+@media (max-width: 413px) {
+  .chain-offer-map-button {
+    width: 110px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
+.chain-offer-map-button__lock {
+  position: absolute;
+  top: -4px;
+  left: -7px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid #25ecff;
+  background-color: #1ec0d0;
+  transform: rotate(-20deg);
+  font-size: 14px;
+  color: #fff;
+}
+
+@media (max-width: 413px) {
+  .chain-offer-map-button__lock {
+    width: 16px;
+    height: 16px;
+    font-size: 8px;
+  }
+}
+
+.chain-offer-map-button__text {
+  font-weight: inherit;
+}

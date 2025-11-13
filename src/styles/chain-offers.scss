@@ -1,0 +1,266 @@
+// Main chain offer styles - imports all component styles
+
+// Variables first
+@import 'variables/variables';
+
+// Component styles
+@import 'components/dialog';
+@import 'components/header';
+@import 'components/content';
+@import 'components/step-default';
+@import 'components/map-item-button';
+@import 'components/countdown-timer';
+
+// Additional utility classes for chain offers
+.chain-offer-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(29, 9, 47, 0.9);
+  z-index: 1000;
+}
+
+.chain-offer-close-button {
+  position: absolute;
+  top: 28px;
+  right: 0;
+  color: #fff;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  z-index: 1;
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+
+  @media (max-width: 933px) {
+    top: 0;
+  }
+}
+
+.chain-offer-footer {
+  --footer-margin-top: 0;
+  --terms-link-color: #ceb6d8;
+  --terms-link-font-size: 10px;
+  --terms-link-font-size-mobile: 10px;
+  --terms-link-font-weight: 700;
+  --terms-link-line-height: 1.4;
+  text-align: center;
+  margin-top: var(--footer-margin-top);
+
+  a {
+    color: var(--terms-link-color);
+    font-size: var(--terms-link-font-size);
+    font-weight: var(--terms-link-font-weight);
+    line-height: var(--terms-link-line-height);
+    text-decoration: none;
+
+    @media (max-width: 413px) {
+      font-size: var(--terms-link-font-size-mobile);
+    }
+  }
+}
+
+// Chain Offer Map Item styles using our React component class names
+.chain-offer-map-item {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  min-width: 212px;
+  width: 450px;
+  max-width: 100%;
+  min-height: 158px;
+  background-image: var(--offer-step-background-image, none);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  &--locked {
+    opacity: 0.7;
+  }
+
+  &--claimed {
+    opacity: 0.8;
+    filter: grayscale(0.3);
+  }
+
+  &__content {
+    display: grid;
+    grid-template-rows: 6fr 4fr;
+    height: 100%;
+    padding: 16px;
+  }
+
+  &__offers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  &__button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__divider {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+  }
+
+  &__divider-image {
+    height: 24px;
+    width: auto;
+  }
+}
+
+// Chain Offer Rewards styles
+.chain-offer-rewards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.chain-offer-reward {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+
+  &__icon {
+    height: 48px;
+    width: auto;
+
+    @media (max-width: 413px) {
+      height: 11vw;
+    }
+  }
+
+  &__icon-fallback {
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__amount {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+
+    @media (max-width: 413px) {
+      font-size: 10px;
+    }
+  }
+
+  &--gc .chain-offer-reward__amount {
+    color: #25ecff;
+  }
+
+  &--sc .chain-offer-reward__amount {
+    color: #c6ff77;
+  }
+
+  &--fs .chain-offer-reward__amount,
+  &--xp .chain-offer-reward__amount {
+    color: #f2f2f2;
+  }
+}
+
+// Chain Offer Map Button styles
+.chain-offer-map-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  border-radius: 12px;
+  border: 2px solid #ff7495;
+  width: 200px;
+  min-height: 48px;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(180deg, #ff5981, #c83558);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  transition: background 0.15s, border-color 0.15s;
+  font-size: 16px;
+
+  &:hover:not(:disabled) {
+    background: #d92453;
+    border-color: #d04569;
+  }
+
+  &:active:not(:disabled) {
+    background: #ae143e;
+    border-color: #a23a56;
+  }
+
+  &:disabled {
+    background: linear-gradient(180deg, #964381, #80376e);
+    border-color: #9f4b80;
+    opacity: 1;
+    cursor: default;
+  }
+
+  &--claimed {
+    background: linear-gradient(180deg, #666, #444);
+    border-color: #888;
+    color: #ccc;
+  }
+
+  @media (max-width: 413px) {
+    width: 110px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  &__lock {
+    position: absolute;
+    top: -4px;
+    left: -7px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #25ecff;
+    background-color: #1ec0d0;
+    transform: rotate(-20deg);
+    font-size: 14px;
+
+    @media (max-width: 413px) {
+      width: 16px;
+      height: 16px;
+      font-size: 8px;
+    }
+  }
+
+  &__text {
+    font-weight: inherit;
+  }
+}

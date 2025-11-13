@@ -1,0 +1,94 @@
+// Variables extracted from patrianna-ui-features for chain offer components
+
+// ----- colors -----
+
+// ----- base -----
+$base0: #1d092f;
+$base5: #3a125d;
+$base10: #4e187c;
+$base20: #7a468e;
+$base30: #c47ae5;
+$base40: #d79af3;
+$base50: #ecc3ff;
+$base60: #efd7fa;
+$base70: #ceb6d8;
+$base80: #cccccc;
+$base90: #e5e5e5;
+$base95: #f2f2f2;
+$base100: #ffffff;
+
+// ----- brand -----
+
+// ----- accent -----
+$brandAccentPrimary: #4e187c;
+$brandAccentPrimary75: #3a125d;
+$brandAccentPrimary50: #1d092f;
+$brandAccentPrimary40: #210f31;
+$brandAccentPrimary25: #07020c;
+$brandAccentSecondary: #92d63d;
+$brandAccentSecondary75: #6ea02e;
+$brandAccentSecondary50: #375017;
+$brandAccentSecondary25: #0e1406;
+
+// ----- base -----
+$brandBase1: #1a1038;
+$brandBase2: #2a1c4d;
+
+// ----- interface -----
+$brandInterfaceCanvas: #000000;
+$brandInterfaceModal: rgba($brandBase1, 0.8);
+$brandInterfaceHeaderLvl1: $brandBase1;
+$brandInterfaceHeaderLvl2: $brandBase2;
+
+// ----- system -----
+$error: #ff5252;
+$success: #11df16;
+$info: #2a9cff;
+$warning: #e79900;
+
+// ----- spacing/sizing -----
+$sizing0d125Rem: 2px;
+$sizing0d25Rem: 4px;
+$sizing0d5Rem: 8px;
+$sizing0d75Rem: 12px;
+$sizing1Rem: 16px;
+$sizing1d25Rem: 20px;
+$sizing1d5Rem: 24px;
+$sizing1d75Rem: 28px;
+$sizing2Rem: 32px;
+$sizing2d5Rem: 40px;
+$sizing3Rem: 48px;
+$sizing3d5Rem: 56px;
+$sizing4Rem: 64px;
+$sizing4d5Rem: 72px;
+$sizing5Rem: 80px;
+
+// ----- fonts -----
+$fontFamilyPrimary: Lato, Helvetica, Arial, sans-serif;
+$fontFamilySecondary: DaysOne, $fontFamilyPrimary;
+$fontWeightPrimaryRegular: 400;
+$fontWeightPrimaryMedium: 500;
+$fontWeightPrimarySemiBold: 600;
+$fontWeightPrimaryBold: 700;
+$fontWeightPrimaryExtraBold: 800;
+$fontWeightPrimaryBlack: 900;
+
+// ----- border radius -----
+$border-radius-small: 4px;
+$border-radius-default: 16px;
+$border-radius-200: 200px;
+$pill-border-radius: 200px;
+
+// ----- borders -----
+$borderSM: 1px;
+$borderMD: 2px;
+$borderLG: 4px;
+
+// ----- radius -----
+$radiusNone: 0px;
+$radiusXS: 2px;
+$radiusSM: 8px;
+$radiusMD: 12px;
+$radiusLG: 16px;
+$radiusXL: 24px;
+$radiusFull: 200px;

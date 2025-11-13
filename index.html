@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chain Offer Mock</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      body { margin:0; font-family: system-ui, sans-serif; background:#111; color:#fff; }
+      .icon-wrapper { width:140px; height:140px; cursor:pointer; }
+      #app { padding:24px; width: 100%; box-sizing: border-box; }
+      dialog { border:none; background:transparent; }
+      dialog::backdrop { background: rgba(29, 9, 47, 0.9); }
+      #dialog-root { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); }
+  /* Production parity sizing overrides */
+  dialog.ChainOffersDialog_dialog__PuSad, dialog.mockDialogRootOverride, dialog .ChainOffersDialog_dialog__PuSad { max-width:500px; width:100%; margin:auto; padding:16px; }
+  @media (max-width:413px){ dialog.ChainOffersDialog_dialog__PuSad, dialog.mockDialogRootOverride { padding:12px; } }
+  /* Content gap + footer spacing to match captured HTML */
+  .mockDialogContentOverride { gap:18px; margin-bottom:12px; padding-bottom:6px; display:flex; flex-direction:column; align-items:center; }
+  @media (max-width:413px){ .mockDialogContentOverride { gap:8px; margin-bottom:10px; } }
+  /* Remove width forcing: allow header grid to shrink to image intrinsic width; only keep positioning if needed */
+  .mockDialogHeaderMediaTimer { position:relative; width:auto; }
+  /* Constrain image to intrinsic width (unset any inherited width) */
+  .mockDialogHeaderMediaTimer img { width:auto !important; max-width:none; }
+  /* Step sizing fallback if CSS variables not set (ensures consistent aspect) */
+  .StepDefault_offerStepWrapper__Yhs58 { max-width:450px; aspect-ratio:450/156; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

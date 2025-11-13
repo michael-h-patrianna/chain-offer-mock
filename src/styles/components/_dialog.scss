@@ -1,0 +1,41 @@
+@import '../variables/variables';
+
+.dialog {
+  --chain-dialog-background-color: transparent;
+  --chain-dialog-border: none;
+  --chain-dialog-color: #{$base100};
+  --chain-dialog-padding: env(safe-area-inset-top) 0 0;
+
+  display: flex;
+  flex-direction: column;
+  background: var(--chain-dialog-background-color);
+  border: var(--chain-dialog-border);
+  color: var(--chain-dialog-color);
+  width: 100%;
+  max-width: 480px;
+  max-height: 95%;
+  padding: var(--chain-dialog-padding);
+}
+
+.dialogAnimated {
+  animation-duration: var(--chain-dialog-animation-duration, 0.5s);
+  animation-timing-function: var(--chain-dialog-animation-timing-function, ease-out);
+  animation-fill-mode: var(--chain-dialog-animation-fill-mode, forwards);
+  opacity: var(--chain-dialog-animation-opacity, 0);
+}
+
+.slideInDownAnimation {
+  animation-name: slideInDown;
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(var(--chain-dialog-animation-slide-in-down-start-point, -200px));
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(var(--chain-dialog-animation-slide-in-down-end-point, 0));
+    opacity: 1;
+  }
+}

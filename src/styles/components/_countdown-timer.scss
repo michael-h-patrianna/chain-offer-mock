@@ -1,0 +1,28 @@
+@import '../variables/variables';
+
+.countdownWrapper {
+  display: flex;
+  align-items: center;
+  color: var(--chain-offer-tile-timer-color, #fff);
+  font-size: var(--chain-offer-tile-timer-font-size, 0.75rem); // 12px
+  font-weight: var(--chain-offer-tile-timer-font-weight, 400);
+  line-height: var(--chain-offer-tile-timer-line-height, 1.4);
+
+  @media screen and (max-width: 58.5rem) { // 936px
+    font-size: var(--chain-offer-tile-timer-font-size-mb, 0.625rem); // 10px
+  }
+}
+
+.countdownPrefix {
+  color: var(--chain-offer-tile-timer-prefix-color, #CCC);
+  font-weight: var(--chain-offer-tile-timer-prefix-font-weight, 400);
+}
+
+.countdownIcon {
+  height: var(--chain-offer-tile-timer-icon-height, 1.25rem); // 20px
+  width: var(--chain-offer-tile-timer-icon-width, 1.25rem); // 20px
+}
+
+.countdownText {
+  font-weight: var(--chain-offer-tile-timer-countdown-font-weight, 500);
+}
