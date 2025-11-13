@@ -1,3 +1,4 @@
+import { motion, Variants } from 'motion/react'
 import React from 'react'
 import { ChainOfferTimer } from './ChainOfferTimer'
 
@@ -7,6 +8,9 @@ export interface ChainOfferHeaderProps {
   title?: string
   onCountdownEnd?: () => void
   className?: string
+  headerImageVariants?: Variants
+  timerVariants?: Variants
+  titleVariants?: Variants
 }
 
 export const ChainOfferHeader: React.FC<ChainOfferHeaderProps> = ({
@@ -14,28 +18,46 @@ export const ChainOfferHeader: React.FC<ChainOfferHeaderProps> = ({
   endTime,
   title,
   onCountdownEnd,
-  className = ''
+  className = '',
+  headerImageVariants,
+  timerVariants,
+  titleVariants
 }) => {
   return (
     <header className={`chain-offer-header ${className}`}>
-      <div className="chain-offer-header__image-box">
+      <motion.div
+        className="chain-offer-header__image-box"
+        variants={headerImageVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <img
           alt="title"
           className="chain-offer-header__image"
           src={imageSrc}
         />
-        <div className="chain-offer-header__timer-box">
+        <motion.div
+          className="chain-offer-header__timer-box"
+          variants={timerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <ChainOfferTimer
             endTime={endTime}
             onCountdownEnd={onCountdownEnd}
             className="chain-offer-header__timer"
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
       {title && (
-        <p className="chain-offer-header__title">
+        <motion.p
+          className="chain-offer-header__title"
+          variants={titleVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {title}
-        </p>
+        </motion.p>
       )}
     </header>
   )

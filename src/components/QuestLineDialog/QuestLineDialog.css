@@ -56,6 +56,19 @@
 /* Timer */
 .questline-dialog__timer {
   margin: 12px 0;
+  padding: 2px 8px;
+  border-radius: 1em;
+  background-color: #d84568;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+}
+
+@media (max-width: 413px) {
+  .questline-dialog__timer {
+    font-size: 14px;
+  }
 }
 
 /* Description */

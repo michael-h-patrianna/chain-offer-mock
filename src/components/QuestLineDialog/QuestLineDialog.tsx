@@ -51,32 +51,60 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
           </svg>
         </button>
 
-        <img
+        <motion.img
           src={headerImageUrl}
           alt={title}
           className="questline-dialog__header-image"
+          variants={animation.questlineHeaderImageVariants}
+          initial="hidden"
+          animate="visible"
         />
 
-        <ChainOfferTimer
-          endTime={endTime}
-          onCountdownEnd={() => {}}
-          className="questline-dialog__timer"
-        />
+        <motion.div
+          variants={animation.questlineTimerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <ChainOfferTimer
+            endTime={endTime}
+            onCountdownEnd={() => {}}
+            className="questline-dialog__timer"
+          />
+        </motion.div>
 
-        <div className="questline-dialog__description-wrapper">
+        <motion.div
+          className="questline-dialog__description-wrapper"
+          variants={animation.questlineDescriptionVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <p className="questline-dialog__description">{description}</p>
-        </div>
+        </motion.div>
 
-        <BonusRewards
-          {...bonusReward}
-          completedQuests={completedQuests}
-          onClaim={onClaimBonus}
-        />
+        <motion.div
+          style={{ width: '100%', padding: '0 16px' }}
+          variants={animation.questlineBonusRewardsVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <BonusRewards
+            {...bonusReward}
+            completedQuests={completedQuests}
+            onClaim={onClaimBonus}
+          />
+        </motion.div>
 
-        <MilestoneProgressBar
-          totalQuests={quests.length}
-          completedQuests={completedQuests}
-        />
+        <motion.div
+          style={{ width: '100%', padding: '0 16px' }}
+          variants={animation.questlineProgressBarVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <MilestoneProgressBar
+            totalQuests={quests.length}
+            completedQuests={completedQuests}
+          />
+        </motion.div>
 
         <motion.div
           key={`quest-container-${animationType}`}
@@ -96,7 +124,12 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
         </motion.div>
 
         {termsUrl && (
-          <div className="questline-dialog__footer">
+          <motion.div
+            className="questline-dialog__footer"
+            variants={animation.questlineFooterVariants}
+            initial="hidden"
+            animate="visible"
+          >
             <a
               href={termsUrl}
               className="questline-dialog__terms-link"
@@ -105,7 +138,7 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
             >
               Terms & Conditions
             </a>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

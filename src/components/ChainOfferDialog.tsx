@@ -1,5 +1,7 @@
+import { motion } from 'motion/react'
 import React from 'react'
 import type { AnimationType } from '../animations/revealAnimations'
+import { getRevealAnimation } from '../animations/revealAnimations'
 import { ChainOfferHeader } from './ChainOfferHeader'
 import { ChainOfferList } from './ChainOfferList'
 import type { ChainOfferMapItemProps } from './ChainOfferMapItem'
@@ -34,6 +36,8 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
 }) => {
   if (!isOpen) return null
 
+  const animation = getRevealAnimation(animationType)
+
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose()
@@ -58,6 +62,9 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
           endTime={endTime}
           title={title}
           onCountdownEnd={onCountdownEnd}
+          headerImageVariants={animation.headerImageVariants}
+          timerVariants={animation.timerVariants}
+          titleVariants={animation.titleVariants}
         />
 
         <ChainOfferList
@@ -68,7 +75,12 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
         />
 
         {termsUrl && (
-          <footer className="chain-offer-dialog__footer">
+          <motion.footer
+            className="chain-offer-dialog__footer"
+            variants={animation.footerVariants}
+            initial="hidden"
+            animate="visible"
+          >
             <a
               href={termsUrl}
               className="chain-offer-dialog__terms-link"
@@ -77,7 +89,7 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
             >
               Terms & Conditions
             </a>
-          </footer>
+          </motion.footer>
         )}
       </dialog>
     </div>
