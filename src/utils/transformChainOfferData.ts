@@ -1,4 +1,10 @@
+import coBackground1 from '../assets/images/co-background1.png'
+import coBackground2 from '../assets/images/co-background2.png'
+import coBackground3 from '../assets/images/co-background3.png'
 import type { ChainOfferDialogProps, ChainOfferMapItemProps } from '../components'
+
+// Local background images to use for map items
+const localBackgroundImages = [coBackground1, coBackground2, coBackground3]
 
 /**
  * Transform raw chain offer data into component props format
@@ -6,8 +12,8 @@ import type { ChainOfferDialogProps, ChainOfferMapItemProps } from '../component
 export function transformChainOfferData(rawData: any): ChainOfferDialogProps {
   const { mapItems = [], expiresAt, mapType, displayTagline, displayName, termUrl } = rawData || {}
 
-  // Background images list from map type params
-  const backgroundImages: string[] = mapType?.params?.mapListItemBackgrounds?.listValue || []
+  // Use local background images (prefer local over remote URLs from data)
+  const backgroundImages: string[] = localBackgroundImages
 
   const transformedItems: Omit<ChainOfferMapItemProps, 'onButtonClick'>[] = mapItems.map((item: any, index: number) => {
     const rewards: Array<{ type: any; amount: number }> = []

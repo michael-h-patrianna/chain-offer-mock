@@ -96,18 +96,14 @@
   background-image: var(--offer-step-background-image, none);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+
   width: 100%;
   height: 100%;
   border-radius: 0.5rem; // 8px - matches offer-step-border-radius
 
-  &--locked {
-    opacity: 0.7;
-  }
-
   &--claimed {
-    opacity: 0.8;
-    filter: grayscale(0.3);
+    filter: brightness(60%);
+    pointer-events: none;
   }
 
   &__content {
@@ -158,21 +154,23 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px; // Match original gap of 0.5rem
 }
 
 .chain-offer-reward {
   display: flex;
-  flex-direction: row;
+  flex-direction: column; // Icon on top, text below
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 0; // No gap between icon and text
 
   &__icon {
-    height: 48px;
+    display: block;
+    max-height: 48px;
     width: auto;
 
-    @media (max-width: 413px) {
-      height: 11vw;
+    @media (max-width: 414px) {
+      max-height: 30px;
     }
   }
 
@@ -186,26 +184,29 @@
   }
 
   &__amount {
-    font-size: 12px;
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.45);
+    font-size: 14px;
     font-weight: 700;
     line-height: 1;
-    text-transform: uppercase;
 
-    @media (max-width: 413px) {
-      font-size: 10px;
+    @media (max-width: 414px) {
+      font-size: 12px;
     }
   }
 
-  &--gc .chain-offer-reward__amount {
-    color: #25ecff;
+  &--gc &__amount {
+    color: #FFE33F; // Yellow for GC
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
   }
 
-  &--sc .chain-offer-reward__amount {
+  &--sc &__amount {
     color: #c6ff77;
   }
 
-  &--fs .chain-offer-reward__amount,
-  &--xp .chain-offer-reward__amount {
+  &--fs &__amount,
+  &--xp &__amount {
     color: #f2f2f2;
   }
 }

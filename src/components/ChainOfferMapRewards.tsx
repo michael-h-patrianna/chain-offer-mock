@@ -19,7 +19,7 @@ export const ChainOfferMapRewards: React.FC<ChainOfferMapRewardsProps> = ({
   const getRewardText = (reward: Reward) => {
     switch (reward.type) {
       case 'GC':
-  return `GC ${String(reward.amount).replace(/,/g, '')}`
+        return `GC ${reward.amount}`
       case 'SC':
         return `Free SC ${reward.amount}`
       case 'FS':
