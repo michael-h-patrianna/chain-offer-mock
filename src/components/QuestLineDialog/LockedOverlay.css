@@ -1,0 +1,46 @@
+/* Locked Overlay */
+.locked-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 20px;
+  gap: 8px;
+  background: #231845;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 9px 9px 0 0;
+  z-index: 2;
+}
+
+.locked-overlay__icon {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.locked-overlay__text {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  color: #efd7fa;
+  text-align: center;
+}
+
+@media (max-width: 414px) {
+  .locked-overlay {
+    padding: 24px 16px;
+  }
+
+  .locked-overlay__icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .locked-overlay__text {
+    font-size: 12px;
+  }
+}

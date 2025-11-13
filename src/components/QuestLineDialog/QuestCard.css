@@ -1,0 +1,213 @@
+/* Quest Card Container */
+.quest-card {
+  width: 100%;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.quest-card__wrapper {
+  background-color: #3a125d;
+  border: 1px solid #7a468e;
+  border-radius: 9px;
+  position: relative;
+  overflow: hidden;
+}
+
+.quest-card--completed .quest-card__wrapper {
+  position: relative;
+}
+
+/* Header Section */
+.quest-card__header {
+  padding: 12px;
+  position: relative;
+}
+
+.quest-card__header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.quest-card__header-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.quest-card__title {
+  margin: 0;
+  font-size: 16px;
+  color: #e5e5e5;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.quest-card__description {
+  margin: 0;
+  font-size: 14px;
+  color: #e5e5e5;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.quest-card__progress-wrapper {
+  position: relative;
+}
+
+.quest-card__progress-bar {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  background: #7a468e;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.quest-card__progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #c6ff77;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+.quest-card__progress-fill[data-progress="0"] { width: 0%; }
+.quest-card__progress-fill[data-progress="5"] { width: 5%; }
+.quest-card__progress-fill[data-progress="10"] { width: 10%; }
+.quest-card__progress-fill[data-progress="15"] { width: 15%; }
+.quest-card__progress-fill[data-progress="20"] { width: 20%; }
+.quest-card__progress-fill[data-progress="25"] { width: 25%; }
+.quest-card__progress-fill[data-progress="30"] { width: 30%; }
+.quest-card__progress-fill[data-progress="35"] { width: 35%; }
+.quest-card__progress-fill[data-progress="40"] { width: 40%; }
+.quest-card__progress-fill[data-progress="45"] { width: 45%; }
+.quest-card__progress-fill[data-progress="50"] { width: 50%; }
+.quest-card__progress-fill[data-progress="55"] { width: 55%; }
+.quest-card__progress-fill[data-progress="60"] { width: 60%; }
+.quest-card__progress-fill[data-progress="65"] { width: 65%; }
+.quest-card__progress-fill[data-progress="70"] { width: 70%; }
+.quest-card__progress-fill[data-progress="75"] { width: 75%; }
+.quest-card__progress-fill[data-progress="80"] { width: 80%; }
+.quest-card__progress-fill[data-progress="85"] { width: 85%; }
+.quest-card__progress-fill[data-progress="90"] { width: 90%; }
+.quest-card__progress-fill[data-progress="95"] { width: 95%; }
+.quest-card__progress-fill[data-progress="100"] { width: 100%; }
+
+.quest-card__progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+/* Content/Rewards Section */
+.quest-card__content {
+  padding: 8px 12px;
+  background-color: #1d092f;
+  border-top: 1px solid #7a468e;
+}
+
+/* Footer (Expand/Collapse) */
+.quest-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+  margin: 4px 0 0;
+  height: 30px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: opacity 0.2s;
+  background: transparent;
+}
+
+.quest-card__footer:hover {
+  opacity: 0.7;
+}
+
+.quest-card__footer-text {
+  font-size: 12px;
+  color: #ecc3ff;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.quest-card__footer-icon {
+  font-size: 16px;
+  color: #ecc3ff;
+  margin-left: 8px;
+}
+
+/* Action Button */
+.quest-card-action-button {
+  margin: 0;
+  padding: 10px 20px;
+  min-width: 60px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+.quest-card-action-button--in-progress {
+  background: linear-gradient(180deg, #ff5981 0%, #c83558 100%);
+  color: #fff;
+}
+
+.quest-card-action-button--in-progress:hover {
+  background: linear-gradient(180deg, #ff4070 0%, #b12d4d 100%);
+}
+
+.quest-card-action-button--unclaimed {
+  background: linear-gradient(180deg, #47fff4 10.85%, #0586ae 83%);
+  color: #e5e5e5;
+  border: 2px solid #9ffff8;
+  box-shadow:
+    0 -4px 20px 0 rgba(71, 255, 244, 0.8),
+    0 4px 20px 0 rgba(5, 134, 174, 0.8);
+}
+
+.quest-card-action-button--unclaimed:hover {
+  background: linear-gradient(180deg, #3be2d8 10.85%, #047192 83%);
+}
+
+.quest-card-action-button--completed {
+  background: linear-gradient(180deg, rgba(71, 255, 244, 0.5) 10.85%, rgba(5, 134, 174, 0.5) 83%);
+  color: rgba(229, 229, 229, 0.5);
+  cursor: default;
+  border: 2px solid rgba(159, 255, 248, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .quest-card__title {
+    font-size: 14px;
+  }
+
+  .quest-card-action-button {
+    padding: 8px 16px;
+    font-size: 12px;
+    min-width: 50px;
+  }
+}

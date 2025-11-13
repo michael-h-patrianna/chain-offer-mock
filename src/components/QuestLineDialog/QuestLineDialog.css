@@ -1,0 +1,116 @@
+/* Questline Dialog Backdrop & Container */
+.questline-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(18, 10, 40, 0.95);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.questline-dialog {
+  position: relative;
+  background: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 480px;
+  width: 100%;
+  margin: auto;
+}
+
+/* Close Button */
+.questline-dialog__close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  z-index: 10;
+}
+
+.questline-dialog__close-button:hover {
+  filter: brightness(1.2);
+}
+
+/* Header Image */
+.questline-dialog__header-image {
+  width: 321px;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Timer */
+.questline-dialog__timer {
+  margin: 12px 0;
+}
+
+/* Description */
+.questline-dialog__description-wrapper {
+  margin: 12px 0;
+  padding: 0 16px;
+}
+
+.questline-dialog__description {
+  max-width: 380px;
+  color: #ecc3ff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Quests Container */
+.questline-dialog__quests {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0 16px;
+  margin: 16px 0;
+}
+
+/* Footer */
+.questline-dialog__footer {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.questline-dialog__terms-link {
+  color: #ceb6d8;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 140%;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.questline-dialog__terms-link:hover {
+  color: #efd7fa;
+}
+
+@media (max-width: 413px) {
+  .questline-dialog {
+    padding: 12px;
+  }
+
+  .questline-dialog__description {
+    font-size: 12px;
+  }
+}

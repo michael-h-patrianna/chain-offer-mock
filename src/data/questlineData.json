@@ -1,0 +1,127 @@
+{
+  "questlineCode": "daily-challenge-nov-2025",
+  "title": "Daily Challenge",
+  "description": "Complete quests to earn amazing rewards and unlock the grand prize!",
+  "headerImageUrl": "",
+  "expiresAt": "2025-11-14T23:59:59Z",
+  "termsUrl": "https://www.playfame.com/promotions/terms",
+  "quests": [
+    {
+      "questCode": "quest-1-spin-master",
+      "title": "Daily Spin Master",
+      "description": "Spin 50 times on any slot game",
+      "status": "completed",
+      "progress": 100,
+      "ranking": 1,
+      "rewards": [
+        {
+          "type": "GC",
+          "amount": 1000
+        },
+        {
+          "type": "BADGE",
+          "amount": 1,
+          "name": "Daily Master"
+        }
+      ]
+    },
+    {
+      "questCode": "quest-2-big-win",
+      "title": "Big Win Hunter",
+      "description": "Win 10,000 GC in a single spin",
+      "status": "unclaimed",
+      "progress": 100,
+      "ranking": 2,
+      "rewards": [
+        {
+          "type": "GC",
+          "amount": 5000
+        },
+        {
+          "type": "FREE_SPINS",
+          "amount": 10
+        }
+      ]
+    },
+    {
+      "questCode": "quest-3-fortune-seeker",
+      "title": "Fortune Seeker",
+      "description": "Play 3 different slot games",
+      "status": "in_progress",
+      "progress": 65,
+      "ranking": 3,
+      "rewards": [
+        {
+          "type": "GC",
+          "amount": 2500
+        },
+        {
+          "type": "RANDOM",
+          "amount": 1,
+          "name": "Mystery Reward"
+        }
+      ]
+    },
+    {
+      "questCode": "quest-4-lucky-streak",
+      "title": "Lucky Streak",
+      "description": "Win 3 times in a row",
+      "status": "locked",
+      "progress": 0,
+      "ranking": 4,
+      "rewards": [
+        {
+          "type": "FREE_SPINS",
+          "amount": 15
+        },
+        {
+          "type": "GC",
+          "amount": 3000
+        }
+      ]
+    },
+    {
+      "questCode": "quest-5-grand-challenge",
+      "title": "Grand Challenge",
+      "description": "Reach a 100x multiplier",
+      "status": "locked",
+      "progress": 0,
+      "ranking": 5,
+      "rewards": [
+        {
+          "type": "GC",
+          "amount": 10000
+        },
+        {
+          "type": "BADGE",
+          "amount": 1,
+          "name": "Grand Master"
+        }
+      ]
+    }
+  ],
+  "bonusReward": {
+    "progressRequired": 5,
+    "claimed": false,
+    "rewards": [
+      {
+        "type": "GC",
+        "amount": 50000
+      },
+      {
+        "type": "FREE_SPINS",
+        "amount": 50
+      },
+      {
+        "type": "BADGE",
+        "amount": 1,
+        "name": "Gold Badge"
+      },
+      {
+        "type": "RANDOM",
+        "amount": 1,
+        "name": "Mega Mystery"
+      }
+    ]
+  }
+}

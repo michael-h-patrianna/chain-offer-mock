@@ -1,33 +1,45 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ChainOfferDialog } from '../components'
-import rawData from '../data/chainOffersData.json'
+import { QuestLineDialog } from '../components/QuestLineDialog'
+import chainOffersRawData from '../data/chainOffersData.json'
+import questlineRawData from '../data/questlineData.json'
 import { RootState } from '../store'
 import { setChainOffersBootstrapped, setChainOffersItems } from '../store/chainOffersSlice'
 import '../styles/chain-offers.scss'
 import { transformChainOfferData } from '../utils/transformChainOfferData'
+import { transformQuestLineData } from '../utils/transformQuestLineData'
 
 export function AppSimpleIsolated() {
   const dispatch = useDispatch()
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isChainOfferDialogOpen, setIsChainOfferDialogOpen] = useState(false)
+  const [isQuestlineDialogOpen, setIsQuestlineDialogOpen] = useState(false)
   const chainOffersState = useSelector((state: RootState) => state.chainOffers)
 
   useEffect(() => {
     // Inject realistic expiry (6d 5h) so timer formatting matches production presentation
     const expiresAt = new Date(Date.now() + 6 * 24 * 3600 * 1000 + 5 * 3600 * 1000).toISOString()
-    const processed = (rawData as any).items.map((i: any) => ({ ...i, expiresAt }))
+    const processed = (chainOffersRawData as any).items.map((i: any) => ({ ...i, expiresAt }))
     dispatch(setChainOffersItems(processed))
     dispatch(setChainOffersBootstrapped())
   }, [dispatch])
 
   const assignedOffer = chainOffersState.items.find((i: any) => i.status === 'ASSIGNED')
 
-  const handleOpenDialog = () => {
-    setIsDialogOpen(true)
+  const handleOpenChainOfferDialog = () => {
+    setIsChainOfferDialogOpen(true)
   }
 
-  const handleCloseDialog = () => {
-    setIsDialogOpen(false)
+  const handleCloseChainOfferDialog = () => {
+    setIsChainOfferDialogOpen(false)
+  }
+
+  const handleOpenQuestlineDialog = () => {
+    setIsQuestlineDialogOpen(true)
+  }
+
+  const handleCloseQuestlineDialog = () => {
+    setIsQuestlineDialogOpen(false)
   }
 
   const handleItemButtonClick = (itemId: string) => {
@@ -35,33 +47,64 @@ export function AppSimpleIsolated() {
     // Handle purchase logic here
   }
 
-  const dialogProps = assignedOffer && isDialogOpen ? transformChainOfferData(assignedOffer) : null
+  const handleQuestAction = (questId: string, status: string) => {
+    console.log('[App] Quest action:', questId, status)
+  }
+
+  const handleClaimBonus = () => {
+    console.log('[App] Claiming bonus rewards')
+  }
+
+  const chainOfferDialogProps = assignedOffer && isChainOfferDialogOpen ? transformChainOfferData(assignedOffer) : null
+  const questlineDialogProps = isQuestlineDialogOpen ? transformQuestLineData(questlineRawData as any) : null
 
   return (
     <div className="app-container">
       <div className="app-content">
         <h1 className="app-title">Chain Offer Dialog - Isolated Components</h1>
 
-        {/* Trigger button */}
-        {assignedOffer && (
+        {/* Trigger buttons */}
+        <div className="trigger-container">
+          {assignedOffer && (
+            <div className="offer-trigger">
+              <img
+                src={assignedOffer.iconLarge}
+                alt='Chain Offer'
+                className="offer-icon"
+                onClick={handleOpenChainOfferDialog}
+              />
+              <p className="offer-description">Chain Offer</p>
+            </div>
+          )}
           <div className="offer-trigger">
             <img
-              src={assignedOffer.iconLarge}
-              alt='Chain Offer'
+              src="/questline-icon.png"
+              alt='Questline'
               className="offer-icon"
-              onClick={handleOpenDialog}
+              onClick={handleOpenQuestlineDialog}
             />
-            <p className="offer-description">Click to open Chain Offer dialog</p>
+            <p className="offer-description">Questline</p>
           </div>
+        </div>
+
+        {/* Chain Offer Dialog */}
+        {chainOfferDialogProps && (
+          <ChainOfferDialog
+            {...chainOfferDialogProps}
+            isOpen={isChainOfferDialogOpen}
+            onClose={handleCloseChainOfferDialog}
+            onItemButtonClick={handleItemButtonClick}
+          />
         )}
 
-        {/* Our isolated ChainOfferDialog component */}
-        {dialogProps && (
-          <ChainOfferDialog
-            {...dialogProps}
-            isOpen={isDialogOpen}
-            onClose={handleCloseDialog}
-            onItemButtonClick={handleItemButtonClick}
+        {/* Questline Dialog */}
+        {questlineDialogProps && (
+          <QuestLineDialog
+            {...questlineDialogProps}
+            isOpen={isQuestlineDialogOpen}
+            onClose={handleCloseQuestlineDialog}
+            onQuestAction={handleQuestAction}
+            onClaimBonus={handleClaimBonus}
           />
         )}
       </div>
@@ -89,9 +132,20 @@ export function AppSimpleIsolated() {
           margin-bottom: 20px;
         }
 
+        .trigger-container {
+          display: flex;
+          gap: 40px;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+
         .offer-trigger {
           cursor: pointer;
           transition: transform 0.2s ease;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .offer-trigger:hover {
