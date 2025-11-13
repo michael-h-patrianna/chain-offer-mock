@@ -4,9 +4,9 @@ import {
   baseParameterConfigs,
   springParameterConfigs,
 } from '../types/animationParameters'
+import './AnimationParameterForm.css'
 import { ParameterGroup } from './ParameterControls/ParameterGroup'
 import { ParameterSlider } from './ParameterControls/ParameterSlider'
-import './AnimationParameterForm.css'
 
 interface AnimationParameterFormProps {
   animationType: AnimationType
@@ -28,7 +28,7 @@ export function AnimationParameterForm({ animationType }: AnimationParameterForm
     return (
       <div className="animation-parameter-form">
         <div className="animation-parameter-form__header">
-          <h2 className="animation-parameter-form__title">Animation Parameters</h2>
+          <h2 className="animation-parameter-form__title">Parameters</h2>
         </div>
         <p className="animation-parameter-form__empty">
           No parameters available for "No Animation" mode.
@@ -46,7 +46,7 @@ export function AnimationParameterForm({ animationType }: AnimationParameterForm
         </button>
       </div>
 
-      <ParameterGroup title="Timing" icon="⏱️">
+      <ParameterGroup title="Timing">
         <ParameterSlider
           key={`${animationType}-durationScale`}
           label={baseParameterConfigs[0].label}
@@ -69,7 +69,7 @@ export function AnimationParameterForm({ animationType }: AnimationParameterForm
         />
       </ParameterGroup>
 
-      <ParameterGroup title="Stagger Effect" icon="⚡">
+      <ParameterGroup title="Stagger Effect" >
         <ParameterSlider
           key={`${animationType}-staggerChildren`}
           label={baseParameterConfigs[2].label}
@@ -93,7 +93,7 @@ export function AnimationParameterForm({ animationType }: AnimationParameterForm
       </ParameterGroup>
 
       {isSpringAnimation && parameters.spring && (
-        <ParameterGroup title="Spring Physics" icon="🌊">
+        <ParameterGroup title="Spring Physics" >
           <ParameterSlider
             key={`${animationType}-stiffness`}
             label={springParameterConfigs[0].label}

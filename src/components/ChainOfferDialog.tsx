@@ -72,30 +72,40 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
           animate="visible"
           style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'visible' }}
         >
-          {/* Header - staggered */}
-          <motion.div variants={animation.itemVariants}>
-            <header className="chain-offer-header">
-              <div className="chain-offer-header__image-box">
-                <img
-                  alt="title"
-                  className="chain-offer-header__image"
-                  src={imageSrc}
+          {/* Header */}
+          <header className="chain-offer-header">
+            {/* Header Image */}
+            <motion.div
+              className="chain-offer-header__image-box"
+              variants={animation.headerImageVariants}
+            >
+              <img
+                alt="title"
+                className="chain-offer-header__image"
+                src={imageSrc}
+              />
+              {/* Timer */}
+              <motion.div
+                className="chain-offer-header__timer-box"
+                variants={animation.timerVariants}
+              >
+                <ChainOfferTimer
+                  endTime={endTime}
+                  onCountdownEnd={onCountdownEnd}
+                  className="chain-offer-header__timer"
                 />
-                <div className="chain-offer-header__timer-box">
-                  <ChainOfferTimer
-                    endTime={endTime}
-                    onCountdownEnd={onCountdownEnd}
-                    className="chain-offer-header__timer"
-                  />
-                </div>
-              </div>
-              {title && (
-                <p className="chain-offer-header__title">
-                  {title}
-                </p>
-              )}
-            </header>
-          </motion.div>
+              </motion.div>
+            </motion.div>
+            {/* Title */}
+            {title && (
+              <motion.p
+                className="chain-offer-header__title"
+                variants={animation.titleVariants}
+              >
+                {title}
+              </motion.p>
+            )}
+          </header>
 
           {/* Items container */}
           <section className="content chain-offer-dialog__content" style={{ overflow: 'visible' }}>
@@ -110,11 +120,11 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
             ))}
           </section>
 
-          {/* Footer - staggered */}
+          {/* Footer */}
           {termsUrl && (
             <motion.footer
               className="chain-offer-dialog__footer"
-              variants={animation.itemVariants}
+              variants={animation.footerVariants}
             >
               <a
                 href={termsUrl}

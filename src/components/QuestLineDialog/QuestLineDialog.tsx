@@ -67,16 +67,16 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
           animate="visible"
           style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'visible', alignItems: 'center' }}
         >
-          {/* Header Image - staggered */}
+          {/* Header Image */}
           <motion.img
             src={headerImageUrl}
             alt={title}
             className="questline-dialog__header-image"
-            variants={animation.itemVariants}
+            variants={animation.questlineHeaderImageVariants}
           />
 
-          {/* Timer - staggered */}
-          <motion.div variants={animation.itemVariants}>
+          {/* Timer */}
+          <motion.div variants={animation.questlineTimerVariants}>
             <ChainOfferTimer
               endTime={endTime}
               onCountdownEnd={() => {}}
@@ -84,18 +84,18 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
             />
           </motion.div>
 
-          {/* Description - staggered */}
+          {/* Description */}
           <motion.div
             className="questline-dialog__description-wrapper"
-            variants={animation.itemVariants}
+            variants={animation.questlineDescriptionVariants}
           >
             <p className="questline-dialog__description">{description}</p>
           </motion.div>
 
-          {/* Bonus Rewards - staggered */}
+          {/* Bonus Rewards */}
           <motion.div
             style={{ width: '100%', padding: '0 16px' }}
-            variants={animation.itemVariants}
+            variants={animation.questlineBonusRewardsVariants}
           >
             <BonusRewards
               {...bonusReward}
@@ -104,10 +104,10 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
             />
           </motion.div>
 
-          {/* Progress Bar - staggered */}
+          {/* Progress Bar */}
           <motion.div
             style={{ width: '100%', padding: '0 16px' }}
-            variants={animation.itemVariants}
+            variants={animation.questlineProgressBarVariants}
           >
             <MilestoneProgressBar
               totalQuests={quests.length}
@@ -127,11 +127,11 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
             ))}
           </div>
 
-          {/* Footer - staggered */}
+          {/* Footer */}
           {termsUrl && (
             <motion.div
               className="questline-dialog__footer"
-              variants={animation.itemVariants}
+              variants={animation.questlineFooterVariants}
             >
               <a
                 href={termsUrl}
