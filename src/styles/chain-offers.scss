@@ -144,9 +144,11 @@
   }
 
   &__divider-image {
+    object-fit: contain;
+    max-width: 60px; // Constrain arrow width
+    max-height: 40px; // Constrain arrow height
     height: auto;
-    width: 100%;
-    object-fit: cover;
+    width: auto;
   }
 }
 
