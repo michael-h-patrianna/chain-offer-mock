@@ -1,0 +1,44 @@
+import { test } from '@playwright/test'
+
+test('verify questline card alignment', async ({ page }) => {
+  await page.goto('/')
+
+  // Select an animation
+  await page.selectOption('#animation-select', 'stagger-inview')
+
+  // Open questline dialog
+  await page.locator('.offer-trigger').nth(1).click()
+  await page.waitForSelector('.questline-dialog', { state: 'visible' })
+
+  // Wait for animations to complete
+  await page.waitForTimeout(2000)
+
+  // Measure the actual visible cards (not containers with padding)
+  const bonusRewardsCardBox = await page.locator('.bonus-rewards__card').boundingBox()
+  const progressBarInnerBox = await page.locator('.milestone-progress__bar').boundingBox()
+  const firstQuestCardBox = await page.locator('.quest-card__wrapper').first().boundingBox()
+
+  console.log('Bonus Rewards Card:', {
+    left: bonusRewardsCardBox?.x,
+    right: bonusRewardsCardBox ? bonusRewardsCardBox.x + bonusRewardsCardBox.width : null,
+    width: bonusRewardsCardBox?.width
+  })
+
+  console.log('Progress Bar Inner:', {
+    left: progressBarInnerBox?.x,
+    right: progressBarInnerBox ? progressBarInnerBox.x + progressBarInnerBox.width : null,
+    width: progressBarInnerBox?.width
+  })
+
+  console.log('First Quest Card Wrapper:', {
+    left: firstQuestCardBox?.x,
+    right: firstQuestCardBox ? firstQuestCardBox.x + firstQuestCardBox.width : null,
+    width: firstQuestCardBox?.width
+  })
+
+  // Take screenshot for visual verification
+  await page.screenshot({
+    path: 'e2e/screenshots/questline-card-alignment.png',
+    fullPage: true
+  })
+})

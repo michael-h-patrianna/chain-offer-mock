@@ -32,7 +32,7 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
   'stagger-inview': {
     id: 'stagger-inview',
     name: 'Stagger In View',
-    description: 'Smooth stagger with opacity, scale, and vertical slide',
+    description: 'Smooth stagger',
     containerVariants: {
       hidden: {},
       visible: {
@@ -219,7 +219,7 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
   'scale-rotate': {
     id: 'scale-rotate',
     name: 'Scale & Rotate Pop',
-    description: 'Pop effect with scale and subtle rotation',
+    description: 'Pop effect',
     containerVariants: {
       hidden: {},
       visible: {
@@ -410,7 +410,7 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
   'flip-reveal': {
     id: 'flip-reveal',
     name: 'Flip Reveal',
-    description: '3D flip animation with scale',
+    description: '3D flip',
     containerVariants: {
       hidden: {},
       visible: {
@@ -603,7 +603,7 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
   'spring-physics': {
     id: 'spring-physics',
     name: 'Spring Physics',
-    description: 'Bouncy spring-based entrance',
+    description: 'Bounce bounce',
     containerVariants: {
       hidden: {},
       visible: {
@@ -812,7 +812,7 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
   'fade-slide': {
     id: 'fade-slide',
     name: 'Fade & Slide',
-    description: 'Simple fade with horizontal slide',
+    description: 'Simple fade with slide',
     containerVariants: {
       hidden: {},
       visible: {
@@ -987,7 +987,7 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
   none: {
     id: 'none',
     name: 'No Animation',
-    description: 'Instant appearance without animation',
+    description: 'No animation',
     containerVariants: {
       hidden: { opacity: 1 },
       visible: { opacity: 1 },

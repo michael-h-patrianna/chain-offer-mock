@@ -76,16 +76,13 @@
   order: var(--offer-step-order);
   border-radius: 0.5rem; // 8px
   width: 100%;
-  max-width: 28.125rem; // 450px
-  aspect-ratio: 450 / 156;
+  aspect-ratio: 450 / 158;
   overflow: visible;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   flex: 0 0 auto;
   position: relative;
 
-  @media screen and (max-width: 25.875rem) and (orientation: portrait) { // 414px
-    max-width: 18.375rem; // 294px
-  }
+
 }
 
 .chain-offer-map-item {

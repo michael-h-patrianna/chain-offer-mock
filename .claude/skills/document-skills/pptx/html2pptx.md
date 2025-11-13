@@ -157,7 +157,7 @@ body {
 .content { margin: 30pt; padding: 40pt; background: #ffffff; border-radius: 8pt; }
 h1 { color: #2d3748; font-size: 32pt; }
 .box {
-  background: #70ad47; padding: 20pt; border: 3px solid #5a8f37;
+  background: #70ad47;border: 3px solid #5a8f37;
   border-radius: 12pt; box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.25);
 }
 </style>

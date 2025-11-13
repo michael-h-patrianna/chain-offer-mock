@@ -65,13 +65,9 @@ export function AppSimpleIsolated() {
   return (
     <div className="app-container">
       <div className="app-content">
-        <h1 className="app-title">Chain Offer & Questline - Animation Showcase</h1>
 
         {/* Animation Selector */}
         <div className="animation-selector">
-          <label htmlFor="animation-select" className="animation-selector__label">
-            Select Reveal Animation:
-          </label>
           <select
             id="animation-select"
             className="animation-selector__dropdown"
@@ -142,7 +138,7 @@ export function AppSimpleIsolated() {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 20px;
+
           box-sizing: border-box;
         }
 
@@ -212,7 +208,7 @@ export function AppSimpleIsolated() {
           background: #2d1b4d;
           color: #fff;
           cursor: pointer;
-          min-width: 400px;
+
           transition: border-color 0.2s ease;
         }
 
