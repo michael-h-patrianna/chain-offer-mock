@@ -13,7 +13,7 @@ export const ChainOfferList: React.FC<ChainOfferListProps> = ({
   className = ''
 }) => {
   return (
-    <section className={`chain-offer-list ${className}`}>
+    <section className={`content ${className}`}>
       {items.map((item, index) => (
         <ChainOfferMapItem
           key={item.id}
