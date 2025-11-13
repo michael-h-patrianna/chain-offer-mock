@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { AnimationType, getAnimationOptions } from '../animations/revealAnimations'
 import { ChainOfferDialog } from '../components'
 import { QuestLineDialog } from '../components/QuestLineDialog'
 import chainOffersRawData from '../data/chainOffersData.json'
@@ -14,7 +15,10 @@ export function AppSimpleIsolated() {
   const dispatch = useDispatch()
   const [isChainOfferDialogOpen, setIsChainOfferDialogOpen] = useState(false)
   const [isQuestlineDialogOpen, setIsQuestlineDialogOpen] = useState(false)
+  const [selectedAnimation, setSelectedAnimation] = useState<AnimationType>('stagger-inview')
   const chainOffersState = useSelector((state: RootState) => state.chainOffers)
+
+  const animationOptions = getAnimationOptions()
 
   useEffect(() => {
     // Inject realistic expiry (6d 5h) so timer formatting matches production presentation
@@ -61,7 +65,26 @@ export function AppSimpleIsolated() {
   return (
     <div className="app-container">
       <div className="app-content">
+        <h1 className="app-title">Chain Offer & Questline - Animation Showcase</h1>
 
+        {/* Animation Selector */}
+        <div className="animation-selector">
+          <label htmlFor="animation-select" className="animation-selector__label">
+            Select Reveal Animation:
+          </label>
+          <select
+            id="animation-select"
+            className="animation-selector__dropdown"
+            value={selectedAnimation}
+            onChange={(e) => setSelectedAnimation(e.target.value as AnimationType)}
+          >
+            {animationOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label} - {option.description}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* Trigger buttons */}
         <div className="trigger-container">
@@ -94,6 +117,7 @@ export function AppSimpleIsolated() {
             isOpen={isChainOfferDialogOpen}
             onClose={handleCloseChainOfferDialog}
             onItemButtonClick={handleItemButtonClick}
+            animationType={selectedAnimation}
           />
         )}
 
@@ -105,6 +129,7 @@ export function AppSimpleIsolated() {
             onClose={handleCloseQuestlineDialog}
             onQuestAction={handleQuestAction}
             onClaimBonus={handleClaimBonus}
+            animationType={selectedAnimation}
           />
         )}
       </div>
@@ -163,6 +188,41 @@ export function AppSimpleIsolated() {
         .offer-description {
           color: #ccc;
           margin-top: 10px;
+        }
+
+        .animation-selector {
+          margin-bottom: 30px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .animation-selector__label {
+          color: #fff;
+          font-size: 16px;
+          font-weight: 600;
+        }
+
+        .animation-selector__dropdown {
+          padding: 10px 20px;
+          font-size: 14px;
+          border-radius: 8px;
+          border: 2px solid #5a3d7a;
+          background: #2d1b4d;
+          color: #fff;
+          cursor: pointer;
+          min-width: 400px;
+          transition: border-color 0.2s ease;
+        }
+
+        .animation-selector__dropdown:hover {
+          border-color: #7a5d9a;
+        }
+
+        .animation-selector__dropdown:focus {
+          outline: none;
+          border-color: #9a7dba;
         }
       `}</style>
     </div>

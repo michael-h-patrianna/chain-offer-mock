@@ -1,4 +1,5 @@
 import React from 'react'
+import type { AnimationType } from '../animations/revealAnimations'
 import { ChainOfferHeader } from './ChainOfferHeader'
 import { ChainOfferList } from './ChainOfferList'
 import type { ChainOfferMapItemProps } from './ChainOfferMapItem'
@@ -15,6 +16,7 @@ export interface ChainOfferDialogProps {
   onItemButtonClick?: (itemId: string) => void
   onCountdownEnd?: () => void
   className?: string
+  animationType?: AnimationType
 }
 
 export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
@@ -27,7 +29,8 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
   onClose,
   onItemButtonClick,
   onCountdownEnd,
-  className = ''
+  className = '',
+  animationType = 'none'
 }) => {
   if (!isOpen) return null
 
@@ -61,6 +64,7 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
           items={items}
           onItemButtonClick={onItemButtonClick}
           className="chain-offer-dialog__content"
+          animationType={animationType}
         />
 
         {termsUrl && (

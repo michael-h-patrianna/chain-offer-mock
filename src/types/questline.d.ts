@@ -1,4 +1,5 @@
 // Questline Dialog Types
+import type { AnimationType } from '../animations/revealAnimations'
 
 export type QuestStatus = 'locked' | 'in_progress' | 'unclaimed' | 'completed'
 
@@ -41,4 +42,5 @@ export interface QuestLineDialogProps {
   onClose: () => void
   onQuestAction?: (questCode: string, action: 'go' | 'claim') => void
   onClaimBonus?: () => void
+  animationType?: AnimationType
 }

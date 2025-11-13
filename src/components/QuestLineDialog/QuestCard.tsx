@@ -56,7 +56,9 @@ export const QuestCard: React.FC<QuestCardProps> = ({
   }
 
   return (
-    <div className={cx('quest-card', { 'quest-card--completed': isCompleted })}>
+    <div
+      className={cx('quest-card', { 'quest-card--completed': isCompleted })}
+    >
       <div className="quest-card__wrapper">
         <div className="quest-card__header">
           <div className="quest-card__header-content">

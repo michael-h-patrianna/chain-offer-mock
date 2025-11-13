@@ -1,4 +1,7 @@
+import { motion } from 'motion/react'
 import React, { useMemo } from 'react'
+import type { AnimationType } from '../../animations/revealAnimations'
+import { getRevealAnimation } from '../../animations/revealAnimations'
 import type { QuestLineDialogProps } from '../../types/questline'
 import { ChainOfferTimer } from '../ChainOfferTimer'
 import { BonusRewards } from './BonusRewards'
@@ -18,11 +21,14 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
   onClose,
   onQuestAction,
   onClaimBonus,
+  animationType = 'none',
 }) => {
   const completedQuests = useMemo(
     () => quests.filter((quest) => quest.status === 'completed').length,
     [quests]
   )
+
+  const animation = getRevealAnimation(animationType)
 
   if (!isOpen) return null
 
@@ -72,15 +78,22 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
           completedQuests={completedQuests}
         />
 
-        <div className="questline-dialog__quests">
+        <motion.div
+          key={`quest-container-${animationType}`}
+          className="questline-dialog__quests"
+          variants={animation.containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {quests.map((quest) => (
-            <QuestCard
-              key={quest.questCode}
-              {...quest}
-              onAction={onQuestAction}
-            />
+            <motion.div key={quest.questCode} variants={animation.itemVariants}>
+              <QuestCard
+                {...quest}
+                onAction={onQuestAction}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {termsUrl && (
           <div className="questline-dialog__footer">

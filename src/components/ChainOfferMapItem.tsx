@@ -1,3 +1,4 @@
+import { motion, Variants } from 'motion/react'
 import React, { useCallback } from 'react'
 import { ChainOfferMapButton } from './ChainOfferMapButton'
 import { ChainOfferMapRewards, type Reward } from './ChainOfferMapRewards'
@@ -13,6 +14,7 @@ export interface ChainOfferMapItemProps {
   backgroundImage?: string
   onButtonClick?: (id: string) => void
   className?: string
+  animationVariants?: Variants
 }
 
 export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
@@ -25,7 +27,8 @@ export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
   price,
   backgroundImage,
   onButtonClick,
-  className = ''
+  className = '',
+  animationVariants
 }) => {
   const handleButtonClick = () => {
     if (onButtonClick && status === 'UNLOCKED') {
@@ -65,7 +68,11 @@ export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
   const showDivider = position < 6
 
   return (
-    <div ref={wrapperRefCallback} className={getWrapperClass()}>
+    <motion.div
+      ref={wrapperRefCallback}
+      className={getWrapperClass()}
+      variants={animationVariants}
+    >
       <div ref={itemRefCallback} className={getItemClass()}>
         <div className="chain-offer-map-item__offers">
           <ChainOfferMapRewards rewards={rewards} />
@@ -88,6 +95,6 @@ export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
           />
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }
