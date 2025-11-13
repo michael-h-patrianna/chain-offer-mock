@@ -113,11 +113,6 @@
         "amount": 50
       },
       {
-        "type": "BADGE",
-        "amount": 1,
-        "name": "Gold Badge"
-      },
-      {
         "type": "RANDOM",
         "amount": 1,
         "name": "Mega Mystery"

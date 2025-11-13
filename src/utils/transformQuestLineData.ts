@@ -1,16 +1,11 @@
-import questlineHeaderImg from '../assets/images/questline-header.png'
-import rewardBadge from '../assets/images/reward icons/reward-free-badge.png'
-import rewardFreeSpins from '../assets/images/reward icons/reward-free-spins.png'
-import rewardGC from '../assets/images/reward icons/reward-gc.png'
-import rewardRandom from '../assets/images/reward icons/reward-random-reward.png'
 import type { QuestLineDialogProps, Reward, RewardType } from '../types/questline'
 
-// Map reward types to icon URLs
+// Map reward types to icon URLs (served from public folder)
 const REWARD_ICON_MAP: Record<RewardType, string> = {
-  GC: rewardGC,
-  FREE_SPINS: rewardFreeSpins,
-  BADGE: rewardBadge,
-  RANDOM: rewardRandom,
+  GC: '/assets/images/reward icons/reward-gc.png',
+  FREE_SPINS: '/assets/images/reward icons/reward-free-spins.png',
+  BADGE: '/assets/images/reward icons/reward-free-badge.png',
+  RANDOM: '/assets/images/reward icons/reward-random-reward.png',
 }
 
 /**
@@ -25,6 +20,7 @@ export function transformQuestLineData(rawData: any): QuestLineDialogProps {
     rewards: quest.rewards.map((reward: any) => ({
       ...reward,
       iconUrl: REWARD_ICON_MAP[reward.type as RewardType],
+      freeAdornmentUrl: reward.type === 'FREE_SPINS' ? '/assets/images/reward icons/free.png' : undefined,
     })),
   }))
 
@@ -34,6 +30,7 @@ export function transformQuestLineData(rawData: any): QuestLineDialogProps {
     rewards: bonusReward.rewards.map((reward: any) => ({
       ...reward,
       iconUrl: REWARD_ICON_MAP[reward.type as RewardType],
+      freeAdornmentUrl: reward.type === 'FREE_SPINS' ? '/assets/images/reward icons/free.png' : undefined,
     })),
   }
 
@@ -42,7 +39,7 @@ export function transformQuestLineData(rawData: any): QuestLineDialogProps {
     questlineCode,
     title,
     description,
-    headerImageUrl: questlineHeaderImg,
+    headerImageUrl: '/assets/images/questline-header.png',
     endTime: expiresAt,
     quests: transformedQuests,
     bonusReward: transformedBonusReward,

@@ -8,6 +8,7 @@ export interface Reward {
   type: RewardType
   amount: number
   iconUrl?: string
+  freeAdornmentUrl?: string
   name?: string
 }
 

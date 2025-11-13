@@ -34,13 +34,22 @@ export const BonusRewards: React.FC<BonusRewardsProps> = ({
         <div className="bonus-rewards__content">
           {rewardsToShow.map((reward, index) => (
             <div key={index} className="bonus-rewards__reward-item">
-              {reward.iconUrl && (
-                <img
-                  src={reward.iconUrl}
-                  alt={getRewardText(reward)}
-                  className="bonus-rewards__reward-icon"
-                />
-              )}
+              <div className="bonus-rewards__reward-icon-wrapper">
+                {reward.iconUrl && (
+                  <img
+                    src={reward.iconUrl}
+                    alt={getRewardText(reward)}
+                    className="bonus-rewards__reward-icon"
+                  />
+                )}
+                {reward.freeAdornmentUrl && (
+                  <img
+                    src={reward.freeAdornmentUrl}
+                    alt="Free"
+                    className="bonus-rewards__reward-free-adornment"
+                  />
+                )}
+              </div>
               <p className="bonus-rewards__reward-text">
                 {reward.type === 'GC' && (
                   <>

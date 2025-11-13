@@ -2,12 +2,23 @@ import react from '@vitejs/plugin-react'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'src/assets/**/*',
+          dest: 'assets'
+        }
+      ]
+    })
+  ],
   resolve: {
     alias: [
       { find: '@patrianna/core-components', replacement: path.resolve(__dirname, 'src/stubs/core-components.tsx') },

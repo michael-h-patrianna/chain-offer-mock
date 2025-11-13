@@ -18,13 +18,22 @@ export const QuestRewards: React.FC<QuestRewardsProps> = ({ rewards, large = fal
             key={index}
             className={`quest-reward ${large ? 'quest-reward--large' : ''}`}
           >
-            {reward.iconUrl && (
-              <img
-                src={reward.iconUrl}
-                alt={getRewardText(reward)}
-                className="quest-reward__icon"
-              />
-            )}
+            <div className="quest-reward__icon-wrapper">
+              {reward.iconUrl && (
+                <img
+                  src={reward.iconUrl}
+                  alt={getRewardText(reward)}
+                  className="quest-reward__icon"
+                />
+              )}
+              {reward.freeAdornmentUrl && (
+                <img
+                  src={reward.freeAdornmentUrl}
+                  alt="Free"
+                  className="quest-reward__free-adornment"
+                />
+              )}
+            </div>
             <div className="quest-reward__text">
               <span className="quest-reward__amount">{formatRewardAmount(reward)}</span>
               <span className="quest-reward__type">{getRewardText(reward)}</span>

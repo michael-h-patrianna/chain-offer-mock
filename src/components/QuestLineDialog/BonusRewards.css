@@ -47,10 +47,29 @@
   gap: 8px;
 }
 
-.bonus-rewards__reward-icon {
+.bonus-rewards__reward-icon-wrapper {
+  position: relative;
   width: 64px;
   height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bonus-rewards__reward-icon {
+  width: 85%;
+  height: auto;
   object-fit: contain;
+}
+
+.bonus-rewards__reward-free-adornment {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .bonus-rewards__reward-text {
