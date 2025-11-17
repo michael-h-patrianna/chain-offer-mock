@@ -6,9 +6,10 @@ interface SidebarProps {
   isOpen: boolean
   onClose: () => void
   selectedAnimation: AnimationType
+  onAnimationTypeChange?: (animationType: AnimationType) => void
 }
 
-export function Sidebar({ isOpen, onClose, selectedAnimation }: SidebarProps) {
+export function Sidebar({ isOpen, onClose, selectedAnimation, onAnimationTypeChange }: SidebarProps) {
   return (
     <>
       {/* Backdrop for mobile - click to close */}
@@ -23,7 +24,11 @@ export function Sidebar({ isOpen, onClose, selectedAnimation }: SidebarProps) {
       {/* Sidebar */}
       <aside className={`sidebar ${isOpen ? 'sidebar--open' : ''}`}>
         <div className="sidebar__content">
-          <AnimationParameterForm key={selectedAnimation} animationType={selectedAnimation} />
+          <AnimationParameterForm
+            key={selectedAnimation}
+            animationType={selectedAnimation}
+            onAnimationTypeChange={onAnimationTypeChange}
+          />
         </div>
       </aside>
     </>

@@ -13,6 +13,12 @@
   border-bottom: 2px solid #5a3d7a;
 }
 
+.animation-parameter-form__actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 .animation-parameter-form__title {
   color: #ecc3ff;
   font-size: 18px;
@@ -39,6 +45,31 @@
 }
 
 .animation-parameter-form__reset:active {
+  transform: translateY(0);
+}
+
+.animation-parameter-form__action-button {
+  background: rgba(90, 61, 122, 0.4);
+  border: 1px solid #7a5d9a;
+  color: #ecc3ff;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.animation-parameter-form__action-button:hover {
+  background: rgba(90, 61, 122, 0.6);
+  border-color: #9a7dba;
+  transform: translateY(-1px);
+}
+
+.animation-parameter-form__action-button:active {
   transform: translateY(0);
 }
 

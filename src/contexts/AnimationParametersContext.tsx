@@ -31,6 +31,10 @@ interface AnimationParametersContextValue {
   ) => void
   /** Reset all parameters for a specific animation type to defaults */
   resetToDefaults: (animationType: AnimationType) => void
+  /** Get all parameters for all animation types (for export) */
+  getAllParameters: () => Record<AnimationType, AnimationParameters>
+  /** Set all parameters for all animation types (for import) */
+  setAllParameters: (params: Record<AnimationType, AnimationParameters>) => void
 }
 
 export const AnimationParametersContext = createContext<AnimationParametersContextValue | null>(null)
@@ -125,6 +129,14 @@ export function AnimationParametersProvider({ children }: AnimationParametersPro
     }))
   }, [])
 
+  const getAllParameters = useCallback(() => {
+    return parametersMap
+  }, [parametersMap])
+
+  const setAllParameters = useCallback((params: Record<AnimationType, AnimationParameters>) => {
+    setParametersMap(params)
+  }, [])
+
   const value: AnimationParametersContextValue = {
     getParameters,
     updateParameter,
@@ -132,6 +144,8 @@ export function AnimationParametersProvider({ children }: AnimationParametersPro
     updateWobbleParameter,
     updateOrbitalParameter,
     resetToDefaults,
+    getAllParameters,
+    setAllParameters,
   }
 
   return (

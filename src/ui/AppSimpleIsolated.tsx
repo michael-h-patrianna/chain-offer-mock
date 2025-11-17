@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
+import { Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { AnimationType, getAnimationOptions } from '../animations/revealAnimations'
 import { ChainOfferDialog } from '../components'
 import { HamburgerButton } from '../components/HamburgerButton'
-import { Sidebar } from '../components/Sidebar'
 import { QuestLineDialog } from '../components/QuestLineDialog'
+import { Sidebar } from '../components/Sidebar'
 import { AnimationParametersProvider } from '../contexts/AnimationParametersContext'
 import chainOffersRawData from '../data/chainOffersData.json'
 import questlineRawData from '../data/questlineData.json'
@@ -82,8 +83,35 @@ function AppSimpleIsolatedInner() {
 
   return (
     <div className="app-container">
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+          },
+          success: {
+            iconTheme: {
+              primary: '#4ade80',
+              secondary: '#fff',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
       {/* Sidebar */}
-      <Sidebar isOpen={isSidebarOpen} onClose={handleCloseSidebar} selectedAnimation={selectedAnimation} />
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={handleCloseSidebar}
+        selectedAnimation={selectedAnimation}
+        onAnimationTypeChange={setSelectedAnimation}
+      />
 
       {/* Hamburger Menu Button */}
       <HamburgerButton isOpen={isSidebarOpen} onClick={handleToggleSidebar} />

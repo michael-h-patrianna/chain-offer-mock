@@ -1,10 +1,13 @@
+import { Download, RotateCcw, Upload } from 'lucide-react'
+import { useRef } from 'react'
+import toast from 'react-hot-toast'
 import { AnimationType } from '../animations/revealAnimations'
 import { useAnimationParameters } from '../hooks/useAnimationParameters'
 import {
   baseParameterConfigs,
+  orbitalParameterConfigs,
   springParameterConfigs,
   wobbleParameterConfigs,
-  orbitalParameterConfigs,
 } from '../types/animationParameters'
 import './AnimationParameterForm.css'
 import { ParameterGroup } from './ParameterControls/ParameterGroup'
@@ -12,11 +15,22 @@ import { ParameterSlider } from './ParameterControls/ParameterSlider'
 
 interface AnimationParameterFormProps {
   animationType: AnimationType
+  onAnimationTypeChange?: (animationType: AnimationType) => void
 }
 
-export function AnimationParameterForm({ animationType }: AnimationParameterFormProps) {
-  const { getParameters, updateParameter, updateSpringParameter, updateWobbleParameter, updateOrbitalParameter, resetToDefaults } =
-    useAnimationParameters()
+export function AnimationParameterForm({ animationType, onAnimationTypeChange }: AnimationParameterFormProps) {
+  const {
+    getParameters,
+    updateParameter,
+    updateSpringParameter,
+    updateWobbleParameter,
+    updateOrbitalParameter,
+    resetToDefaults,
+    getAllParameters,
+    setAllParameters
+  } = useAnimationParameters()
+
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const parameters = getParameters(animationType)
   const isSpringAnimation = animationType === 'spring-physics'
@@ -26,6 +40,147 @@ export function AnimationParameterForm({ animationType }: AnimationParameterForm
 
   const handleReset = () => {
     resetToDefaults(animationType)
+  }
+
+  const handleExport = async () => {
+    const currentParams = getParameters(animationType)
+    const exportData = {
+      version: '1.0',
+      timestamp: new Date().toISOString(),
+      animationType: animationType,
+      parameters: currentParams
+    }
+
+    const jsonString = JSON.stringify(exportData, null, 2)
+    const suggestedName = `animation-parameters-${animationType}-${Date.now()}.json`
+
+    // Try using File System Access API for "Save As" dialog
+    if ('showSaveFilePicker' in window) {
+      try {
+        console.log('[Export] Using File System Access API')
+        const fileHandle = await (window as any).showSaveFilePicker({
+          suggestedName,
+          types: [{
+            description: 'JSON Files',
+            accept: { 'application/json': ['.json'] }
+          }]
+        })
+
+        console.log('[Export] File selected, writing...', fileHandle.name)
+        const writable = await fileHandle.createWritable()
+        await writable.write(jsonString)
+        await writable.close()
+        console.log('[Export] File written successfully')
+        toast.success(`Parameters exported to "${fileHandle.name}"!`)
+        return // Success!
+      } catch (error) {
+        // User cancelled or error occurred with File System Access API
+        if (error instanceof Error && error.name === 'AbortError') {
+          // User cancelled, don't show error
+          console.log('[Export] User cancelled file save')
+          return
+        }
+        // If there was an error (not cancellation), fall through to fallback
+        console.error('[Export] File System Access API failed, using fallback:', error)
+      }
+    }
+
+    // Fallback: Direct download (works in all browsers)
+    console.log('[Export] Using fallback download method')
+    try {
+      const blob = new Blob([jsonString], { type: 'application/json' })
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = suggestedName
+      link.style.display = 'none'
+      document.body.appendChild(link)
+      console.log('[Export] Triggering download for:', suggestedName)
+      link.click()
+
+      // Cleanup after a short delay
+      setTimeout(() => {
+        document.body.removeChild(link)
+        URL.revokeObjectURL(url)
+      }, 100)
+
+      console.log('[Export] Download triggered successfully')
+      toast.success(`Parameters exported to "${suggestedName}"!`)
+    } catch (error) {
+      console.error('[Export] Fallback download failed:', error)
+      toast.error('Error exporting file: ' + (error instanceof Error ? error.message : 'Unknown error'))
+    }
+  }
+
+  const handleImport = () => {
+    fileInputRef.current?.click()
+  }
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      try {
+        const content = e.target?.result as string
+        const importData = JSON.parse(content)
+
+        // Validate the imported data structure
+        if (!importData.animationType || !importData.parameters) {
+          toast.error('Invalid file format: missing animationType or parameters')
+          return
+        }
+
+        // Check if the animation type matches
+        const targetAnimationType = importData.animationType
+        if (targetAnimationType !== animationType) {
+          // Switch to the imported animation type automatically
+          if (onAnimationTypeChange) {
+            onAnimationTypeChange(targetAnimationType)
+          } else {
+            toast.error('Cannot switch animation type: callback not provided')
+            return
+          }
+        }
+
+        // Apply the imported parameters to the target animation type
+        const params = importData.parameters
+
+        // Update base parameters
+        if (params.durationScale !== undefined) updateParameter(targetAnimationType, 'durationScale', params.durationScale)
+        if (params.delayOffset !== undefined) updateParameter(targetAnimationType, 'delayOffset', params.delayOffset)
+        if (params.staggerChildren !== undefined) updateParameter(targetAnimationType, 'staggerChildren', params.staggerChildren)
+        if (params.delayChildren !== undefined) updateParameter(targetAnimationType, 'delayChildren', params.delayChildren)
+
+        // Update spring parameters if present
+        if (params.spring) {
+          if (params.spring.stiffness !== undefined) updateSpringParameter(targetAnimationType, 'stiffness', params.spring.stiffness)
+          if (params.spring.damping !== undefined) updateSpringParameter(targetAnimationType, 'damping', params.spring.damping)
+          if (params.spring.mass !== undefined) updateSpringParameter(targetAnimationType, 'mass', params.spring.mass)
+        }
+
+        // Update wobble parameters if present
+        if (params.wobble?.wobbleIntensity !== undefined) {
+          updateWobbleParameter(targetAnimationType, 'wobbleIntensity', params.wobble.wobbleIntensity)
+        }
+
+        // Update orbital parameters if present
+        if (params.orbital?.orbitDistance !== undefined) {
+          updateOrbitalParameter(targetAnimationType, 'orbitDistance', params.orbital.orbitDistance)
+        }
+
+        toast.success(`Parameters imported for "${targetAnimationType}"!`)
+      } catch (error) {
+        toast.error('Error importing file: ' + (error instanceof Error ? error.message : 'Invalid JSON'))
+      }
+    }
+    reader.readAsText(file)
+
+    // Reset file input so the same file can be selected again
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
   }
 
   if (isNoneAnimation) {
@@ -45,10 +200,37 @@ export function AnimationParameterForm({ animationType }: AnimationParameterForm
     <div className="animation-parameter-form">
       <div className="animation-parameter-form__header">
         <h2 className="animation-parameter-form__title">Parameters</h2>
-        <button className="animation-parameter-form__reset" onClick={handleReset}>
-          Reset
-        </button>
+        <div className="animation-parameter-form__actions">
+          <button
+            className="animation-parameter-form__action-button"
+            onClick={handleExport}
+            title="Export parameters to JSON file"
+          >
+            <Download size={16} />
+          </button>
+          <button
+            className="animation-parameter-form__action-button"
+            onClick={handleImport}
+            title="Import parameters from JSON file"
+          >
+            <Upload size={16} />
+          </button>
+          <button
+            className="animation-parameter-form__action-button"
+            onClick={handleReset}
+            title="Reset to defaults"
+          >
+            <RotateCcw size={16} />
+          </button>
+        </div>
       </div>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".json"
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+      />
 
       <ParameterGroup title="Timing">
         <ParameterSlider
