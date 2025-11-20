@@ -1,4 +1,4 @@
-import { Download, RotateCcw, Upload } from 'lucide-react'
+import { Download, Play, RotateCcw, Upload } from 'lucide-react'
 import { useRef } from 'react'
 import toast from 'react-hot-toast'
 import { AnimationType } from '../animations/revealAnimations'
@@ -33,9 +33,13 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const parameters = getParameters(animationType)
-  const isSpringAnimation = animationType === 'spring-physics'
-  const isWobbleAnimation = animationType === 'elastic-bounce'
+  
+  // Updated logic to show parameters for all animations that use them
+  const isSpringAnimation = ['spring-physics', 'silk-unfold', 'orbital-reveal', 'elastic-bounce'].includes(animationType)
+  // Crystal Shimmer and Glitch Snap use keyframe arrays for scale, so they respond to wobble intensity.
+  const isWobbleAnimation = ['elastic-bounce', 'scale-rotate', 'glitch-snap', 'crystal-shimmer'].includes(animationType)
   const isOrbitalAnimation = animationType === 'orbital-reveal'
+  
   const isNoneAnimation = animationType === 'none'
 
   const handleReset = () => {

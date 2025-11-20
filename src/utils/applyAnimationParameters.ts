@@ -131,7 +131,8 @@ function applyToTransition(transition: any, parameters: AnimationParameters, isC
       result.staggerChildren = parameters.staggerChildren
     }
     if (typeof result.delayChildren === 'number') {
-      result.delayChildren = Math.max(0, parameters.delayChildren + parameters.delayOffset)
+      // Fix: Don't offset delayChildren with delayOffset twice
+      result.delayChildren = parameters.delayChildren
     }
   }
 
