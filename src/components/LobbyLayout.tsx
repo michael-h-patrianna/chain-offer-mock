@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { ChainOfferIcon } from './ChainOfferIcon'
-import { QuestLinesIcon } from './QuestLinesIcon'
-import { GameSwimlane } from './GameSwimlane'
+import React, { useEffect, useState } from 'react'
 import mockLobbyData from '../data/mockLobbyData.json'
+import { ChainOfferIcon } from './ChainOfferIcon'
+import { GameSwimlane } from './GameSwimlane'
+import { QuestLinesIcon } from './QuestLinesIcon'
 
 interface LobbyLayoutProps {
   onQuestLineClick: () => void
@@ -306,9 +306,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                         width: 'fit-content',
                         zIndex: 10
                     }}>
-                        <div className="MenuMobile_cashShop__7UDkx">
-                            <button className="mt-button-base-root mt-button-contained styles_root__YiphY bottom-navigation-get-coins-btn styles_size-md__t_xLu" data-testid="button-base" data-test="common-header-buy-button" role="button">Get Coins</button>
-                        </div>
+
                     </div>
 
                     <div className="mt-bottom-navigation-root MenuMobile_bottomNavigation__DhLlg" style={{position: 'relative', background: 'none'}}>
@@ -380,15 +378,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                     </div>
 
                     {/* Get Coins Floating Button */}
-                    <div className="MenuMobile_mainActionWrapper__3dS4f" style={{
-                        position: 'absolute',
-                        bottom: '30px',
-                        left: 0,
-                        right: 0,
-                        margin: '0 auto',
-                        width: 'fit-content',
-                        zIndex: 10
-                    }}>
+                    <div className="MenuMobile_mainActionWrapper__3dS4f" style={{position: 'absolute', bottom: '30px', left: '50%', transform: 'translateX(-50%)', zIndex: 10}}>
                         <div className="MenuMobile_cashShop__7UDkx">
                             <button className="mt-button-base-root mt-button-contained styles_root__YiphY bottom-navigation-get-coins-btn styles_size-md__t_xLu" data-testid="button-base" data-test="common-header-buy-button" role="button">Get Coins</button>
                         </div>
