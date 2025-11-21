@@ -119,7 +119,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                     <div className="FeaturesIcons_root__bTCHZ FeaturesIcons_root__H45hJ" style={{ position: 'relative', zIndex: 1 }}>
                         <div className="BackgroungImage_vars__WiRUP BackgroungImage_root__f3757 FeaturesIcons_root__H45hJ">
                             <div className="BackgroungImage_coverContainer__Aa4N1">
-                                <img alt="" className="BackgroungImage_cover__ZAkC9" src="/images/bc9cbe1554b226f3acc1075a7f8ed76a.jpg" />
+                                <img alt="" className="BackgroungImage_cover__ZAkC9" src="/images/header.jpg" />
                             </div>
                         </div>
 
@@ -356,7 +356,24 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
 
             </main>
             
-            {children}
+            {/* Move children INSIDE the main wrapper to ensure they are constrained by the 414px width */}
+            <main 
+                className="Layout_main__IhRQB Layout_fullContent__5V2R5 Layout_isFullWidthContainer__vTeyo" 
+                style={{
+                    maxWidth: '414px', 
+                    width: '100%',
+                    margin: '0 auto', 
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    pointerEvents: 'none' // Allow clicks to pass through wrapper, but children (dialogs) will need pointer-events: auto
+                }}
+            >
+                <div style={{pointerEvents: 'auto'}}>
+                    {children}
+                </div>
+            </main>
         </section>
     </>
   )
