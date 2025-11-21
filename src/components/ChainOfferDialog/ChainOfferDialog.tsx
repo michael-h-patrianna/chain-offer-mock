@@ -4,6 +4,7 @@ import { getRevealAnimation } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
 import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
 import { CloseButton } from '../Shared/CloseButton'
+import { DialogBackdrop } from '../Shared/DialogBackdrop'
 import { ChainOfferMapItem, type ChainOfferMapItemProps } from './ChainOfferMapItem'
 import { ChainOfferTimer } from './ChainOfferTimer'
 
@@ -45,17 +46,10 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
 
   if (!isOpen) return null
 
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose()
-    }
-  }
-
   return (
-    <div className="chain-offer-dialog-backdrop" onClick={handleBackdropClick}>
+    <DialogBackdrop isOpen={isOpen} onClose={onClose} backdropClassName="dialog-backdrop">
       <dialog open className={`chain-offer-dialog ${className}`}>
         <CloseButton
-          className="chain-offer-dialog__close-button"
           onClick={onClose}
           aria-label="Close dialog"
         />
@@ -66,7 +60,7 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
           variants={animation.containerVariants}
           initial="hidden"
           animate="visible"
-          style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'visible' }}
+          style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}
         >
           {/* Header */}
           <header className="chain-offer-header">
@@ -103,7 +97,7 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
           </header>
 
           {/* Items container */}
-          <section className="content chain-offer-dialog__content" style={{ overflow: 'visible' }}>
+          <section className="content chain-offer-dialog__content">
             {/* Each item is staggered */}
             {items.map((item) => (
               <ChainOfferMapItem
@@ -133,6 +127,6 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
           )}
         </motion.div>
       </dialog>
-    </div>
+    </DialogBackdrop>
   )
 }

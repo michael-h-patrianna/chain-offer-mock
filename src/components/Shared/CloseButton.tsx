@@ -13,7 +13,7 @@ export const CloseButton: React.FC<CloseButtonProps> = ({
 }) => (
 	<button
 		type="button"
-		className={className}
+		className="dialog-close-button"
 		onClick={onClick}
 		aria-label={ariaLabel}
 	>

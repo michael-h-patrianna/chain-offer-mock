@@ -5,6 +5,7 @@ import { useAnimationParameters } from '../../hooks/useAnimationParameters'
 import type { QuestLineDialogProps } from '../../types/questline'
 import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
 import { CloseButton } from '../Shared/CloseButton'
+import { DialogBackdrop } from '../Shared/DialogBackdrop'
 import { BonusRewards } from './BonusRewards'
 import { MilestoneProgressBar } from './MilestoneProgressBar'
 import { QuestCard } from './QuestCard'
@@ -39,17 +40,10 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
 
   if (!isOpen) return null
 
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose()
-    }
-  }
-
   return (
-    <div className="questline-dialog-backdrop" onClick={handleBackdropClick}>
+    <DialogBackdrop isOpen={isOpen} onClose={onClose} backdropClassName="dialog-backdrop">
       <div className="questline-dialog">
         <CloseButton
-          className="questline-dialog__close-button"
           onClick={onClose}
           aria-label="Close dialog"
         />
@@ -60,7 +54,7 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
           variants={animation.containerVariants}
           initial="hidden"
           animate="visible"
-          style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'visible', alignItems: 'center' }}
+          style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, alignItems: 'center' }}
         >
           {/* Header Image */}
           <motion.img
@@ -113,7 +107,7 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
           {/* Quest Cards - each staggered */}
           <div className="questline-dialog__quests">
             {quests.map((quest) => (
-              <motion.div key={quest.questCode} variants={animation.itemVariants}>
+              <motion.div style={{ width: '100%'}} key={quest.questCode} variants={animation.itemVariants}>
                 <QuestCard
                   {...quest}
                   onAction={onQuestAction}
@@ -140,6 +134,6 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
           )}
         </motion.div>
       </div>
-    </div>
+    </DialogBackdrop>
   )
 }
