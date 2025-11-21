@@ -1,7 +1,5 @@
-import { describe, it, expect, beforeAll } from 'vitest'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import { Provider } from 'react-redux'
-import { store } from '../store'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { beforeAll, describe, expect, it } from 'vitest'
 import { App } from '../ui/App'
 
 beforeAll(() => {
@@ -17,11 +15,7 @@ beforeAll(() => {
 
 describe('Chain Offers Mock', () => {
   it('renders icon and opens dialog', async () => {
-    render(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    )
+    render(<App />)
     const img = await screen.findByAltText('promo img')
     expect(img).toBeInTheDocument()
     fireEvent.click(img)

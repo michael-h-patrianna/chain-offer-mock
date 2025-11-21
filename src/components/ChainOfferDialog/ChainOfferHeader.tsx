@@ -1,4 +1,5 @@
-import { motion, Variants } from 'motion/react'
+import { motion } from 'motion/react'
+import type { Variants } from 'motion/types'
 import React from 'react'
 import { ChainOfferTimer } from './ChainOfferTimer'
 

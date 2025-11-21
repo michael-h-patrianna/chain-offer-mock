@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import mockLobbyData from '../data/mockLobbyData.json'
+import mockLobbyData from '../../../data/mockLobbyData.json'
 import { ChainOfferIcon } from './ChainOfferIcon'
 import { GameSwimlane } from './GameSwimlane'
 import { QuestLinesIcon } from './QuestLinesIcon'

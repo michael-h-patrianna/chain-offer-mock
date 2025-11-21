@@ -29,6 +29,11 @@ export interface BonusReward {
   progressRequired: number // Number of quests needed (e.g., 5)
 }
 
+export interface BonusRewardsProps extends BonusReward {
+  completedQuests: number
+  onClaim?: () => void
+}
+
 export interface QuestLineDialogProps {
   isOpen: boolean
   questlineCode: string

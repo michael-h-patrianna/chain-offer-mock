@@ -1,12 +1,13 @@
 import { motion } from 'motion/react'
 import React, { useMemo } from 'react'
-import type { AnimationType } from '../animations/revealAnimations'
-import { getRevealAnimation } from '../animations/revealAnimations'
-import { useAnimationParameters } from '../hooks/useAnimationParameters'
-import { applyAnimationParameters } from '../utils/applyAnimationParameters'
+import { getRevealAnimation } from '../../animations/revealAnimations'
+import { useAnimationParameters } from '../../hooks/useAnimationParameters'
+import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
+import { ChainOfferMapItem } from './ChainOfferMapItem'
 import { ChainOfferTimer } from './ChainOfferTimer'
-import { ChainOfferMapItem, type ChainOfferMapItemProps } from './ChainOfferMapItem'
+
 import './styles.css'
+
 
 export interface ChainOfferDialogProps {
   isOpen: boolean

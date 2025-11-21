@@ -1,15 +1,14 @@
 import { motion } from 'motion/react'
 import React, { useMemo } from 'react'
-import type { AnimationType } from '../../animations/revealAnimations'
 import { getRevealAnimation } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
-import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
 import type { QuestLineDialogProps } from '../../types/questline'
-import { ChainOfferTimer } from '../ChainOfferTimer'
+import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
 import { BonusRewards } from './BonusRewards'
 import { MilestoneProgressBar } from './MilestoneProgressBar'
 import { QuestCard } from './QuestCard'
-import './QuestLineDialog.css'
+import { QuestlineTimer } from './QuestlineTimer'
+import './styles.css'
 
 export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
   isOpen,
@@ -77,7 +76,7 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
 
           {/* Timer */}
           <motion.div variants={animation.questlineTimerVariants}>
-            <ChainOfferTimer
+            <QuestlineTimer
               endTime={endTime}
               onCountdownEnd={() => {}}
               className="questline-dialog__timer"

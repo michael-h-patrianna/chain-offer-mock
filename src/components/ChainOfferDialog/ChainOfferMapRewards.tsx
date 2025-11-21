@@ -1,11 +1,6 @@
 import React from 'react'
+import type { Reward } from '../../types/chainoffer'
 
-export interface Reward {
-  type: 'GC' | 'SC' | 'FS' | 'XP' | 'FREE_SPINS' | 'RANDOM'
-  amount: number
-  iconUrl?: string
-  name?: string // for RANDOM rewards
-}
 
 export interface ChainOfferMapRewardsProps {
   rewards: Reward[]

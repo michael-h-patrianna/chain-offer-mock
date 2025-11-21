@@ -1,23 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Toaster } from 'react-hot-toast'
-import { useDispatch, useSelector } from 'react-redux'
 import { AnimationType } from '../animations/revealAnimations'
-import { ChainOfferDialog } from '../components'
-import { HamburgerButton } from '../components/HamburgerButton'
-import { QuestLineDialog } from '../components/QuestLineDialog'
-import { Sidebar } from '../components/Sidebar'
-import { LobbyLayout } from '../components/LobbyLayout'
+import { ChainOfferDialog } from '../components/ChainOfferDialog/ChainOfferDialog'
+import { HamburgerButton } from '../components/Demo/HamburgerButton'
+import { Sidebar } from '../components/Demo/Sidebar'
+import { LobbyLayout } from '../components/MockWebpage/Lobby/LobbyLayout'
+import { QuestLineDialog } from '../components/QuestLineDialog/QuestLineDialog'
 import { AnimationParametersProvider } from '../contexts/AnimationParametersContext'
-import chainOffersRawData from '../data/chainOffersData.json'
-import questlineRawData from '../data/questlineData.json'
-import { RootState } from '../store'
-import { setChainOffersBootstrapped, setChainOffersItems } from '../store/chainOffersSlice'
+import { getDemoChainOfferDialogProps } from '../data/getDemoChainOffer'
+import { getDemoQuestlineDialogProps } from '../data/getDemoQuestline'
 import '../styles/chain-offers.scss'
-import { transformChainOfferData } from '../utils/transformChainOfferData'
-import { transformQuestLineData } from '../utils/transformQuestLineData'
 
 function AppSimpleIsolatedInner() {
-  const dispatch = useDispatch()
   const [isChainOfferDialogOpen, setIsChainOfferDialogOpen] = useState(false)
   const [isQuestlineDialogOpen, setIsQuestlineDialogOpen] = useState(false)
   const [selectedAnimation, setSelectedAnimation] = useState<AnimationType>('stagger-inview')
@@ -25,7 +19,6 @@ function AppSimpleIsolatedInner() {
     // Default to open on desktop, closed on mobile
     return typeof window !== 'undefined' && window.innerWidth > 768
   })
-  const chainOffersState = useSelector((state: RootState) => state.chainOffers)
 
   const handleToggleSidebar = () => {
     setIsSidebarOpen(prev => !prev)
@@ -38,15 +31,6 @@ function AppSimpleIsolatedInner() {
     }
   }
 
-  useEffect(() => {
-    // Inject realistic expiry (6d 5h) so timer formatting matches production presentation
-    const expiresAt = new Date(Date.now() + 6 * 24 * 3600 * 1000 + 5 * 3600 * 1000).toISOString()
-    const processed = (chainOffersRawData as any).items.map((i: any) => ({ ...i, expiresAt }))
-    dispatch(setChainOffersItems(processed))
-    dispatch(setChainOffersBootstrapped())
-  }, [dispatch])
-
-  const assignedOffer = chainOffersState.items.find((i: any) => i.status === 'ASSIGNED')
 
   const handleOpenChainOfferDialog = () => {
     setIsChainOfferDialogOpen(true)
@@ -77,8 +61,8 @@ function AppSimpleIsolatedInner() {
     console.log('[App] Claiming bonus rewards')
   }
 
-  const chainOfferDialogProps = assignedOffer && isChainOfferDialogOpen ? transformChainOfferData(assignedOffer) : null
-  const questlineDialogProps = isQuestlineDialogOpen ? transformQuestLineData(questlineRawData as any) : null
+  const chainOfferDialogProps = isChainOfferDialogOpen ? getDemoChainOfferDialogProps() : null
+  const questlineDialogProps = isQuestlineDialogOpen ? getDemoQuestlineDialogProps() : null
 
   return (
     <div className="app-container">
@@ -115,14 +99,14 @@ function AppSimpleIsolatedInner() {
       {/* Hamburger Menu Button */}
       <HamburgerButton isOpen={isSidebarOpen} onClick={handleToggleSidebar} />
 
-      <div className="app-content" style={{ 
-        marginLeft: isSidebarOpen ? '280px' : '0', 
+      <div className="app-content" style={{
+        marginLeft: isSidebarOpen ? '280px' : '0',
         transition: 'margin-left 0.3s ease-in-out',
         width: '100%',
         minHeight: '100vh'
       }}>
-        
-        <LobbyLayout 
+
+        <LobbyLayout
           onQuestLineClick={handleOpenQuestlineDialog}
           onChainOfferClick={handleOpenChainOfferDialog}
           isSidebarOpen={isSidebarOpen}

@@ -1,4 +1,4 @@
-import type { ChainOfferDialogProps, ChainOfferMapItemProps } from '../components'
+import type { ChainOfferDialogProps, ChainOfferMapItemProps } from '../components/ChainOfferDialog'
 
 // Local background images to use for map items
 const localBackgroundImages = [

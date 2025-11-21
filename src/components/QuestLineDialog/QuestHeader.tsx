@@ -1,6 +1,5 @@
 import cx from 'classnames'
 import React from 'react'
-import './QuestHeader.css'
 
 export interface QuestHeaderProps {
   title: string

@@ -1,4 +1,4 @@
-import { ChainOfferDialogProps } from '../components'
+import { ChainOfferDialogProps } from '../components/ChainOfferDialog'
 import type { Reward } from '../components/ChainOfferMapRewards'
 
 // Local background images to use for map items

@@ -1,7 +1,6 @@
 import React from 'react'
 import type { Reward } from '../../types/questline'
 import { formatRewardAmount, getRewardText } from '../../utils/transformQuestLineData'
-import './QuestRewards.css'
 
 export interface QuestRewardsProps {
   rewards: Reward[]

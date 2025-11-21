@@ -1,15 +1,11 @@
 import cx from 'classnames'
 import React, { useState } from 'react'
-import type { BonusReward } from '../../types/questline'
+import type { BonusRewardsProps } from '../../types/questline'
 import { formatRewardAmount, getRewardText } from '../../utils/transformQuestLineData'
-import './BonusRewards.css'
 
 const MAX_REWARDS_PREVIEW = 4
 
-export interface BonusRewardsProps extends BonusReward {
-  completedQuests: number
-  onClaim?: () => void
-}
+
 
 export const BonusRewards: React.FC<BonusRewardsProps> = ({
   rewards,

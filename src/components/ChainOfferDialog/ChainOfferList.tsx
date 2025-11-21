@@ -1,8 +1,9 @@
 import { motion } from 'motion/react'
 import React, { useMemo } from 'react'
-import { AnimationType, getRevealAnimation } from '../animations/revealAnimations'
-import { useAnimationParameters } from '../hooks/useAnimationParameters'
-import { applyAnimationParameters } from '../utils/applyAnimationParameters'
+import type { AnimationType } from '../../animations/revealAnimations'
+import { getRevealAnimation } from '../../animations/revealAnimations'
+import { useAnimationParameters } from '../../hooks/useAnimationParameters'
+import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
 import { ChainOfferMapItem, type ChainOfferMapItemProps } from './ChainOfferMapItem'
 
 export interface ChainOfferListProps {

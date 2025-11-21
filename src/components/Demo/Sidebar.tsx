@@ -1,4 +1,4 @@
-import { AnimationType, getAnimationOptions } from '../animations/revealAnimations'
+import { AnimationType, getAnimationOptions } from '../../animations/revealAnimations'
 import { AnimationParameterForm } from './AnimationParameterForm'
 import './Sidebar.css'
 

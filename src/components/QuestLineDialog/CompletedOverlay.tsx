@@ -1,5 +1,4 @@
 import React from 'react'
-import './CompletedOverlay.css'
 
 export interface CompletedOverlayProps {
   hasRewards: boolean

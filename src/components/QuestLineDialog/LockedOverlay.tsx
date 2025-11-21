@@ -1,5 +1,4 @@
 import React from 'react'
-import './LockedOverlay.css'
 
 export const LockedOverlay: React.FC = () => {
   return (

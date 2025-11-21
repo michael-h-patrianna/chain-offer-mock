@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChainOfferDialog } from '../components'
+import { ChainOfferDialog } from '../components/ChainOfferDialog'
 import rawData from '../data/chainOffersData.json'
 import { transformChainOfferData } from '../utils/transformChainOfferData'
 

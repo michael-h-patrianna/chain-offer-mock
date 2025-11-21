@@ -1,5 +1,4 @@
 import React from 'react'
-import './MilestoneProgressBar.css'
 
 export interface MilestoneProgressBarProps {
   totalQuests: number

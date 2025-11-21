@@ -4,7 +4,6 @@ import type { Quest } from '../../types/questline'
 import { ModalCelebrationsCoinsFountain } from '../rewards/modal-celebrations/framer/ModalCelebrationsCoinsFountain'
 import { CompletedOverlay } from './CompletedOverlay'
 import { LockedOverlay } from './LockedOverlay'
-import './QuestCard.css'
 import { QuestRewards } from './QuestRewards'
 
 export interface QuestCardProps extends Quest {

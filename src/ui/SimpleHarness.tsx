@@ -1,5 +1,5 @@
 import React from 'react'
-import { ChainOfferDialog } from '../components'
+import { ChainOfferDialog } from '../components/ChainOfferDialog'
 import { buildDialogFromSimpleConfig, createSimpleConfig } from '../utils/simpleChainOfferConfig'
 
 export const SimpleHarness: React.FC = () => {

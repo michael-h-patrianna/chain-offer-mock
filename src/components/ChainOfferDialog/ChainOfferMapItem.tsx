@@ -1,7 +1,9 @@
-import { motion, Variants } from 'motion/react'
+import { motion } from 'motion/react'
+import type { Variants } from 'motion/types'
 import React, { useCallback } from 'react'
+import type { Reward } from '../../types/chainoffer'
 import { ChainOfferMapButton } from './ChainOfferMapButton'
-import { ChainOfferMapRewards, type Reward } from './ChainOfferMapRewards'
+import { ChainOfferMapRewards } from './ChainOfferMapRewards'
 
 export interface ChainOfferMapItemProps {
   id: string
