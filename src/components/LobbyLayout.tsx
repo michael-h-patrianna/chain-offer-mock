@@ -1,6 +1,6 @@
 import React from 'react'
-import { QuestLinesIcon } from './QuestLinesIcon'
 import { ChainOfferIcon } from './ChainOfferIcon'
+import { QuestLinesIcon } from './QuestLinesIcon'
 
 interface LobbyLayoutProps {
   onQuestLineClick: () => void
@@ -15,21 +15,17 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
 }) => {
   return (
     <>
-        {/* Global Background from single.html */}
-        <picture>
-            <img role="presentation" alt="" width="2000" height="2000" style={{position:'fixed',top:0,left:0,bottom:0,right:0,width:'100%',height:'100%',objectFit:'cover',objectPosition:'center',zIndex:-1}} src="/images/7c8e8aa28974bb10b475ff173f9c3acf.webp" />
-            <source srcSet="/images/27d7e81f35cb17e372b170be1a3aa226.webp 600w, /images/7c8e8aa28974bb10b475ff173f9c3acf.webp 2000w" sizes="100vw" />
-        </picture>
+
 
         {/* Ensure root-layout is positioned relative so absolute children move with it */}
         <section id="root-layout" style={{ position: 'relative' }}>
-            <main 
-                className="Layout_main__IhRQB Layout_fullContent__5V2R5 Layout_isFullWidthContainer__vTeyo" 
+            <main
+                className="Layout_main__IhRQB Layout_fullContent__5V2R5 Layout_isFullWidthContainer__vTeyo"
                 style={{
-                    maxWidth: '414px', 
+                    maxWidth: '414px',
                     width: '100%',
-                    margin: '0 auto', 
-                    minHeight: '100vh', 
+                    margin: '0 auto',
+                    minHeight: '100vh',
                     backgroundColor: '#120a21',
                     display: 'flex',
                     flexDirection: 'column',
@@ -64,20 +60,20 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                         margin-bottom: 10px !important;
                     }
                 `}</style>
-                
+
                 {/* PLAYFAME GLOBAL HEADER */}
                 <header data-testid="app-bar" className="mt-appbar Header_root__t1iyN" style={{position: 'sticky', top: 0, width: '100%', zIndex: 100}}>
                     <div className="main-container Header_headerWrapper__5GHns">
                         <div className="Header_mobileHeader__Jh8Ni">
                             <div className="Header_logoColumn__zJ_9i">
                                 <a data-testid="logo-link" href="/">
-                                    <img 
-                                        alt="playfame" 
-                                        width="135" 
-                                        height="60" 
-                                        className="BrandLogoLink_logo__DmhPX" 
-                                        src="/images/6e907de4db52d7b0543a2837798ef615.png" 
-                                        style={{width: '135px', height: '60px', objectFit: 'contain'}} 
+                                    <img
+                                        alt="playfame"
+                                        width="135"
+                                        height="60"
+                                        className="BrandLogoLink_logo__DmhPX"
+                                        src="/images/6e907de4db52d7b0543a2837798ef615.png"
+                                        style={{width: '135px', height: '60px', objectFit: 'contain'}}
                                     />
                                 </a>
                             </div>
@@ -113,7 +109,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                 </header>
 
                 <div className="main-container limited" style={{flex: 1}}> {/* flex:1 pushes footer down */}
-                    
+
                     <div id="smart-banner-container"></div>
 
                     {/* Features / Swimlane Section */}
@@ -134,7 +130,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                                                 <div className="ProgressBarWithLevel_levelIconContainer__ktokE ProgressBarWithLevel_currentLevel__7XWpc" data-icon-type="numbered">
                                                     <img alt="Rising Star 12" src="/images/134cce0e47648296d1dfabe3b9df1a88.png" style={{width: '48px', height: 'auto'}} />
                                                 </div>
-                                                
+
                                                 <div className="ProgressBar_root__00qoq" style={{'--loyalty-progress-value': '84'} as any}>
                                                     <div className="ProgressBar_progressBar__5YY32 IconAwareProgressBar_progressBar__l1GWF IconAwareProgressBar_namedProgress__miLiN"></div>
                                                     <span className="ProgressBar_progressText__DcXRn">84%</span>
@@ -226,7 +222,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                                             </picture>
                                         </div>
                                     </div>
-                                    
+
                                     {/* Wild Wick */}
                                     <div className="ProductTile_root__Dqjo0 ProductTile_rootVisible__76TQE">
                                         <div className="ProductTile_imageContainer__o2Irg" data-test="game-tile-WildWick">
@@ -270,7 +266,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
 
                 {/* Mobile Bottom Navigation - Sticky Bottom */}
                 <div className="MenuMobile_root__SqU53" style={{position: 'sticky', bottom: 0, zIndex: 100, width: '100%'}}>
-                    
+
                     {/* Special Offer Button - Now inside sticky container to float above nav */}
                     <div className="SpecialOfferButton_root__u5BwC" style={{position: 'absolute', bottom: '70px', right: '10px', zIndex: 90, height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                         <span className="SpecialOfferButton_amount__vAPAQ">4</span>
@@ -317,7 +313,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                             </span>
                         </button>
                         {/* Middle Space for Get Coins - visual spacer or button */}
-                        <div style={{width: '80px'}}></div> 
+                        <div style={{width: '80px'}}></div>
 
                         <button className="mt-button-base-root mt-bottom-navigation-action-root MenuMobile_navigationButton__K7JoC">
                             <span className="mt-bottom-navigation-action-wrapper">
@@ -346,7 +342,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                             </span>
                         </button>
                     </div>
-                    
+
                     {/* Get Coins Floating Button */}
                     <div className="MenuMobile_mainActionWrapper__3dS4f" style={{position: 'absolute', bottom: '30px', left: '50%', transform: 'translateX(-50%)', zIndex: 10}}>
                         <div className="MenuMobile_cashShop__7UDkx">
@@ -356,14 +352,14 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                 </div>
 
             </main>
-            
+
             {/* Move children INSIDE the main wrapper to ensure they are constrained by the 414px width */}
-            <div 
-                className="Layout_main__IhRQB Layout_fullContent__5V2R5 Layout_isFullWidthContainer__vTeyo" 
+            <div
+                className="Layout_main__IhRQB Layout_fullContent__5V2R5 Layout_isFullWidthContainer__vTeyo"
                 style={{
-                    maxWidth: '414px', 
+                    maxWidth: '414px',
                     width: '100%',
-                    margin: '0 auto', 
+                    margin: '0 auto',
                     position: 'absolute',
                     top: 0,
                     left: 0,
