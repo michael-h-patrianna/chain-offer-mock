@@ -151,7 +151,6 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                                 <img alt="" className="BackgroungImage_cover__ZAkC9" src="/images/header.jpg" />
                             </div>
                         </div>
-
                         <div className="SwimlaneLayout_vars__9Bu1Y SwimlaneLayout_iconsSwimlane__ohefI">
                             <div className="WidgetContainer_vars__5xkTP WidgetContainer_widgetWrapper___GVpc WidgetContainer_bottom__SuNn_ WidgetContainer_swimlane__piJeN WidgetContainer_samePlacement__QG_gF">
                                 <div className="WidgetContainer_widgetContainer__C77Iu">
