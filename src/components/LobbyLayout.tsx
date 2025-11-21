@@ -21,7 +21,8 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
             <source srcSet="/images/27d7e81f35cb17e372b170be1a3aa226.webp 600w, /images/7c8e8aa28974bb10b475ff173f9c3acf.webp 2000w" sizes="100vw" />
         </picture>
 
-        <section id="root-layout">
+        {/* Ensure root-layout is positioned relative so absolute children move with it */}
+        <section id="root-layout" style={{ position: 'relative' }}>
             <main 
                 className="Layout_main__IhRQB Layout_fullContent__5V2R5 Layout_isFullWidthContainer__vTeyo" 
                 style={{
@@ -357,7 +358,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
             </main>
             
             {/* Move children INSIDE the main wrapper to ensure they are constrained by the 414px width */}
-            <main 
+            <div 
                 className="Layout_main__IhRQB Layout_fullContent__5V2R5 Layout_isFullWidthContainer__vTeyo" 
                 style={{
                     maxWidth: '414px', 
@@ -373,7 +374,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                 <div style={{pointerEvents: 'auto'}}>
                     {children}
                 </div>
-            </main>
+            </div>
         </section>
     </>
   )
