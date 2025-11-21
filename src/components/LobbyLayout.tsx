@@ -144,7 +144,6 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                 <div className="main-container limited" style={{flex: 1}}> {/* flex:1 pushes footer down */}
 
                     <div id="smart-banner-container"></div>
-
                     {/* Features / Swimlane Section */}
                     <div className="FeaturesIcons_root__bTCHZ FeaturesIcons_root__H45hJ" style={{ position: 'relative', zIndex: 1 }}>
                         <div className="BackgroungImage_vars__WiRUP BackgroungImage_root__f3757 FeaturesIcons_root__H45hJ">
@@ -299,12 +298,12 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
 
                     {/* Special Offer Button - Now inside sticky container to float above nav */}
                     <div className="MenuMobile_mainActionWrapper__3dS4f" style={{
-                        position: 'absolute', 
-                        bottom: '30px', 
-                        left: 0, 
-                        right: 0, 
-                        margin: '0 auto', 
-                        width: 'fit-content', 
+                        position: 'absolute',
+                        bottom: '30px',
+                        left: 0,
+                        right: 0,
+                        margin: '0 auto',
+                        width: 'fit-content',
                         zIndex: 10
                     }}>
                         <div className="MenuMobile_cashShop__7UDkx">
@@ -382,12 +381,12 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
 
                     {/* Get Coins Floating Button */}
                     <div className="MenuMobile_mainActionWrapper__3dS4f" style={{
-                        position: 'absolute', 
-                        bottom: '30px', 
-                        left: 0, 
-                        right: 0, 
-                        margin: '0 auto', 
-                        width: 'fit-content', 
+                        position: 'absolute',
+                        bottom: '30px',
+                        left: 0,
+                        right: 0,
+                        margin: '0 auto',
+                        width: 'fit-content',
                         zIndex: 10
                     }}>
                         <div className="MenuMobile_cashShop__7UDkx">
