@@ -1,6 +1,5 @@
 import { AnimationType, getAnimationOptions } from '../../animations/revealAnimations'
 import { AnimationParameterForm } from './AnimationParameterForm'
-import './Sidebar.css'
 
 interface SidebarProps {
   isOpen: boolean

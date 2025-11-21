@@ -1,0 +1,28 @@
+import React from 'react'
+
+export interface CloseButtonProps {
+	onClick: () => void
+	className?: string
+	'aria-label'?: string
+}
+
+export const CloseButton: React.FC<CloseButtonProps> = ({
+	onClick,
+	className = '',
+	'aria-label': ariaLabel = 'Close dialog',
+}) => (
+	<button
+		type="button"
+		className={className}
+		onClick={onClick}
+		aria-label={ariaLabel}
+	>
+		<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+			<path
+				fill="currentColor"
+				d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7A1 1 0 0 0 5.7 7.11L10.59 12l-4.9 4.89a1 1 0 1 0 1.41 1.42L12 13.41l4.89 4.9a1 1 0 0 0 1.42-1.41L13.41 12l4.9-4.89a1 1 0 0 0-.01-1.4Z"
+			/>
+		</svg>
+	</button>
+)
+

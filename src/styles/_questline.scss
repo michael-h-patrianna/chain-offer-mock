@@ -1,0 +1,12 @@
+// Main chain offer styles - imports all component styles
+
+// Variables first
+@import 'variables/variables';
+@import 'components/questline/bonus-reward';
+@import 'components/questline/overlays';
+@import 'components/questline/progress-bar';
+@import 'components/questline/quest-card';
+@import 'components/questline/header';
+@import 'components/questline/dialog';
+@import 'components/questline/quest-rewards';
+@import 'components/questline/timer';

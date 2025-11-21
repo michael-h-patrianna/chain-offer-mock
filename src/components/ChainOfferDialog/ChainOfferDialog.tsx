@@ -3,10 +3,9 @@ import React, { useMemo } from 'react'
 import { getRevealAnimation } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
 import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
-import { ChainOfferMapItem } from './ChainOfferMapItem'
+import { CloseButton } from '../Shared/CloseButton'
+import { ChainOfferMapItem, type ChainOfferMapItemProps } from './ChainOfferMapItem'
 import { ChainOfferTimer } from './ChainOfferTimer'
-
-import './styles.css'
 
 
 export interface ChainOfferDialogProps {
@@ -55,15 +54,11 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
   return (
     <div className="chain-offer-dialog-backdrop" onClick={handleBackdropClick}>
       <dialog open className={`chain-offer-dialog ${className}`}>
-        <button
+        <CloseButton
           className="chain-offer-dialog__close-button"
           onClick={onClose}
           aria-label="Close dialog"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7A1 1 0 0 0 5.7 7.11L10.59 12l-4.9 4.89a1 1 0 1 0 1.41 1.42L12 13.41l4.89 4.9a1 1 0 0 0 1.42-1.41L13.41 12l4.9-4.89a1 1 0 0 0-.01-1.4Z" />
-          </svg>
-        </button>
+        />
 
         {/* Stagger container */}
         <motion.div
@@ -76,24 +71,23 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
           {/* Header */}
           <header className="chain-offer-header">
             {/* Header Image */}
-            <motion.div
+            <motion.div variants={animation.headerImageVariants}
               className="chain-offer-header__image-box"
-              variants={animation.headerImageVariants}
             >
               <img
                 alt="title"
                 className="chain-offer-header__image"
                 src={imageSrc}
               />
+
               {/* Timer */}
               <motion.div
-                className="chain-offer-header__timer-box"
+                className="chain-offer-timer"
                 variants={animation.timerVariants}
               >
                 <ChainOfferTimer
                   endTime={endTime}
                   onCountdownEnd={onCountdownEnd}
-                  className="chain-offer-header__timer"
                 />
               </motion.div>
             </motion.div>

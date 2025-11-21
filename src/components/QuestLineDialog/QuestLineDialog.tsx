@@ -4,11 +4,11 @@ import { getRevealAnimation } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
 import type { QuestLineDialogProps } from '../../types/questline'
 import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
+import { CloseButton } from '../Shared/CloseButton'
 import { BonusRewards } from './BonusRewards'
 import { MilestoneProgressBar } from './MilestoneProgressBar'
 import { QuestCard } from './QuestCard'
 import { QuestlineTimer } from './QuestlineTimer'
-import './styles.css'
 
 export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
   isOpen,
@@ -48,15 +48,11 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
   return (
     <div className="questline-dialog-backdrop" onClick={handleBackdropClick}>
       <div className="questline-dialog">
-        <button
+        <CloseButton
           className="questline-dialog__close-button"
           onClick={onClose}
           aria-label="Close dialog"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7A1 1 0 0 0 5.7 7.11L10.59 12l-4.9 4.89a1 1 0 1 0 1.41 1.42L12 13.41l4.89 4.9a1 1 0 0 0 1.42-1.41L13.41 12l4.9-4.89a1 1 0 0 0-.01-1.4Z" />
-          </svg>
-        </button>
+        />
 
         {/* Stagger container wrapping all content */}
         <motion.div
@@ -93,7 +89,7 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
 
           {/* Bonus Rewards */}
           <motion.div
-            style={{ width: '100%', padding: '0 16px' }}
+            style={{ width: '100%'}}
             variants={animation.questlineBonusRewardsVariants}
           >
             <BonusRewards
@@ -105,7 +101,7 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
 
           {/* Progress Bar */}
           <motion.div
-            style={{ width: '100%', padding: '0 16px' }}
+            style={{ width: '100%' }}
             variants={animation.questlineProgressBarVariants}
           >
             <MilestoneProgressBar

@@ -1,0 +1,73 @@
+@import '../../variables/variables';
+
+// Chain Offer Map Item styles using our React component class names
+.chain-offer-map-item-wrapper {
+  order: var(--offer-step-order);
+  border-radius: 0.5rem; // 8px
+  width: 100%;
+  aspect-ratio: 450 / 158;
+  overflow: visible;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  flex: 0 0 auto;
+  position: relative;
+
+
+}
+
+.chain-offer-map-item {
+  background-image: var(--offer-step-background-image, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem; // 8px - matches offer-step-border-radius
+
+  &--claimed {
+    filter: brightness(60%);
+    pointer-events: none;
+  }
+
+  &__offers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; // 8px - matches original --offers-gap
+    min-height: 61%; // matches original --offers-min-height
+
+    @media screen and (max-width: 25.875rem) and (orientation: portrait) {
+      min-height: 61%;
+    }
+  }
+
+  &__button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 39%; // matches original --btn-box-min-height
+
+    @media screen and (max-width: 25.875rem) and (orientation: portrait) {
+      min-height: 43%; // matches original --btn-box-min-height-mobile
+    }
+  }
+
+  &__divider {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    margin: 0;
+    width: 100%;
+    bottom: -1.6rem; // Matches --step-divider-bottom
+    z-index: 10;
+  }
+
+  &__divider-image {
+    object-fit: contain;
+    max-width: 60px; // Constrain arrow width
+    max-height: 40px; // Constrain arrow height
+    height: auto;
+    width: auto;
+  }
+}

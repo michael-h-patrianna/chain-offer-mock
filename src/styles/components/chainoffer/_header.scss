@@ -1,0 +1,52 @@
+@import '../../variables/variables';
+
+.vars {
+
+
+
+  --header-img-box-img-display: block;
+  --header-img-box-img-height: 11.9375rem; /* 191px */
+  --header-img-box-img-height-mobile: 7.5625rem; /* 121px */
+  --header-img-box-img-vertical-align: top;
+  --header-img-box-img-object-fit: cover;
+
+  --header-timer-margin-top: 1.25rem; /* 20px */
+  --header-timer-grid-area: stack;
+  --header-timer-justify-self: center;
+}
+
+.header {
+position: relative;
+}
+
+.headerMediaTimer {
+  display:grid;
+  grid-template-areas: stack;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.headerImageCell {
+  grid-area: stack;
+  z-index: -1;
+}
+
+.headerImgBox {
+  overflow: hidden;
+  font-size: 0;
+
+  & img {
+    display: block;
+    height: 11.9375rem;
+      height: 7.5625rem;
+      max-width: 100vw;
+    vertical-align:top;
+    object-fit: cover;
+  }
+}
+
+.headerTimer {
+  margin-top: 1.25rem;
+  grid-area: stack;
+  justify-self: center;
+}

@@ -3,13 +3,11 @@ import React from 'react'
 export interface ChainOfferTimerProps {
   endTime: string | number
   onCountdownEnd?: () => void
-  className?: string
 }
 
 export const ChainOfferTimer: React.FC<ChainOfferTimerProps> = ({
   endTime,
-  onCountdownEnd,
-  className = ''
+  onCountdownEnd
 }) => {
   const [timeLeft, setTimeLeft] = React.useState('')
 
@@ -48,8 +46,8 @@ export const ChainOfferTimer: React.FC<ChainOfferTimerProps> = ({
   }, [endTime, onCountdownEnd])
 
   return (
-    <span className={`chain-offer-timer ${className}`}>
-      {timeLeft}
-    </span>
+    <div className="chain-offer-timer__inner">
+      <span>{timeLeft}</span>
+    </div>
   )
 }

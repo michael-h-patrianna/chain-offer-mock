@@ -48,8 +48,8 @@ export const QuestlineTimer: React.FC<QuestlineTimerProps> = ({
   }, [endTime, onCountdownEnd])
 
   return (
-    <span className={`chain-offer-timer ${className}`}>
-      {timeLeft}
-    </span>
+    <div className={`questline-timer ${className}`}>
+      <p>{timeLeft}</p>
+    </div>
   )
 }
