@@ -1,18 +1,40 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ChainOfferIcon } from './ChainOfferIcon'
 import { QuestLinesIcon } from './QuestLinesIcon'
+import { GameSwimlane } from './GameSwimlane'
+import mockLobbyData from '../data/mockLobbyData.json'
 
 interface LobbyLayoutProps {
   onQuestLineClick: () => void
   onChainOfferClick: () => void
   children: React.ReactNode
+  isSidebarOpen?: boolean
 }
 
 export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
   onQuestLineClick,
   onChainOfferClick,
-  children
+  children,
+  isSidebarOpen = false
 }) => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20; // Threshold for scroll
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrolled]);
+
+  const headerClasses = `mt-appbar Header_root__t1iyN ${scrolled ? 'Header_solidAppbar__GgDp9' : ''}`;
+
   return (
     <>
 
@@ -37,7 +59,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                     .Layout_main__IhRQB.Layout_fullContent__5V2R5.Layout_isFullWidthContainer__vTeyo {
                         max-width: 414px !important;
                         width: 100% !important;
-                        padding-top: 0 !important;
+                        padding-top: 64px !important;
                     }
                     /* Force Header layout to prevent overlap */
                     .Header_mobileHeader__Jh8Ni {
@@ -62,7 +84,18 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                 `}</style>
 
                 {/* PLAYFAME GLOBAL HEADER */}
-                <header data-testid="app-bar" className="mt-appbar Header_root__t1iyN" style={{position: 'sticky', top: 0, width: '100%', zIndex: 100}}>
+                <header data-testid="app-bar" className={headerClasses} style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: isSidebarOpen ? '280px' : 0,
+                    right: 0,
+                    margin: '0 auto',
+                    width: '100%',
+                    maxWidth: '414px',
+                    zIndex: 100,
+                    transform: 'none',
+                    transition: 'left 0.3s ease-in-out' // Match sidebar transition
+                }}>
                     <div className="main-container Header_headerWrapper__5GHns">
                         <div className="Header_mobileHeader__Jh8Ni">
                             <div className="Header_logoColumn__zJ_9i">
@@ -198,59 +231,56 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                         </div>
                     </div>
 
-                    {/* Most Popular Games Row */}
-                    <div className="HomeContent_slotsRowContainer__vA7H_ top">
-                        <div className="styles_root__TLTRh HomeContent_title__LYzGH gameRow">
-                            <div className="styles_root__92GMy HomeContent_title__LYzGH">
-                                <h3 className="styles_titleWithLink__LDKBF" data-test="title-Most Popular Games"><span>Most Popular Games</span></h3>
-                                <a className="styles_link__SbRkt" data-test="show-all-Most Popular Games" title="View all Most Popular Games" href="#">View all</a>
+                    <div className="HomeContent_pageContent__2Pf5O HomeContent_pageContentRow__tyE8x">
+                        <section className="SwimlaneV1_root__5ys9P Loyalty_swimlane__wjnB2">
+                            <div className="LoyaltyLogo_root__Z5jN1 SwimlaneV1_logo__NeaUS">
+                                <div className="LevelBackground_root__ByQhM LoyaltyLogo_background__3u9Sn SwimlaneV1_backgroundLogo__kbt0s">
+                                    <img src="https://storage.googleapis.com/www.playfame.com/images/new-loyalty-program/loyalty-lounge-logo-background.png" alt="Loyalty Logo Background" className="LevelBackground_image__0nWaH"/>
+                                </div>
+                                <img src="https://storage.googleapis.com/www.playfame.com/images/new-loyalty-program/loyalty-lounge-logo-v2.png" alt="Loyalty Logo" className="LoyaltyLogo_logo__Cji_Q"/>
                             </div>
-                            <div className="styles_scrollWrap__8juHy hidePrevlArrow" data-test="Most Popular Games-games-row">
-                                <div className="styles_scrollContainer__42IUy styles_tilesGrid__MI3Dz styles_tilesContainer__SKLpg lines-1 style-large">
-                                    {/* Mad Hit Slippery Soap */}
-                                    <div className="ProductTile_root__Dqjo0 ProductTile_rootVisible__76TQE">
-                                        <div className="ProductTile_imageContainer__o2Irg" data-test="game-tile-rp_857">
-                                            <div className="ProductTileTags_tags__CcUoq">
-                                                <div className="ProductTileTags_textTags__Jlb6X ProductTileTags_textTagsLarge__zIhgt">
-                                                    <span className="ProductTileTags_textTag___C397 ProductTileTags_primaryColorTag__MQ_C_">
-                                                        <span className="ProductTileTags_textTagBody__IOaYq">New</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <picture>
-                                                <img alt="Mad Hit Slippery Soap" className="styles_image__8mDPx ProductTile_image__KEVUt" width="87" height="116" loading="lazy" decoding="async" src="/images/66a1b61a984fd98144cc917d5399df05.webp" />
-                                            </picture>
-                                        </div>
+                            <div className="SwimlaneV1_textsContainer__ut9oG">
+                                <h2 class="SwimlaneV1_title__Odbvh">Welcome to Fame Club!</h2>
+                                <p class="SwimlaneV1_description__eIIwR">Keep racking up FamePoints to hit the next level and unlock even bigger rewards!</p>
+                                <a href="https://www.playfame.com/promotions/fameclub" className="DetailsLink_root__ZKSG2 SwimlaneV1_detailsLink__xMFyP">Learn More</a>
+                            </div>
+                            <div className="Card_root__NiHwD Card_primary__lSnRy ProgressCard_root__UvQdL SwimlaneV1_progressCard__A6C4v">
+                                <img src="https://storage.googleapis.com/www.playfame.com/images/new-loyalty-program/progress-card-background.png" alt="Progress Card Background" className="ProgressCard_backgroundImage__SFeGs"/>
+                                <div className="ProgressCard_headerRow__QRpNo">
+                                    <img data-icon-type="named" src="https://storage.googleapis.com/www.playfame.com/images/RisingStar12-small-s.png" alt="Rising Star 12" className="LevelIcon_root__4eWIY ProgressCard_levelIcon__EFkrF"/>
+                                    <div className="ProgressCard_titleContainer__4u9c0">
+                                        <h5 className="ProgressCard_generalText__nxqbr">Your loyalty level:</h5>
+                                        <h6 className="ProgressCard_levelName__MUFfY">Rising Star 12</h6>
                                     </div>
-
-                                    {/* Wild Wick */}
-                                    <div className="ProductTile_root__Dqjo0 ProductTile_rootVisible__76TQE">
-                                        <div className="ProductTile_imageContainer__o2Irg" data-test="game-tile-WildWick">
-                                            <div className="ProductTileTags_tags__CcUoq">
-                                                <div className="ProductTileTags_textTags__Jlb6X ProductTileTags_textTagsLarge__zIhgt">
-                                                    <span className="ProductTileTags_textTag___C397 ProductTileTags_primaryColorTag__MQ_C_">
-                                                        <span className="ProductTileTags_textTagBody__IOaYq">New</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <picture>
-                                                <img alt="Wild Wick" className="styles_image__8mDPx ProductTile_image__KEVUt" width="87" height="116" loading="lazy" decoding="async" src="/images/4769d0f1a35ffa678a13f977121bffef.webp" />
-                                            </picture>
-                                        </div>
+                                </div>
+                                <div className="ProgressBarWithLevel_wrapper__TmLRK">
+                                    <div className="ProgressBar_root__00qoq">
+                                        <div className="ProgressBar_progressBar__5YY32"></div>
+                                        <span className="ProgressBar_progressText__DcXRn">84%</span>
                                     </div>
-
-                                    {/* 3 Super Hot Chillies */}
-                                    <div className="ProductTile_root__Dqjo0 ProductTile_rootVisible__76TQE">
-                                        <div className="ProductTile_imageContainer__o2Irg" data-test="game-tile-oa_3_super_hot_chillies">
-                                            <picture>
-                                                <img alt="3 Super Hot Chillies: Hold and Win" className="styles_image__8mDPx ProductTile_image__KEVUt" width="87" height="116" loading="lazy" decoding="async" src="/images/41903ae386f9a68a5841896582c4b893.webp" />
-                                            </picture>
-                                        </div>
+                                    <div className="ProgressBarWithLevel_levelIconContainer__ktokE ProgressBarWithLevel_nextLevel__CZ921">
+                                        <img data-icon-type="named" src="https://storage.googleapis.com/www.playfame.com/images/RisingStar13-small-s.png" alt="Rising Star 13" className="LevelIcon_root__4eWIY"/>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </section>
                     </div>
+
+                    {/* Dynamic Game Swimlanes */}
+                    {mockLobbyData.categories.map((category) => {
+                        if (category.products && category.products.length > 0) {
+                            return (
+                                <GameSwimlane
+                                    key={category.code}
+                                    title={category.title}
+                                    icon={category.icon}
+                                    products={category.products}
+                                    categoryCode={category.code}
+                                />
+                            )
+                        }
+                        return null
+                    })}
 
                 </div>
 
@@ -268,11 +298,18 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                 <div className="MenuMobile_root__SqU53" style={{position: 'sticky', bottom: 0, zIndex: 100, width: '100%'}}>
 
                     {/* Special Offer Button - Now inside sticky container to float above nav */}
-                    <div className="SpecialOfferButton_root__u5BwC" style={{position: 'absolute', bottom: '70px', right: '10px', zIndex: 90, height: '100px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                        <span className="SpecialOfferButton_amount__vAPAQ">4</span>
-                        <button type="button" className="SpecialOfferButton_button__2B1LR">
-                            <img width="90" height="103" className="SpecialOfferButton_present__TdCTD SpecialOfferButton_animation__i6TGg" alt="" src="/images/b935454bfcb3de1c16e5edf695b65258.png" />
-                        </button>
+                    <div className="MenuMobile_mainActionWrapper__3dS4f" style={{
+                        position: 'absolute', 
+                        bottom: '30px', 
+                        left: 0, 
+                        right: 0, 
+                        margin: '0 auto', 
+                        width: 'fit-content', 
+                        zIndex: 10
+                    }}>
+                        <div className="MenuMobile_cashShop__7UDkx">
+                            <button className="mt-button-base-root mt-button-contained styles_root__YiphY bottom-navigation-get-coins-btn styles_size-md__t_xLu" data-testid="button-base" data-test="common-header-buy-button" role="button">Get Coins</button>
+                        </div>
                     </div>
 
                     <div className="mt-bottom-navigation-root MenuMobile_bottomNavigation__DhLlg" style={{position: 'relative', background: 'none'}}>
@@ -344,7 +381,15 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                     </div>
 
                     {/* Get Coins Floating Button */}
-                    <div className="MenuMobile_mainActionWrapper__3dS4f" style={{position: 'absolute', bottom: '30px', left: '50%', transform: 'translateX(-50%)', zIndex: 10}}>
+                    <div className="MenuMobile_mainActionWrapper__3dS4f" style={{
+                        position: 'absolute', 
+                        bottom: '30px', 
+                        left: 0, 
+                        right: 0, 
+                        margin: '0 auto', 
+                        width: 'fit-content', 
+                        zIndex: 10
+                    }}>
                         <div className="MenuMobile_cashShop__7UDkx">
                             <button className="mt-button-base-root mt-button-contained styles_root__YiphY bottom-navigation-get-coins-btn styles_size-md__t_xLu" data-testid="button-base" data-test="common-header-buy-button" role="button">Get Coins</button>
                         </div>

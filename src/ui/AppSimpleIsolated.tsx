@@ -125,6 +125,7 @@ function AppSimpleIsolatedInner() {
         <LobbyLayout 
           onQuestLineClick={handleOpenQuestlineDialog}
           onChainOfferClick={handleOpenChainOfferDialog}
+          isSidebarOpen={isSidebarOpen}
         >
             {/* Chain Offer Dialog */}
             {chainOfferDialogProps && (
