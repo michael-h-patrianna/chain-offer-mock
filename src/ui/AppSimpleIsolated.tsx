@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
-import { AnimationType, getAnimationOptions } from '../animations/revealAnimations'
+import { AnimationType } from '../animations/revealAnimations'
 import { ChainOfferDialog } from '../components'
 import { HamburgerButton } from '../components/HamburgerButton'
 import { QuestLineDialog } from '../components/QuestLineDialog'
 import { Sidebar } from '../components/Sidebar'
+import { LobbyLayout } from '../components/LobbyLayout'
 import { AnimationParametersProvider } from '../contexts/AnimationParametersContext'
 import chainOffersRawData from '../data/chainOffersData.json'
 import questlineRawData from '../data/questlineData.json'
@@ -25,8 +26,6 @@ function AppSimpleIsolatedInner() {
     return typeof window !== 'undefined' && window.innerWidth > 768
   })
   const chainOffersState = useSelector((state: RootState) => state.chainOffers)
-
-  const animationOptions = getAnimationOptions()
 
   const handleToggleSidebar = () => {
     setIsSidebarOpen(prev => !prev)
@@ -116,168 +115,51 @@ function AppSimpleIsolatedInner() {
       {/* Hamburger Menu Button */}
       <HamburgerButton isOpen={isSidebarOpen} onClick={handleToggleSidebar} />
 
-      <div className="app-content">
-
-        {/* Animation Selector */}
-        <div className="animation-selector">
-          <select
-            id="animation-select"
-            className="animation-selector__dropdown"
-            value={selectedAnimation}
-            onChange={(e) => setSelectedAnimation(e.target.value as AnimationType)}
-          >
-            {animationOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label} - {option.description}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Trigger buttons */}
-        <div className="trigger-container">
-          {assignedOffer && (
-            <div className="offer-trigger">
-              <img
-                src={assignedOffer.iconLarge}
-                alt='Chain Offer'
-                className="offer-icon"
-                onClick={handleOpenChainOfferDialog}
+      <div className="app-content" style={{ 
+        marginLeft: isSidebarOpen ? '280px' : '0', 
+        transition: 'margin-left 0.3s ease-in-out',
+        width: '100%',
+        minHeight: '100vh'
+      }}>
+        
+        <LobbyLayout 
+          onQuestLineClick={handleOpenQuestlineDialog}
+          onChainOfferClick={handleOpenChainOfferDialog}
+        >
+            {/* Chain Offer Dialog */}
+            {chainOfferDialogProps && (
+              <ChainOfferDialog
+                {...chainOfferDialogProps}
+                isOpen={isChainOfferDialogOpen}
+                onClose={handleCloseChainOfferDialog}
+                onItemButtonClick={handleItemButtonClick}
+                animationType={selectedAnimation}
               />
-              <p className="offer-description">Chain Offer</p>
-            </div>
-          )}
-          <div className="offer-trigger">
-            <img
-              src="/assets/images/questline-icon.png"
-              alt='Questline'
-              className="offer-icon"
-              onClick={handleOpenQuestlineDialog}
-            />
-            <p className="offer-description">Questline</p>
-          </div>
-        </div>
+            )}
 
-        {/* Chain Offer Dialog */}
-        {chainOfferDialogProps && (
-          <ChainOfferDialog
-            {...chainOfferDialogProps}
-            isOpen={isChainOfferDialogOpen}
-            onClose={handleCloseChainOfferDialog}
-            onItemButtonClick={handleItemButtonClick}
-            animationType={selectedAnimation}
-          />
-        )}
-
-        {/* Questline Dialog */}
-        {questlineDialogProps && (
-          <QuestLineDialog
-            {...questlineDialogProps}
-            isOpen={isQuestlineDialogOpen}
-            onClose={handleCloseQuestlineDialog}
-            onQuestAction={handleQuestAction}
-            onClaimBonus={handleClaimBonus}
-            animationType={selectedAnimation}
-          />
-        )}
+            {/* Questline Dialog */}
+            {questlineDialogProps && (
+              <QuestLineDialog
+                {...questlineDialogProps}
+                isOpen={isQuestlineDialogOpen}
+                onClose={handleCloseQuestlineDialog}
+                onQuestAction={handleQuestAction}
+                onClaimBonus={handleClaimBonus}
+                animationType={selectedAnimation}
+              />
+            )}
+        </LobbyLayout>
       </div>
 
       <style>{`
         .app-container {
           min-height: 100vh;
           width: 100%;
-          background: linear-gradient(135deg, #1a0833 0%, #2d1b4d 100%);
+          background: #120a21; /* Match the dark background of the site */
           display: flex;
-          align-items: center;
-          justify-content: center;
+          align-items: flex-start;
+          justify-content: flex-start;
           box-sizing: border-box;
-        }
-
-        .app-content {
-          text-align: center;
-          width: 100%;
-          max-width: 800px;
-          transition: margin-left 0.3s ease-in-out;
-        }
-
-        /* Desktop: adjust content when sidebar is open */
-        @media (min-width: 769px) {
-          .app-content {
-            margin-left: ${isSidebarOpen ? '280px' : '0'};
-          }
-        }
-
-        .app-title {
-          color: #fff;
-          margin-bottom: 20px;
-        }
-
-        .trigger-container {
-          display: flex;
-          gap: 40px;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 20px;
-        }
-
-        .offer-trigger {
-          cursor: pointer;
-          transition: transform 0.2s ease;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .offer-trigger:hover {
-          transform: scale(1.05);
-        }
-
-        .offer-icon {
-          width: 140px;
-          height: 140px;
-          object-fit: contain;
-          border-radius: 12px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .offer-description {
-          color: #ccc;
-          margin-top: 10px;
-        }
-
-        .animation-selector {
-          margin-bottom: 30px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
-        }
-
-        .animation-selector__label {
-          color: #fff;
-          font-size: 16px;
-          font-weight: 600;
-        }
-
-        .animation-selector__dropdown {
-          padding: 10px 20px;
-          font-size: 14px;
-          border-radius: 8px;
-          border: 2px solid #5a3d7a;
-          background: #2d1b4d;
-          color: #fff;
-          cursor: pointer;
-
-          transition: border-color 0.2s ease;
-        }
-
-        .animation-selector__dropdown:hover {
-          border-color: #7a5d9a;
-        }
-
-        .animation-selector__dropdown:focus {
-          outline: none;
-          border-color: #9a7dba;
         }
       `}</style>
     </div>
