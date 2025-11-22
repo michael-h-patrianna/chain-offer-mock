@@ -15,6 +15,7 @@ description: Create a new Claude Code CLI agent using LLM-optimized prompt engin
 ## Understanding Agents vs Commands vs Skills
 
 ### Agents (Specialized Experts)
+
 - **Invoked via Task tool** - `Task(subagent_type='agent-name', prompt='...')`
 - **Specialized domain experts** - Framework-specific (react-specialist) or domain-specific (security-auditor)
 - **Stored in** `.claude/agents/[name].md`
@@ -23,17 +24,20 @@ description: Create a new Claude Code CLI agent using LLM-optimized prompt engin
 - **Customer:** LLM agents only (NOT human-readable; optimized for token efficiency)
 
 ### Commands (User-Invoked Workflows)
+
 - **User types** `/command-name`
 - **Reusable workflow templates** - Multi-phase processes (coding, investigation, debugging)
 - **Stored in** `.claude/commands/[name].md`
 - **Purpose:** Structure user requests with clear phases and checkpoints
 
 ### Skills (Model-Invoked Capabilities)
+
 - **Automatically invoked** based on context
 - **Stored in** `.claude/skills/[name]/`
 - **Purpose:** Background processing, automatic pattern detection
 
 **When to create an agent:**
+
 - Need deep framework-specific expertise (react-specialist, laravel-specialist)
 - Need domain-specific expertise (security-auditor, performance-profiler, api-designer)
 - Task requires immutable rules and quality gates
@@ -41,6 +45,7 @@ description: Create a new Claude Code CLI agent using LLM-optimized prompt engin
 - Want LLM-optimized prompts (short, dense, symbol-heavy)
 
 **When to create a command instead:**
+
 - User needs to invoke a workflow repeatedly
 - Multi-phase process with checkpoints
 - User-facing (human types `/command-name`)
@@ -51,7 +56,7 @@ description: Create a new Claude Code CLI agent using LLM-optimized prompt engin
 
 **MANDATORY GATE: Understand requirements before designing agent.**
 
-1. Use mcp__mcp_docker__sequentialthinking to analyze:
+1. Use mcp**mcp_docker**sequentialthinking to analyze:
    - User's request: What specialist expertise is needed?
    - Agent type: Framework-specific (react, vue, laravel) or domain-specific (security, performance)?
    - Existing coverage: Is there already an agent for this? (Check `.claude/agents/`)
@@ -130,6 +135,7 @@ ls -1 .claude/agents/*.md
 **All agents follow these patterns:**
 
 1. **YAML Frontmatter**
+
    ```yaml
    ---
    name: agent-name
@@ -138,28 +144,36 @@ ls -1 .claude/agents/*.md
    ```
 
 2. **Consistent Structure (40-80 lines)**
+
    ```markdown
    # Agent Title
 
    ## Mission
+
    [One sentence: action-oriented mission statement]
 
    ## Scope
+
    [Bullet list: technologies, frameworks, methodologies]
 
    ## Immutable Rules
+
    [Numbered list: 5-7 non-negotiable rules]
 
    ## Workflow
+
    [Numbered list: Assess→Plan→Implement→Optimize→Test→Verify]
 
    ## Quality Gates
+
    [Checkbox list: verifiable completion criteria]
 
    ## Anti-Patterns
+
    [Bullet list with ❌: common mistakes to avoid]
 
    ## Deliverables
+
    [One line: what the agent produces as proof]
    ```
 
@@ -208,6 +222,7 @@ ls -1 .claude/agents/*.md
 ### Step 2: Define Scope (Technologies/Methodologies)
 
 **List 5-10 key areas of expertise:**
+
 - Technologies (Rust, Cargo, async/await)
 - Frameworks (Tokio, Actix, Axum)
 - Methodologies (ownership model, borrowing, lifetimes)
@@ -219,10 +234,11 @@ ls -1 .claude/agents/*.md
 **Format:** Numbered list, starts with imperative verb
 
 **Examples:**
+
 ```markdown
-1) Use Result<T, E> for recoverable errors; panic! only for unrecoverable.
-2) Leverage ownership; avoid clone() without justification (measure cost).
-3) Type everything; no unsafe without documented safety invariants.
+1. Use Result<T, E> for recoverable errors; panic! only for unrecoverable.
+2. Leverage ownership; avoid clone() without justification (measure cost).
+3. Type everything; no unsafe without documented safety invariants.
 ```
 
 ### Step 4: Define Workflow (5-6 Steps)
@@ -230,6 +246,7 @@ ls -1 .claude/agents/*.md
 **Format:** Assess→Plan→Implement→Optimize→Test→Verify
 
 **Use arrow notation (→) for flow:**
+
 ```markdown
 1. Assess→requirements, constraints, performance needs
 2. Plan→module structure, types, error handling strategy
@@ -244,6 +261,7 @@ ls -1 .claude/agents/*.md
 **Format:** Checkbox list with ✓
 
 **Examples:**
+
 ```markdown
 - ✓ Zero clippy warnings; rustfmt applied
 - ✓ All functions return Result<T, E> or Option<T>; no panic!
@@ -256,6 +274,7 @@ ls -1 .claude/agents/*.md
 **Format:** Bullet list with ❌
 
 **Examples:**
+
 ```markdown
 - ❌ clone() everywhere (ownership not leveraged; performance cost)
 - ❌ unwrap() in production (panics on None/Err; use ? or match)
@@ -267,6 +286,7 @@ ls -1 .claude/agents/*.md
 **Format:** "Short plan, changed files, proof: [specific evidence]"
 
 **Examples:**
+
 ```markdown
 Short plan, changed files, proof: clippy clean, tests pass, benchmarks meet targets.
 ```
@@ -282,6 +302,7 @@ Short plan, changed files, proof: clippy clean, tests pass, benchmarks meet targ
 ### LLM-Optimization Principles
 
 **Research findings (2025):**
+
 - Dense, symbol-based formats save 30-40% tokens vs prose
 - Shorter prompts = better LLM adherence
 - Custom notation outperforms JSON/YAML for conciseness
@@ -321,6 +342,7 @@ Short plan, changed files, proof: clippy clean, tests pass, benchmarks meet targ
 ### Writing Process
 
 **Step 1: Write Header**
+
 ```markdown
 ---
 name: [agent-name]
@@ -330,26 +352,33 @@ description: [One-line description]
 # [Agent Title]
 
 ## Mission
+
 [One sentence mission]
 ```
 
 **Step 2: Write Scope (Dense List)**
+
 ```markdown
 ## Scope
+
 - [Category]: [items, items, items]
 - [Category]: [items]; [subcategory items]
 ```
 
 **Step 3: Write Immutable Rules (Imperative Numbered List)**
+
 ```markdown
 ## Immutable Rules
-1) [Rule with constraints/context in parens or semicolons]
-2) [Rule]; [clarification]; [exception if any].
+
+1. [Rule with constraints/context in parens or semicolons]
+2. [Rule]; [clarification]; [exception if any].
 ```
 
 **Step 4: Write Workflow (Arrow Notation)**
+
 ```markdown
 ## Workflow
+
 1. Assess→[aspects to evaluate]
 2. Plan→[what to design]
 3. Implement→[what to build]
@@ -359,37 +388,46 @@ description: [One-line description]
 ```
 
 **Step 5: Write Quality Gates (Checkboxes)**
+
 ```markdown
 ## Quality Gates
+
 - ✓ [Verifiable condition]; [metric/tool]
 - ✓ [Verifiable condition]; [evidence required]
 ```
 
 **Step 6: Write Anti-Patterns (❌ List)**
+
 ```markdown
 ## Anti-Patterns
+
 - ❌ [Anti-pattern] ([reason/consequence])
 - ❌ [Anti-pattern]; [correct approach instead]
 ```
 
 **Step 7: Write Deliverables (One Line)**
+
 ```markdown
 ## Deliverables
+
 Short plan, changed files, proof: [specific evidence], [metrics], [verification].
 ```
 
 **Step 8: Optional Code Examples**
 Only add if necessary to clarify patterns:
-```markdown
+
+````markdown
 ## [Framework] Patterns (OPTIONAL)
+
 \```language
 // Brief example (max 10 lines)
 \```
-```
+````
 
 ### Step 9: Optimize for Token Efficiency
 
 **Review and compress:**
+
 1. Count lines: Target 40-80, ideal 50-60
 2. Remove redundant words: "in order to" → "to"
 3. Use symbols: "and then" → "→"
@@ -400,13 +438,14 @@ Only add if necessary to clarify patterns:
 
 ---
 
-## Phase 5: Verify  Agent
+## Phase 5: Verify Agent
 
 **MANDATORY GATE: Verify structure before claiming complete.**
 
 ### Step 1: Structural Verification
 
 **Check file structure:**
+
 ```bash
 # Verify frontmatter
 head -5 .claude/agents/[name].md
@@ -419,6 +458,7 @@ grep "^## " .claude/agents/[name].md
 ```
 
 **Required sections:**
+
 - ✓ YAML frontmatter (name, description)
 - ✓ Mission (one sentence)
 - ✓ Scope (bulleted list)
@@ -433,44 +473,52 @@ grep "^## " .claude/agents/[name].md
 **Verify agent quality:**
 
 **Mission:**
+
 - [ ] One sentence, action-oriented
 - [ ] Starts with verb (Ship, Build, Design, Write)
 - [ ] Mentions key technologies/constraints
 
 **Scope:**
+
 - [ ] 5-10 items covering key areas
 - [ ] Framework/tool names specific (not generic)
 - [ ] Dense format (semicolons, commas)
 
 **Immutable Rules:**
+
 - [ ] 5-7 rules (not more, not less)
 - [ ] Each starts with imperative verb
 - [ ] Specific, actionable (not vague)
 - [ ] Non-negotiable (these NEVER change)
 
 **Workflow:**
+
 - [ ] 5-6 steps (consistent pattern)
 - [ ] Uses arrow notation (→)
 - [ ] Assess→Plan→Implement→Optimize→Test→Verify flow
 - [ ] Each step clear about what to do
 
 **Quality Gates:**
+
 - [ ] All verifiable (not subjective)
 - [ ] Include tools/metrics (clippy, tests, benchmarks)
 - [ ] ✓ checkboxes used
 - [ ] Specific thresholds (>85%, <10ms, etc.)
 
 **Anti-Patterns:**
+
 - [ ] 5-10 common mistakes
 - [ ] ❌ symbols used
 - [ ] Reason/consequence in parens
 - [ ] Actionable (what NOT to do)
 
 **Deliverables:**
+
 - [ ] One line format: "Short plan, changed files, proof: [evidence]"
 - [ ] Specific evidence mentioned (test output, metrics, screenshots)
 
 **Token Efficiency:**
+
 - [ ] 40-80 lines total
 - [ ] Articles removed (the, a, an)
 - [ ] Symbols used (→, ✓, ❌)
@@ -485,6 +533,7 @@ grep "^## " .claude/agents/[name].md
 ### Example 1: Framework-Specific Agent
 
 **❌ BAD (Generic, Verbose, 200+ Lines):**
+
 ```markdown
 ---
 name: frontend-specialist
@@ -494,6 +543,7 @@ description: Frontend development specialist for various frameworks
 # Frontend Specialist
 
 ## Mission
+
 This agent helps with all kinds of frontend development across multiple frameworks
 including React, Vue, Angular, Svelte, and more. The agent will provide guidance
 on best practices, performance optimization, and modern patterns.
@@ -502,6 +552,7 @@ on best practices, performance optimization, and modern patterns.
 ```
 
 **Problems:**
+
 - Too generic ("various frameworks")
 - Conditional logic ("if React... if Vue...")
 - Verbose prose style
@@ -509,6 +560,7 @@ on best practices, performance optimization, and modern patterns.
 - Not self-contained
 
 **✅ GOOD (Framework-Specific, Dense, 56 Lines):**
+
 ```markdown
 ---
 name: react-specialist
@@ -518,9 +570,11 @@ description: React 18+ specialist. Builds typed, performant apps with hooks, RSC
 # React Specialist (18+)
 
 ## Mission
+
 Ship fast, maintainable React using TypeScript, hooks, Server Components, measured performance.
 
 ## Scope
+
 - Hooks: useState/useEffect/useCallback/useMemo/useTransition; custom hooks
 - RSC: Server Components, Client Components, Server Actions, streaming
 - Suspense: lazy loading, data fetching boundaries, error boundaries
@@ -530,6 +584,7 @@ Ship fast, maintainable React using TypeScript, hooks, Server Components, measur
 ```
 
 **Why it's good:**
+
 - Framework-specific (React 18+)
 - Dense, telegraphic style
 - 56 lines (optimal LLM adherence)
@@ -539,6 +594,7 @@ Ship fast, maintainable React using TypeScript, hooks, Server Components, measur
 ### Example 2: Domain-Specific Agent
 
 **❌ BAD (Vague, Missing Quality Gates):**
+
 ```markdown
 ---
 name: security-helper
@@ -548,22 +604,26 @@ description: Helps with security
 # Security Helper
 
 ## Mission
+
 Help make code more secure
 
 ## Scope
+
 - Security stuff
 - Vulnerabilities
 - Best practices
 
 ## Rules
-1) Be secure
-2) Check for issues
-3) Fix problems
+
+1. Be secure
+2. Check for issues
+3. Fix problems
 
 [No Quality Gates, no Anti-Patterns, no Deliverables]
 ```
 
 **Problems:**
+
 - Vague ("security stuff", "be secure")
 - No specific tools/methodologies
 - Missing Quality Gates
@@ -571,6 +631,7 @@ Help make code more secure
 - Too short (<30 lines, incomplete)
 
 **✅ GOOD (Specific, Actionable, 57 Lines):**
+
 ```markdown
 ---
 name: security-auditor
@@ -580,9 +641,11 @@ description: Security specialist. Audits for OWASP Top 10, auth flaws, injection
 # Security Auditor
 
 ## Mission
+
 Identify and fix security vulnerabilities using OWASP Top 10, secure coding practices, defense-in-depth.
 
 ## Scope
+
 - OWASP Top 10 2025: Broken Access Control, Cryptographic Failures, Injection, etc.
 - Injection: SQL, NoSQL, Command, LDAP; parameterized queries
 - XSS: reflected, stored, DOM-based; CSP, output encoding
@@ -592,6 +655,7 @@ Identify and fix security vulnerabilities using OWASP Top 10, secure coding prac
 ```
 
 **Why it's good:**
+
 - Specific scope (OWASP Top 10 named)
 - Tools mentioned (argon2, bcrypt, CSP)
 - Quality Gates with verifiable checks
@@ -605,6 +669,7 @@ Identify and fix security vulnerabilities using OWASP Top 10, secure coding prac
 **Before claiming agent creation complete, verify ALL items:**
 
 ### Structure (Required Elements)
+
 - [ ] YAML frontmatter with `name` and `description`
 - [ ] Mission section (one sentence)
 - [ ] Scope section (5-10 items)
@@ -615,6 +680,7 @@ Identify and fix security vulnerabilities using OWASP Top 10, secure coding prac
 - [ ] Deliverables section (one line)
 
 ### Content Quality
+
 - [ ] Mission is action-oriented (starts with verb)
 - [ ] Scope is specific (framework/tool names, not generic)
 - [ ] Immutable Rules are non-negotiable, actionable
@@ -624,6 +690,7 @@ Identify and fix security vulnerabilities using OWASP Top 10, secure coding prac
 - [ ] Deliverables specify evidence (tests, metrics, screenshots)
 
 ### LLM-Optimization
+
 - [ ] 40-80 lines total (ideal: 50-60)
 - [ ] Articles removed (the, a, an)
 - [ ] Symbols used (→, ✓, ❌)
@@ -633,17 +700,20 @@ Identify and fix security vulnerabilities using OWASP Top 10, secure coding prac
 - [ ] Self-contained (no cross-references to other agents)
 
 ### Specificity
+
 - [ ] Framework-specific OR domain-specific (not generic)
 - [ ] Agent name is descriptive ([framework]-specialist or [domain]-auditor)
 - [ ] No conditional logic ("if X then Y, if Z then W")
 - [ ] All rules apply to THIS framework/domain only
 
 ### Integration
+
 - [ ] Correct category (Frontend, Backend, Domain, Quality, Project-Type)
 - [ ] Description matches frontmatter
 - [ ] "When to use" column is clear
 
 ### Verification
+
 - [ ] File created in `.claude/agents/[name].md`
 - [ ] Line count verified (40-80 lines)
 - [ ] All sections present (grep "^## ")
@@ -651,10 +721,11 @@ Identify and fix security vulnerabilities using OWASP Top 10, secure coding prac
 - [ ] (Optional) Test invocation successful
 
 **RED FLAGS (fix before completing):**
+
 - Generic agent name (frontend-specialist, backend-helper)
 - Vague mission ("help with X")
 - Conditional logic ("if React do X, if Vue do Y")
-- >80 lines OR <40 lines
+- > 80 lines OR <40 lines
 - Missing Quality Gates or Anti-Patterns
 - Prose style (not telegraphic)
 - Cross-references to other agents
@@ -666,6 +737,7 @@ Identify and fix security vulnerabilities using OWASP Top 10, secure coding prac
 **After ALL checklist items verified:**
 
 "Agent creation complete. Evidence:
+
 - [Agent file path and line count]
 - [Sections verified present]
 

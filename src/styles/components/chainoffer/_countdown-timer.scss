@@ -8,13 +8,14 @@
   font-weight: var(--chain-offer-tile-timer-font-weight, 400);
   line-height: var(--chain-offer-tile-timer-line-height, 1.4);
 
-  @media screen and (max-width: 58.5rem) { // 936px
+  @media screen and (max-width: 58.5rem) {
+    // 936px
     font-size: var(--chain-offer-tile-timer-font-size-mb, 0.625rem); // 10px
   }
 }
 
 .countdownPrefix {
-  color: var(--chain-offer-tile-timer-prefix-color, #CCC);
+  color: var(--chain-offer-tile-timer-prefix-color, #ccc);
   font-weight: var(--chain-offer-tile-timer-prefix-font-weight, 400);
 }
 

@@ -1,0 +1,31 @@
+# Add files here to ignore them from prettier formatting
+
+# 3rd party directories
+node_modules
+vendor
+
+# Docs and AI
+docs
+.claude
+.gemini
+.codex
+.vscode
+.idea
+
+# Testing
+coverage/
+e2e/
+test-results/
+playwright-report/
+
+# Production
+dist/
+build/
+
+# Ignore git and dependencies
+.git
+.gitmodules
+
+# Other files to ignore from formatting
+*.min.js
+public

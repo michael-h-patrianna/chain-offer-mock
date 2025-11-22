@@ -10,15 +10,7 @@ export interface QuestCardProps extends Quest {
   onAction?: (questCode: string, action: 'go' | 'claim') => void
 }
 
-export const QuestCard = ({
-  questCode,
-  title,
-  description,
-  status,
-  progress,
-  rewards,
-  onAction,
-}: QuestCardProps) => {
+export const QuestCard = ({ questCode, title, description, status, progress, rewards, onAction }: QuestCardProps) => {
   const [isExpanded, setIsExpanded] = React.useState(false)
   const [showCoinFountain, setShowCoinFountain] = React.useState(false)
   const [fountainOrigin, setFountainOrigin] = React.useState({ x: 0, y: 0 })
@@ -43,7 +35,7 @@ export const QuestCard = ({
           y: rect.top + rect.height / 2,
         })
         // Increment key to force remount and replay animation
-        setAnimationKey(prev => prev + 1)
+        setAnimationKey((prev) => prev + 1)
         setShowCoinFountain(true)
       }
       onAction(questCode, 'claim')
@@ -72,17 +64,13 @@ export const QuestCard = ({
   }
 
   return (
-    <div
-      className={cx('quest-card', { 'quest-card--completed': isCompleted })}
-    >
+    <div className={cx('quest-card', { 'quest-card--completed': isCompleted })}>
       <div className={isLocked ? 'quest-card__wrapper quest-card__wrapper__locked' : 'quest-card__wrapper'}>
-        <div className="quest-card__header">
-          <div className="quest-card__header-content">
-            <div className="quest-card__header-info">
-              <h3 className="quest-card__title">{title}</h3>
-              {isExpanded && description && !isLocked && (
-                <p className="quest-card__description">{description}</p>
-              )}
+        <div className='quest-card__header'>
+          <div className='quest-card__header-content'>
+            <div className='quest-card__header-info'>
+              <h3 className='quest-card__title'>{title}</h3>
+              {isExpanded && description && !isLocked && <p className='quest-card__description'>{description}</p>}
             </div>
             {!isLocked && status !== 'completed' && (
               <button
@@ -95,41 +83,43 @@ export const QuestCard = ({
               </button>
             )}
           </div>
-          <div className="quest-card__progress-wrapper">
+          <div className='quest-card__progress-wrapper'>
             <div
-              className="quest-card__progress-bar"
-              role="progressbar"
+              className='quest-card__progress-bar'
+              role='progressbar'
               aria-valuenow={Math.round(progress)}
               aria-valuemin={0}
               aria-valuemax={100}
               aria-label={`Quest progress: ${String(Math.round(progress))}%`}
             >
-              <div className="quest-card__progress-fill" data-progress={Math.round(progress / 5) * 5} />
-              <span className="quest-card__progress-text" aria-hidden="true">{Math.round(progress)}%</span>
+              <div className='quest-card__progress-fill' data-progress={Math.round(progress / 5) * 5} />
+              <span className='quest-card__progress-text' aria-hidden='true'>
+                {Math.round(progress)}%
+              </span>
             </div>
           </div>
         </div>
 
         {isExpanded && hasRewards && !isLocked && (
-          <div className="quest-card__content">
+          <div className='quest-card__content'>
             <QuestRewards rewards={rewards} />
           </div>
         )}
 
         {canExpand && (
           <button
-            type="button"
-            className="quest-card__footer"
+            type='button'
+            className='quest-card__footer'
             onClick={() => {
               setIsExpanded(!isExpanded)
             }}
             aria-expanded={isExpanded}
             aria-label={isExpanded ? 'Hide quest details' : 'Show quest details'}
           >
-            <span className="quest-card__footer-text">
-              {isExpanded ? 'SHOW LESS' : 'SHOW DETAILS'}
+            <span className='quest-card__footer-text'>{isExpanded ? 'SHOW LESS' : 'SHOW DETAILS'}</span>
+            <span className='quest-card__footer-icon' aria-hidden='true'>
+              {isExpanded ? '▲' : '▼'}
             </span>
-            <span className="quest-card__footer-icon" aria-hidden="true">{isExpanded ? '▲' : '▼'}</span>
           </button>
         )}
 

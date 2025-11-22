@@ -5,7 +5,7 @@ import type { Reward } from '../types/chainoffer'
 const localBackgroundImages = [
   '/assets/images/co-background1.png',
   '/assets/images/co-background2.png',
-  '/assets/images/co-background3.png'
+  '/assets/images/co-background3.png',
 ]
 
 // Simplified configuration types for easier test setup
@@ -41,7 +41,7 @@ interface BuildOptions {
 
 export function buildDialogFromSimpleConfig(
   config: SimpleChainOfferConfig,
-  opts: BuildOptions = {}
+  opts: BuildOptions = {},
 ): ChainOfferDialogProps {
   const now = opts.now ?? Date.now()
   const endTime = new Date(now + config.expiresInSeconds * 1000).toISOString()
@@ -51,7 +51,7 @@ export function buildDialogFromSimpleConfig(
       throw new Error(`Purchase item at index ${String(idx)} missing valid price`)
     }
 
-  const rewards: Reward[] = item.rewards.map(r => {
+    const rewards: Reward[] = item.rewards.map((r) => {
       switch (r.type) {
         case 'GC':
           return { type: 'GC', amount: r.amount }
@@ -101,9 +101,22 @@ export function createSimpleConfig(partial: Partial<SimpleChainOfferConfig> = {}
     title: 'Test Offer',
     termsUrl: 'https://example.com/terms',
     items: [
-      { type: 'PURCHASE', price: 9.99, rewards: [{ type: 'GC', amount: 50000 }, { type: 'SC', amount: 0.2 }] },
-      { type: 'FREE', rewards: [{ type: 'FREE_SPINS', amount: 10 }, { type: 'STARS', amount: 10 }] },
-      { type: 'FREE', rewards: [{ type: 'RANDOM', name: 'Mystery Wheel' }] }
+      {
+        type: 'PURCHASE',
+        price: 9.99,
+        rewards: [
+          { type: 'GC', amount: 50000 },
+          { type: 'SC', amount: 0.2 },
+        ],
+      },
+      {
+        type: 'FREE',
+        rewards: [
+          { type: 'FREE_SPINS', amount: 10 },
+          { type: 'STARS', amount: 10 },
+        ],
+      },
+      { type: 'FREE', rewards: [{ type: 'RANDOM', name: 'Mystery Wheel' }] },
     ],
     ...partial,
   }

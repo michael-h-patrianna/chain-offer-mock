@@ -7,12 +7,7 @@ export interface DialogBackdropProps {
   backdropClassName?: string
 }
 
-export const DialogBackdrop = ({
-  isOpen,
-  onClose,
-  children,
-  backdropClassName = '',
-}: DialogBackdropProps) => {
+export const DialogBackdrop = ({ isOpen, onClose, children, backdropClassName = '' }: DialogBackdropProps) => {
   // Add Escape key handler for accessibility
   useEffect(() => {
     if (!isOpen) return

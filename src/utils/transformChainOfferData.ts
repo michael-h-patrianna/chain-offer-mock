@@ -52,7 +52,7 @@ interface RawChainOfferData {
 const localBackgroundImages = [
   '/assets/images/co-background1.png',
   '/assets/images/co-background2.png',
-  '/assets/images/co-background3.png'
+  '/assets/images/co-background3.png',
 ]
 
 /**
@@ -75,7 +75,8 @@ export function transformChainOfferData(rawData: RawChainOfferData): ChainOfferD
       } else {
         if ((content.gcAmount ?? 0) > 0) rewards.push({ type: 'GC', amount: content.gcAmount ?? 0 })
         if ((content.scAmount ?? 0) > 0) rewards.push({ type: 'SC', amount: content.scAmount ?? 0 })
-        if ((content.freeSpinsAmount ?? 0) > 0) rewards.push({ type: 'FREE_SPINS', amount: content.freeSpinsAmount ?? 0 })
+        if ((content.freeSpinsAmount ?? 0) > 0)
+          rewards.push({ type: 'FREE_SPINS', amount: content.freeSpinsAmount ?? 0 })
       }
     })
 
@@ -84,7 +85,7 @@ export function transformChainOfferData(rawData: RawChainOfferData): ChainOfferD
       const starMatch = item.name.match(/([0-9][0-9,]*)\s*Stars?/i)
       if (starMatch) {
         const starAmount = parseInt(starMatch[1].replace(/,/g, ''), 10)
-        if (starAmount > 0 && !rewards.some(r => r.type === 'XP')) {
+        if (starAmount > 0 && !rewards.some((r) => r.type === 'XP')) {
           rewards.push({ type: 'XP', amount: starAmount })
         }
       }
@@ -111,7 +112,9 @@ export function transformChainOfferData(rawData: RawChainOfferData): ChainOfferD
 
   return {
     isOpen: true,
-    imageSrc: mapType?.params?.mapListHeader?.stringValue || 'https://storage.googleapis.com/www.playfame.com/images/19082025_PF_STARSHOP_QUEST_HEADER_V4.png',
+    imageSrc:
+      mapType?.params?.mapListHeader?.stringValue ||
+      'https://storage.googleapis.com/www.playfame.com/images/19082025_PF_STARSHOP_QUEST_HEADER_V4.png',
     // If backend expiry is unrealistically far (e.g., > 10 days) cap to ~6d 4h to mirror production display patterns
     endTime: (() => {
       const raw = expiresAt ? new Date(expiresAt).getTime() : Date.now() + 6 * 24 * 3600 * 1000

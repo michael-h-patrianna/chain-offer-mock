@@ -3,6 +3,7 @@
 ## MANDATORY TOOLS
 
 ### For Coding, Research, Analysis, Debugging
+
 ```
 USE: mcp__mcp_docker__sequentialthinking
 WHEN: Coding tasks, research, complex reasoning
@@ -10,6 +11,7 @@ WHY: Prevents cognitive overload, ensures systematic approach
 ```
 
 ### For Task Management
+
 ```
 USE: todo_write
 WHEN: Coding tasks, any task with 2+ steps
@@ -17,6 +19,7 @@ WHY: Tracks progress, maintains focus
 ```
 
 ### For Task Execution
+
 For each task:
 
 1. **Decide if delegating task an agent is beneficial**

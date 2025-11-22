@@ -7,16 +7,19 @@ description: Autonomous animation generation loop with desig and development
 **Purpose:** Autonomously generate, design, and develop new animations for gamified/social casino UI contexts.
 
 **When to use:**
+
 - Building out animation library systematically
 - Adding animations for common interaction patterns
 - Filling gaps in animation coverage
 - Continuous animation development sessions
 
 **What this creates:**
+
 - New animation components (both CSS and Framer Motion variants)
 - Registry integration
 
 **Important:** This command runs autonomously. It will continue until:
+
 - User stops it manually
 - No viable animation ideas remain
 
@@ -29,6 +32,7 @@ description: Autonomous animation generation loop with desig and development
 ### Step 1: Create Session Tracker
 
 Use TodoWrite to create session tracker:
+
 - Session ID: ANIMGEN-[timestamp]
 - Animations created counter
 - Current round number
@@ -48,6 +52,7 @@ cat src/components/animationRegistry.ts
 ```
 
 **Analyze and document:**
+
 1. **Existing categories** (from `src/components/` folder structure):
    - What categories exist?
    - Which categories are well-populated?
@@ -69,6 +74,7 @@ cat src/components/animationRegistry.ts
    - What variants could enhance existing groups?
 
 **Add findings to TodoWrite:**
+
 ```
 Discovery findings:
 - Categories: [list]
@@ -102,9 +108,10 @@ cat CLAUDE.md | grep -A 50 "High-Level Data Flow"
 
 **MANDATORY: Use sequential thinking to generate contextual idea.**
 
-Use mcp__mcp_docker__sequentialthinking to analyze and generate:
+Use mcp**mcp_docker**sequentialthinking to analyze and generate:
 
 **Analysis inputs:**
+
 - Discovery findings from Phase 0
 - Social casino/gamified UI patterns
 - Existing animations (avoid duplication)
@@ -112,6 +119,7 @@ Use mcp__mcp_docker__sequentialthinking to analyze and generate:
 - Performance constraints
 
 **Social Casino Context (focus areas):**
+
 - Win celebrations (coins, level-ups, jackpots)
 - Loss feedback (subtle, non-punishing)
 - Progress indicators (XP bars, progress tracking)
@@ -124,6 +132,7 @@ Use mcp__mcp_docker__sequentialthinking to analyze and generate:
 - Transitions (page changes, modal appearances)
 
 **CONSTRAINTS (MANDATORY):**
+
 - ✅ Motion-based (transform, opacity, scale, rotate)
 - ✅ CSS properties only (no SVG paths, no canvas drawing)
 - ✅ Reusable across multiple use cases
@@ -135,6 +144,7 @@ Use mcp__mcp_docker__sequentialthinking to analyze and generate:
 - ❌ NO VH/VW units (React Native incompatibility)
 
 **Generate:**
+
 1. **Animation concept**: What does it do? (1-2 sentences)
 2. **Use cases**: Where would this be used? (3+ specific examples)
 3. **Category placement**: Which existing category? (or new if justified)
@@ -143,6 +153,7 @@ Use mcp__mcp_docker__sequentialthinking to analyze and generate:
 6. **Motion characteristics**: Duration, easing, key properties animated
 
 **RED FLAGS (require regeneration):**
+
 - Idea requires drawing/illustration
 - Too similar to existing animation
 - Too specific (not reusable)
@@ -150,6 +161,7 @@ Use mcp__mcp_docker__sequentialthinking to analyze and generate:
 - Single use case only
 
 **Add idea to TodoWrite:**
+
 ```
 Animation Idea [Round N]:
 - Concept: [description]
@@ -164,12 +176,14 @@ Animation Idea [Round N]:
 **MANDATORY: Use animation-designer agent to create formal spec.**
 
 Call animation-designer agent with:
+
 - Animation idea from Step A
 - Context from discovery (existing patterns, design principles)
 - Reference to `docs/animation-short.md`
 - Requirement: BOTH CSS and Framer Motion variants needed
 
 **Prompt template for agent:**
+
 ```
 Design an animation spec for this animation:
 
@@ -196,6 +210,7 @@ Create complete ANIMATION_SPEC following docs/animation-short.md format.
 **Expected output:** Single ANIMATION_SPEC JSON block
 
 **Validation:**
+
 - [ ] Spec follows docs/animation-short.md format
 - [ ] Both CSS and Framer Motion variants specified
 - [ ] Accessibility considerations included
@@ -209,12 +224,14 @@ Create complete ANIMATION_SPEC following docs/animation-short.md format.
 **MANDATORY: Use animation-developer agent to implement BOTH variants.**
 
 Call animation-developer agent with:
+
 - ANIMATION_SPEC from Step B
 - Animation registry structure from CLAUDE.md
 - Existing code patterns (sample from same category)
 - Performance requirements
 
 **Prompt template for agent:**
+
 ```
 Implement this animation following the spec and project structure:
 
@@ -243,6 +260,7 @@ BOTH variants must be implemented. Do not skip either.
 ```
 
 **Validation:**
+
 - [ ] CSS variant created at correct path
 - [ ] Framer Motion variant created at correct path
 - [ ] Both export metadata
@@ -271,12 +289,14 @@ grep "export const metadata" src/components/[category-id]/[group-id]/framer/[Com
 **MANDATORY: Review implementation**
 
 Call code-reviewer agent with:
+
 - Paths to both variant files
 - Animation registry integration files
 - Performance requirements
 - Accessibility requirements
 
 **Review focus areas:**
+
 - Code quality and maintainability
 - Performance (GPU-accelerated properties)
 - Registry integration correctness
@@ -284,11 +304,13 @@ Call code-reviewer agent with:
 - No global CSS pollution
 
 **If issues found:**
+
 1. Fix issues immediately
 2. Re-run code review
 3. Iterate until approved
 
 **Validation:**
+
 - [ ] Code review passes
 - [ ] No performance anti-patterns
 - [ ] Accessibility verified
@@ -313,6 +335,7 @@ grep -r "export const metadata" src/components/[category-id]/[group-id]/
 **MANDATORY: Review all changes before claiming complete.**
 
 **Review checklist:**
+
 1. **Files created:**
    - [ ] CSS variant at correct path
    - [ ] Motion variant at correct path
@@ -330,6 +353,7 @@ grep -r "export const metadata" src/components/[category-id]/[group-id]/
    - [ ] No global CSS pollution
 
 **Update TodoWrite:**
+
 ```
 Animation [Round N] COMPLETE:
 - ID: [category-group__variant]
@@ -340,6 +364,7 @@ Animation [Round N] COMPLETE:
 **Mark round complete in TodoWrite.**
 
 **Next round decision:**
+
 - Start Step A for next animation
 - Do not stop session. Keep repeating the workflow autonomously.
 
@@ -378,6 +403,7 @@ Animation [Round N] COMPLETE:
 ## No Token or Time Limit
 
 **Important:**
+
 - Never stop because of concerns about token or time limits
 - Sole purpose of this workflow is autonomous animation generation
 - There is no token or time limit
@@ -389,10 +415,12 @@ Animation [Round N] COMPLETE:
 ## Session Completion
 
 **Session ends when:**
+
 1. User manually stops (CTRL+C or stop command)
 2. No viable animation ideas remain (exhausted opportunities)
 
 **Final session summary (update TodoWrite):**
+
 ```
 ANIMGEN Session Complete:
 - Total rounds: [N]

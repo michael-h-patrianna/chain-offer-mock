@@ -9,16 +9,10 @@ export const CompletedOverlay = ({ hasRewards }: CompletedOverlayProps) => {
 
   return (
     <>
-      <div
-        className="completed-overlay"
-        role="status"
-        aria-label={`Quest completed: ${statusText}`}
-      />
-      <div className="completed-status" aria-hidden="true">
-        <div className="completed-status__icon">✓</div>
-        <span className="completed-status__text">
-          {statusText}
-        </span>
+      <div className='completed-overlay' role='status' aria-label={`Quest completed: ${statusText}`} />
+      <div className='completed-status' aria-hidden='true'>
+        <div className='completed-status__icon'>✓</div>
+        <span className='completed-status__text'>{statusText}</span>
       </div>
     </>
   )

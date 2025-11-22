@@ -7,6 +7,7 @@ description: Autonomous investigate-fix-test workflow that ensures features work
 This command implements an investigation-first workflow: understand what's actually happening, fix critical errors, then write comprehensive tests to verify everything works perfectly.
 
 **When to use:**
+
 - Testing a specific feature or page
 - Verifying a feature works end-to-end after changes
 - Ensuring data accuracy and complete functionality
@@ -24,6 +25,7 @@ Never write tests before understanding what the page actually does. Browser cons
 **MANDATORY: Create todo list and analysis plan.**
 
 Use TodoWrite to create tasks for all phases:
+
 1. Phase 1 — Initial Investigation (Browser First)
 2. Phase 2 — Fix Critical Errors (500s, data loading, etc.)
 3. Phase 3 — Feature Analysis (Understand Working Feature)
@@ -73,7 +75,7 @@ test('INVESTIGATE: [Feature Name] - Capture actual state', async ({ page }) => {
   const networkErrors: string[] = [];
 
   // Capture ALL console output
-  page.on('console', msg => {
+  page.on('console', (msg) => {
     const text = msg.text();
     consoleMessages.push(`[${msg.type()}] ${text}`);
     if (msg.type() === 'error') {
@@ -82,14 +84,14 @@ test('INVESTIGATE: [Feature Name] - Capture actual state', async ({ page }) => {
   });
 
   // Capture network failures
-  page.on('response', response => {
+  page.on('response', (response) => {
     if (response.status() >= 400) {
       networkErrors.push(`${response.status()} ${response.url()}`);
     }
   });
 
   // Capture page errors
-  page.on('pageerror', err => {
+  page.on('pageerror', (err) => {
     consoleErrors.push(`PAGE ERROR: ${err.message}`);
   });
 
@@ -102,13 +104,13 @@ test('INVESTIGATE: [Feature Name] - Capture actual state', async ({ page }) => {
   console.log('\n=== INVESTIGATION REPORT ===');
   console.log('\n1. URL:', page.url());
   console.log('\n2. NETWORK ERRORS:', networkErrors.length);
-  networkErrors.forEach(err => console.log('   -', err));
+  networkErrors.forEach((err) => console.log('   -', err));
 
   console.log('\n3. CONSOLE ERRORS:', consoleErrors.length);
-  consoleErrors.forEach(err => console.log('   -', err));
+  consoleErrors.forEach((err) => console.log('   -', err));
 
   console.log('\n4. ALL CONSOLE OUTPUT (last 50 lines):');
-  consoleMessages.slice(-50).forEach(msg => console.log('   ', msg));
+  consoleMessages.slice(-50).forEach((msg) => console.log('   ', msg));
 
   // Capture page structure
   const pageTitle = await page.title();
@@ -129,7 +131,7 @@ test('INVESTIGATE: [Feature Name] - Capture actual state', async ({ page }) => {
   // Screenshot for visual reference
   await page.screenshot({
     path: 'screenshots/investigate-[feature]-initial.png',
-    fullPage: true
+    fullPage: true,
   });
   console.log('\n8. Screenshot saved to: screenshots/investigate-[feature]-initial.png');
 
@@ -148,6 +150,7 @@ npx playwright test tests/e2e/investigate-[feature]-testnfix.spec.ts
 **CRITICAL: Read the console output carefully.**
 
 Look for:
+
 1. **500/404 errors** → Backend broken, fix IMMEDIATELY (go to Phase 2)
 2. **Network errors** → API endpoints failing, fix IMMEDIATELY
 3. **Console errors** → JS/Vue errors, investigate cause
@@ -155,10 +158,12 @@ Look for:
 5. **Missing elements** → Feature not rendering, check components
 
 **Decision Point:**
+
 - ❌ **If 500 errors or data not loading** → GO TO PHASE 2 (Fix Critical Errors)
 - ✅ **If page loads and data appears** → GO TO PHASE 3 (Feature Analysis)
 
 **Deliverable:**
+
 - Investigation test output (console logs)
 - Screenshot of actual page state
 - List of critical errors to fix (if any)
@@ -172,6 +177,7 @@ Look for:
 ### Step 1: Identify Critical Issues
 
 From Phase 1 investigation, critical issues are:
+
 - 500/503 Server Errors → Backend code broken
 - 404 API Not Found → Route/controller missing
 - Network timeouts → Service down or slow
@@ -183,6 +189,7 @@ From Phase 1 investigation, critical issues are:
 **For Backend 500 Errors:**
 
 1. Check Laravel logs:
+
 ```bash
 ./vendor/bin/sail logs | grep ERROR
 ```
@@ -214,11 +221,13 @@ From Phase 1 investigation, critical issues are:
 ### Step 3: Re-run Investigation Test
 
 After each fix:
+
 ```bash
 npx playwright test tests/e2e/investigate-[feature]-testnfix.spec.ts
 ```
 
 Verify:
+
 - ✅ No more 500 errors
 - ✅ Data loads successfully
 - ✅ Page renders correctly
@@ -231,6 +240,7 @@ Mark critical errors as fixed in TodoWrite.
 **Loop until:** Page loads successfully with data, no blocking errors.
 
 **Deliverable:**
+
 - All critical errors fixed
 - Investigation test shows clean output
 - Page is in working state
@@ -246,6 +256,7 @@ Mark critical errors as fixed in TodoWrite.
 ### Step 1: Read Architecture Documentation
 
 Read `docs/architecture.md` and `docs/api.md` to understand:
+
 - Domain structure
 - API endpoints
 - Component patterns
@@ -256,17 +267,20 @@ Read `docs/architecture.md` and `docs/api.md` to understand:
 Based on investigation test output and manual exploration:
 
 **What users can DO:**
+
 - List all buttons, forms, actions available
 - Document workflows (edit, delete, create, etc.)
 - Note any special features (bulk operations, filters, sorting)
 
 **What data is DISPLAYED:**
+
 - List all fields shown in list view
 - List all fields shown in detail/edit view
 - Note relationships (user, content, etc.)
 - Document data transformations
 
 **What the API provides:**
+
 - List API endpoints used (from network tab)
 - Document request/response format
 - Note query parameters (filters, sorting, pagination)
@@ -274,12 +288,14 @@ Based on investigation test output and manual exploration:
 ### Step 3: Identify Test Scenarios
 
 Based on actual functionality:
+
 - Happy paths (normal usage)
 - Error paths (validation, permissions)
 - Edge cases (empty data, maximum values)
 - Workflows (multi-step processes)
 
 **Deliverable:**
+
 - Complete feature map in TodoWrite
 - List of API endpoints used
 - List of UI components involved
@@ -296,6 +312,7 @@ Based on Phase 3 analysis, create test plan:
 ### Required Test Categories
 
 **1. Smoke Test (CRITICAL):**
+
 ```
 - Page loads without errors
 - Data loads from API
@@ -304,6 +321,7 @@ Based on Phase 3 analysis, create test plan:
 ```
 
 **2. Data Accuracy Tests (CRITICAL):**
+
 ```
 For each displayed field:
 - Verify correct value from database
@@ -312,6 +330,7 @@ For each displayed field:
 ```
 
 **3. CRUD Operation Tests (CRITICAL):**
+
 ```
 For each operation:
 - Create: New record appears in list
@@ -321,6 +340,7 @@ For each operation:
 ```
 
 **4. Workflow Tests:**
+
 ```
 For multi-step processes:
 - Navigation between views
@@ -329,6 +349,7 @@ For multi-step processes:
 ```
 
 **5. Error Handling:**
+
 ```
 - Validation errors
 - Permission errors
@@ -338,6 +359,7 @@ For multi-step processes:
 ### Test Naming Convention
 
 Use descriptive names that explain what is verified:
+
 - ✅ "Comment list displays correct text and status from database"
 - ✅ "Updating comment text persists changes and updates UI"
 - ✅ "Deleting comment removes record from list and database"
@@ -346,6 +368,7 @@ Use descriptive names that explain what is verified:
 - ❌ "Delete button"
 
 **Deliverable:**
+
 - Test plan in TodoWrite
 - 8-12 meaningful test cases
 - Expected outcomes for each test
@@ -373,9 +396,8 @@ async function loginAsAdmin(page) {
 test.describe('[Feature Name] E2E Tests', () => {
   test.beforeEach(async ({ page }) => {
     // Capture console for all tests
-    page.on('console', msg => {
-      if (msg.type() === 'error' &&
-          !msg.text().includes('ERR_NAME_NOT_RESOLVED')) {
+    page.on('console', (msg) => {
+      if (msg.type() === 'error' && !msg.text().includes('ERR_NAME_NOT_RESOLVED')) {
         console.log('BROWSER ERROR:', msg.text());
       }
     });
@@ -430,6 +452,7 @@ test.describe('[Feature Name] E2E Tests', () => {
 ### Writing Guidelines
 
 **For EACH test:**
+
 1. Start with login and navigation
 2. Wait for data to load
 3. Verify SPECIFIC values (not just presence)
@@ -438,11 +461,13 @@ test.describe('[Feature Name] E2E Tests', () => {
 6. Capture meaningful output, not just assertions
 
 **Console Output > Screenshots:**
+
 - Use console.log to report test progress
 - Log data counts, values, states
 - Only use screenshots when visual verification needed
 
 **Handle Empty Data:**
+
 ```typescript
 if (dataCount > 0) {
   // Test with data
@@ -452,6 +477,7 @@ if (dataCount > 0) {
 ```
 
 **Deliverable:**
+
 - Complete test file with 8-12 meaningful tests
 - Tests that verify ACTUAL data accuracy
 - Tests that verify COMPLETE workflows
@@ -474,12 +500,14 @@ npx playwright test tests/e2e/feature-[feature-name]-testnfix.spec.ts
 For EACH failing test:
 
 **Read the error carefully:**
+
 - What was expected?
 - What was received?
 - What selector failed?
 - What console errors appeared?
 
 **Investigate root cause:**
+
 - Is the selector wrong? (Check actual DOM)
 - Is the data wrong? (Check API response)
 - Is the timing wrong? (Need to wait longer?)
@@ -488,12 +516,14 @@ For EACH failing test:
 ### Step 3: Fix Issues
 
 **Priority order:**
+
 1. Fix backend bugs (API returning wrong data)
 2. Fix frontend bugs (component not rendering)
 3. Adjust test selectors (only if DOM structure is different)
 4. Add missing functionality (if feature incomplete)
 
 **Never:**
+
 - Change test expectations to match buggy behavior
 - Skip tests
 - Accept "mostly working"
@@ -501,6 +531,7 @@ For EACH failing test:
 ### Step 4: Re-run Tests
 
 After each fix:
+
 ```bash
 npx playwright test tests/e2e/feature-[feature-name]-testnfix.spec.ts
 ```
@@ -508,12 +539,14 @@ npx playwright test tests/e2e/feature-[feature-name]-testnfix.spec.ts
 ### Loop Exit Condition
 
 **Continue until:**
+
 - ✅ ALL tests pass (0 failures)
 - ✅ All data verifications are CORRECT
 - ✅ No console errors (except external resource failures)
 - ✅ No regressions in other features
 
 **Deliverable:**
+
 - All tests passing
 - Console output showing 0 failures
 - All bugs fixed with code changes documented
@@ -551,6 +584,7 @@ npm run build
 ### Step 2: Manual Verification
 
 Open browser and manually test:
+
 - All critical workflows
 - Edge cases
 - Error scenarios
@@ -559,6 +593,7 @@ Open browser and manually test:
 ### Completion Checklist
 
 **ALL must be TRUE:**
+
 - [ ] All tests pass (0 failures)
 - [ ] Tests verify CORRECT data (not just presence)
 - [ ] Tests verify COMPLETE workflows
@@ -569,6 +604,7 @@ Open browser and manually test:
 - [ ] All verification commands pass
 
 **Deliverable:**
+
 - Test output showing 0 failures
 - Confirmation all verification passed
 - Evidence of manual testing
@@ -582,27 +618,32 @@ Open browser and manually test:
 ### Required Updates
 
 **1. Update `docs/testing.md`:**
+
 ```markdown
 ## [Feature Name] E2E Tests
 
 **Location:** `tests/e2e/feature-[feature-name]-testnfix.spec.ts`
 
 **Coverage:**
+
 - [List functionality tested]
 - [List workflows verified]
 - [List data accuracy checks]
 
 **Critical Tests:**
+
 - [Test name]: [What it verifies]
 - [Test name]: [What it verifies]
 ```
 
 **2. If bugs were fixed, update `docs/api.md` or relevant docs:**
+
 - Document any API contract clarifications
 - Document edge case handling
 - Document error responses
 
 **3. Add inline code comments:**
+
 ```php
 // Fixed: [Brief description]
 // Root cause: [Why it failed]
@@ -616,6 +657,7 @@ Open browser and manually test:
 - ❌ Do NOT create throwaway documentation
 
 **Deliverable:**
+
 - Updated canonical docs only
 - Inline comments for significant fixes
 

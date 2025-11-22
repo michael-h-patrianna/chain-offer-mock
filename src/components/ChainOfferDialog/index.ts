@@ -5,5 +5,3 @@ export { ChainOfferMapItem } from './ChainOfferMapItem'
 export type { ChainOfferMapItemProps } from './ChainOfferMapItem'
 export { ChainOfferMapRewards } from './ChainOfferMapRewards'
 export { ChainOfferTimer } from './ChainOfferTimer'
-
-

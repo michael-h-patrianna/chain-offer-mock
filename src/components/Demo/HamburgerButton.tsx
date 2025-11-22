@@ -13,9 +13,9 @@ export function HamburgerButton({ isOpen, onClick }: HamburgerButtonProps) {
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
       aria-expanded={isOpen}
     >
-      <span className="hamburger__line"></span>
-      <span className="hamburger__line"></span>
-      <span className="hamburger__line"></span>
+      <span className='hamburger__line'></span>
+      <span className='hamburger__line'></span>
+      <span className='hamburger__line'></span>
     </button>
   )
 }

@@ -64,31 +64,37 @@ Identify the key characteristics of the task:
 Use this decision tree to select the agent:
 
 **Framework-Specific Tasks** → Select framework agent
+
 - React 18+ work (hooks, context, Suspense) → `react-specialist`
 - TypeScript strict typing, zero 'any' → `typescript-guardian`
 
 **Domain-Specific Tasks** → Select domain specialist
+
 - Security audits, OWASP, vulnerabilities → `security-auditor`
 - Documentation (API docs, guides, READMEs) → `technical-writer`
 - Performance optimization, profiling → `performance-profiler`
 
 **Project-Type Tasks** → Select project specialist
+
 - Animation design (planning, storyboards) → `animation-designer`
 - Animation implementation (Framer Motion) → `animation-developer`
 - UI polish (smooth transitions, visual refinements) → `ui-polish-specialist`
 - Content strategy (marketing, communication) → `content-marketer`
 
 **Quality & Architecture Tasks** → Select quality agent
+
 - Code review (after writing/modifying code) → `code-reviewer`
 - Test strategy (Vitest, Playwright, TDD) → `testing-architect`
 - Architecture review (patterns, refactoring) → `architecture-guardian`
 - Performance issues (profiling, optimization) → `performance-profiler`
 
 **Investigation Tasks** → Select investigation agent
+
 - Bug investigation, root cause analysis → `debugger`
 - Context management (token optimization) → `context-manager`
 
 **No Clear Match** → Use general delegation
+
 - Ambiguous tasks → Auto-delegation (main agent handles directly)
 
 ### Step 3: Verify Selection
@@ -103,15 +109,16 @@ Before delegating, verify the selection makes sense:
 ### Step 4: Delegate with Clear Context
 
 When using the Task tool:
-   - Call the subagent and provide all the context that they need to do the task at highest quality in the context of the whole codebase.
-   - Never send a one-liner prompt to a subagent! Always provide them with all context they need to do the job. Do not let them start from scratch.
-   - Always include references to required documentation:
-     - `docs/architecture.md`
-     - `docs/api.md`
-     - `docs/testing.md`
-     - include other or more documentation references in the agent prompt if needed for the task
-   - **NEVER** just handover the task you have been given to an agent without passing on the work you have already done! Do not waste token on letting agents repeat the research or work you have already done!
-   - Be conscious of token usage! Do not duplicate work in the agent that you or another agent have already done!
+
+- Call the subagent and provide all the context that they need to do the task at highest quality in the context of the whole codebase.
+- Never send a one-liner prompt to a subagent! Always provide them with all context they need to do the job. Do not let them start from scratch.
+- Always include references to required documentation:
+  - `docs/architecture.md`
+  - `docs/api.md`
+  - `docs/testing.md`
+  - include other or more documentation references in the agent prompt if needed for the task
+- **NEVER** just handover the task you have been given to an agent without passing on the work you have already done! Do not waste token on letting agents repeat the research or work you have already done!
+- Be conscious of token usage! Do not duplicate work in the agent that you or another agent have already done!
 
 ## Quick Reference Patterns
 
@@ -159,11 +166,12 @@ Common task patterns and their agent matches:
 ## Edge Cases and Special Considerations
 
 **Multiple viable agents**: When a task could fit multiple agents (e.g., animation component with TypeScript errors could use animation-developer OR typescript-guardian):
+
 - Prioritize the primary concern (types → typescript-guardian, animation logic → animation-developer)
 - For animation work: animation-designer (planning) → animation-developer (implementation)
 
 **Proactive quality agents**: Some agents should be invoked proactively without user request:
+
 - `code-reviewer` → After writing/modifying significant code
 - `testing-architect` → When adding new functionality (ensure 100% coverage)
 - `typescript-guardian` → When seeing 'any' types or type errors
-

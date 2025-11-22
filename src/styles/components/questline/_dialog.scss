@@ -1,6 +1,5 @@
 @import '../../variables/variables';
 
-
 .questline-dialog {
   position: relative;
   background: none;
@@ -13,16 +12,12 @@
   margin: auto;
 }
 
-
-
 /* Header Image */
 .questline-dialog__header-image {
   width: 321px;
   height: auto;
   max-width: 100%;
 }
-
-
 
 /* Description */
 .questline-dialog__description-wrapper {
@@ -46,7 +41,7 @@
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
-  padding: 0 ;
+  padding: 0;
   align-items: center;
 }
 

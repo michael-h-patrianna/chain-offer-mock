@@ -60,7 +60,9 @@
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .sidebar__select:hover {

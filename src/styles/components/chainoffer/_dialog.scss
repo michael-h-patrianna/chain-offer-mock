@@ -13,11 +13,11 @@
   max-height: calc(100vh - 40px);
   overflow: visible;
   box-sizing: border-box;
-    padding: 12px;
+  padding: 12px;
 }
 
 .chain-offer-dialog__content {
- --chain-offers-scrollbar-default-color: #5a3d7a;
+  --chain-offers-scrollbar-default-color: #5a3d7a;
   --chain-offers-scrollbar-track-color: #1a0833;
 
   display: flex;
@@ -26,10 +26,10 @@
   gap: 1rem; // 16px
   overflow: visible; // Let parent handle scrolling to avoid clipping scaled items
 
-
   // Safari doesn't support scrollbar-* properties
   @supports (scrollbar-color: auto) {
-    scrollbar-color: var(--chain-offers-scrollbar-color, var(--chain-offers-scrollbar-default-color)) var(--chain-offers-scrollbar-track-color);
+    scrollbar-color: var(--chain-offers-scrollbar-color, var(--chain-offers-scrollbar-default-color))
+      var(--chain-offers-scrollbar-track-color);
     scrollbar-width: var(--chain-offers-scrollbar-width, thin);
     scroll-behavior: smooth;
   }
@@ -43,7 +43,11 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #7a5d9a 0%, var(--chain-offers-scrollbar-color, var(--chain-offers-scrollbar-default-color)) 100%);
+      background: linear-gradient(
+        180deg,
+        #7a5d9a 0%,
+        var(--chain-offers-scrollbar-color, var(--chain-offers-scrollbar-default-color)) 100%
+      );
       border-radius: 6px;
       border: 2px solid var(--chain-offers-scrollbar-track-color);
     }
@@ -67,10 +71,9 @@
   overflow-x: visible;
   overscroll-behavior: contain;
   width: 100%;
-    gap: 8px;
-    margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
-
 
 .chain-offer-dialog__footer {
   --footer-margin-top: 0;
@@ -85,7 +88,7 @@
 
 .chain-offer-dialog__terms-link {
   color: var(--terms-link-color);
-    font-size: var(--terms-link-font-size-mobile);
+  font-size: var(--terms-link-font-size-mobile);
   font-weight: var(--terms-link-font-weight);
   line-height: var(--terms-link-line-height);
   text-decoration: none;

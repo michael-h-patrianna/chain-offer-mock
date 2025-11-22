@@ -1,21 +1,20 @@
 .questline-timer {
-  margin-top: .5rem;
-    display: flex;
-    padding: .3125rem 1rem;
-    justify-content: center;
-    align-items: center;
-    border-radius: 6.25rem;
-    background: var(--quest-lines-dialog-countdown-background, #008020);
+  margin-top: 0.5rem;
+  display: flex;
+  padding: 0.3125rem 1rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6.25rem;
+  background: var(--quest-lines-dialog-countdown-background, #008020);
 }
 
-.questline-timer p{
-    color: var(--quest-lines-dialog-countdown-text-color, #fff);
-    text-align: right;
-    text-transform: uppercase;
-    font-size: var(--quest-lines-dialog-countdown-text-font-size, .875rem);
-    font-style: normal;
-    font-weight: var(--quest-lines-dialog-countdown-text-font-weight, 500);
-    line-height: 140%;
-    margin:0;
+.questline-timer p {
+  color: var(--quest-lines-dialog-countdown-text-color, #fff);
+  text-align: right;
+  text-transform: uppercase;
+  font-size: var(--quest-lines-dialog-countdown-text-font-size, 0.875rem);
+  font-style: normal;
+  font-weight: var(--quest-lines-dialog-countdown-text-font-weight, 500);
+  line-height: 140%;
+  margin: 0;
 }
-

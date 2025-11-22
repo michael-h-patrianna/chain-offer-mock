@@ -6,7 +6,7 @@ import { HamburgerButton } from '../components/Demo/HamburgerButton'
 import { Sidebar } from '../components/Demo/Sidebar'
 import { LobbyLayout } from '../components/MockWebpage/Lobby/LobbyLayout'
 import { QuestLineDialog } from '../components/QuestLineDialog/QuestLineDialog'
-import { AnimationParametersProvider } from '../contexts/AnimationParametersContext'
+import { AnimationParametersProvider } from '../contexts/AnimationParametersProvider'
 import { getDemoChainOfferDialogProps } from '../data/getDemoChainOffer'
 import { getDemoQuestlineDialogProps } from '../data/getDemoQuestline'
 import '../styles/main.scss'
@@ -17,20 +17,12 @@ function AppInner() {
   const [selectedAnimation, setSelectedAnimation] = useState<AnimationType>('stagger-inview')
   const [isSidebarOpen, setIsSidebarOpen] = useState(
     // Safe because app only runs in browser (no SSR)
-    window.innerWidth > 768
+    window.innerWidth > 768,
   )
 
   const handleToggleSidebar = () => {
-    setIsSidebarOpen(prev => !prev)
+    setIsSidebarOpen((prev) => !prev)
   }
-
-  const handleCloseSidebar = () => {
-    // Only close on mobile
-    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
-      setIsSidebarOpen(false)
-    }
-  }
-
 
   const handleOpenChainOfferDialog = () => {
     setIsChainOfferDialogOpen(true)
@@ -66,9 +58,9 @@ function AppInner() {
   const questlineDialogProps = isQuestlineDialogOpen ? getDemoQuestlineDialogProps() : null
 
   return (
-    <div className="app-container">
+    <div className='app-container'>
       <Toaster
-        position="top-right"
+        position='top-right'
         toastOptions={{
           duration: 3000,
           style: {
@@ -92,7 +84,6 @@ function AppInner() {
       {/* Sidebar */}
       <Sidebar
         isOpen={isSidebarOpen}
-        onClose={handleCloseSidebar}
         selectedAnimation={selectedAnimation}
         onAnimationTypeChange={setSelectedAnimation}
       />
@@ -100,40 +91,42 @@ function AppInner() {
       {/* Hamburger Menu Button */}
       <HamburgerButton isOpen={isSidebarOpen} onClick={handleToggleSidebar} />
 
-      <div className="app-content" style={{
-        marginLeft: isSidebarOpen ? '280px' : '0',
-        transition: 'margin-left 0.3s ease-in-out',
-        width: '100%',
-        minHeight: '100vh'
-      }}>
-
+      <div
+        className='app-content'
+        style={{
+          marginLeft: isSidebarOpen ? '280px' : '0',
+          transition: 'margin-left 0.3s ease-in-out',
+          width: '100%',
+          minHeight: '100vh',
+        }}
+      >
         <LobbyLayout
           onQuestLineClick={handleOpenQuestlineDialog}
           onChainOfferClick={handleOpenChainOfferDialog}
           isSidebarOpen={isSidebarOpen}
         >
-            {/* Chain Offer Dialog */}
-            {chainOfferDialogProps && (
-              <ChainOfferDialog
-                {...chainOfferDialogProps}
-                isOpen={isChainOfferDialogOpen}
-                onClose={handleCloseChainOfferDialog}
-                onItemButtonClick={handleItemButtonClick}
-                animationType={selectedAnimation}
-              />
-            )}
+          {/* Chain Offer Dialog */}
+          {chainOfferDialogProps && (
+            <ChainOfferDialog
+              {...chainOfferDialogProps}
+              isOpen={isChainOfferDialogOpen}
+              onClose={handleCloseChainOfferDialog}
+              onItemButtonClick={handleItemButtonClick}
+              animationType={selectedAnimation}
+            />
+          )}
 
-            {/* Questline Dialog */}
-            {questlineDialogProps && (
-              <QuestLineDialog
-                {...questlineDialogProps}
-                isOpen={isQuestlineDialogOpen}
-                onClose={handleCloseQuestlineDialog}
-                onQuestAction={handleQuestAction}
-                onClaimBonus={handleClaimBonus}
-                animationType={selectedAnimation}
-              />
-            )}
+          {/* Questline Dialog */}
+          {questlineDialogProps && (
+            <QuestLineDialog
+              {...questlineDialogProps}
+              isOpen={isQuestlineDialogOpen}
+              onClose={handleCloseQuestlineDialog}
+              onQuestAction={handleQuestAction}
+              onClaimBonus={handleClaimBonus}
+              animationType={selectedAnimation}
+            />
+          )}
         </LobbyLayout>
       </div>
 

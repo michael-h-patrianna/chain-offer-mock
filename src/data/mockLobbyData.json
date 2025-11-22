@@ -6,15 +6,31 @@
       "icon": "star.svg",
       "products": [
         { "code": "rp_733", "title": "Mad Hit Diamonds", "supplierCode": "rubyplay" },
-        { "code": "blive_launch_gs_b2spin_pf_rol_1", "title": "PlayFame Iconic Roulette", "supplierCode": "iconic21" },
+        {
+          "code": "blive_launch_gs_b2spin_pf_rol_1",
+          "title": "PlayFame Iconic Roulette",
+          "supplierCode": "iconic21"
+        },
         { "code": "kg_5019", "title": "3 Big Barrels PlayFame", "supplierCode": "koala" },
-        { "code": "blive_launch_gs_b2spin_pf_bj_3", "title": "7 Seats Blackjack Spotlight", "supplierCode": "iconic21" },
-        { "code": "pls_diamonds_power_xxl", "title": "Diamonds Power XXL: Hold and Win", "supplierCode": "playson" },
+        {
+          "code": "blive_launch_gs_b2spin_pf_bj_3",
+          "title": "7 Seats Blackjack Spotlight",
+          "supplierCode": "iconic21"
+        },
+        {
+          "code": "pls_diamonds_power_xxl",
+          "title": "Diamonds Power XXL: Hold and Win",
+          "supplierCode": "playson"
+        },
         { "code": "rp_857", "title": "Mad Hit Slippery Soap", "supplierCode": "rubyplay" },
         { "code": "kg_5006", "title": "3 Big Barrels Buffalo", "supplierCode": "koala" },
         { "code": "kg_5002", "title": "Celestial Flame Coin Rise", "supplierCode": "koala" },
         { "code": "evo_6386", "title": "Piggy Bank: 3 Pots Bonanza", "supplierCode": "evoplay" },
-        { "code": "octo_777-super-wheel-hold-and-win", "title": "777 Super Wheel: Hold & Win", "supplierCode": "penguin-king-games" }
+        {
+          "code": "octo_777-super-wheel-hold-and-win",
+          "title": "777 Super Wheel: Hold & Win",
+          "supplierCode": "penguin-king-games"
+        }
       ]
     },
     {
@@ -22,35 +38,63 @@
       "title": "All New Games",
       "icon": "new.svg",
       "products": [
-        { "code": "mgm_SMG_beanstalkBonanzaVF", "title": "Beanstalk Bonanza", "supplierCode": "m2play" },
-        { "code": "pls_tornado_power", "title": "Tornado Power: Hold and Win", "supplierCode": "playson" },
+        {
+          "code": "mgm_SMG_beanstalkBonanzaVF",
+          "title": "Beanstalk Bonanza",
+          "supplierCode": "m2play"
+        },
+        {
+          "code": "pls_tornado_power",
+          "title": "Tornado Power: Hold and Win",
+          "supplierCode": "playson"
+        },
         { "code": "kg_5015", "title": "3 Big Barrels Elfin' Rich", "supplierCode": "koala" },
-        { "code": "rlx.gc.gc.gifts_of_xmas_94", "title": "3 Gifts of Xmas Bonus Pot", "supplierCode": "gaming-corps" },
+        {
+          "code": "rlx.gc.gc.gifts_of_xmas_94",
+          "title": "3 Gifts of Xmas Bonus Pot",
+          "supplierCode": "gaming-corps"
+        },
         { "code": "9kyetigold", "title": "9K Yeti Gold", "supplierCode": "4theplayer" },
         { "code": "1x2_9623", "title": "4 Dazzling Riches", "supplierCode": "reel-riot" }
       ]
     },
     {
-        "code": "top",
-        "title": "Most Popular Games",
-        "icon": "fire.svg",
-        "products": [
-            { "code": "oa_coin_up_hot_fire", "title": "Coin UP: Hot Fire", "supplierCode": "3oaksgaming" },
-            { "code": "oa_aztec_fire", "title": "Aztec Fire", "supplierCode": "3oaksgaming" },
-            { "code": "oa_black_wolf", "title": "Black Wolf", "supplierCode": "3oaksgaming" },
-            { "code": "oa_hit_more_gold", "title": "Hit more Gold!", "supplierCode": "3oaksgaming" },
-            { "code": "oa_maya_sun", "title": "Maya Sun", "supplierCode": "3oaksgaming" }
-        ]
+      "code": "top",
+      "title": "Most Popular Games",
+      "icon": "fire.svg",
+      "products": [
+        {
+          "code": "oa_coin_up_hot_fire",
+          "title": "Coin UP: Hot Fire",
+          "supplierCode": "3oaksgaming"
+        },
+        { "code": "oa_aztec_fire", "title": "Aztec Fire", "supplierCode": "3oaksgaming" },
+        { "code": "oa_black_wolf", "title": "Black Wolf", "supplierCode": "3oaksgaming" },
+        { "code": "oa_hit_more_gold", "title": "Hit more Gold!", "supplierCode": "3oaksgaming" },
+        { "code": "oa_maya_sun", "title": "Maya Sun", "supplierCode": "3oaksgaming" }
+      ]
     },
     {
-        "code": "LIVE",
-        "title": "Live Dealer",
-        "icon": "casino_chip.svg",
-        "products": [
-            { "code": "plt_qrol;rol_quantumroulette", "title": "Quantum Roulette Live", "supplierCode": "playtech" },
-            { "code": "blive_launch_gs_b2spin_pf_bj_4", "title": "7 Seats Blackjack Glow", "supplierCode": "iconic21" },
-            { "code": "blive_launch_gs_b2spin_pf_bj_3", "title": "7 Seats Blackjack Spotlight", "supplierCode": "iconic21" }
-        ]
+      "code": "LIVE",
+      "title": "Live Dealer",
+      "icon": "casino_chip.svg",
+      "products": [
+        {
+          "code": "plt_qrol;rol_quantumroulette",
+          "title": "Quantum Roulette Live",
+          "supplierCode": "playtech"
+        },
+        {
+          "code": "blive_launch_gs_b2spin_pf_bj_4",
+          "title": "7 Seats Blackjack Glow",
+          "supplierCode": "iconic21"
+        },
+        {
+          "code": "blive_launch_gs_b2spin_pf_bj_3",
+          "title": "7 Seats Blackjack Spotlight",
+          "supplierCode": "iconic21"
+        }
+      ]
     }
   ]
 }

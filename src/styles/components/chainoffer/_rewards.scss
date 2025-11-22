@@ -20,7 +20,7 @@
     display: block;
     width: auto;
 
-      max-height: 30px;
+    max-height: 30px;
   }
 
   &__icon-fallback {
@@ -39,11 +39,11 @@
     font-weight: 700;
     line-height: 1;
 
-      font-size: 12px;
+    font-size: 12px;
   }
 
   &--gc &__amount {
-    color: #FFE33F; // Yellow for GC
+    color: #ffe33f; // Yellow for GC
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
   }
 
@@ -76,7 +76,7 @@
 .chain-offer-reward__icon {
   display: block;
   width: auto;
-    max-height: 30px;
+  max-height: 30px;
 }
 
 .chain-offer-reward__icon-fallback {
@@ -92,13 +92,13 @@
   color: #ffffff;
   text-align: center;
   text-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.45);
-    font-size: 12px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1;
 }
 
 .chain-offer-reward--gc .chain-offer-reward__amount {
-  color: #FFE33F; /* Changed from cyan to yellow */
+  color: #ffe33f; /* Changed from cyan to yellow */
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
 }
 

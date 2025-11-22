@@ -1,36 +1,36 @@
-import React from 'react';
+import React from 'react'
 
 interface RewardService {
-  getRewards: () => Promise<{ rewards: unknown[] }>;
+  getRewards: () => Promise<{ rewards: unknown[] }>
 }
 
 interface LoyaltyService {
-  getAccountVariants: () => Promise<{ variants: unknown[] }>;
+  getAccountVariants: () => Promise<{ variants: unknown[] }>
 }
 
 interface OfferChainService {
-  getOfferChainInstances: () => Promise<{ items: unknown[] }>;
-  claimOffer: () => Promise<{ success: boolean }>;
+  getOfferChainInstances: () => Promise<{ items: unknown[] }>
+  claimOffer: () => Promise<{ success: boolean }>
 }
 
 interface RewardAmountProps {
-  text: string;
-  className?: string;
+  text: string
+  className?: string
 }
 
 interface MapItemButtonProps {
-  children: React.ReactNode;
-  className?: string;
-  disabled?: boolean;
-  onClick?: () => void;
+  children: React.ReactNode
+  className?: string
+  disabled?: boolean
+  onClick?: () => void
 }
 
 export interface ChainOffersConfig {
   config: {
     serviceDependencies: {
-      reward: RewardService;
-      loyalty: LoyaltyService;
-      offerchain: OfferChainService;
+      reward: RewardService
+      loyalty: LoyaltyService
+      offerchain: OfferChainService
     }
     featureFlags: {
       autoReopen: boolean

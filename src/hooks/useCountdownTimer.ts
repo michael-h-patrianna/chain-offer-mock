@@ -6,18 +6,13 @@ import { useEffect, useState } from 'react'
  * - More than 24 hours: "Ends in 6d 4h"
  * - Less than 24 hours: "Ends in 23:55:07"
  */
-export function useCountdownTimer(
-  endTime: string | number,
-  onCountdownEnd?: () => void
-): string {
+export function useCountdownTimer(endTime: string | number, onCountdownEnd?: () => void): string {
   const [timeLeft, setTimeLeft] = useState('')
   const [hasEnded, setHasEnded] = useState(false)
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const targetTime = typeof endTime === 'string'
-        ? new Date(endTime).getTime()
-        : endTime
+      const targetTime = typeof endTime === 'string' ? new Date(endTime).getTime() : endTime
       const now = Date.now()
       const difference = targetTime - now
 

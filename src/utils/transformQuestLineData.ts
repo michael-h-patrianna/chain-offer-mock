@@ -1,33 +1,33 @@
-import type { BonusReward, Quest, QuestLineDialogProps, QuestStatus, Reward, RewardType } from '../types/questline';
+import type { BonusReward, Quest, QuestLineDialogProps, QuestStatus, Reward, RewardType } from '../types/questline'
 
 interface RawReward {
-  type?: string;
-  amount?: number;
-  name?: string;
-  [key: string]: unknown;
+  type?: string
+  amount?: number
+  name?: string
+  [key: string]: unknown
 }
 
 interface RawQuest {
-  rewards?: RawReward[];
-  [key: string]: unknown;
+  rewards?: RawReward[]
+  [key: string]: unknown
 }
 
 interface RawBonusReward {
-  rewards?: RawReward[];
-  claimed?: boolean;
-  progressRequired?: number;
-  [key: string]: unknown;
+  rewards?: RawReward[]
+  claimed?: boolean
+  progressRequired?: number
+  [key: string]: unknown
 }
 
 interface RawQuestLineData {
-  questlineCode?: string;
-  title?: string;
-  description?: string;
-  expiresAt?: string;
-  termsUrl?: string;
-  quests?: RawQuest[];
-  bonusReward?: RawBonusReward;
-  [key: string]: unknown;
+  questlineCode?: string
+  title?: string
+  description?: string
+  expiresAt?: string
+  termsUrl?: string
+  quests?: RawQuest[]
+  bonusReward?: RawBonusReward
+  [key: string]: unknown
 }
 
 // Map reward types to icon URLs (served from public folder)
@@ -42,14 +42,14 @@ const REWARD_ICON_MAP: Record<RewardType, string> = {
  * Transform raw questline data into component props format
  */
 export function transformQuestLineData(rawData: Record<string, unknown>): QuestLineDialogProps {
-  const data = rawData as RawQuestLineData;
+  const data = rawData as RawQuestLineData
   const { questlineCode, title, description, expiresAt, termsUrl, quests, bonusReward } = data
 
   // Transform quests and add icon URLs to rewards
   const transformedQuests: Quest[] = (quests ?? []).map((quest) => ({
-    questCode: String(quest.questCode || ''),
-    title: String(quest.title || ''),
-    description: String(quest.description || ''),
+    questCode: typeof quest.questCode === 'string' ? quest.questCode : '',
+    title: typeof quest.title === 'string' ? quest.title : '',
+    description: typeof quest.description === 'string' ? quest.description : '',
     status: (quest.status || 'locked') as QuestStatus,
     progress: Number(quest.progress || 0),
     ranking: Number(quest.ranking || 0),
@@ -63,17 +63,19 @@ export function transformQuestLineData(rawData: Record<string, unknown>): QuestL
   }))
 
   // Transform bonus rewards
-  const transformedBonusReward: BonusReward = bonusReward ? {
-    claimed: !!bonusReward.claimed,
-    progressRequired: Number(bonusReward.progressRequired || 0),
-    rewards: (bonusReward.rewards ?? []).map((reward) => ({
-      type: (reward.type || 'GC') as RewardType,
-      amount: Number(reward.amount || 0),
-      name: reward.name,
-      iconUrl: REWARD_ICON_MAP[reward.type as RewardType] || '',
-      freeAdornmentUrl: reward.type === 'FREE_SPINS' ? '/assets/images/reward icons/free.png' : undefined,
-    })),
-  } : { rewards: [], claimed: false, progressRequired: 0 }
+  const transformedBonusReward: BonusReward = bonusReward
+    ? {
+        claimed: !!bonusReward.claimed,
+        progressRequired: Number(bonusReward.progressRequired || 0),
+        rewards: (bonusReward.rewards ?? []).map((reward) => ({
+          type: (reward.type || 'GC') as RewardType,
+          amount: Number(reward.amount || 0),
+          name: reward.name,
+          iconUrl: REWARD_ICON_MAP[reward.type as RewardType] || '',
+          freeAdornmentUrl: reward.type === 'FREE_SPINS' ? '/assets/images/reward icons/free.png' : undefined,
+        })),
+      }
+    : { rewards: [], claimed: false, progressRequired: 0 }
 
   return {
     isOpen: true,
@@ -95,9 +97,7 @@ export function transformQuestLineData(rawData: Record<string, unknown>): QuestL
 export function formatRewardAmount(reward: Reward): string {
   switch (reward.type) {
     case 'GC':
-      return reward.amount >= 1000
-        ? `${(reward.amount / 1000).toFixed(0)}K`
-        : reward.amount.toString()
+      return reward.amount >= 1000 ? `${(reward.amount / 1000).toFixed(0)}K` : reward.amount.toString()
     case 'FREE_SPINS':
       return reward.amount.toString()
     case 'BADGE':

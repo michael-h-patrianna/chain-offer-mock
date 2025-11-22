@@ -112,7 +112,8 @@ export const defaultAnimationParameters: Record<AnimationType, AnimationParamete
       wobbleIntensity: 1.0,
     },
   },
-  'orbital-reveal': { spring: { stiffness: 120, damping: 12, mass: 1.0 },
+  'orbital-reveal': {
+    spring: { stiffness: 120, damping: 12, mass: 1.0 },
     durationScale: 1.0,
     delayOffset: 0,
     staggerChildren: 0.12,
@@ -145,7 +146,7 @@ export const defaultAnimationParameters: Record<AnimationType, AnimationParamete
     staggerChildren: 0.08,
     delayChildren: 0.25,
   },
-  'none': {
+  none: {
     durationScale: 1.0,
     delayOffset: 0,
     staggerChildren: 0,

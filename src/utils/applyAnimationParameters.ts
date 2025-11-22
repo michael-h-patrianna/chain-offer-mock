@@ -7,7 +7,7 @@ import { AnimationParameters } from '../types/animationParameters'
  */
 export function applyAnimationParameters(
   baseAnimation: RevealAnimation,
-  parameters: AnimationParameters
+  parameters: AnimationParameters,
 ): RevealAnimation {
   // Deep clone to avoid mutating the original
   const cloned = structuredClone(baseAnimation)
@@ -33,11 +33,7 @@ export function applyAnimationParameters(
 /**
  * Apply parameters to a variant object (recursive for all states)
  */
-function applyToVariant(
-  variant: Variants,
-  parameters: AnimationParameters,
-  isContainer: boolean
-): Variants {
+function applyToVariant(variant: Variants, parameters: AnimationParameters, isContainer: boolean): Variants {
   if (typeof variant !== 'object') {
     return variant
   }
@@ -62,7 +58,7 @@ function applyToVariant(
 function applyToState(
   state: Record<string, unknown>,
   parameters: AnimationParameters,
-  isContainer: boolean
+  isContainer: boolean,
 ): Record<string, unknown> {
   const result: Record<string, unknown> = { ...state }
 
@@ -125,7 +121,7 @@ function applyToState(
 function applyToTransition(
   transition: Record<string, unknown>,
   parameters: AnimationParameters,
-  isContainer: boolean
+  isContainer: boolean,
 ): Record<string, unknown> {
   const result: Record<string, unknown> = { ...transition }
 

@@ -7,10 +7,23 @@ describe('simpleChainOfferConfig', () => {
     const config = createSimpleConfig({
       expiresInSeconds: 1800,
       items: [
-        { type: 'PURCHASE', price: 19.99, rewards: [{ type: 'GC', amount: 75000 }, { type: 'SC', amount: 0.5 }] },
-        { type: 'FREE', rewards: [{ type: 'FREE_SPINS', amount: 20 }, { type: 'STARS', amount: 15 }] },
-        { type: 'FREE', rewards: [{ type: 'RANDOM', name: 'Mystery Wheel' }] }
-      ]
+        {
+          type: 'PURCHASE',
+          price: 19.99,
+          rewards: [
+            { type: 'GC', amount: 75000 },
+            { type: 'SC', amount: 0.5 },
+          ],
+        },
+        {
+          type: 'FREE',
+          rewards: [
+            { type: 'FREE_SPINS', amount: 20 },
+            { type: 'STARS', amount: 15 },
+          ],
+        },
+        { type: 'FREE', rewards: [{ type: 'RANDOM', name: 'Mystery Wheel' }] },
+      ],
     })
     const dialog = buildDialogFromSimpleConfig(config, { now: 0 })
     expect(dialog.items).toHaveLength(3)

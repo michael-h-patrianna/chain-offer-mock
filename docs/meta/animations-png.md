@@ -136,7 +136,7 @@ const AnimatedIcon = ({ variant, onComplete }) => {
         onComplete,
       },
     },
-  }
+  };
 
   return (
     <motion.div
@@ -147,8 +147,8 @@ const AnimatedIcon = ({ variant, onComplete }) => {
     >
       <img src="/reward-icon.png" alt="Reward" />
     </motion.div>
-  )
-}
+  );
+};
 ```
 
 ### Performance-Optimized Multi-Layer Animation
@@ -172,7 +172,7 @@ const RewardAnimation = ({ isVisible, onComplete }) => {
         staggerDirection: -1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: {
@@ -196,7 +196,7 @@ const RewardAnimation = ({ isVisible, onComplete }) => {
       opacity: 0,
       transition: { duration: 0.2 },
     },
-  }
+  };
 
   return (
     <AnimatePresence onExitComplete={onComplete}>
@@ -228,16 +228,16 @@ const RewardAnimation = ({ isVisible, onComplete }) => {
         </motion.div>
       )}
     </AnimatePresence>
-  )
-}
+  );
+};
 ```
 
 ### Cross-Platform Translation Strategy
 
 ```jsx
 // React Native equivalent using Moti
-import { MotiView } from 'moti'
-import { Image } from 'react-native'
+import { MotiView } from 'moti';
+import { Image } from 'react-native';
 
 const RewardAnimationNative = ({ isVisible, onComplete }) => {
   return (
@@ -254,14 +254,14 @@ const RewardAnimationNative = ({ isVisible, onComplete }) => {
       }}
       onDidAnimate={(key, finished) => {
         if (key === 'scale' && !isVisible && finished) {
-          onComplete?.()
+          onComplete?.();
         }
       }}
     >
       <Image source={require('./coin.png')} />
     </MotiView>
-  )
-}
+  );
+};
 ```
 
 ## Performance Optimization Strategies
@@ -303,13 +303,13 @@ const RewardAnimationNative = ({ isVisible, onComplete }) => {
 ```jsx
 // Custom hook for cross-platform animations
 const useRewardAnimation = (isActive) => {
-  const [animationState, setAnimationState] = useState('idle')
+  const [animationState, setAnimationState] = useState('idle');
 
   const triggerReward = useCallback(() => {
-    setAnimationState('reward')
-    setTimeout(() => setAnimationState('collect'), 800)
-    setTimeout(() => setAnimationState('idle'), 1400)
-  }, [])
+    setAnimationState('reward');
+    setTimeout(() => setAnimationState('collect'), 800);
+    setTimeout(() => setAnimationState('idle'), 1400);
+  }, []);
 
   return {
     animationState,
@@ -327,8 +327,8 @@ const useRewardAnimation = (isActive) => {
         transition: { duration: 0.6 },
       },
     },
-  }
-}
+  };
+};
 ```
 
 ### Platform Detection and Adaptation
@@ -337,10 +337,10 @@ const useRewardAnimation = (isActive) => {
 // Platform-specific optimization
 const PlatformAnimatedIcon = (props) => {
   if (Platform.OS === 'web') {
-    return <motion.div {...frameworkMotionProps} />
+    return <motion.div {...frameworkMotionProps} />;
   }
-  return <MotiView {...motiProps} />
-}
+  return <MotiView {...motiProps} />;
+};
 ```
 
 ## Gamification Use Case Implementations
@@ -357,10 +357,10 @@ const useRewardSequence = () => {
     anticipation: { duration: 200, scale: 1.05 },
     burst: { duration: 400, scale: [1.05, 1.3, 1.1] },
     settle: { duration: 200, scale: 1 },
-  }
+  };
 
-  return sequence
-}
+  return sequence;
+};
 ```
 
 ### Purchase Offer Animation

@@ -13,12 +13,14 @@
 **Core Principle**: All animation variants are defined in `src/animations/revealAnimations.ts`. Components import and apply these variants.
 
 **Why**:
+
 - Single source of truth for all animations
 - Easy to test and preview animations
 - Reusable across components
 - Parameter-driven customization
 
 **Flow**:
+
 ```
 1. Define variants → src/animations/revealAnimations.ts
 2. Define parameters → src/types/animationParameters.ts
@@ -32,20 +34,20 @@
 
 **12 Animation Types** (as of 2025-11-17):
 
-| Type | Description | Special Features |
-|------|-------------|------------------|
-| `stagger-inview` | Smooth stagger | Standard fade + slide |
-| `scale-rotate` | Scale with rotation | Adds rotation transform |
-| `flip-reveal` | 3D flip effect | Uses rotateY transform |
-| `spring-physics` | Physics-based spring | Configurable stiffness/damping/mass |
-| `fade-slide` | Simple fade and slide | Minimal, clean |
-| `elastic-bounce` | Elastic bounce | Configurable wobble intensity |
-| `orbital-reveal` | Circular motion | Configurable orbit distance |
-| `glitch-snap` | Digital glitch effect | Fast, aggressive timing |
-| `silk-unfold` | Smooth silk-like | Gentle, luxurious |
-| `crystal-shimmer` | Shimmering reveal | Elegant, refined |
-| `velvet-cascade` | Cascading reveal | Soft, flowing |
-| `none` | No animation | Instant display |
+| Type              | Description           | Special Features                    |
+| ----------------- | --------------------- | ----------------------------------- |
+| `stagger-inview`  | Smooth stagger        | Standard fade + slide               |
+| `scale-rotate`    | Scale with rotation   | Adds rotation transform             |
+| `flip-reveal`     | 3D flip effect        | Uses rotateY transform              |
+| `spring-physics`  | Physics-based spring  | Configurable stiffness/damping/mass |
+| `fade-slide`      | Simple fade and slide | Minimal, clean                      |
+| `elastic-bounce`  | Elastic bounce        | Configurable wobble intensity       |
+| `orbital-reveal`  | Circular motion       | Configurable orbit distance         |
+| `glitch-snap`     | Digital glitch effect | Fast, aggressive timing             |
+| `silk-unfold`     | Smooth silk-like      | Gentle, luxurious                   |
+| `crystal-shimmer` | Shimmering reveal     | Elegant, refined                    |
+| `velvet-cascade`  | Cascading reveal      | Soft, flowing                       |
+| `none`            | No animation          | Instant display                     |
 
 ---
 
@@ -56,22 +58,25 @@
 **Location**: `src/animations/revealAnimations.ts`
 
 **Template**:
+
 ```typescript
 export type AnimationType =
   | 'stagger-inview'
   | 'scale-rotate'
   // ... existing types
-  | 'your-new-animation'  // ADD HERE
+  | 'your-new-animation'; // ADD HERE
 ```
 
 ### Step 2: Define Variants
 
 **Understanding Variants**:
+
 - `containerVariants`: Applied to parent `motion.div` (controls stagger timing)
 - `itemVariants`: Applied to child elements (defines the actual animation)
 - Specific variants: For different parts (header, timer, footer, etc.)
 
 **Template**:
+
 ```typescript
 export const revealAnimations: Record<AnimationType, RevealAnimation> = {
   // ... existing animations
@@ -85,8 +90,8 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
       hidden: {},
       visible: {
         transition: {
-          staggerChildren: 0.1,    // Time between each child
-          delayChildren: 0.2,       // Initial delay before first child
+          staggerChildren: 0.1, // Time between each child
+          delayChildren: 0.2, // Initial delay before first child
         },
       },
     },
@@ -95,16 +100,16 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
     itemVariants: {
       hidden: {
         opacity: 0,
-        y: 60,                      // Start 60px below
-        scale: 0.8,                 // Start at 80% size
+        y: 60, // Start 60px below
+        scale: 0.8, // Start at 80% size
       },
       visible: {
         opacity: 1,
-        y: 0,                       // End at normal position
-        scale: 1,                   // End at normal size
+        y: 0, // End at normal position
+        scale: 1, // End at normal size
         transition: {
           duration: 0.6,
-          ease: [0.25, 0.46, 0.45, 0.94],  // Cubic bezier easing
+          ease: [0.25, 0.46, 0.45, 0.94], // Cubic bezier easing
         },
       },
     },
@@ -131,7 +136,7 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
 
     // ... Add all required variant types (check interface)
   },
-}
+};
 ```
 
 ### Step 3: Add Default Parameters
@@ -139,14 +144,15 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
 **Location**: `src/types/animationParameters.ts`
 
 **Template**:
+
 ```typescript
 export const defaultAnimationParameters: Record<AnimationType, AnimationParameters> = {
   // ... existing defaults
   'your-new-animation': {
-    durationScale: 1.0,      // Speed multiplier
-    delayOffset: 0,          // Additional delay
-    staggerChildren: 0.1,    // Time between children
-    delayChildren: 0.2,      // Initial delay
+    durationScale: 1.0, // Speed multiplier
+    delayOffset: 0, // Additional delay
+    staggerChildren: 0.1, // Time between children
+    delayChildren: 0.2, // Initial delay
 
     // Optional: Add if using spring physics
     spring: {
@@ -165,12 +171,13 @@ export const defaultAnimationParameters: Record<AnimationType, AnimationParamete
       orbitDistance: 100,
     },
   },
-}
+};
 ```
 
 ### Step 4: Test the Animation
 
 **Create a test component**:
+
 ```typescript
 import { motion } from 'motion/react'
 import { revealAnimations } from '../animations/revealAnimations'
@@ -206,6 +213,7 @@ const TestAnimation = () => {
 **Pattern**: Modify `transition.duration` and `delay` values
 
 **Example**:
+
 ```typescript
 // Make animation faster
 itemVariants: {
@@ -232,6 +240,7 @@ itemVariants: {
 **Pattern**: Modify transform values in `hidden` and `visible` states
 
 **Example**:
+
 ```typescript
 // Increase slide distance
 itemVariants: {
@@ -269,6 +278,7 @@ itemVariants: {
 ### Adjusting Easing
 
 **Common Easing Functions**:
+
 ```typescript
 // Linear (no easing)
 transition: { ease: 'linear' }
@@ -291,6 +301,7 @@ transition: { type: 'spring', stiffness: 200, damping: 15 }
 **Pattern**: Modify `staggerChildren` and `delayChildren` in container
 
 **Example**:
+
 ```typescript
 containerVariants: {
   visible: {
@@ -309,6 +320,7 @@ containerVariants: {
 ### Pattern 1: Simple Fade
 
 **Template**:
+
 ```typescript
 itemVariants: {
   hidden: { opacity: 0 },
@@ -322,6 +334,7 @@ itemVariants: {
 ### Pattern 2: Fade + Slide
 
 **Template**:
+
 ```typescript
 itemVariants: {
   hidden: { opacity: 0, y: 20 },  // Slide from below
@@ -341,6 +354,7 @@ itemVariants: {
 ### Pattern 3: Scale + Fade
 
 **Template**:
+
 ```typescript
 itemVariants: {
   hidden: { opacity: 0, scale: 0.8 },  // Start small
@@ -355,6 +369,7 @@ itemVariants: {
 ### Pattern 4: Rotate + Fade
 
 **Template**:
+
 ```typescript
 itemVariants: {
   hidden: { opacity: 0, rotate: -45 },  // Start rotated
@@ -369,6 +384,7 @@ itemVariants: {
 ### Pattern 5: 3D Flip
 
 **Template**:
+
 ```typescript
 itemVariants: {
   hidden: {
@@ -389,6 +405,7 @@ itemVariants: {
 ### Pattern 6: Spring Physics
 
 **Template**:
+
 ```typescript
 itemVariants: {
   hidden: { opacity: 0, y: 50 },
@@ -408,6 +425,7 @@ itemVariants: {
 ### Pattern 7: Sequence (Multiple Properties at Different Times)
 
 **Template**:
+
 ```typescript
 itemVariants: {
   hidden: { opacity: 0, y: 20, scale: 0.8 },
@@ -434,12 +452,14 @@ itemVariants: {
 ### Understanding Parameters
 
 **Four Base Parameters** (apply to all animations):
+
 - `durationScale`: Multiplier for all durations (0.5 = half speed, 2.0 = double speed)
 - `delayOffset`: Added to all delays (seconds)
 - `staggerChildren`: Time between staggered children (seconds)
 - `delayChildren`: Initial delay before children start (seconds)
 
 **Three Optional Parameter Sets**:
+
 - `spring`: For physics-based animations (stiffness, damping, mass)
 - `wobble`: For bounce/wobble effects (wobbleIntensity)
 - `orbital`: For circular motion (orbitDistance)
@@ -449,6 +469,7 @@ itemVariants: {
 **Pattern**: Import hook and apply parameters
 
 **Template**:
+
 ```typescript
 import { useAnimationParameters } from '../hooks/useAnimationParameters'
 import { applyAnimationParameters } from '../utils/applyAnimationParameters'
@@ -485,18 +506,20 @@ const MyComponent = ({ animationType }) => {
 **If you need a new parameter type**:
 
 1. **Add to types** (`src/types/animationParameters.ts`):
+
 ```typescript
 export interface MyCustomParameters {
-  customValue: number
+  customValue: number;
 }
 
 export type AnimationParameters = BaseAnimationParameters & {
-  spring?: SpringPhysicsParameters
-  myCustom?: MyCustomParameters  // ADD HERE
-}
+  spring?: SpringPhysicsParameters;
+  myCustom?: MyCustomParameters; // ADD HERE
+};
 ```
 
 2. **Add parameter config**:
+
 ```typescript
 export const myCustomParameterConfigs: ParameterConfig[] = [
   {
@@ -508,10 +531,11 @@ export const myCustomParameterConfigs: ParameterConfig[] = [
     step: 1,
     defaultValue: 50,
   },
-]
+];
 ```
 
 3. **Add to defaults**:
+
 ```typescript
 'my-animation': {
   durationScale: 1.0,
@@ -531,6 +555,7 @@ export const myCustomParameterConfigs: ParameterConfig[] = [
 ### Pattern 1: Container + Items
 
 **Template**:
+
 ```typescript
 import { motion } from 'motion/react'
 import { revealAnimations } from '../animations/revealAnimations'
@@ -560,6 +585,7 @@ const MyComponent = ({ items, animationType }) => {
 ```
 
 **Key Points**:
+
 - Parent has `containerVariants` (controls stagger)
 - Children have `itemVariants` (defines animation)
 - Children inherit `initial` and `animate` from parent (no need to repeat)
@@ -567,6 +593,7 @@ const MyComponent = ({ items, animationType }) => {
 ### Pattern 2: Multiple Variant Types
 
 **Template**:
+
 ```typescript
 const MyComponent = ({ animationType }) => {
   const animation = revealAnimations[animationType]
@@ -607,6 +634,7 @@ const MyComponent = ({ animationType }) => {
 ### Pattern 3: Conditional Animation
 
 **Template**:
+
 ```typescript
 const MyComponent = ({ shouldAnimate, animationType }) => {
   const animation = revealAnimations[animationType]
@@ -629,6 +657,7 @@ const MyComponent = ({ shouldAnimate, animationType }) => {
 ### Pattern 4: Re-triggerable Animation (Reset on Prop Change)
 
 **Template**:
+
 ```typescript
 import { useState, useEffect } from 'react'
 
@@ -664,6 +693,7 @@ const MyComponent = ({ animationType, resetKey }) => {
 **Use Case**: Animating elements in when component mounts
 
 **Template**:
+
 ```typescript
 <motion.div
   initial="hidden"
@@ -679,6 +709,7 @@ const MyComponent = ({ animationType, resetKey }) => {
 **Use Case**: Animating elements out when component unmounts
 
 **Template**:
+
 ```typescript
 import { AnimatePresence } from 'motion/react'
 
@@ -699,6 +730,7 @@ import { AnimatePresence } from 'motion/react'
 ### Pattern: Hover Animation
 
 **Template**:
+
 ```typescript
 <motion.div
   whileHover={{ scale: 1.05 }}
@@ -712,6 +744,7 @@ import { AnimatePresence } from 'motion/react'
 ### Pattern: Scroll-Triggered Animation
 
 **Template**:
+
 ```typescript
 import { motion, useInView } from 'motion/react'
 import { useRef } from 'react'
@@ -738,24 +771,27 @@ const MyComponent = () => {
 ## Common Mistakes
 
 ### ❌ Don't: Define variants inline in components
+
 ```typescript
 // Bad: Variants scattered across components
 const variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1 }
-}
+  visible: { opacity: 1 },
+};
 ```
 
 ### ✅ Do: Use centralized revealAnimations
+
 ```typescript
 // Good: Import from central location
-import { revealAnimations } from '../animations/revealAnimations'
-const animation = revealAnimations[animationType]
+import { revealAnimations } from '../animations/revealAnimations';
+const animation = revealAnimations[animationType];
 ```
 
 ---
 
 ### ❌ Don't: Forget stagger container
+
 ```typescript
 // Bad: Using itemVariants without container
 <div>
@@ -766,6 +802,7 @@ const animation = revealAnimations[animationType]
 ```
 
 ### ✅ Do: Wrap with container variants
+
 ```typescript
 // Good: Container controls stagger timing
 <motion.div variants={containerVariants} initial="hidden" animate="visible">
@@ -778,6 +815,7 @@ const animation = revealAnimations[animationType]
 ---
 
 ### ❌ Don't: Repeat initial/animate on children
+
 ```typescript
 // Bad: Redundant props
 <motion.div variants={containerVariants} initial="hidden" animate="visible">
@@ -788,6 +826,7 @@ const animation = revealAnimations[animationType]
 ```
 
 ### ✅ Do: Let children inherit from parent
+
 ```typescript
 // Good: Children inherit automatically
 <motion.div variants={containerVariants} initial="hidden" animate="visible">
@@ -800,12 +839,14 @@ const animation = revealAnimations[animationType]
 ---
 
 ### ❌ Don't: Hardcode timing values
+
 ```typescript
 // Bad: Magic numbers without context
 transition: { duration: 0.437, delay: 0.283 }
 ```
 
 ### ✅ Do: Use clear, intentional values
+
 ```typescript
 // Good: Round numbers or use parameters
 transition: { duration: 0.6, delay: 0.2 }
@@ -818,29 +859,29 @@ transition: { duration: 0.6, delay: 0.2 }
 
 ### Transform Properties
 
-| Property | Effect | Example |
-|----------|--------|---------|
-| `x` | Horizontal movement | `x: 50` (50px right) |
-| `y` | Vertical movement | `y: -30` (30px up) |
-| `scale` | Size | `scale: 0.8` (80% size) |
-| `scaleX` | Horizontal stretch | `scaleX: 1.2` |
-| `scaleY` | Vertical stretch | `scaleY: 0.8` |
-| `rotate` | 2D rotation | `rotate: 45` (45° clockwise) |
-| `rotateX` | 3D X-axis rotation | `rotateX: 90` |
-| `rotateY` | 3D Y-axis rotation | `rotateY: 180` |
-| `opacity` | Transparency | `opacity: 0.5` |
+| Property  | Effect              | Example                      |
+| --------- | ------------------- | ---------------------------- |
+| `x`       | Horizontal movement | `x: 50` (50px right)         |
+| `y`       | Vertical movement   | `y: -30` (30px up)           |
+| `scale`   | Size                | `scale: 0.8` (80% size)      |
+| `scaleX`  | Horizontal stretch  | `scaleX: 1.2`                |
+| `scaleY`  | Vertical stretch    | `scaleY: 0.8`                |
+| `rotate`  | 2D rotation         | `rotate: 45` (45° clockwise) |
+| `rotateX` | 3D X-axis rotation  | `rotateX: 90`                |
+| `rotateY` | 3D Y-axis rotation  | `rotateY: 180`               |
+| `opacity` | Transparency        | `opacity: 0.5`               |
 
 ### Transition Properties
 
-| Property | Effect | Example |
-|----------|--------|---------|
-| `duration` | Animation length (seconds) | `duration: 0.6` |
-| `delay` | Wait before starting (seconds) | `delay: 0.2` |
-| `ease` | Easing function | `ease: [0.25, 0.46, 0.45, 0.94]` |
-| `type` | Animation type | `type: 'spring'` or `'tween'` |
-| `stiffness` | Spring tension | `stiffness: 200` |
-| `damping` | Spring resistance | `damping: 15` |
-| `mass` | Spring mass | `mass: 1.0` |
+| Property    | Effect                         | Example                          |
+| ----------- | ------------------------------ | -------------------------------- |
+| `duration`  | Animation length (seconds)     | `duration: 0.6`                  |
+| `delay`     | Wait before starting (seconds) | `delay: 0.2`                     |
+| `ease`      | Easing function                | `ease: [0.25, 0.46, 0.45, 0.94]` |
+| `type`      | Animation type                 | `type: 'spring'` or `'tween'`    |
+| `stiffness` | Spring tension                 | `stiffness: 200`                 |
+| `damping`   | Spring resistance              | `damping: 15`                    |
+| `mass`      | Spring mass                    | `mass: 1.0`                      |
 
 ---
 

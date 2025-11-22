@@ -8,23 +8,25 @@ interface SidebarProps {
   onClose?: () => void
 }
 
-export function Sidebar({ isOpen, selectedAnimation, onAnimationTypeChange, onClose }: SidebarProps) {
+export function Sidebar({ isOpen, selectedAnimation, onAnimationTypeChange }: SidebarProps) {
   const animationOptions = getAnimationOptions()
 
   return (
     <>
       {/* Sidebar - no backdrop needed for demo controls */}
       <aside className={`sidebar ${isOpen ? 'sidebar--open' : ''}`}>
-        <div className="sidebar__content">
-          <div className="sidebar__header">
-            <h2 className="sidebar__title">Controls</h2>
+        <div className='sidebar__content'>
+          <div className='sidebar__header'>
+            <h2 className='sidebar__title'>Controls</h2>
           </div>
 
-          <div className="sidebar__section">
-            <label htmlFor="animation-select" className="sidebar__label">Animation Type</label>
+          <div className='sidebar__section'>
+            <label htmlFor='animation-select' className='sidebar__label'>
+              Animation Type
+            </label>
             <select
-              id="animation-select"
-              className="sidebar__select"
+              id='animation-select'
+              className='sidebar__select'
               value={selectedAnimation}
               onChange={(e) => onAnimationTypeChange?.(e.target.value as AnimationType)}
             >
@@ -36,7 +38,7 @@ export function Sidebar({ isOpen, selectedAnimation, onAnimationTypeChange, onCl
             </select>
           </div>
 
-          <div className="sidebar__divider" />
+          <div className='sidebar__divider' />
 
           <AnimationParameterForm
             key={selectedAnimation}

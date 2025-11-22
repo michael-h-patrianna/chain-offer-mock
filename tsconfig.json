@@ -11,7 +11,7 @@
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
-  "baseUrl": "./src",
+    "baseUrl": "./src",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,

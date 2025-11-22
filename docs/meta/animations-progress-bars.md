@@ -188,10 +188,10 @@ Framer Motion provides sophisticated animation capabilities specifically designe
 #### Basic Progress Bar with Framer Motion
 
 ```jsx
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 const ScrollProgressBar = () => {
-  const { scrollYProgress } = useScroll()
+  const { scrollYProgress } = useScroll();
 
   return (
     <motion.div
@@ -201,21 +201,21 @@ const ScrollProgressBar = () => {
         transformOrigin: '0%',
       }}
     />
-  )
-}
+  );
+};
 ```
 
 #### Advanced Implementation with Spring Physics
 
 ```jsx
-import { motion, useSpring, useScroll } from 'framer-motion'
+import { motion, useSpring, useScroll } from 'framer-motion';
 
 const AdvancedProgressBar = () => {
-  const { scrollYProgress } = useScroll()
+  const { scrollYProgress } = useScroll();
   const springProgress = useSpring(scrollYProgress, {
     stiffness: 400,
     damping: 40,
-  })
+  });
 
   return (
     <motion.div
@@ -224,8 +224,8 @@ const AdvancedProgressBar = () => {
         scaleX: springProgress,
       }}
     />
-  )
-}
+  );
+};
 ```
 
 #### Key Framer Motion Hooks for Progress Bars
@@ -251,10 +251,10 @@ const AdvancedProgressBar = () => {
 ### Milestone-Based Progress Implementation
 
 ```jsx
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion';
 
 const MilestoneProgress = ({ currentStep, totalSteps, milestones }) => {
-  const progress = (currentStep / totalSteps) * 100
+  const progress = (currentStep / totalSteps) * 100;
 
   return (
     <div className="milestone-container">
@@ -290,8 +290,8 @@ const MilestoneProgress = ({ currentStep, totalSteps, milestones }) => {
         </motion.div>
       ))}
     </div>
-  )
-}
+  );
+};
 ```
 
 ## React Native Implementation with Moti and Reanimated {#react-native-implementation}
@@ -337,28 +337,28 @@ React Native offers several animation libraries, each with distinct advantages:
 ### Basic Reanimated Progress Bar
 
 ```jsx
-import React from 'react'
-import { View } from 'react-native'
+import React from 'react';
+import { View } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
   useDerivedValue,
-} from 'react-native-reanimated'
+} from 'react-native-reanimated';
 
 const ReanimatedProgressBar = ({ progress, width = 300 }) => {
-  const animatedProgress = useSharedValue(0)
+  const animatedProgress = useSharedValue(0);
 
   // Update progress with spring animation
   React.useEffect(() => {
-    animatedProgress.value = withSpring(progress)
-  }, [progress])
+    animatedProgress.value = withSpring(progress);
+  }, [progress]);
 
   const progressStyle = useAnimatedStyle(() => {
     return {
       width: (animatedProgress.value / 100) * width,
-    }
-  }, [width])
+    };
+  }, [width]);
 
   return (
     <View style={styles.container}>
@@ -366,8 +366,8 @@ const ReanimatedProgressBar = ({ progress, width = 300 }) => {
         <Animated.View style={[styles.fill, progressStyle]} />
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = {
   container: {
@@ -386,13 +386,13 @@ const styles = {
     backgroundColor: '#4CAF50',
     borderRadius: 5,
   },
-}
+};
 ```
 
 ### Advanced Reanimated Implementation with Gestures
 
 ```jsx
-import React from 'react'
+import React from 'react';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -400,34 +400,34 @@ import Animated, {
   withSpring,
   interpolate,
   Extrapolate,
-} from 'react-native-reanimated'
-import { PanGestureHandler } from 'react-native-gesture-handler'
+} from 'react-native-reanimated';
+import { PanGestureHandler } from 'react-native-gesture-handler';
 
 const InteractiveProgressBar = ({ onProgressChange }) => {
-  const progress = useSharedValue(0)
+  const progress = useSharedValue(0);
   const gestureHandler = useAnimatedGestureHandler({
     onStart: (_, context) => {
-      context.startProgress = progress.value
+      context.startProgress = progress.value;
     },
     onActive: (event, context) => {
       const newProgress = interpolate(
         event.translationX,
         [0, 300],
         [context.startProgress, 100],
-        Extrapolate.CLAMP
-      )
-      progress.value = newProgress
+        Extrapolate.CLAMP,
+      );
+      progress.value = newProgress;
     },
     onEnd: () => {
-      progress.value = withSpring(progress.value)
+      progress.value = withSpring(progress.value);
     },
-  })
+  });
 
   const progressStyle = useAnimatedStyle(() => {
     return {
       width: interpolate(progress.value, [0, 100], [0, 300], Extrapolate.CLAMP),
-    }
-  })
+    };
+  });
 
   return (
     <PanGestureHandler onGestureEvent={gestureHandler}>
@@ -437,16 +437,16 @@ const InteractiveProgressBar = ({ onProgressChange }) => {
         </View>
       </Animated.View>
     </PanGestureHandler>
-  )
-}
+  );
+};
 ```
 
 ### Moti Implementation: Simplified API
 
 ```jsx
-import React from 'react'
-import { View } from 'react-native'
-import { MotiView } from 'moti'
+import React from 'react';
+import { View } from 'react-native';
+import { MotiView } from 'moti';
 
 const MotiProgressBar = ({ progress, color = '#4CAF50' }) => {
   return (
@@ -465,8 +465,8 @@ const MotiProgressBar = ({ progress, color = '#4CAF50' }) => {
         />
       </View>
     </View>
-  )
-}
+  );
+};
 ```
 
 ### Performance Comparison: Moti vs Reanimated
@@ -520,36 +520,36 @@ Gamified progress bars tap into fundamental human motivational drivers. [VERIFIE
 
 ```jsx
 const MilestoneRewardSystem = ({ progress, milestones }) => {
-  const [rewardAnimation, setRewardAnimation] = useState(null)
+  const [rewardAnimation, setRewardAnimation] = useState(null);
 
   const checkMilestone = (newProgress) => {
-    const reachedMilestone = milestones.find((m) => m.threshold <= newProgress && !m.claimed)
+    const reachedMilestone = milestones.find((m) => m.threshold <= newProgress && !m.claimed);
 
     if (reachedMilestone) {
-      setRewardAnimation(reachedMilestone.reward)
+      setRewardAnimation(reachedMilestone.reward);
       // Trigger celebration animation
-      triggerRewardCelebration(reachedMilestone)
+      triggerRewardCelebration(reachedMilestone);
     }
-  }
+  };
 
   return (
     <View>
       <ProgressBar progress={progress} onProgressChange={checkMilestone} />
       <RewardCelebration animation={rewardAnimation} />
     </View>
-  )
-}
+  );
+};
 ```
 
 #### 2. Progressive Difficulty
 
 ```jsx
 const ProgressiveDifficultyBar = ({ level, experience, maxExperience }) => {
-  const progressToNextLevel = (experience / maxExperience) * 100
+  const progressToNextLevel = (experience / maxExperience) * 100;
 
   // Difficulty increases with level
-  const difficultyMultiplier = Math.pow(1.1, level)
-  const adjustedProgress = progressToNextLevel / difficultyMultiplier
+  const difficultyMultiplier = Math.pow(1.1, level);
+  const adjustedProgress = progressToNextLevel / difficultyMultiplier;
 
   return (
     <View>
@@ -559,15 +559,15 @@ const ProgressiveDifficultyBar = ({ level, experience, maxExperience }) => {
         {experience}/{Math.floor(maxExperience * difficultyMultiplier)} XP
       </Text>
     </View>
-  )
-}
+  );
+};
 ```
 
 #### 3. Streak Maintenance
 
 ```jsx
 const StreakProgressBar = ({ dailyProgress, streak, streakTarget }) => {
-  const streakProgress = (streak / streakTarget) * 100
+  const streakProgress = (streak / streakTarget) * 100;
 
   return (
     <View>
@@ -577,12 +577,12 @@ const StreakProgressBar = ({ dailyProgress, streak, streakTarget }) => {
         progress={streakProgress}
         onStreakBreak={() => {
           // Handle streak break with encouraging message
-          showEncouragementModal()
+          showEncouragementModal();
         }}
       />
     </View>
-  )
-}
+  );
+};
 ```
 
 ### Visual Celebration Techniques
@@ -590,10 +590,10 @@ const StreakProgressBar = ({ dailyProgress, streak, streakTarget }) => {
 #### Particle Effects for Achievements
 
 ```jsx
-import { MotiView } from 'moti'
+import { MotiView } from 'moti';
 
 const ParticleCelebration = ({ visible, onComplete }) => {
-  const particles = Array.from({ length: 20 }, (_, i) => i)
+  const particles = Array.from({ length: 20 }, (_, i) => i);
 
   return (
     <View style={StyleSheet.absoluteFill} pointerEvents="none">
@@ -626,8 +626,8 @@ const ParticleCelebration = ({ visible, onComplete }) => {
         />
       ))}
     </View>
-  )
-}
+  );
+};
 ```
 
 ## Performance Optimization Strategies {#performance-optimization}
@@ -646,69 +646,69 @@ const animatedStyle = useAnimatedStyle(() => {
   return {
     transform: [{ scaleX: progress.value }],
     opacity: progress.value,
-  }
-})
+  };
+});
 
 // ❌ Bad: JavaScript thread animation
-const [animatedValue] = useState(new Animated.Value(0))
+const [animatedValue] = useState(new Animated.Value(0));
 Animated.timing(animatedValue, {
   toValue: progress,
   duration: 300,
   useNativeDriver: false, // Forces JS thread
-}).start()
+}).start();
 ```
 
 #### 2. Shared Values for State Management
 
 ```jsx
-import { useSharedValue, useDerivedValue } from 'react-native-reanimated'
+import { useSharedValue, useDerivedValue } from 'react-native-reanimated';
 
 const OptimizedProgressBar = ({ targetProgress }) => {
-  const progress = useSharedValue(0)
+  const progress = useSharedValue(0);
 
   // Derived values don't cause re-renders
   const progressWidth = useDerivedValue(() => {
-    return (progress.value / 100) * 300
-  })
+    return (progress.value / 100) * 300;
+  });
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       width: progressWidth.value,
-    }
-  })
+    };
+  });
 
   // Update progress without re-renders
   React.useEffect(() => {
-    progress.value = withSpring(targetProgress)
-  }, [targetProgress])
+    progress.value = withSpring(targetProgress);
+  }, [targetProgress]);
 
-  return <Animated.View style={[styles.progressBar, animatedStyle]} />
-}
+  return <Animated.View style={[styles.progressBar, animatedStyle]} />;
+};
 ```
 
 #### 3. Worklets for Complex Calculations
 
 ```jsx
-import { runOnUI } from 'react-native-reanimated'
+import { runOnUI } from 'react-native-reanimated';
 
 const complexCalculation = (input) => {
-  'worklet'
+  'worklet';
   // Complex math operations run on UI thread
-  return Math.pow(input, 2) * Math.sin(input * Math.PI)
-}
+  return Math.pow(input, 2) * Math.sin(input * Math.PI);
+};
 
 const WorkletProgressBar = ({ complexProgress }) => {
-  const progress = useSharedValue(0)
+  const progress = useSharedValue(0);
 
   const animatedStyle = useAnimatedStyle(() => {
-    const calculatedProgress = complexCalculation(progress.value)
+    const calculatedProgress = complexCalculation(progress.value);
     return {
       width: calculatedProgress,
-    }
-  })
+    };
+  });
 
-  return <Animated.View style={[styles.progressBar, animatedStyle]} />
-}
+  return <Animated.View style={[styles.progressBar, animatedStyle]} />;
+};
 ```
 
 ### Web Performance Optimization
@@ -748,18 +748,18 @@ const OptimizedFramerProgress = ({ progress }) => {
       layoutId="progress-bar"
       initial={false}
     />
-  )
-}
+  );
+};
 ```
 
 #### 3. Intersection Observer for Viewport Animations
 
 ```jsx
-import { useInView } from 'framer-motion'
+import { useInView } from 'framer-motion';
 
 const ViewportProgressBar = ({ progress }) => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   return (
     <motion.div
@@ -768,8 +768,8 @@ const ViewportProgressBar = ({ progress }) => {
       animate={{ scaleX: isInView ? progress / 100 : 0 }}
       transition={{ duration: 1, ease: 'easeOut' }}
     />
-  )
-}
+  );
+};
 ```
 
 ### Memory Management
@@ -779,30 +779,30 @@ const ViewportProgressBar = ({ progress }) => {
 ```jsx
 // React Native cleanup
 const CleanProgressBar = () => {
-  const progress = useSharedValue(0)
+  const progress = useSharedValue(0);
 
   useEffect(() => {
     return () => {
       // Cleanup shared values if needed
-      cancelAnimation(progress)
-    }
-  }, [])
+      cancelAnimation(progress);
+    };
+  }, []);
 
-  return <Animated.View />
-}
+  return <Animated.View />;
+};
 
 // Web cleanup
 const WebProgressBar = () => {
-  const controls = useAnimation()
+  const controls = useAnimation();
 
   useEffect(() => {
     return () => {
-      controls.stop()
-    }
-  }, [controls])
+      controls.stop();
+    };
+  }, [controls]);
 
-  return <motion.div animate={controls} />
-}
+  return <motion.div animate={controls} />;
+};
 ```
 
 ## Cross-Platform Considerations {#cross-platform-considerations}
@@ -844,8 +844,8 @@ const CrossPlatformProgress = ({ progress }) => {
       />
       <ProgressBar progress={progress} />
     </View>
-  )
-}
+  );
+};
 ```
 
 #### Animation Property Compatibility
@@ -874,11 +874,11 @@ const UniversalProgressBar = ({ progress }) => {
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [{ scaleX: progress.value / 100 }],
-    }
-  })
+    };
+  });
 
-  return <Animated.View style={[styles.progressBar, animatedStyle]} />
-}
+  return <Animated.View style={[styles.progressBar, animatedStyle]} />;
+};
 ```
 
 #### 2. Color-Based State Indication
@@ -888,18 +888,18 @@ const ColorStateProgress = ({ progress, state }) => {
   const getStateColor = (state) => {
     switch (state) {
       case 'error':
-        return '#F44336'
+        return '#F44336';
       case 'warning':
-        return '#FF9800'
+        return '#FF9800';
       case 'success':
-        return '#4CAF50'
+        return '#4CAF50';
       default:
-        return '#2196F3'
+        return '#2196F3';
     }
-  }
+  };
 
-  return <ProgressBar progress={progress} color={getStateColor(state)} />
-}
+  return <ProgressBar progress={progress} color={getStateColor(state)} />;
+};
 ```
 
 #### 3. Platform-Agnostic Celebration Effects
@@ -924,8 +924,8 @@ const UniversalCelebration = ({ visible }) => {
     >
       <CelebrationIcon />
     </MotiView>
-  )
-}
+  );
+};
 ```
 
 ## Code Examples and Implementation Patterns {#code-examples}
@@ -935,65 +935,65 @@ const UniversalCelebration = ({ visible }) => {
 #### React Native Implementation
 
 ```jsx
-import React, { useState, useEffect } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import { MotiView } from 'moti'
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { MotiView } from 'moti';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
   withSequence,
   withDelay,
-} from 'react-native-reanimated'
+} from 'react-native-reanimated';
 
 const GamifiedProgressSystem = ({ currentProgress, milestones, rewards, onMilestoneReached }) => {
-  const [claimedRewards, setClaimedRewards] = useState(new Set())
-  const progressAnimation = useSharedValue(0)
-  const celebrationScale = useSharedValue(0)
+  const [claimedRewards, setClaimedRewards] = useState(new Set());
+  const progressAnimation = useSharedValue(0);
+  const celebrationScale = useSharedValue(0);
 
   // Animate progress changes
   useEffect(() => {
     progressAnimation.value = withSpring(currentProgress, {
       damping: 15,
       stiffness: 150,
-    })
+    });
 
     // Check for milestone completion
-    checkMilestones(currentProgress)
-  }, [currentProgress])
+    checkMilestones(currentProgress);
+  }, [currentProgress]);
 
   const checkMilestones = (progress) => {
     milestones.forEach((milestone) => {
       if (progress >= milestone.threshold && !claimedRewards.has(milestone.id)) {
-        triggerMilestoneCelebration(milestone)
+        triggerMilestoneCelebration(milestone);
       }
-    })
-  }
+    });
+  };
 
   const triggerMilestoneCelebration = (milestone) => {
     // Celebration animation sequence
     celebrationScale.value = withSequence(
       withSpring(1.5, { damping: 10 }),
-      withDelay(500, withSpring(0))
-    )
+      withDelay(500, withSpring(0)),
+    );
 
     // Mark milestone as claimed
-    setClaimedRewards((prev) => new Set([...prev, milestone.id]))
-    onMilestoneReached?.(milestone)
-  }
+    setClaimedRewards((prev) => new Set([...prev, milestone.id]));
+    onMilestoneReached?.(milestone);
+  };
 
   const progressStyle = useAnimatedStyle(() => {
     return {
       width: `${progressAnimation.value}%`,
-    }
-  })
+    };
+  });
 
   const celebrationStyle = useAnimatedStyle(() => {
     return {
       transform: [{ scale: celebrationScale.value }],
       opacity: celebrationScale.value,
-    }
-  })
+    };
+  });
 
   return (
     <View style={styles.container}>
@@ -1023,11 +1023,11 @@ const GamifiedProgressSystem = ({ currentProgress, milestones, rewards, onMilest
       {/* Reward Display */}
       <RewardDisplay rewards={rewards.filter((r) => claimedRewards.has(r.milestoneId))} />
     </View>
-  )
-}
+  );
+};
 
 const MilestoneMarker = ({ milestone, currentProgress, claimed }) => {
-  const isReached = currentProgress >= milestone.threshold
+  const isReached = currentProgress >= milestone.threshold;
 
   return (
     <MotiView
@@ -1043,8 +1043,8 @@ const MilestoneMarker = ({ milestone, currentProgress, claimed }) => {
     >
       <Text style={styles.milestoneText}>{milestone.label}</Text>
     </MotiView>
-  )
-}
+  );
+};
 
 const RewardDisplay = ({ rewards }) => {
   return (
@@ -1062,8 +1062,8 @@ const RewardDisplay = ({ rewards }) => {
         </MotiView>
       ))}
     </View>
-  )
-}
+  );
+};
 
 const styles = {
   container: {
@@ -1118,32 +1118,32 @@ const styles = {
     backgroundColor: '#F5F5F5',
     borderRadius: 8,
   },
-}
+};
 ```
 
 #### React Web Implementation with Framer Motion
 
 ```jsx
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence, useSpring } from 'framer-motion'
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useSpring } from 'framer-motion';
 
 const WebGamifiedProgress = ({ currentProgress, milestones, onMilestoneReached }) => {
-  const [celebratingMilestone, setCelebratingMilestone] = useState(null)
+  const [celebratingMilestone, setCelebratingMilestone] = useState(null);
   const springProgress = useSpring(currentProgress / 100, {
     stiffness: 300,
     damping: 30,
-  })
+  });
 
   useEffect(() => {
     const newMilestone = milestones.find(
-      (m) => currentProgress >= m.threshold && currentProgress - 5 < m.threshold // Recently reached
-    )
+      (m) => currentProgress >= m.threshold && currentProgress - 5 < m.threshold, // Recently reached
+    );
 
     if (newMilestone) {
-      setCelebratingMilestone(newMilestone)
-      setTimeout(() => setCelebratingMilestone(null), 2000)
+      setCelebratingMilestone(newMilestone);
+      setTimeout(() => setCelebratingMilestone(null), 2000);
     }
-  }, [currentProgress, milestones])
+  }, [currentProgress, milestones]);
 
   return (
     <div className="progress-system">
@@ -1219,11 +1219,11 @@ const WebGamifiedProgress = ({ currentProgress, milestones, onMilestoneReached }
         {Math.round(currentProgress)}% Complete
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
 const ParticleEffect = ({ milestone }) => {
-  const particles = Array.from({ length: 15 }, (_, i) => i)
+  const particles = Array.from({ length: 15 }, (_, i) => i);
 
   return (
     <div className="particle-container">
@@ -1251,8 +1251,8 @@ const ParticleEffect = ({ milestone }) => {
         />
       ))}
     </div>
-  )
-}
+  );
+};
 ```
 
 ### Cross-Platform Progress Component
@@ -1260,34 +1260,34 @@ const ParticleEffect = ({ milestone }) => {
 ```jsx
 // Shared logic hook
 const useProgressAnimation = (targetProgress) => {
-  const progress = useSharedValue(0)
+  const progress = useSharedValue(0);
 
   useEffect(() => {
     progress.value = withSpring(targetProgress, {
       damping: 15,
       stiffness: 150,
-    })
-  }, [targetProgress])
+    });
+  }, [targetProgress]);
 
-  return progress
-}
+  return progress;
+};
 
 // React Native version
 const RNProgressBar = ({ progress, color = '#2196F3' }) => {
-  const animatedProgress = useProgressAnimation(progress)
+  const animatedProgress = useProgressAnimation(progress);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       width: `${animatedProgress.value}%`,
-    }
-  })
+    };
+  });
 
   return (
     <View style={[styles.track, { backgroundColor: `${color}20` }]}>
       <Animated.View style={[styles.fill, { backgroundColor: color }, animatedStyle]} />
     </View>
-  )
-}
+  );
+};
 
 // React Web version (using Framer Motion API similar to Moti)
 const WebProgressBar = ({ progress, color = '#2196F3' }) => {
@@ -1304,11 +1304,11 @@ const WebProgressBar = ({ progress, color = '#2196F3' }) => {
         }}
       />
     </div>
-  )
-}
+  );
+};
 
 // Platform-specific export
-export const ProgressBar = Platform.OS === 'web' ? WebProgressBar : RNProgressBar
+export const ProgressBar = Platform.OS === 'web' ? WebProgressBar : RNProgressBar;
 ```
 
 ## Conclusion and Future Considerations {#conclusion}

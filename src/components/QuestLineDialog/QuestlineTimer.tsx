@@ -7,22 +7,18 @@ export interface QuestlineTimerProps {
   className?: string
 }
 
-export const QuestlineTimer = ({
-  endTime,
-  onCountdownEnd,
-  className = ''
-}: QuestlineTimerProps) => {
+export const QuestlineTimer = ({ endTime, onCountdownEnd, className = '' }: QuestlineTimerProps) => {
   const timeLeft = useCountdownTimer(endTime, onCountdownEnd)
 
   return (
     <div
       className={`questline-timer ${className}`}
-      role="timer"
-      aria-live="polite"
-      aria-atomic="true"
+      role='timer'
+      aria-live='polite'
+      aria-atomic='true'
       aria-label={`Time remaining: ${timeLeft}`}
     >
-      <p aria-hidden="true">{timeLeft}</p>
+      <p aria-hidden='true'>{timeLeft}</p>
     </div>
   )
 }

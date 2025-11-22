@@ -13,11 +13,13 @@ description: Create pattern-focused documentation for LLM agents
 ## What You're Creating
 
 **3 Required Docs** (these are AI agent instruction manuals):
+
 1. `docs/architecture.md` - "When writing code, put files HERE, use THESE patterns, follow THESE naming rules"
 2. `docs/testing.md` - "When writing tests, use THESE templates, run THESE commands"
 3. `docs/development.md` - "To run/build/deploy, execute THESE commands in THIS order"
 
 **Optional Domain Docs** (only if project needs them):
+
 - `docs/api.md` - "To create API endpoints, follow THESE steps with THESE templates"
 - `docs/database.md` - "To work with data, use THESE ORM patterns, THESE conventions"
 - `docs/frontend.md` - "To create components, use THESE patterns, THIS structure"
@@ -27,6 +29,7 @@ description: Create pattern-focused documentation for LLM agents
 ## Your Writing Style
 
 **Each doc you write must**:
+
 - Start with: "# [Topic] Guide for LLM Coding Agents"
 - State purpose: "This teaches you HOW to [do X]"
 - Use imperative language: "Do this", "Don't do that", "Always X", "Never Y"
@@ -35,12 +38,14 @@ description: Create pattern-focused documentation for LLM agents
 - End with "Common Mistakes" section (❌ Don't / ✅ Do)
 
 **Think like you're giving instructions to a junior developer who**:
+
 - Can't see the full codebase
 - Needs explicit patterns to follow
 - Needs templates to copy
 - Needs clear "where do I put this?" answers
 
 **Token efficiency rules**:
+
 - ❌ DON'T list every file, class, function, endpoint, table
 - ✅ DO provide the pattern for creating new ones
 - ❌ DON'T explain why decisions were made historically
@@ -73,6 +78,7 @@ description: Create pattern-focused documentation for LLM agents
 6. **Common mistakes**: What to avoid (agents need guardrails)
 
 **Discovery commands**:
+
 ```bash
 # Tech stack
 cat package.json requirements.txt Cargo.toml go.mod composer.json 2>/dev/null | head -20
@@ -90,6 +96,7 @@ ls -la *test* *spec* jest.config* vitest.config* pytest.ini phpunit.xml 2>/dev/n
 ### What NOT to Document (Changes Too Often)
 
 **Skip these (token waste, maintenance burden)**:
+
 - ❌ Every file in every directory
 - ❌ Every database table/model with full schema
 - ❌ Every API endpoint/route with full docs
@@ -99,6 +106,7 @@ ls -la *test* *spec* jest.config* vitest.config* pytest.ini phpunit.xml 2>/dev/n
 - ❌ Line-by-line code walkthroughs
 
 **Instead document**:
+
 - ✅ Folder PURPOSE patterns
 - ✅ HOW to create new endpoints/components/features
 - ✅ HOW to write tests (not which exist)
@@ -106,7 +114,7 @@ ls -la *test* *spec* jest.config* vitest.config* pytest.ini phpunit.xml 2>/dev/n
 - ✅ Decision trees for common tasks
 - ✅ Code templates for typical operations
 
-```
+````
 
 ---
 
@@ -151,9 +159,10 @@ src/
 
 ❌ **Don't**: [Anti-pattern]
 ✅ **Do**: [Correct pattern]
-```
+````
 
 **Key sections** (include what's relevant):
+
 - Where to Put New Code (decision tree)
 - File Naming Conventions
 - Code Templates (for common file types)
@@ -161,6 +170,7 @@ src/
 - Common Mistakes
 
 **What NOT to include**:
+
 - ❌ List of every existing file
 - ❌ Historical context
 - ❌ Long explanations
@@ -170,7 +180,8 @@ src/
 ### Phase 3: Write docs/testing.md
 
 **Structure**:
-```markdown
+
+````markdown
 # Testing Guide for LLM Coding Agents
 
 **Purpose**: Instructions for writing and running tests.
@@ -189,39 +200,47 @@ src/
 ## Running Tests
 
 \```bash
+
 # All tests
+
 [command]
 
 # Specific file
+
 [command pattern]
 
 # Watch mode
+
 [command]
 \```
 
 ## Common Patterns
 
 ### Testing [X]
+
 \```[language]
 [Template for testing X]
 \```
 
 ### Testing [Y]
+
 \```[language]
 [Template for testing Y]
 \```
 
 ## Common Mistakes
+
 ❌ **Don't**: [Anti-pattern]
 ✅ **Do**: [Correct pattern]
-```
+````
 
 ---
 
 ### Phase 4: Write docs/development.md
 
 **Structure**:
-```markdown
+
+````markdown
 # Development Guide for LLM Coding Agents
 
 **Purpose**: Instructions for setup, running, and building.
@@ -229,30 +248,34 @@ src/
 ## Setup
 
 \```bash
+
 # 1. Install dependencies
+
 [command]
 
 # 2. Configure
+
 [command]
 
 # 3. Start
+
 [command]
 \```
 
 ## Key Commands
 
-| Task | Command |
-|------|---------|
+| Task           | Command     |
+| -------------- | ----------- |
 | Run dev server | `[command]` |
-| Run tests | `[command]` |
-| Build | `[command]` |
-| Lint | `[command]` |
+| Run tests      | `[command]` |
+| Build          | `[command]` |
+| Lint           | `[command]` |
 
 ## Troubleshooting
 
 **Problem**: [Common issue]
 **Solution**: `[command]`
-```
+````
 
 ---
 
@@ -261,18 +284,21 @@ src/
 Only create if project needs them. Use same instruction-manual style.
 
 **For APIs** (`docs/api.md`):
+
 - How to create endpoint (step-by-step with template)
 - Request/response patterns
 - Auth pattern
 - Common mistakes
 
 **For Databases** (`docs/database.md`):
+
 - How to create model/entity (step-by-step with template)
 - Query patterns
 - Migration commands
 - Common mistakes
 
 **For Frontend** (`docs/frontend.md`):
+
 - How to create component (step-by-step with template)
 - State management pattern
 - Styling pattern
@@ -283,6 +309,7 @@ Only create if project needs them. Use same instruction-manual style.
 ### Phase 6: Verify
 
 **Check each doc**:
+
 - [ ] Starts with "# [Topic] Guide for LLM Coding Agents"
 - [ ] Has copy-paste code templates
 - [ ] Has "How to [X]" sections with steps
@@ -292,6 +319,7 @@ Only create if project needs them. Use same instruction-manual style.
 - [ ] Provides patterns, not inventory
 
 **Final check**:
+
 ```bash
 # Verify no placeholders left
 grep -r "\[TODO\]\|\[PLACEHOLDER\]" docs/
@@ -326,12 +354,14 @@ Every doc must end with this format:
 ## Success Criteria
 
 You've succeeded when an LLM agent can:
+
 1. Read `docs/architecture.md` and know where to put new code
 2. Read `docs/testing.md` and write a test from the template
 3. Read `docs/development.md` and run the project
 4. Follow patterns without seeing the full codebase
 
 **Final output**:
+
 ```
 Created AI agent instruction docs:
 - docs/architecture.md (X lines) - File placement, naming, code templates

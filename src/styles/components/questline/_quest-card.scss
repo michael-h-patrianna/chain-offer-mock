@@ -84,27 +84,69 @@
   width: 0%;
 }
 
-.quest-card__progress-fill[data-progress="0"] { width: 0%; }
-.quest-card__progress-fill[data-progress="5"] { width: 5%; }
-.quest-card__progress-fill[data-progress="10"] { width: 10%; }
-.quest-card__progress-fill[data-progress="15"] { width: 15%; }
-.quest-card__progress-fill[data-progress="20"] { width: 20%; }
-.quest-card__progress-fill[data-progress="25"] { width: 25%; }
-.quest-card__progress-fill[data-progress="30"] { width: 30%; }
-.quest-card__progress-fill[data-progress="35"] { width: 35%; }
-.quest-card__progress-fill[data-progress="40"] { width: 40%; }
-.quest-card__progress-fill[data-progress="45"] { width: 45%; }
-.quest-card__progress-fill[data-progress="50"] { width: 50%; }
-.quest-card__progress-fill[data-progress="55"] { width: 55%; }
-.quest-card__progress-fill[data-progress="60"] { width: 60%; }
-.quest-card__progress-fill[data-progress="65"] { width: 65%; }
-.quest-card__progress-fill[data-progress="70"] { width: 70%; }
-.quest-card__progress-fill[data-progress="75"] { width: 75%; }
-.quest-card__progress-fill[data-progress="80"] { width: 80%; }
-.quest-card__progress-fill[data-progress="85"] { width: 85%; }
-.quest-card__progress-fill[data-progress="90"] { width: 90%; }
-.quest-card__progress-fill[data-progress="95"] { width: 95%; }
-.quest-card__progress-fill[data-progress="100"] { width: 100%; }
+.quest-card__progress-fill[data-progress='0'] {
+  width: 0%;
+}
+.quest-card__progress-fill[data-progress='5'] {
+  width: 5%;
+}
+.quest-card__progress-fill[data-progress='10'] {
+  width: 10%;
+}
+.quest-card__progress-fill[data-progress='15'] {
+  width: 15%;
+}
+.quest-card__progress-fill[data-progress='20'] {
+  width: 20%;
+}
+.quest-card__progress-fill[data-progress='25'] {
+  width: 25%;
+}
+.quest-card__progress-fill[data-progress='30'] {
+  width: 30%;
+}
+.quest-card__progress-fill[data-progress='35'] {
+  width: 35%;
+}
+.quest-card__progress-fill[data-progress='40'] {
+  width: 40%;
+}
+.quest-card__progress-fill[data-progress='45'] {
+  width: 45%;
+}
+.quest-card__progress-fill[data-progress='50'] {
+  width: 50%;
+}
+.quest-card__progress-fill[data-progress='55'] {
+  width: 55%;
+}
+.quest-card__progress-fill[data-progress='60'] {
+  width: 60%;
+}
+.quest-card__progress-fill[data-progress='65'] {
+  width: 65%;
+}
+.quest-card__progress-fill[data-progress='70'] {
+  width: 70%;
+}
+.quest-card__progress-fill[data-progress='75'] {
+  width: 75%;
+}
+.quest-card__progress-fill[data-progress='80'] {
+  width: 80%;
+}
+.quest-card__progress-fill[data-progress='85'] {
+  width: 85%;
+}
+.quest-card__progress-fill[data-progress='90'] {
+  width: 90%;
+}
+.quest-card__progress-fill[data-progress='95'] {
+  width: 95%;
+}
+.quest-card__progress-fill[data-progress='100'] {
+  width: 100%;
+}
 
 .quest-card__progress-text {
   position: absolute;
@@ -137,7 +179,9 @@
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
-  transition: opacity 0.2s, background-color 0.2s;
+  transition:
+    opacity 0.2s,
+    background-color 0.2s;
   background: transparent;
   border: none; /* Remove button default border */
   width: 100%; /* Make button full width */

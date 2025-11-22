@@ -28,27 +28,27 @@
   border-radius: 2px;
 }
 
-.milestone-progress__fill[data-progress="0"] {
+.milestone-progress__fill[data-progress='0'] {
   width: 0%;
 }
 
-.milestone-progress__fill[data-progress="20"] {
+.milestone-progress__fill[data-progress='20'] {
   width: 20%;
 }
 
-.milestone-progress__fill[data-progress="40"] {
+.milestone-progress__fill[data-progress='40'] {
   width: 40%;
 }
 
-.milestone-progress__fill[data-progress="60"] {
+.milestone-progress__fill[data-progress='60'] {
   width: 60%;
 }
 
-.milestone-progress__fill[data-progress="80"] {
+.milestone-progress__fill[data-progress='80'] {
   width: 80%;
 }
 
-.milestone-progress__fill[data-progress="100"] {
+.milestone-progress__fill[data-progress='100'] {
   width: 100%;
 }
 

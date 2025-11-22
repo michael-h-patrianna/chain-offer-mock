@@ -1,1 +1,1 @@
-export * from './chainOffersConfig';
+export * from './chainOffersConfig'

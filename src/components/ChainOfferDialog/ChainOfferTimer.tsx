@@ -6,21 +6,18 @@ export interface ChainOfferTimerProps {
   onCountdownEnd?: () => void
 }
 
-export const ChainOfferTimer = ({
-  endTime,
-  onCountdownEnd
-}: ChainOfferTimerProps) => {
+export const ChainOfferTimer = ({ endTime, onCountdownEnd }: ChainOfferTimerProps) => {
   const timeLeft = useCountdownTimer(endTime, onCountdownEnd)
 
   return (
     <div
-      className="chain-offer-timer__inner"
-      role="timer"
-      aria-live="polite"
-      aria-atomic="true"
+      className='chain-offer-timer__inner'
+      role='timer'
+      aria-live='polite'
+      aria-atomic='true'
       aria-label={`Time remaining: ${timeLeft}`}
     >
-      <span aria-hidden="true">{timeLeft}</span>
+      <span aria-hidden='true'>{timeLeft}</span>
     </div>
   )
 }

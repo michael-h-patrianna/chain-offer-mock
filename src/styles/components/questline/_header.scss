@@ -36,30 +36,72 @@
   transition: width 0.3s ease;
 }
 
-.quest-header__progress-fill--0 { width: 0%; }
-.quest-header__progress-fill--5 { width: 5%; }
-.quest-header__progress-fill--10 { width: 10%; }
-.quest-header__progress-fill--15 { width: 15%; }
-.quest-header__progress-fill--20 { width: 20%; }
-.quest-header__progress-fill--25 { width: 25%; }
-.quest-header__progress-fill--30 { width: 30%; }
-.quest-header__progress-fill--35 { width: 35%; }
-.quest-header__progress-fill--40 { width: 40%; }
-.quest-header__progress-fill--45 { width: 45%; }
-.quest-header__progress-fill--50 { width: 50%; }
-.quest-header__progress-fill--55 { width: 55%; }
-.quest-header__progress-fill--60 { width: 60%; }
-.quest-header__progress-fill--65 { width: 65%; }
-.quest-header__progress-fill--70 { width: 70%; }
-.quest-header__progress-fill--75 { width: 75%; }
-.quest-header__progress-fill--80 { width: 80%; }
-.quest-header__progress-fill--85 { width: 85%; }
-.quest-header__progress-fill--90 { width: 90%; }
-.quest-header__progress-fill--95 { width: 95%; }
-.quest-header__progress-fill--100 { width: 100%; }
+.quest-header__progress-fill--0 {
+  width: 0%;
+}
+.quest-header__progress-fill--5 {
+  width: 5%;
+}
+.quest-header__progress-fill--10 {
+  width: 10%;
+}
+.quest-header__progress-fill--15 {
+  width: 15%;
+}
+.quest-header__progress-fill--20 {
+  width: 20%;
+}
+.quest-header__progress-fill--25 {
+  width: 25%;
+}
+.quest-header__progress-fill--30 {
+  width: 30%;
+}
+.quest-header__progress-fill--35 {
+  width: 35%;
+}
+.quest-header__progress-fill--40 {
+  width: 40%;
+}
+.quest-header__progress-fill--45 {
+  width: 45%;
+}
+.quest-header__progress-fill--50 {
+  width: 50%;
+}
+.quest-header__progress-fill--55 {
+  width: 55%;
+}
+.quest-header__progress-fill--60 {
+  width: 60%;
+}
+.quest-header__progress-fill--65 {
+  width: 65%;
+}
+.quest-header__progress-fill--70 {
+  width: 70%;
+}
+.quest-header__progress-fill--75 {
+  width: 75%;
+}
+.quest-header__progress-fill--80 {
+  width: 80%;
+}
+.quest-header__progress-fill--85 {
+  width: 85%;
+}
+.quest-header__progress-fill--90 {
+  width: 90%;
+}
+.quest-header__progress-fill--95 {
+  width: 95%;
+}
+.quest-header__progress-fill--100 {
+  width: 100%;
+}
 
 .quest-header__progress-text {
   font-size: 12px;
-  color: #CCC;
+  color: #ccc;
   font-weight: 500;
 }

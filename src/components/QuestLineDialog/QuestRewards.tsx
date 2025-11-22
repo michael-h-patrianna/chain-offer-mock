@@ -9,33 +9,22 @@ export interface QuestRewardsProps {
 
 export const QuestRewards = ({ rewards, large = false }: QuestRewardsProps) => {
   return (
-    <div className="quest-rewards">
-      <div className="quest-rewards__label">You get:</div>
-      <div className="quest-rewards__items">
+    <div className='quest-rewards'>
+      <div className='quest-rewards__label'>You get:</div>
+      <div className='quest-rewards__items'>
         {rewards.map((reward, index) => (
-          <div
-            key={index}
-            className={`quest-reward ${large ? 'quest-reward--large' : ''}`}
-          >
-            <div className="quest-reward__icon-wrapper">
+          <div key={index} className={`quest-reward ${large ? 'quest-reward--large' : ''}`}>
+            <div className='quest-reward__icon-wrapper'>
               {reward.iconUrl && (
-                <img
-                  src={reward.iconUrl}
-                  alt={getRewardText(reward)}
-                  className="quest-reward__icon"
-                />
+                <img src={reward.iconUrl} alt={getRewardText(reward)} className='quest-reward__icon' />
               )}
               {reward.freeAdornmentUrl && (
-                <img
-                  src={reward.freeAdornmentUrl}
-                  alt="Free"
-                  className="quest-reward__free-adornment"
-                />
+                <img src={reward.freeAdornmentUrl} alt='Free' className='quest-reward__free-adornment' />
               )}
             </div>
-            <div className="quest-reward__text">
-              <span className="quest-reward__amount">{formatRewardAmount(reward)}</span>
-              <span className="quest-reward__type">{getRewardText(reward)}</span>
+            <div className='quest-reward__text'>
+              <span className='quest-reward__amount'>{formatRewardAmount(reward)}</span>
+              <span className='quest-reward__type'>{getRewardText(reward)}</span>
             </div>
           </div>
         ))}

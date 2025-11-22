@@ -1,18 +1,18 @@
-import { transformChainOfferData } from '../utils/transformChainOfferData';
-import chainOffersRawDataUnknown from './chainOffersData.json';
+import { transformChainOfferData } from '../utils/transformChainOfferData'
+import chainOffersRawDataUnknown from './chainOffersData.json'
 
 interface RawChainOfferItem {
-  status?: string;
-  [key: string]: unknown;
+  status?: string
+  [key: string]: unknown
 }
 
 interface ChainOffersDataFile {
-  items?: RawChainOfferItem[];
+  items?: RawChainOfferItem[]
 }
 
 export function getDemoChainOfferDialogProps() {
   const expiresAt = new Date(Date.now() + 6 * 24 * 3600 * 1000 + 5 * 3600 * 1000).toISOString()
-  const chainOffersRawData = chainOffersRawDataUnknown as ChainOffersDataFile;
+  const chainOffersRawData = chainOffersRawDataUnknown as ChainOffersDataFile
   const processedItems = (chainOffersRawData.items ?? []).map((item) => ({
     ...item,
     expiresAt,

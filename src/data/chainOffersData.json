@@ -7,7 +7,7 @@
       "displayTagline": "Warm Up Boost",
       "status": "ASSIGNED",
       "availableFrom": "2024-12-01T00:00:00Z",
-  "expiresAt": "2099-08-28T15:06:34.727726Z",
+      "expiresAt": "2099-08-28T15:06:34.727726Z",
       "templateCode": "b1a1216e-670c-4564-a521-16d37cae5413",
       "timeLimited": true,
       "termUrl": "https://www.playfame.com/promotions/terms-conditions-warm-up-star-boost-3",
@@ -21,15 +21,19 @@
         "name": "List",
         "featureKey": "list",
         "params": {
-          "mapListHeader": { "stringValue": "https://storage.googleapis.com/www.playfame.com/images/19082025_PF_STARSHOP_QUEST_HEADER_V4.png" },
-          "mapListItemBackgrounds": { "listValue": [
-            "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_PO_FG.png",
-            "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_FG.png",
-            "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_FG.png",
-            "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_PO_FG.png",
-            "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_FG.png",
-            "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_FG.png"
-          ] }
+          "mapListHeader": {
+            "stringValue": "https://storage.googleapis.com/www.playfame.com/images/19082025_PF_STARSHOP_QUEST_HEADER_V4.png"
+          },
+          "mapListItemBackgrounds": {
+            "listValue": [
+              "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_PO_FG.png",
+              "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_FG.png",
+              "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_FG.png",
+              "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_PO_FG.png",
+              "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_FG.png",
+              "https://storage.googleapis.com/www.playfame.com/images/PF_Balloon_Boost_FG.png"
+            ]
+          }
         }
       },
       "placementTypes": [
@@ -37,12 +41,194 @@
         { "code": "ece4f260-0eaa-4371-85b3-6d1d15cb5821", "featureKey": "inbox_notification" }
       ],
       "mapItems": [
-        { "code": "2f7cd708-ae39-4de3-b34c-5ffcb82b9eb3", "name": "200,000 Gold Coins for $99.99 + FREE 100 Sweepstakes Coins", "position": 1, "status": "UNLOCKED", "type": { "code": "PURCHASE", "name": "PURCHASE" }, "content": [ { "code": "19eec314-b779-48d3-b785-beee711096ee", "offerType": "PURCHASE_OFFER", "gcAmount": 0, "scAmount": 0, "freeSpinsAmount": 0, "freeSpinsBetLevel": 0, "freeSpinsGameId": 0, "fallback1Bet": 0, "fallback1Game": 0, "fallback2Bet": 0, "fallback2Game": 0, "randomRewardIds": [], "purchaseOffer": { "code": "wu_cho_g3_n1_200kgc_100sc_99.99", "sc": 100.0, "gc": 200000.0, "tags": ["WARM UP BOOST"], "price": 99.99, "externalRewardCode": "" } } ] },
-        { "code": "ed504b1a-8984-48d7-b6e6-a41ff09c2304", "name": "1,000 Gold Coins + 50 Stars", "position": 2, "status": "LOCKED", "type": { "code": "FREE", "name": "FREE" }, "content": [ { "code": "6d7b80fc-00cf-4c4d-85b0-9976404cf57b", "offerType": "GC", "rewardCode": "ca73baad-7aed-459f-a23c-aa55e825d651", "gcAmount": 1000, "scAmount": 0, "freeSpinsAmount": 0, "freeSpinsBetLevel": 0, "freeSpinsGameId": 0, "fallback1Bet": 0, "fallback1Game": 0, "fallback2Bet": 0, "fallback2Game": 0, "randomRewardIds": [] }, { "code": "f9d125e3-91b3-4436-b634-c9b41aff0069", "offerType": "GC", "rewardCode": "d3d47037-c2fe-4d36-bdf7-a273efff96a3", "gcAmount": 0, "scAmount": 0, "freeSpinsAmount": 0, "freeSpinsBetLevel": 0, "freeSpinsGameId": 0, "fallback1Bet": 0, "fallback1Game": 0, "fallback2Bet": 0, "fallback2Game": 0, "randomRewardIds": [] } ] },
-        { "code": "e2f5009f-c417-4954-9551-5fea6182e33f", "name": "Free 20 Sweepstakes Coins", "position": 3, "status": "LOCKED", "type": { "code": "FREE", "name": "FREE" }, "content": [ { "code": "dc9a8e60-18ae-4f89-a395-57cfa955819b", "offerType": "SC", "rewardCode": "16ae5b4f-23dd-4ab3-804b-144c17e8fd77", "gcAmount": 0, "scAmount": 20, "freeSpinsAmount": 0, "freeSpinsBetLevel": 0, "freeSpinsGameId": 0, "fallback1Bet": 0, "fallback1Game": 0, "fallback2Bet": 0, "fallback2Game": 0, "randomRewardIds": [] } ] },
-        { "code": "e8e4e452-589b-4f5f-ab35-476709da6c16", "name": "240,000 Gold Coins for $119.99 + FREE 120 Sweepstakes Coins", "position": 4, "status": "LOCKED", "type": { "code": "PURCHASE", "name": "PURCHASE" }, "content": [ { "code": "59674ad0-d391-42ff-97b9-f6becd83a939", "offerType": "PURCHASE_OFFER", "gcAmount": 0, "scAmount": 0, "freeSpinsAmount": 0, "freeSpinsBetLevel": 0, "freeSpinsGameId": 0, "fallback1Bet": 0, "fallback1Game": 0, "fallback2Bet": 0, "fallback2Game": 0, "randomRewardIds": [], "purchaseOffer": { "code": "wu_cho_g3_n2_240kgc_120sc_119.99", "sc": 120.0, "gc": 240000.0, "tags": ["WARM UP BOOST"], "price": 119.99, "externalRewardCode": "" } } ] },
-        { "code": "3dd62050-7e0a-47e9-b433-b46da1ddd7f3", "name": "1,000 Gold Coins + 60 Stars", "position": 5, "status": "LOCKED", "type": { "code": "FREE", "name": "FREE" }, "content": [ { "code": "8047a771-1ec2-45f0-bbc5-5aa8bcff06cb", "offerType": "GC", "rewardCode": "f641afff-691b-4c93-985e-0a807b554b3c", "gcAmount": 1000, "scAmount": 0, "freeSpinsAmount": 0, "freeSpinsBetLevel": 0, "freeSpinsGameId": 0, "fallback1Bet": 0, "fallback1Game": 0, "fallback2Bet": 0, "fallback2Game": 0, "randomRewardIds": [] }, { "code": "244d2241-6e97-48d5-b97f-abd0faad644f", "offerType": "GC", "rewardCode": "af7a1115-681b-4e3c-a4cc-b961bce85964", "gcAmount": 0, "scAmount": 0, "freeSpinsAmount": 0, "freeSpinsBetLevel": 0, "freeSpinsGameId": 0, "fallback1Bet": 0, "fallback1Game": 0, "fallback2Bet": 0, "fallback2Game": 0, "randomRewardIds": [] } ] },
-        { "code": "01f6cda4-a125-4228-8513-5134aa5a6ec6", "name": "Free 24 Sweepstakes Coins", "position": 6, "status": "LOCKED", "type": { "code": "FREE", "name": "FREE" }, "content": [ { "code": "1b88ce77-2458-4c30-9854-f53497d7fba3", "offerType": "SC", "rewardCode": "17a2328d-bd7d-4ff2-8089-524af73460d8", "gcAmount": 0, "scAmount": 24, "freeSpinsAmount": 0, "freeSpinsBetLevel": 0, "freeSpinsGameId": 0, "fallback1Bet": 0, "fallback1Game": 0, "fallback2Bet": 0, "fallback2Game": 0, "randomRewardIds": [] } ] }
+        {
+          "code": "2f7cd708-ae39-4de3-b34c-5ffcb82b9eb3",
+          "name": "200,000 Gold Coins for $99.99 + FREE 100 Sweepstakes Coins",
+          "position": 1,
+          "status": "UNLOCKED",
+          "type": { "code": "PURCHASE", "name": "PURCHASE" },
+          "content": [
+            {
+              "code": "19eec314-b779-48d3-b785-beee711096ee",
+              "offerType": "PURCHASE_OFFER",
+              "gcAmount": 0,
+              "scAmount": 0,
+              "freeSpinsAmount": 0,
+              "freeSpinsBetLevel": 0,
+              "freeSpinsGameId": 0,
+              "fallback1Bet": 0,
+              "fallback1Game": 0,
+              "fallback2Bet": 0,
+              "fallback2Game": 0,
+              "randomRewardIds": [],
+              "purchaseOffer": {
+                "code": "wu_cho_g3_n1_200kgc_100sc_99.99",
+                "sc": 100.0,
+                "gc": 200000.0,
+                "tags": ["WARM UP BOOST"],
+                "price": 99.99,
+                "externalRewardCode": ""
+              }
+            }
+          ]
+        },
+        {
+          "code": "ed504b1a-8984-48d7-b6e6-a41ff09c2304",
+          "name": "1,000 Gold Coins + 50 Stars",
+          "position": 2,
+          "status": "LOCKED",
+          "type": { "code": "FREE", "name": "FREE" },
+          "content": [
+            {
+              "code": "6d7b80fc-00cf-4c4d-85b0-9976404cf57b",
+              "offerType": "GC",
+              "rewardCode": "ca73baad-7aed-459f-a23c-aa55e825d651",
+              "gcAmount": 1000,
+              "scAmount": 0,
+              "freeSpinsAmount": 0,
+              "freeSpinsBetLevel": 0,
+              "freeSpinsGameId": 0,
+              "fallback1Bet": 0,
+              "fallback1Game": 0,
+              "fallback2Bet": 0,
+              "fallback2Game": 0,
+              "randomRewardIds": []
+            },
+            {
+              "code": "f9d125e3-91b3-4436-b634-c9b41aff0069",
+              "offerType": "GC",
+              "rewardCode": "d3d47037-c2fe-4d36-bdf7-a273efff96a3",
+              "gcAmount": 0,
+              "scAmount": 0,
+              "freeSpinsAmount": 0,
+              "freeSpinsBetLevel": 0,
+              "freeSpinsGameId": 0,
+              "fallback1Bet": 0,
+              "fallback1Game": 0,
+              "fallback2Bet": 0,
+              "fallback2Game": 0,
+              "randomRewardIds": []
+            }
+          ]
+        },
+        {
+          "code": "e2f5009f-c417-4954-9551-5fea6182e33f",
+          "name": "Free 20 Sweepstakes Coins",
+          "position": 3,
+          "status": "LOCKED",
+          "type": { "code": "FREE", "name": "FREE" },
+          "content": [
+            {
+              "code": "dc9a8e60-18ae-4f89-a395-57cfa955819b",
+              "offerType": "SC",
+              "rewardCode": "16ae5b4f-23dd-4ab3-804b-144c17e8fd77",
+              "gcAmount": 0,
+              "scAmount": 20,
+              "freeSpinsAmount": 0,
+              "freeSpinsBetLevel": 0,
+              "freeSpinsGameId": 0,
+              "fallback1Bet": 0,
+              "fallback1Game": 0,
+              "fallback2Bet": 0,
+              "fallback2Game": 0,
+              "randomRewardIds": []
+            }
+          ]
+        },
+        {
+          "code": "e8e4e452-589b-4f5f-ab35-476709da6c16",
+          "name": "240,000 Gold Coins for $119.99 + FREE 120 Sweepstakes Coins",
+          "position": 4,
+          "status": "LOCKED",
+          "type": { "code": "PURCHASE", "name": "PURCHASE" },
+          "content": [
+            {
+              "code": "59674ad0-d391-42ff-97b9-f6becd83a939",
+              "offerType": "PURCHASE_OFFER",
+              "gcAmount": 0,
+              "scAmount": 0,
+              "freeSpinsAmount": 0,
+              "freeSpinsBetLevel": 0,
+              "freeSpinsGameId": 0,
+              "fallback1Bet": 0,
+              "fallback1Game": 0,
+              "fallback2Bet": 0,
+              "fallback2Game": 0,
+              "randomRewardIds": [],
+              "purchaseOffer": {
+                "code": "wu_cho_g3_n2_240kgc_120sc_119.99",
+                "sc": 120.0,
+                "gc": 240000.0,
+                "tags": ["WARM UP BOOST"],
+                "price": 119.99,
+                "externalRewardCode": ""
+              }
+            }
+          ]
+        },
+        {
+          "code": "3dd62050-7e0a-47e9-b433-b46da1ddd7f3",
+          "name": "1,000 Gold Coins + 60 Stars",
+          "position": 5,
+          "status": "LOCKED",
+          "type": { "code": "FREE", "name": "FREE" },
+          "content": [
+            {
+              "code": "8047a771-1ec2-45f0-bbc5-5aa8bcff06cb",
+              "offerType": "GC",
+              "rewardCode": "f641afff-691b-4c93-985e-0a807b554b3c",
+              "gcAmount": 1000,
+              "scAmount": 0,
+              "freeSpinsAmount": 0,
+              "freeSpinsBetLevel": 0,
+              "freeSpinsGameId": 0,
+              "fallback1Bet": 0,
+              "fallback1Game": 0,
+              "fallback2Bet": 0,
+              "fallback2Game": 0,
+              "randomRewardIds": []
+            },
+            {
+              "code": "244d2241-6e97-48d5-b97f-abd0faad644f",
+              "offerType": "GC",
+              "rewardCode": "af7a1115-681b-4e3c-a4cc-b961bce85964",
+              "gcAmount": 0,
+              "scAmount": 0,
+              "freeSpinsAmount": 0,
+              "freeSpinsBetLevel": 0,
+              "freeSpinsGameId": 0,
+              "fallback1Bet": 0,
+              "fallback1Game": 0,
+              "fallback2Bet": 0,
+              "fallback2Game": 0,
+              "randomRewardIds": []
+            }
+          ]
+        },
+        {
+          "code": "01f6cda4-a125-4228-8513-5134aa5a6ec6",
+          "name": "Free 24 Sweepstakes Coins",
+          "position": 6,
+          "status": "LOCKED",
+          "type": { "code": "FREE", "name": "FREE" },
+          "content": [
+            {
+              "code": "1b88ce77-2458-4c30-9854-f53497d7fba3",
+              "offerType": "SC",
+              "rewardCode": "17a2328d-bd7d-4ff2-8089-524af73460d8",
+              "gcAmount": 0,
+              "scAmount": 24,
+              "freeSpinsAmount": 0,
+              "freeSpinsBetLevel": 0,
+              "freeSpinsGameId": 0,
+              "fallback1Bet": 0,
+              "fallback1Game": 0,
+              "fallback2Bet": 0,
+              "fallback2Game": 0,
+              "randomRewardIds": []
+            }
+          ]
+        }
       ]
     }
   ]

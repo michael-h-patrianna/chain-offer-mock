@@ -12,7 +12,7 @@ export const none: RevealAnimation = {
     hidden: { opacity: 1 },
     visible: {
       opacity: 1,
-      transition: { duration: 0 }
+      transition: { duration: 0 },
     },
   },
   headerImageVariants: {

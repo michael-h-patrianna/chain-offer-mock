@@ -17,6 +17,7 @@ description: Create a new Claude Code CLI command using prompt engineering best 
 ### Commands vs Skills
 
 **Commands (Slash Commands):**
+
 - **User-invoked** - User types `/command-name` to trigger
 - **Reusable prompt templates** - Encapsulate workflows
 - **Stored in** `.claude/commands/[name].md`
@@ -24,18 +25,21 @@ description: Create a new Claude Code CLI command using prompt engineering best 
 - **Purpose:** Help users structure requests with clear workflow and expectations
 
 **Skills (Agent Skills):**
+
 - **Model-invoked** - I decide when to use based on context
 - **Specialized capabilities** - Domain-specific expertise
 - **Stored in** `.claude/skills/[name]/`
 - **Purpose:** Specialized agents for specific tasks
 
 **Use commands when:**
+
 - User needs to invoke a specific workflow repeatedly
 - Workflow has clear phases/steps
 - User wants to structure their request
 - Multiple people on team need same workflow
 
 **Use skills when:**
+
 - Automatic invocation based on context
 - Specialized domain knowledge needed
 - Background processing required
@@ -72,7 +76,7 @@ description: Short one-line description (shows in /help)
 
 **MANDATORY GATE: Understand the request before designing the command.**
 
-1. Use mcp__mcp_docker__sequentialthinking to analyze:
+1. Use mcp**mcp_docker**sequentialthinking to analyze:
    - User's request: What workflow are they trying to encapsulate?
    - Target audience: Who will use this command?
    - Frequency: How often will it be used?
@@ -96,6 +100,7 @@ description: Short one-line description (shows in /help)
 ### Step 1: Read All Existing Commands
 
 **Read these files to understand patterns:**
+
 ```
 .claude/commands/code.md — Coding workflow (10 phases)
 .claude/commands/investigate.md — Bug investigation
@@ -111,6 +116,7 @@ description: Short one-line description (shows in /help)
 **All commands share these patterns:**
 
 1. **YAML Frontmatter**
+
    ```yaml
    ---
    description: Short description
@@ -122,11 +128,13 @@ description: Short one-line description (shows in /help)
    - Use `TodoWrite` to create tasks for all phases
 
 3. **MANDATORY GATE checkpoints**
+
    ```markdown
    **MANDATORY GATE: Do X before proceeding.**
    ```
 
 4. **Phase structure with clear deliverables**
+
    ```markdown
    ## Phase N — Title
 
@@ -150,6 +158,7 @@ description: Short one-line description (shows in /help)
 7. **Forbidden patterns:**
    ```markdown
    **FORBIDDEN:**
+
    - ❌ [Anti-pattern]
    - ❌ [Anti-pattern]
    ```
@@ -225,10 +234,12 @@ description: Short one-line description (shows in /help)
 **Map out the workflow phases:**
 
 **Every command should have:**
+
 - Phase 0: Initialize (sequential thinking + TodoWrite)
 - Phase N: Final Verification (evidence-based completion)
 
 **Between Phase 0 and final, identify:**
+
 - Discovery/Investigation phases
 - Planning phases
 - Execution phases
@@ -238,6 +249,7 @@ description: Short one-line description (shows in /help)
 **Example phase structure:**
 
 **Simple command (3-5 steps):**
+
 ```
 Phase 0: Initialize
 Phase 1: [Main action]
@@ -245,6 +257,7 @@ Phase 2: Verification
 ```
 
 **Complex command (like /code):**
+
 ```
 Phase 0: Initialize
 Phase 1: Understand Requirements
@@ -279,6 +292,7 @@ Phase 8: Final Verification
    IF NOT → [alternative action]
 
 **RED FLAGS (indicate [problem]):**
+
 - [Pattern 1]
 - [Pattern 2]
 ```
@@ -288,10 +302,12 @@ Phase 8: Final Verification
 **For this command, which tools are needed?**
 
 **Always required:**
+
 - `mcp__mcp_docker__sequentialthinking` in Phase 0
 - `TodoWrite` in Phase 0
 
 **Common tools:**
+
 - `Read` — Reading files (architecture docs, code)
 - `Grep` / `Glob` — Searching codebase
 - `Bash` — Running commands (tests, build, migrations)
@@ -299,6 +315,7 @@ Phase 8: Final Verification
 - `Task` — Delegating to specialized agents
 
 **When to use Task tool with agents:**
+
 - Complex debugging → `debugger` agent
 - Code review needed → `code-reviewer` agent
 - Architecture changes → `architecture-guardian` agent
@@ -310,6 +327,7 @@ Phase 8: Final Verification
 **For each phase, what is produced?**
 
 Examples:
+
 - "Task Summary + Acceptance Criteria"
 - "Reuse Proof listing existing code to leverage"
 - "Impact Matrix with affected files"
@@ -321,14 +339,17 @@ Examples:
 **How do we know the command succeeded?**
 
 **Final verification checklist should include:**
+
 - Explicit commands run with passing output
 - Artifacts created in correct locations
 - No forbidden patterns (per CIB-003 if docs involved)
 - Evidence-based completion proof
 
 **Example:**
+
 ```markdown
 **Completion Checklist (ALL must be TRUE):**
+
 - [ ] Tests pass (0 failures)
 - [ ] Screenshots saved to screenshots/
 - [ ] Documentation updated per CIB-003
@@ -358,6 +379,7 @@ description: [One-line description, max 80 chars]
 **Purpose:** [1-2 sentences - what this accomplishes]
 
 **When to use:** [Scenarios for using this command]
+
 - [Scenario 1]
 - [Scenario 2]
 
@@ -367,12 +389,13 @@ description: [One-line description, max 80 chars]
 ### Step 3: Write Phase 0 (Initialize)
 
 **Template:**
+
 ```markdown
 ## Phase 0: Initialize
 
 **MANDATORY GATE: Complete [analysis/understanding] before proceeding.**
 
-1. Use mcp__mcp_docker__sequentialthinking to analyze:
+1. Use mcp**mcp_docker**sequentialthinking to analyze:
    - [Aspect 1 to analyze]
    - [Aspect 2 to analyze]
    - [Aspect 3 to analyze]
@@ -399,6 +422,7 @@ description: [One-line description, max 80 chars]
 [Detailed instructions]
 
 **If using tools:**
+
 - Use [Tool] to [action]
 - Check [condition]
 - Verify [outcome]
@@ -410,6 +434,7 @@ description: [One-line description, max 80 chars]
 **Deliverable:** [What this phase produces]
 
 **RED FLAGS:** [If applicable - patterns to avoid]
+
 - [Pattern 1]
 - [Pattern 2]
 ```
@@ -424,8 +449,8 @@ description: [One-line description, max 80 chars]
 **MANDATORY GATE: Follow CIB-003 documentation discipline.**
 
 **BEFORE creating or editing ANY .md file:**
-
 ```
+
 STOP - Do not touch any .md file yet
 
 1. Check: "Is this file in the canonical documentation registry?"
@@ -440,6 +465,7 @@ STOP - Do not touch any .md file yet
 
 2. Check: "Does this involve dated/summary/status/analysis content?"
    IF YES → STOP → Update canonical doc instead
+
 ```
 
 **Documentation Tasks:**
@@ -457,7 +483,8 @@ STOP - Do not touch any .md file yet
 ### Step 6: Write Final Verification Phase
 
 **Template:**
-```markdown
+
+````markdown
 ## Phase N — Final Verification (Before Claiming Complete)
 
 **MANDATORY GATE: verification-before-completion skill applies here.**
@@ -465,6 +492,7 @@ STOP - Do not touch any .md file yet
 **NO COMPLETION CLAIMS without running these commands and seeing PASS:**
 
 **[Backend/Frontend/Full] Verification:**
+
 ```bash
 # [Command category]
 [actual command to run]
@@ -472,8 +500,10 @@ STOP - Do not touch any .md file yet
 # [Another command]
 [actual command to run]
 ```
+````
 
 **Completion Checklist (ALL must be TRUE):**
+
 - [ ] [Specific verifiable item]
 - [ ] [Tests pass with 0 failures]
 - [ ] [Evidence captured (screenshots/logs)]
@@ -482,18 +512,21 @@ STOP - Do not touch any .md file yet
 - [ ] [Specific success criteria met]
 
 **RED FLAGS (require fixing before claiming complete):**
+
 - [Pattern indicating incomplete work]
 - [Pattern indicating skipped steps]
 - [Pattern indicating quality issues]
 
 **Final Statement Template:**
 "[Task type] complete. Evidence:
+
 - [Command output showing success]
 - [Screenshot/artifact location]
 - [Documentation updated]"
 
 Remember: Evidence before claims. Always.
-```
+
+````
 
 ### Step 7: Apply Consistent Voice and Style
 
@@ -539,9 +572,10 @@ Use Grep to search for existing implementations:
 - ❌ Duplicating functionality that already exists
 
 **RED FLAG:** If creating new helper without checking for existing → STOP → Go back to discovery.
-```
+````
 
 **Example poor voice:**
+
 ```markdown
 You should probably search for existing code before writing new functionality. This helps avoid duplication.
 
@@ -562,20 +596,24 @@ It's generally not a good idea to duplicate code, so please be careful about tha
 
 ```markdown
 **FIRST: Read `docs/architecture.md`** to understand:
+
 - Current project structure
 - Base classes and traits
 - Architectural patterns
 ```
 
 **Use generic language + doc reference:**
+
 - ✅ "Check `docs/architecture.md` for base classes"
 - ❌ "Extend `App\Http\Controllers\BaseController`" (might change)
 
 ### Step 2: Reference Standard Locations
 
 **Always use standard framework paths:**
+
 ```markdown
 **Standard framework locations:**
+
 - `tests/` — All tests
 - `database/migrations/` — Database migrations
 - `screenshots/` — Screenshots
@@ -584,8 +622,10 @@ It's generally not a good idea to duplicate code, so please be careful about tha
 ```
 
 **Reference docs for project-specific:**
+
 ```markdown
 **Project-specific locations** (from `docs/architecture.md`):
+
 - Business logic (check architecture doc)
 - Domain structure (check architecture doc)
 ```
@@ -602,14 +642,17 @@ It's generally not a good idea to duplicate code, so please be careful about tha
 ### Step 4: Use Sequential Thinking Appropriately
 
 **Include sequential thinking for:**
+
 - Complex analysis phases
 - Decision-making points
 - Impact analysis
 - Root cause investigation
 
 **Pattern:**
+
 ```markdown
-Use mcp__mcp_docker__sequentialthinking to [analyze/discuss/investigate]:
+Use mcp**mcp_docker**sequentialthinking to [analyze/discuss/investigate]:
+
 - [Aspect 1]
 - [Aspect 2]
 ```
@@ -617,13 +660,16 @@ Use mcp__mcp_docker__sequentialthinking to [analyze/discuss/investigate]:
 ### Step 5: Use TodoWrite for Tracking
 
 **Always in Phase 0:**
+
 ```markdown
 Use TodoWrite to create tasks for all phases:
 ```
 
 **Optionally in later phases:**
+
 ```markdown
 Add findings to TodoWrite:
+
 - [Finding 1]
 - [Finding 2]
 ```
@@ -631,13 +677,16 @@ Add findings to TodoWrite:
 ### Step 6: Reference Skills When Appropriate
 
 **Link to existing skills:**
+
 ```markdown
 **MANDATORY GATE: verification-before-completion skill applies here.**
 ```
 
 **Or:**
+
 ```markdown
 Follow test-driven-development skill:
+
 1. Write failing test
 2. Watch it fail
 3. Write minimal code to pass
@@ -653,8 +702,9 @@ Follow test-driven-development skill:
 
 **Show what commands to run:**
 
-```markdown
+````markdown
 **Backend Verification:**
+
 ```bash
 # Code style
 ./vendor/bin/pint --test
@@ -662,7 +712,9 @@ Follow test-driven-development skill:
 # Tests
 php artisan test
 ```
-```
+````
+
+````
 
 ### Step 2: Add Request/Response Examples
 
@@ -674,16 +726,18 @@ php artisan test
 {
   "field": "value"
 }
-```
+````
 
 **Response (200):**
+
 ```json
 {
   "error": false,
   "data": {...}
 }
 ```
-```
+
+````
 
 ### Step 3: Add Code Examples
 
@@ -699,8 +753,9 @@ class ExampleController extends BaseApiController
         // Implementation
     }
 }
-```
-```
+````
+
+````
 
 ### Step 4: Add Decision Tree Examples
 
@@ -708,16 +763,19 @@ class ExampleController extends BaseApiController
 
 ```markdown
 **Decision tree:**
-```
+````
+
 IF creating new controller
-  → Check docs/architecture.md for base controller
-  → Extend base controller
-  → Follow naming convention
+→ Check docs/architecture.md for base controller
+→ Extend base controller
+→ Follow naming convention
 
 IF modifying existing controller
-  → Check for side effects
-  → Update tests
+→ Check for side effects
+→ Update tests
+
 ```
+
 ```
 
 ### Step 5: Add Final Statement Template
@@ -727,6 +785,7 @@ IF modifying existing controller
 ```markdown
 **Final Statement Template:**
 "[Task] complete. Evidence:
+
 - [Specific evidence 1]
 - [Specific evidence 2]
 - [Specific evidence 3]"
@@ -741,6 +800,7 @@ IF modifying existing controller
 ### Step 1: Self-Review Checklist
 
 **Structure:**
+
 - [ ] YAML frontmatter with description
 - [ ] Clear title and purpose statement
 - [ ] Phase 0 with sequential thinking + TodoWrite
@@ -748,6 +808,7 @@ IF modifying existing controller
 - [ ] Final verification phase with evidence requirements
 
 **Patterns:**
+
 - [ ] MANDATORY GATE checkpoints where needed
 - [ ] RED FLAGS for common mistakes
 - [ ] FORBIDDEN patterns explicitly listed
@@ -755,6 +816,7 @@ IF modifying existing controller
 - [ ] Documentation discipline (CIB-003) if applicable
 
 **Integration:**
+
 - [ ] References `docs/architecture.md` for project structure
 - [ ] Uses standard framework paths
 - [ ] Integrates with TodoWrite
@@ -762,6 +824,7 @@ IF modifying existing controller
 - [ ] Links to relevant skills
 
 **Clarity:**
+
 - [ ] Imperative voice throughout
 - [ ] Concrete examples provided
 - [ ] Commands explicitly shown
@@ -769,6 +832,7 @@ IF modifying existing controller
 - [ ] Anti-patterns explicitly forbidden
 
 **Completeness:**
+
 - [ ] All phases have deliverables
 - [ ] Verification requirements explicit
 - [ ] Final statement template included
@@ -798,47 +862,63 @@ IF modifying existing controller
 **Avoid these anti-patterns:**
 
 ❌ **Vague instructions**
+
 ```markdown
 Search for relevant code
 ```
+
 ✅ **Specific instructions**
+
 ```markdown
 Use Grep to search `app/Domain/*` for existing implementations
 ```
 
 ❌ **Aspirational documentation**
+
 ```markdown
 Update the comprehensive API documentation
 ```
+
 ✅ **Reality-based documentation**
+
 ```markdown
 Update `docs/api.md` with new endpoint (following CIB-003)
 ```
 
 ❌ **Missing verification**
+
 ```markdown
 Make sure tests pass
 ```
+
 ✅ **Explicit verification**
+
 ```markdown
 Run `php artisan test` and verify 0 failures:
+
 - [ ] Command output shows "Tests: X passed"
 ```
 
 ❌ **Weak gates**
+
 ```markdown
 You should probably check existing code first
 ```
+
 ✅ **Strong gates**
+
 ```markdown
 **MANDATORY GATE: DO NOT proceed without completing discovery.**
 ```
 
 ❌ **Hardcoded project paths**
+
 ```markdown
 Check `app/Services/UserService.php`
 ```
+
 ✅ **Generic + doc reference**
+
 ```markdown
 Check `docs/architecture.md` for service layer location
 ```
@@ -847,21 +927,23 @@ Check `docs/architecture.md` for service layer location
 
 **Strengthen weak language:**
 
-| Weak | Strong |
-|------|--------|
-| "You should" | "Use" or "MUST" |
-| "Try to" | "Do" or "Complete" |
-| "It's better if" | "ALWAYS" |
-| "Don't forget" | "NEVER skip" |
-| "Probably" | Remove uncertainty |
-| "Maybe check" | "Check" or "Verify" |
+| Weak             | Strong              |
+| ---------------- | ------------------- |
+| "You should"     | "Use" or "MUST"     |
+| "Try to"         | "Do" or "Complete"  |
+| "It's better if" | "ALWAYS"            |
+| "Don't forget"   | "NEVER skip"        |
+| "Probably"       | Remove uncertainty  |
+| "Maybe check"    | "Check" or "Verify" |
 
 **Remove hedging:**
+
 - "might want to"
 - "could be good"
 - "perhaps consider"
 
 **Add clarity:**
+
 - Numbered steps over paragraphs
 - Tables over prose
 - Code blocks over descriptions
@@ -878,12 +960,14 @@ Check `docs/architecture.md` for service layer location
 **File location:** `.claude/commands/[command-name].md`
 
 **Filename requirements:**
+
 - Use kebab-case
 - Match intended slash command
 - Descriptive but concise
 - Example: `analyze-performance.md` → `/analyze-performance`
 
 **Save the file:**
+
 ```markdown
 Use Write tool to create:
 .claude/commands/[command-name].md
@@ -895,6 +979,7 @@ With content:
 ### Step 2: Verify File Format
 
 **Check:**
+
 - [ ] File saved in `.claude/commands/`
 - [ ] Filename is kebab-case
 - [ ] Extension is `.md`
@@ -904,6 +989,7 @@ With content:
 ### Step 3: Test Command Reference
 
 **Verify command can be invoked:**
+
 ```markdown
 The command can be invoked with:
 /[command-name]
@@ -924,12 +1010,14 @@ Or with arguments:
 See `.claude/commands/` for all commands.
 
 Key commands:
+
 - `/code` - Coding workflow
 - `/investigate` - Bug investigation
 - `/[new-command]` - [Brief description]
 ```
 
 **Or simply note:**
+
 ```markdown
 New command `/[command-name]` available.
 Use `/help` to see all commands.
@@ -944,18 +1032,21 @@ Use `/help` to see all commands.
 ### Complete Command Quality Checklist
 
 **File & Format:**
+
 - [ ] File created at `.claude/commands/[name].md`
 - [ ] YAML frontmatter with description
 - [ ] Markdown format correct
 - [ ] No syntax errors
 
 **Structure:**
+
 - [ ] Phase 0: Initialize (sequential thinking + TodoWrite)
 - [ ] Clear workflow phases
 - [ ] Final verification phase
 - [ ] Each phase has purpose and deliverable
 
 **Patterns (from existing commands):**
+
 - [ ] MANDATORY GATE checkpoints
 - [ ] RED FLAGS for anti-patterns
 - [ ] FORBIDDEN patterns listed
@@ -963,6 +1054,7 @@ Use `/help` to see all commands.
 - [ ] Final statement template
 
 **Integration:**
+
 - [ ] References `docs/architecture.md` for structure
 - [ ] Uses standard framework paths
 - [ ] CIB-003 if documentation involved
@@ -971,6 +1063,7 @@ Use `/help` to see all commands.
 - [ ] Appropriate tool usage
 
 **Clarity:**
+
 - [ ] Imperative voice throughout
 - [ ] No vague instructions
 - [ ] Concrete examples provided
@@ -978,6 +1071,7 @@ Use `/help` to see all commands.
 - [ ] Decision trees clear
 
 **Completeness:**
+
 - [ ] All phases complete
 - [ ] No TODO or placeholder text
 - [ ] Success criteria explicit
@@ -985,6 +1079,7 @@ Use `/help` to see all commands.
 - [ ] Examples provided
 
 **No Anti-Patterns:**
+
 - [ ] No aspirational documentation
 - [ ] No hardcoded project-specific paths (use docs reference)
 - [ ] No weak language ("should", "try to", "maybe")
@@ -992,6 +1087,7 @@ Use `/help` to see all commands.
 - [ ] No summary document creation
 
 **FORBIDDEN (verify NOT created):**
+
 - ❌ No `docs/COMMAND_CREATION_SUMMARY.md`
 - ❌ No analysis or report documents
 - ❌ No dated documentation
@@ -1003,15 +1099,18 @@ Use `/help` to see all commands.
 ### Example 1: Gate Functions
 
 **❌ Bad (weak):**
+
 ```markdown
 Before writing code, you should search for existing implementations.
 ```
 
 **✅ Good (strong):**
+
 ```markdown
 **MANDATORY GATE: DO NOT proceed to Phase 3 without completing this discovery.**
 
 Use Grep to search for existing implementations:
+
 - Search `app/Domain/*` for similar functionality
 - Search `docs/architecture.md` for architectural patterns
 - Document findings in TodoWrite
@@ -1022,12 +1121,14 @@ Use Grep to search for existing implementations:
 ### Example 2: Verification
 
 **❌ Bad (vague):**
+
 ```markdown
 Make sure everything works and tests pass.
 ```
 
 **✅ Good (explicit):**
-```markdown
+
+````markdown
 **NO COMPLETION CLAIMS without running these commands and seeing PASS:**
 
 ```bash
@@ -1037,24 +1138,29 @@ php artisan test
 # Frontend tests
 npm run test:run
 ```
+````
 
 **Completion Checklist (ALL must be TRUE):**
+
 - [ ] Test output shows "Tests: X passed, 0 failed"
 - [ ] Screenshot saved to `screenshots/`
 - [ ] No console errors in screenshot
 - [ ] Documentation updated per CIB-003
-```
+
+````
 
 ### Example 3: Documentation Integration
 
 **❌ Bad (hardcoded):**
 ```markdown
 Check if BaseApiController exists in app/Http/Controllers/Api/
-```
+````
 
 **✅ Good (doc reference):**
+
 ```markdown
 **FIRST: Read `docs/architecture.md`** to identify:
+
 - Base controller classes (extend these)
 - Location of controllers in current structure
 ```
@@ -1062,13 +1168,16 @@ Check if BaseApiController exists in app/Http/Controllers/Api/
 ### Example 4: Tool Usage
 
 **❌ Bad (missing):**
+
 ```markdown
 Think about the user's request and plan your approach.
 ```
 
 **✅ Good (explicit):**
+
 ```markdown
-Use mcp__mcp_docker__sequentialthinking to analyze:
+Use mcp**mcp_docker**sequentialthinking to analyze:
+
 - User's intent and requirements
 - Complexity and scope
 - Potential approaches
@@ -1080,24 +1189,28 @@ Use mcp__mcp_docker__sequentialthinking to analyze:
 ## Usage Notes
 
 **When to create a command:**
+
 - User requests repeatable workflow
 - Workflow has 3+ distinct phases
 - Multiple team members need same workflow
 - Quality/consistency important
 
 **When NOT to create a command:**
+
 - One-off task
 - Simple request (1-2 steps)
 - Better suited as a skill (model-invoked)
 - Already covered by existing command
 
 **After creating command:**
+
 - User can invoke with `/command-name`
 - Shows in `/help` output
 - Other team members can use
 - Can be improved over time
 
 **Command vs updating existing command:**
+
 - New workflow → New command
 - Variation of existing → Update existing
 - Complementary → New command

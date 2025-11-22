@@ -1,1 +1,361 @@
-._default_whz4l_1{--base0:#1d092f;--base5:#3a125d;--base10:#4e187c;--base20:#7a468e;--base30:#c47ae5;--base40:#d79af3;--base50:#ecc3ff;--base60:#efd7fa;--base70:#ceb6d8;--base80:#cccccc;--base90:#e5e5e5;--base95:#f2f2f2;--base100:#ffffff;--brandAccentPrimary:#4e187c;--brandAccentPrimary75:#3a125d;--brandAccentPrimary50:#1d092f;--brandAccentPrimary40:#210f31;--brandAccentPrimary30:#25ecff;--brandAccentPrimary25:#07020c;--brandAccentSecondary:#92d63d;--brandAccentSecondary75:#6ea02e;--brandAccentSecondary50:#375017;--brandAccentSecondary25:#0e1406;--brandBase1:#1a1038;--brandBase2:#2a1c4d;--brand-interface:#1a1038;--brandInterfaceCanvas:#000000;--brandInterfaceModal:rgba(var(--brandBase1),.8);--brandInterfaceHeaderLvl1:var(--brandBase1);--brandInterfaceHeaderLvl2:var(--brandBase2);--border-radius-small:4px;--border-radius-default:16px;--border-radius-200:200px;--pill-border-radius:200px;--icon-primary-filter:brightness(0) saturate(100%) invert(28%) sepia(99%) saturate(6930%) hue-rotate(337deg) brightness(99%) contrast(97%);--body-color:#231845;--desktop-menu-color:#0c0c0c;--desktop-menu-block-color:#0c0c0c;--block-shadow:none;--textColorPrimary:var(--base50);--textColorSecondary:#fff;--pillHeight:38px;--pillBg:var(--base20);--pillColor:rgba(var(--base40,.55));--activePillBg:var(--brandAccentSecondary);--activePillColor:var(--base50);--pillBoxShadow:none;--svgIconColor:var(--base100);--buttonBg:var(--base20);--inputBg:var(--base20);--selectBg:var(--base20);--disabledSelectBg:var(--base20);--validationTextColor:var(--base60);--pageBg:var(--base5);--iconFilter:none;--iconPrimaryFilter:none;--iconActiveFilter:none;--menuIconFilter:brightness(0) saturate(100%) invert(54%) sepia(96%) saturate(100%) hue-rotate(235deg) brightness(122%) contrast(94%);--menuActiveBgColor:rgba(236,195,255,.2);--menuActiveIconColor:brightness(0) saturate(100%) invert(83%) sepia(8%) saturate(3083%) hue-rotate(205deg) brightness(122%) contrast(104%);--menuTextColor:#b78ece;--menuActiveTextColor:var(--base50);--balanceBlockBg:var(--base10);--balanceBlockColor:#fff;--mobileDrawerBg:linear-gradient(172deg,#2a124c 3.15%,#451668 18.81%,#1a1038 94.09%);--mobileMenuIconFilter:none;--imageBlockBg:--brandInterfaceHeaderLvl2;--infoGameBg:#311d58;--searchBarDropdownBg:var(--base5);--jackpotListItemBg:#3a1f58;--jackpotInfoIconFilter:brightness(0) saturate(100%) invert(100%) sepia(4%) saturate(0%) hue-rotate(353deg) brightness(104%) contrast(100%);--jackpotInfoColor:var(--base100);--goldJackpotBg:linear-gradient(90.3deg,var(--brandBase1) 48.71%,#dcb119 99.94%);--sweepstakesJackpotBg:linear-gradient(89.85deg,var(--brandBase1) 39.05%,#1ab642 99.77%);--jackpotColor:var(--base100);--jackpotContributionBadgeBg:rgba(#0c0c0c,.8);--jackpotGcContributionAmountColor:var(--brand-accent-primary);--favoriteButtonFilter:none;--redeemHeaderBg:transparent;--offerCaptionColor:#333333;--jumioKycBackdropBg:var(--base10);--spinner-color:#ffc107;--layoutBorderColor:#533b92;--brandGradient1:linear-gradient(135deg,#1c1c1c 0%,#0c0c0c 100%);--error:#ff5252;--success:#11df16;--info:#2a9cff;--warning:#e79900;--sizing0d125Rem:2px;--sizing0d25Rem:4px;--sizing0d5Rem:8px;--sizing0d75Rem:12px;--spacing0d125Rem:2px;--spacing0d25Rem:4px;--spacing0d5Rem:8px;--spacing0d75Rem:12px;--spacing1Rem:16px;--sizing1Rem:16px;--sizing1d25Rem:20px;--sizing1d5Rem:24px;--sizing1d75Rem:28px;--sizing2Rem:32px;--sizing2d5Rem:40px;--sizing3Rem:48px;--sizing3d5Rem:56px;--sizing4Rem:64px;--sizing4d5Rem:72px;--sizing5Rem:80px;--spacing1d25Rem:20px;--spacing1d5Rem:24px;--spacing1d75Rem:28px;--spacing2Rem:32px;--spacing2d5Rem:40px;--spacing3Rem:48px;--spacing3d5Rem:56px;--spacing4Rem:64px;--spacing4d5Rem:72px;--spacing5Rem:80px;--fontFamilyPrimary:Ubuntu,Helvetica,Arial,sans-serif;--fontWeightPrimaryBold:500;--fontWeightPrimaryRegular:400;--font2XS:8px;--fontXS:10px;--fontSM:12px;--fontMD:14px;--fontLG:16px;--fontXL:20px;--font2XL:24px;--font3XL:32px;--font4XL:40px;--font5XL:48px;--lineMD:140%;--lineLG:120%;--lineXL:100%;--textCaseNone:none;--textCaseUpperCase:uppercase;--radiusNone:0px;--radiusXS:2px;--radiusSM:8px;--radiusMD:12px;--radiusLG:16px;--radiusXL:24px;--radiusFull:200px;--textDecNone:none;--textDecUnderline:underline;--textDecThrough:line-through;--textCaseCapitalize:capitalize;--borderSM:1px;--borderMD:2px;--borderLG:4px;--opacity0:0%;--opacity10:10%;--opacity20:20%;--opacity30:30%;--opacity40:40%;--opacity50:50%;--opacity60:60%;--opacity70:70%;--opacity80:80%;--opacity90:90%;--opacity100:100%;--paragraphNone:0px;--paragraphSM:4px;--paragraphMD:8px;--paragraphLG:16px;--paragraphXL:24px;--letterSpacingDefault:0%;--letterSpacingMinus:-5%;--letterSpacingExtra:5%;--xs:927px;--sm:933px;--md:992px;--lg:1200px;--xlg:1440px;--xl:1920px;--maxContentWidth:1160px;--font-weight-300:300;--font-weight-400:400;--font-weight-500:500;--font-weight-600:600;--font-weight-700:700;--font-weight-800:800;--font-weight-900:900;--primary-white:#ffffff;--text-secondary-dark:rgba(255,255,255,.87);--error-light:#e57373;--sweep-gradient:linear-gradient(-135deg,#1bee02 .56%,#00ad45 100%);--contrast-text-secondary-87-dark:rgba(255,255,255,.87);--contrast-text-secondary-54:rgba(0,0,0,.54);--contrast-text-secondary-23:rgba(0,0,0,.23);--error-main:#f44336;--primary-main:#70b5f9;--z-negative:-1;--z-default:0;--z-1:1;--z-2:2;--z-layout:3;--z-multiplay-info:4;--z-10:10;--z-modal:100;--z-error:9999;--error-dark:#d32f2f;--inputBgColor:var(--base20);--inputTextColor:var(--base100);--inputFontSize:var(--fontMD);--inputLabelColor:var(--base100);--inputLabelFontSize:var(--fontSM);--inputPlaceholderTextColor:var(--base60);--inputBorderRadius:var(--border-radius-default);--inputErrorTextColor:var(--error);--inputErrorBorderWidth:var(--borderSM);--inputErrorBorderColor:var(--error);--inputHoverBorderWidth:var(--borderSM);--inputHoverBorderColor:rgba(var(--base100-rgb),.87);--inputFocusedBorderWidth:var(--borderSM);--inputFocusedBorderColor:rgba(var(--base100-rgb),.87);--inputDisabledBgColor:var(--base20);--inputDisabledTextColor:var(--base60);--datepickerCalendarBg:var(--base0);--datepickerLabelColor:var(--base80);--inputPasswordIconColor:var(--validationTextColor);--inputAutofillTextColor:var(--base60);--inputAutofillBgColor:var(--base0);--selectFocusedBorderWidth:var(--borderMD);--selectFocusedBorderColor:var(--primary-main);--selectEmptyTextColor:var(--base60);--selectOptionBg:var(--base0)}._overlay_whz4l_703{position:absolute;top:0;bottom:0;width:100%;display:flex;justify-content:center;align-items:center;will-change:opacity;backdrop-filter:blur(4px)}._grow_whz4l_715{animation-name:_growAnimation_whz4l_1;animation-fill-mode:both;animation-timing-function:ease-in-out;animation-duration:.2s}._hideGrow_whz4l_722{animation-name:_hideAnimationGrow_whz4l_1;animation-fill-mode:both;animation-timing-function:ease-in-out;animation-duration:.2s}@keyframes _growAnimation_whz4l_1{0%{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}@keyframes _hideAnimationGrow_whz4l_1{0%{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(.3)}}._slide_whz4l_749{animation-fill-mode:both;animation-timing-function:ease-in-out;animation-duration:.3s}._slideUp_whz4l_755{animation-name:_slideAnimationUp_whz4l_1}._slideBottom_whz4l_759{animation-name:_slideAnimationUp_whz4l_1;transform-origin:top}._slideLeft_whz4l_764{animation-name:_slideAnimationLeft_whz4l_1}._slideRight_whz4l_768{animation-name:_slideAnimationRight_whz4l_1}._hideSlide_whz4l_772{animation-fill-mode:both;animation-timing-function:ease-in-out;animation-duration:.2s}._hideSlideUp_whz4l_778,._hideSlideBottom_whz4l_782{animation-name:_hideAnimationSlideUp_whz4l_1}._hideSlideLeft_whz4l_786{animation-name:_hideAnimationSlideLeft_whz4l_1}._hideSlideRight_whz4l_790{animation-name:_hideAnimationSlideRight_whz4l_1}@keyframes _slideAnimationUp_whz4l_1{0%{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}@keyframes _slideAnimationLeft_whz4l_1{0%{transform:translate(100%)}to{transform:translate(0)}}@keyframes _slideAnimationRight_whz4l_1{0%{transform:translate(-100%)}to{transform:translate(0)}}@keyframes _hideAnimationSlideUp_whz4l_1{0%{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(100%)}}@keyframes _hideAnimationSlideLeft_whz4l_1{0%{transform:translate(0)}to{transform:translate(100%)}}@keyframes _hideAnimationSlideRight_whz4l_1{0%{transform:translate(0)}to{transform:translate(100%)}}
+._default_whz4l_1 {
+  --base0: #1d092f;
+  --base5: #3a125d;
+  --base10: #4e187c;
+  --base20: #7a468e;
+  --base30: #c47ae5;
+  --base40: #d79af3;
+  --base50: #ecc3ff;
+  --base60: #efd7fa;
+  --base70: #ceb6d8;
+  --base80: #cccccc;
+  --base90: #e5e5e5;
+  --base95: #f2f2f2;
+  --base100: #ffffff;
+  --brandAccentPrimary: #4e187c;
+  --brandAccentPrimary75: #3a125d;
+  --brandAccentPrimary50: #1d092f;
+  --brandAccentPrimary40: #210f31;
+  --brandAccentPrimary30: #25ecff;
+  --brandAccentPrimary25: #07020c;
+  --brandAccentSecondary: #92d63d;
+  --brandAccentSecondary75: #6ea02e;
+  --brandAccentSecondary50: #375017;
+  --brandAccentSecondary25: #0e1406;
+  --brandBase1: #1a1038;
+  --brandBase2: #2a1c4d;
+  --brand-interface: #1a1038;
+  --brandInterfaceCanvas: #000000;
+  --brandInterfaceModal: rgba(var(--brandBase1), 0.8);
+  --brandInterfaceHeaderLvl1: var(--brandBase1);
+  --brandInterfaceHeaderLvl2: var(--brandBase2);
+  --border-radius-small: 4px;
+  --border-radius-default: 16px;
+  --border-radius-200: 200px;
+  --pill-border-radius: 200px;
+  --icon-primary-filter: brightness(0) saturate(100%) invert(28%) sepia(99%) saturate(6930%)
+    hue-rotate(337deg) brightness(99%) contrast(97%);
+  --body-color: #231845;
+  --desktop-menu-color: #0c0c0c;
+  --desktop-menu-block-color: #0c0c0c;
+  --block-shadow: none;
+  --textColorPrimary: var(--base50);
+  --textColorSecondary: #fff;
+  --pillHeight: 38px;
+  --pillBg: var(--base20);
+  --pillColor: rgba(var(--base40, 0.55));
+  --activePillBg: var(--brandAccentSecondary);
+  --activePillColor: var(--base50);
+  --pillBoxShadow: none;
+  --svgIconColor: var(--base100);
+  --buttonBg: var(--base20);
+  --inputBg: var(--base20);
+  --selectBg: var(--base20);
+  --disabledSelectBg: var(--base20);
+  --validationTextColor: var(--base60);
+  --pageBg: var(--base5);
+  --iconFilter: none;
+  --iconPrimaryFilter: none;
+  --iconActiveFilter: none;
+  --menuIconFilter: brightness(0) saturate(100%) invert(54%) sepia(96%) saturate(100%)
+    hue-rotate(235deg) brightness(122%) contrast(94%);
+  --menuActiveBgColor: rgba(236, 195, 255, 0.2);
+  --menuActiveIconColor: brightness(0) saturate(100%) invert(83%) sepia(8%) saturate(3083%)
+    hue-rotate(205deg) brightness(122%) contrast(104%);
+  --menuTextColor: #b78ece;
+  --menuActiveTextColor: var(--base50);
+  --balanceBlockBg: var(--base10);
+  --balanceBlockColor: #fff;
+  --mobileDrawerBg: linear-gradient(172deg, #2a124c 3.15%, #451668 18.81%, #1a1038 94.09%);
+  --mobileMenuIconFilter: none;
+  --imageBlockBg: --brandInterfaceHeaderLvl2;
+  --infoGameBg: #311d58;
+  --searchBarDropdownBg: var(--base5);
+  --jackpotListItemBg: #3a1f58;
+  --jackpotInfoIconFilter: brightness(0) saturate(100%) invert(100%) sepia(4%) saturate(0%)
+    hue-rotate(353deg) brightness(104%) contrast(100%);
+  --jackpotInfoColor: var(--base100);
+  --goldJackpotBg: linear-gradient(90.3deg, var(--brandBase1) 48.71%, #dcb119 99.94%);
+  --sweepstakesJackpotBg: linear-gradient(89.85deg, var(--brandBase1) 39.05%, #1ab642 99.77%);
+  --jackpotColor: var(--base100);
+  --jackpotContributionBadgeBg: rgba(#0c0c0c, 0.8);
+  --jackpotGcContributionAmountColor: var(--brand-accent-primary);
+  --favoriteButtonFilter: none;
+  --redeemHeaderBg: transparent;
+  --offerCaptionColor: #333333;
+  --jumioKycBackdropBg: var(--base10);
+  --spinner-color: #ffc107;
+  --layoutBorderColor: #533b92;
+  --brandGradient1: linear-gradient(135deg, #1c1c1c 0%, #0c0c0c 100%);
+  --error: #ff5252;
+  --success: #11df16;
+  --info: #2a9cff;
+  --warning: #e79900;
+  --sizing0d125Rem: 2px;
+  --sizing0d25Rem: 4px;
+  --sizing0d5Rem: 8px;
+  --sizing0d75Rem: 12px;
+  --spacing0d125Rem: 2px;
+  --spacing0d25Rem: 4px;
+  --spacing0d5Rem: 8px;
+  --spacing0d75Rem: 12px;
+  --spacing1Rem: 16px;
+  --sizing1Rem: 16px;
+  --sizing1d25Rem: 20px;
+  --sizing1d5Rem: 24px;
+  --sizing1d75Rem: 28px;
+  --sizing2Rem: 32px;
+  --sizing2d5Rem: 40px;
+  --sizing3Rem: 48px;
+  --sizing3d5Rem: 56px;
+  --sizing4Rem: 64px;
+  --sizing4d5Rem: 72px;
+  --sizing5Rem: 80px;
+  --spacing1d25Rem: 20px;
+  --spacing1d5Rem: 24px;
+  --spacing1d75Rem: 28px;
+  --spacing2Rem: 32px;
+  --spacing2d5Rem: 40px;
+  --spacing3Rem: 48px;
+  --spacing3d5Rem: 56px;
+  --spacing4Rem: 64px;
+  --spacing4d5Rem: 72px;
+  --spacing5Rem: 80px;
+  --fontFamilyPrimary: Ubuntu, Helvetica, Arial, sans-serif;
+  --fontWeightPrimaryBold: 500;
+  --fontWeightPrimaryRegular: 400;
+  --font2XS: 8px;
+  --fontXS: 10px;
+  --fontSM: 12px;
+  --fontMD: 14px;
+  --fontLG: 16px;
+  --fontXL: 20px;
+  --font2XL: 24px;
+  --font3XL: 32px;
+  --font4XL: 40px;
+  --font5XL: 48px;
+  --lineMD: 140%;
+  --lineLG: 120%;
+  --lineXL: 100%;
+  --textCaseNone: none;
+  --textCaseUpperCase: uppercase;
+  --radiusNone: 0px;
+  --radiusXS: 2px;
+  --radiusSM: 8px;
+  --radiusMD: 12px;
+  --radiusLG: 16px;
+  --radiusXL: 24px;
+  --radiusFull: 200px;
+  --textDecNone: none;
+  --textDecUnderline: underline;
+  --textDecThrough: line-through;
+  --textCaseCapitalize: capitalize;
+  --borderSM: 1px;
+  --borderMD: 2px;
+  --borderLG: 4px;
+  --opacity0: 0%;
+  --opacity10: 10%;
+  --opacity20: 20%;
+  --opacity30: 30%;
+  --opacity40: 40%;
+  --opacity50: 50%;
+  --opacity60: 60%;
+  --opacity70: 70%;
+  --opacity80: 80%;
+  --opacity90: 90%;
+  --opacity100: 100%;
+  --paragraphNone: 0px;
+  --paragraphSM: 4px;
+  --paragraphMD: 8px;
+  --paragraphLG: 16px;
+  --paragraphXL: 24px;
+  --letterSpacingDefault: 0%;
+  --letterSpacingMinus: -5%;
+  --letterSpacingExtra: 5%;
+  --xs: 927px;
+  --sm: 933px;
+  --md: 992px;
+  --lg: 1200px;
+  --xlg: 1440px;
+  --xl: 1920px;
+  --maxContentWidth: 1160px;
+  --font-weight-300: 300;
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --font-weight-800: 800;
+  --font-weight-900: 900;
+  --primary-white: #ffffff;
+  --text-secondary-dark: rgba(255, 255, 255, 0.87);
+  --error-light: #e57373;
+  --sweep-gradient: linear-gradient(-135deg, #1bee02 0.56%, #00ad45 100%);
+  --contrast-text-secondary-87-dark: rgba(255, 255, 255, 0.87);
+  --contrast-text-secondary-54: rgba(0, 0, 0, 0.54);
+  --contrast-text-secondary-23: rgba(0, 0, 0, 0.23);
+  --error-main: #f44336;
+  --primary-main: #70b5f9;
+  --z-negative: -1;
+  --z-default: 0;
+  --z-1: 1;
+  --z-2: 2;
+  --z-layout: 3;
+  --z-multiplay-info: 4;
+  --z-10: 10;
+  --z-modal: 100;
+  --z-error: 9999;
+  --error-dark: #d32f2f;
+  --inputBgColor: var(--base20);
+  --inputTextColor: var(--base100);
+  --inputFontSize: var(--fontMD);
+  --inputLabelColor: var(--base100);
+  --inputLabelFontSize: var(--fontSM);
+  --inputPlaceholderTextColor: var(--base60);
+  --inputBorderRadius: var(--border-radius-default);
+  --inputErrorTextColor: var(--error);
+  --inputErrorBorderWidth: var(--borderSM);
+  --inputErrorBorderColor: var(--error);
+  --inputHoverBorderWidth: var(--borderSM);
+  --inputHoverBorderColor: rgba(var(--base100-rgb), 0.87);
+  --inputFocusedBorderWidth: var(--borderSM);
+  --inputFocusedBorderColor: rgba(var(--base100-rgb), 0.87);
+  --inputDisabledBgColor: var(--base20);
+  --inputDisabledTextColor: var(--base60);
+  --datepickerCalendarBg: var(--base0);
+  --datepickerLabelColor: var(--base80);
+  --inputPasswordIconColor: var(--validationTextColor);
+  --inputAutofillTextColor: var(--base60);
+  --inputAutofillBgColor: var(--base0);
+  --selectFocusedBorderWidth: var(--borderMD);
+  --selectFocusedBorderColor: var(--primary-main);
+  --selectEmptyTextColor: var(--base60);
+  --selectOptionBg: var(--base0);
+}
+._overlay_whz4l_703 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  will-change: opacity;
+  backdrop-filter: blur(4px);
+}
+._grow_whz4l_715 {
+  animation-name: _growAnimation_whz4l_1;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.2s;
+}
+._hideGrow_whz4l_722 {
+  animation-name: _hideAnimationGrow_whz4l_1;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.2s;
+}
+@keyframes _growAnimation_whz4l_1 {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes _hideAnimationGrow_whz4l_1 {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+._slide_whz4l_749 {
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.3s;
+}
+._slideUp_whz4l_755 {
+  animation-name: _slideAnimationUp_whz4l_1;
+}
+._slideBottom_whz4l_759 {
+  animation-name: _slideAnimationUp_whz4l_1;
+  transform-origin: top;
+}
+._slideLeft_whz4l_764 {
+  animation-name: _slideAnimationLeft_whz4l_1;
+}
+._slideRight_whz4l_768 {
+  animation-name: _slideAnimationRight_whz4l_1;
+}
+._hideSlide_whz4l_772 {
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  animation-duration: 0.2s;
+}
+._hideSlideUp_whz4l_778,
+._hideSlideBottom_whz4l_782 {
+  animation-name: _hideAnimationSlideUp_whz4l_1;
+}
+._hideSlideLeft_whz4l_786 {
+  animation-name: _hideAnimationSlideLeft_whz4l_1;
+}
+._hideSlideRight_whz4l_790 {
+  animation-name: _hideAnimationSlideRight_whz4l_1;
+}
+@keyframes _slideAnimationUp_whz4l_1 {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes _slideAnimationLeft_whz4l_1 {
+  0% {
+    transform: translate(100%);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes _slideAnimationRight_whz4l_1 {
+  0% {
+    transform: translate(-100%);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+@keyframes _hideAnimationSlideUp_whz4l_1 {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+@keyframes _hideAnimationSlideLeft_whz4l_1 {
+  0% {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(100%);
+  }
+}
+@keyframes _hideAnimationSlideRight_whz4l_1 {
+  0% {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(100%);
+  }
+}

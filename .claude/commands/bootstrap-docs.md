@@ -7,6 +7,7 @@ description: Create agent-friendly documentation (patterns, decisions, templates
 **Purpose**: Create 5 documentation files that serve as **context for LLM coding agents**, teaching HOW to make decisions and implement features (patterns, templates, decision trees), NOT cataloging WHAT exists (exhaustive listings).
 
 **Documentation Philosophy**:
+
 - Docs = Agent context/system prompts
 - Teach patterns, not inventory
 - Provide copy-paste templates
@@ -14,6 +15,7 @@ description: Create agent-friendly documentation (patterns, decisions, templates
 - Token-efficient (no exhaustive listings)
 
 **What this creates**:
+
 - `docs/architecture.md` - WHERE to put code, WHAT patterns to follow
 - `docs/api.md` - HOW to create endpoints (step-by-step with templates)
 - `docs/database.md` - HOW to work with Eloquent (patterns, not schema dumps)
@@ -21,6 +23,7 @@ description: Create agent-friendly documentation (patterns, decisions, templates
 - `docs/deployment.md` - HOW to run locally (commands, not production infra)
 
 **What this does NOT create**:
+
 - ❌ Exhaustive file/directory listings (changes too often)
 - ❌ Complete database schema dumps (use Eloquent patterns instead)
 - ❌ Full API endpoint reference (use HOW-TO patterns instead)
@@ -32,6 +35,7 @@ description: Create agent-friendly documentation (patterns, decisions, templates
 ## Phase 0: Plan Documentation Approach
 
 Use TodoWrite to track:
+
 - [ ] Analyze codebase for PATTERNS (not inventory)
 - [ ] Create docs/architecture.md (patterns + decision trees)
 - [ ] Create docs/api.md (HOW-TO with templates)
@@ -49,6 +53,7 @@ Use TodoWrite to track:
 ### What to Discover (Patterns & Conventions)
 
 **Backend Patterns**:
+
 - Architectural pattern: DDD? Traditional Laravel? Modular?
 - Domain structure: How are domains organized? Naming pattern?
 - Base classes: What should agents extend? (BaseController, BaseRequest, BasePolicy)
@@ -56,23 +61,27 @@ Use TodoWrite to track:
 - Common patterns: Translations? Polymorphic relations? Soft deletes?
 
 **Frontend Patterns**:
+
 - Framework & version: Vue 3? React? TypeScript?
 - Component organization: By domain? By type? Naming pattern?
 - State management: Pinia? Composables?
 - API integration: Which composable? Pattern for REST calls?
 
 **Database Patterns**:
+
 - ORM: Always Eloquent? Raw SQL when?
 - Conventions: Table naming, foreign keys, timestamps, soft deletes
 - Relationship patterns: HasMany, BelongsToMany, Polymorphic
 - Translation pattern: Is there a {Model}Translation pattern?
 
 **Testing Patterns**:
+
 - Backend: PHPUnit version, test database (SQLite?), factories
 - Frontend: Vitest? Playwright? Test organization?
 - Safety measures: How is production DB protected?
 
 **Development Patterns**:
+
 - Local dev: Laravel Sail? Docker? Commands to run?
 - Build process: Vite? Webpack? Dev vs production?
 - Key commands: How to run tests, migrations, build frontend?
@@ -80,6 +89,7 @@ Use TodoWrite to track:
 ### What NOT to Document (Changes Too Often)
 
 **Skip these (token waste, maintenance burden)**:
+
 - ❌ Every file in every directory
 - ❌ Every database table with full schema
 - ❌ Every API endpoint with full docs
@@ -87,6 +97,7 @@ Use TodoWrite to track:
 - ❌ Current state inventories
 
 **Instead document**:
+
 - ✅ Folder PURPOSE patterns
 - ✅ Database conventions and relationship patterns
 - ✅ HOW to create endpoints (not which ones exist)
@@ -124,6 +135,7 @@ cat vitest.config.ts | grep -A 5 "export default"
 **Purpose**: Help agents decide WHERE to put code and WHAT patterns to follow.
 
 **Structure**:
+
 ```markdown
 # Architecture Guide for LLM Coding Agents
 
@@ -136,16 +148,19 @@ cat vitest.config.ts | grep -A 5 "export default"
 ## Core Architectural Principles
 
 ### 1. [Architecture Pattern Name]
+
 **Mental Model**: [One sentence explaining the pattern]
 **Decision Rule**: [How to make choices using this pattern]
 
 ### 2. Where to Put New Code
 ```
+
 app/Domain/{DomainName}/
-├── Http/Controllers/Api/  # REST controllers
-├── Models/                # Eloquent models
-├── Policies/              # Authorization
+├── Http/Controllers/Api/ # REST controllers
+├── Models/ # Eloquent models
+├── Policies/ # Authorization
 └── ...
+
 ```
 
 **When creating new functionality in domain X**:
@@ -181,6 +196,7 @@ app/Domain/{DomainName}/
 ```
 
 **Key Sections** (Required):
+
 1. **Core Architectural Principles** - DDD, folder structure pattern, base classes
 2. **Where to Put New Code** - Decision tree with folder patterns
 3. **Controller Patterns** - Two types with templates
@@ -196,12 +212,14 @@ app/Domain/{DomainName}/
 13. **Quick Decision Tree** - "Where do I put X?"
 
 **What to EXCLUDE**:
+
 - ❌ Full directory tree with all files
 - ❌ List of all models
 - ❌ List of all controllers
 - ❌ Comprehensive package inventory
 
 **Backup existing if present**:
+
 ```bash
 if [ -f docs/architecture.md ]; then
     cp docs/architecture.md docs/architecture.md.backup-$(date +%Y%m%d-%H%M%S)
@@ -215,7 +233,8 @@ fi
 **Purpose**: Teach agents HOW to create and modify API endpoints.
 
 **Structure**:
-```markdown
+
+````markdown
 # API Development Guide for LLM Coding Agents
 
 **Purpose**: This document teaches you how to create, modify, and maintain RESTful API endpoints.
@@ -227,10 +246,12 @@ fi
 ## API Architecture Pattern
 
 ### REST Resources (Standard CRUD)
+
 **Pattern**: Every model gets standard REST routes
 [Show route structure]
 
 ### Authentication
+
 **Two Methods**: Session-based (admin), Token-based (API)
 [Show middleware patterns]
 
@@ -239,31 +260,41 @@ fi
 ## How to Create a New API Endpoint
 
 ### Step 1: Create the Controller
+
 **Location**: `app/Domain/{Domain}/Http/Controllers/Api/`
 **Template**:
+
 ```php
 [Full copy-paste template]
 ```
+````
+
 **Key Points**: [What to know]
 
 ### Step 2: Create Form Requests
+
 [Template for Store and Update]
 
 ### Step 3: Create API Resource
+
 [Template for transformation]
 
 ### Step 4: Create Policy
+
 [Template for authorization]
 
 ### Step 5: Register Routes
+
 [Template for route registration]
 
 ---
 
 ## Response Format Standards
+
 [JSON examples with ApiResponse helper]
 
 ## Common Patterns
+
 1. Eager Loading (Prevent N+1) [with examples]
 2. Query Filtering [pattern]
 3. Bulk Operations [pattern]
@@ -271,23 +302,29 @@ fi
 5. File Uploads [pattern]
 
 ## Authorization Patterns
+
 [3 patterns with examples]
 
 ## Error Handling
+
 [Patterns for validation, 404, 403, 500]
 
 ## Testing Your API
+
 [Feature test template]
 
 ## Quick Checklist for New Endpoint
+
 - [ ] Controller extends BaseApiController
 - [ ] Form Requests created
-[etc.]
+      [etc.]
 
 ## Common Mistakes
+
 ❌ **Don't**: Return raw Eloquent models
 ✅ **Do**: Use API Resources
-```
+
+````
 
 **What to EXCLUDE**:
 - ❌ List of all endpoints (duplicates route:list)
@@ -323,26 +360,33 @@ fi
 ### Step 1: Generate Model + Migration
 ```bash
 php artisan make:model Domain/{Domain}/Models/YourModel -m
-```
+````
 
 ### Step 2: Define Model
+
 **Location**: `app/Domain/{Domain}/Models/YourModel.php`
 **Template**:
+
 ```php
 [Full copy-paste template with fillable, casts, relationships, scopes]
 ```
 
 ### Step 3: Create Migration
+
 **Template**:
+
 ```php
 [Full migration template with conventions]
 ```
 
 ### Step 4: Run Migration
+
 [Command]
 
 ### Step 5: Create Factory
+
 **Template**:
+
 ```php
 [Factory template with states]
 ```
@@ -352,15 +396,19 @@ php artisan make:model Domain/{Domain}/Models/YourModel -m
 ## Relationship Patterns
 
 ### 1. One-to-Many (hasMany / belongsTo)
+
 [Template with migration and usage]
 
 ### 2. Many-to-Many (belongsToMany)
+
 [Template with pivot table and usage]
 
 ### 3. Polymorphic Relations
+
 [Template and usage]
 
 ### 4. Translation Pattern
+
 [Pattern used in codebase with example]
 
 ---
@@ -368,43 +416,55 @@ php artisan make:model Domain/{Domain}/Models/YourModel -m
 ## Query Patterns
 
 ### 1. Preventing N+1 Queries
+
 [Bad vs Good example]
 
 ### 2. Query Scopes
+
 [Define and use pattern]
 
 ### 3. Filtering and Sorting
+
 [Pattern]
 
 ### 4. Aggregates
+
 [Examples]
 
 ### 5. Soft Deletes
+
 [Pattern and usage]
 
 ---
 
 ## Migration Patterns
+
 [Adding columns, renaming, foreign keys, dropping]
 
 ## Database Conventions (Critical)
+
 [Naming, required columns, indexes]
 
 ## Factory Patterns
+
 [Basic, with relationships, states]
 
 ## Common Mistakes
+
 ❌ **Don't**: Write raw SQL queries
 ✅ **Do**: Use Eloquent or Query Builder
 [etc.]
 
 ## Testing Database (Critical Safety)
+
 **Rule**: Tests NEVER touch MySQL. Always SQLite in-memory.
 [Reference CLAUDE.md safeguards]
 
 ## Quick Reference
+
 [Common artisan commands]
-```
+
+````
 
 **What to EXCLUDE**:
 - ❌ Full schema dump of all tables
@@ -448,17 +508,20 @@ php artisan make:model Domain/{Domain}/Models/YourModel -m
 **Template**:
 ```php
 [Full copy-paste feature test template]
-```
+````
 
 **Patterns**:
+
 - Authentication testing [pattern]
 - API testing [pattern]
 - Database testing [pattern]
 
 ### How to Write Unit Tests
+
 [Template and pattern]
 
 ### Using Factories
+
 [Pattern and examples]
 
 ---
@@ -466,9 +529,11 @@ php artisan make:model Domain/{Domain}/Models/YourModel -m
 ## Frontend Testing (Vitest)
 
 ### How to Write Composable Tests
+
 [Template]
 
 ### How to Write Component Tests
+
 [Template]
 
 **Patterns**:
@@ -479,6 +544,7 @@ php artisan make:model Domain/{Domain}/Models/YourModel -m
 ## E2E Testing (Playwright)
 
 ### How to Write E2E Tests
+
 **Template**: Use `.claude/commands/meta/e2e-template.ts`
 [Key requirements and patterns]
 
@@ -487,36 +553,44 @@ php artisan make:model Domain/{Domain}/Models/YourModel -m
 ## Running Tests
 
 ### Backend Tests
+
 ```bash
 ./vendor/bin/sail test
 [Other commands]
 ```
 
 ### Frontend Tests
+
 ```bash
 npm run test:run
 [Other commands]
 ```
 
 ### Full Test Suite
+
 [Commands for everything]
 
 ---
 
 ## Common Testing Patterns
+
 [5-10 patterns with examples]
 
 ## Debugging Tests
+
 [Strategies]
 
 ## Common Mistakes
+
 ❌ **Don't**: Tests touch production database
 ✅ **Do**: Always use SQLite in-memory
 [etc.]
 
 ## Quick Reference
+
 [Common commands table]
-```
+
+````
 
 **What to EXCLUDE**:
 - ❌ List of all test files
@@ -547,17 +621,20 @@ npm run test:run
 ### Step 2: Clone and Install
 ```bash
 [Step-by-step commands]
-```
+````
 
 ### Step 3: Configuration
+
 [.env setup, key generation]
 
 ### Step 4: Database Setup
+
 ```bash
 [Migration commands]
 ```
 
 ### Step 5: Start Services
+
 ```bash
 ./vendor/bin/sail up -d
 ```
@@ -567,15 +644,18 @@ npm run test:run
 ## Running the Application
 
 ### Starting Development Server
+
 ```bash
 ./vendor/bin/sail up -d  # Start Docker containers
 npm run dev              # Start Vite dev server
 ```
 
 ### Stopping Services
+
 [Commands]
 
 ### Restarting Services
+
 [Commands]
 
 ---
@@ -583,16 +663,19 @@ npm run dev              # Start Vite dev server
 ## Running Tests
 
 ### Backend Tests
+
 ```bash
 ./vendor/bin/sail test
 ```
 
 ### Frontend Tests
+
 ```bash
 npm run test:run
 ```
 
 ### E2E Tests
+
 ```bash
 npm run test:e2e
 ```
@@ -602,11 +685,13 @@ npm run test:e2e
 ## Building Frontend Assets
 
 ### Development Build
+
 ```bash
 npm run dev
 ```
 
 ### Production Build
+
 ```bash
 npm run build
 ```
@@ -616,6 +701,7 @@ npm run build
 ## Common Development Commands
 
 ### Database Commands
+
 ```bash
 # Run migrations
 ./vendor/bin/sail artisan migrate
@@ -628,6 +714,7 @@ npm run build
 ```
 
 ### Creating New Files
+
 ```bash
 # Model + migration
 ./vendor/bin/sail artisan make:model Domain/X/Models/YourModel -m
@@ -640,6 +727,7 @@ npm run build
 ```
 
 ### Cache Commands
+
 ```bash
 # Clear all caches
 ./vendor/bin/sail artisan cache:clear
@@ -652,6 +740,7 @@ npm run build
 ```
 
 ### Queue Commands
+
 ```bash
 # Start Horizon
 ./vendor/bin/sail artisan horizon
@@ -661,6 +750,7 @@ npm run build
 ```
 
 ### Debugging Commands
+
 ```bash
 # Tinker REPL
 ./vendor/bin/sail artisan tinker
@@ -677,18 +767,22 @@ npm run build
 ## Troubleshooting
 
 ### Docker Container Issues
+
 **Issue**: Containers won't start
 **Solution**: [Steps]
 
 ### Laravel Issues
+
 **Issue**: 500 errors
 **Solution**: [Steps]
 
 ### Frontend Issues
+
 **Issue**: Vite won't start
 **Solution**: [Steps]
 
 ### Test Issues
+
 **Issue**: Tests touching MySQL
 **Solution**: [Reference CLAUDE.md safeguards]
 
@@ -696,14 +790,15 @@ npm run build
 
 ## Quick Cheatsheet
 
-| Task | Command |
-|------|---------|
-| Start dev | `./vendor/bin/sail up -d && npm run dev` |
-| Run tests | `./vendor/bin/sail test && npm run test:run` |
-| Migrate DB | `./vendor/bin/sail artisan migrate` |
-| Build frontend | `npm run build` |
-| Clear caches | `./vendor/bin/sail artisan optimize:clear` |
-```
+| Task           | Command                                      |
+| -------------- | -------------------------------------------- |
+| Start dev      | `./vendor/bin/sail up -d && npm run dev`     |
+| Run tests      | `./vendor/bin/sail test && npm run test:run` |
+| Migrate DB     | `./vendor/bin/sail artisan migrate`          |
+| Build frontend | `npm run build`                              |
+| Clear caches   | `./vendor/bin/sail artisan optimize:clear`   |
+
+````
 
 **What to EXCLUDE**:
 - ❌ Production deployment procedures
@@ -729,11 +824,12 @@ wc -l docs/*.md
 grep -r "\[TODO\]" docs/
 grep -r "\[PLACEHOLDER\]" docs/
 grep -r "\[\.\.\.\]" docs/ | grep -v "example"  # Exclude JSON examples
-```
+````
 
 ### Content Quality Checks
 
 **For EACH documentation file, verify**:
+
 - [ ] Starts with "Guide for LLM Coding Agents" + Purpose + Tech Stack
 - [ ] Organized by patterns (not components)
 - [ ] Every pattern has copy-paste template
@@ -746,6 +842,7 @@ grep -r "\[\.\.\.\]" docs/ | grep -v "example"  # Exclude JSON examples
 ### Token Efficiency Check
 
 **Verify EXCLUDED** (these waste tokens):
+
 - [ ] No full directory tree with all files
 - [ ] No comprehensive database schema dump
 - [ ] No list of all API endpoints
@@ -753,6 +850,7 @@ grep -r "\[\.\.\.\]" docs/ | grep -v "example"  # Exclude JSON examples
 - [ ] No verbose prose explanations
 
 **Verify INCLUDED** (these provide value):
+
 - [ ] Folder PURPOSE patterns
 - [ ] Copy-paste code templates
 - [ ] Decision trees
@@ -761,6 +859,7 @@ grep -r "\[\.\.\.\]" docs/ | grep -v "example"  # Exclude JSON examples
 - [ ] Common mistakes
 
 ### Cross-Reference Check
+
 - [ ] Tech stack versions consistent across all docs
 - [ ] File paths use correct patterns
 - [ ] Commands are accurate for this project (Sail vs native)
@@ -792,6 +891,7 @@ Ready for use as agent context.
 ```
 
 **FORBIDDEN** (do NOT create):
+
 - ❌ `docs/DOCUMENTATION_SUMMARY.md`
 - ❌ `docs/CODEBASE_ANALYSIS_REPORT.md`
 - ❌ Summary or analysis documents

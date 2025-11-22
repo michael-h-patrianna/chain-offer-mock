@@ -1,16 +1,12 @@
 import React from 'react'
 import type { Reward } from '../../types/chainoffer'
 
-
 export interface ChainOfferMapRewardsProps {
   rewards: Reward[]
   className?: string
 }
 
-export const ChainOfferMapRewards = ({
-  rewards,
-  className = ''
-}: ChainOfferMapRewardsProps) => {
+export const ChainOfferMapRewards = ({ rewards, className = '' }: ChainOfferMapRewardsProps) => {
   const getRewardText = (reward: Reward) => {
     switch (reward.type) {
       case 'GC':
@@ -37,14 +33,7 @@ export const ChainOfferMapRewards = ({
 
   const getRewardIcon = (reward: Reward) => {
     if (reward.iconUrl) {
-      return (
-        <img
-          src={reward.iconUrl}
-          alt={`Icon ${reward.type}`}
-          className="chain-offer-reward__icon"
-          height="48"
-        />
-      )
+      return <img src={reward.iconUrl} alt={`Icon ${reward.type}`} className='chain-offer-reward__icon' height='48' />
     }
 
     // Production icon URLs
@@ -54,27 +43,16 @@ export const ChainOfferMapRewards = ({
       FS: 'https://storage.googleapis.com/www.playfame.com/images/chain-offers/free_spins_desktop.png',
       FREE_SPINS: 'https://storage.googleapis.com/www.playfame.com/images/chain-offers/free_spins_desktop.png',
       XP: 'https://storage.googleapis.com/www.playfame.com/images/Store_icon_-_65px_height_(1).png',
-      RANDOM: 'https://storage.googleapis.com/www.playfame.com/images/Store_icon_-_65px_height_(1).png'
+      RANDOM: 'https://storage.googleapis.com/www.playfame.com/images/Store_icon_-_65px_height_(1).png',
     }
 
     const iconUrl = iconMap[reward.type]
     if (iconUrl) {
-      return (
-        <img
-          src={iconUrl}
-          alt={`Icon ${reward.type}`}
-          className="chain-offer-reward__icon"
-          height="48"
-        />
-      )
+      return <img src={iconUrl} alt={`Icon ${reward.type}`} className='chain-offer-reward__icon' height='48' />
     }
 
     // Final fallback
-    return (
-      <span className="chain-offer-reward__icon-fallback">
-        🎁
-      </span>
-    )
+    return <span className='chain-offer-reward__icon-fallback'>🎁</span>
   }
 
   return (
@@ -82,9 +60,7 @@ export const ChainOfferMapRewards = ({
       {rewards.map((reward, index) => (
         <div key={index} className={getRewardClass(reward)}>
           {getRewardIcon(reward)}
-          <div className="chain-offer-reward__amount">
-            {getRewardText(reward)}
-          </div>
+          <div className='chain-offer-reward__amount'>{getRewardText(reward)}</div>
         </div>
       ))}
     </div>

@@ -1,1 +1,12 @@
-.CreatorBar_tokenExpired__tY2g3{--creator-bar-token-expired-flex-shrink:0;--creator-bar-token-expired-margin-right:$spacing0d5Rem;--creator-bar-token-expired-margin-right-lg:0;flex-shrink:var(--creator-bar-token-expired-flex-shrink);margin-right:var(--creator-bar-token-expired-margin-right)}@media (max-width:99999px){.CreatorBar_tokenExpired__tY2g3{margin-right:var(--creator-bar-token-expired-margin-right-lg)}}
+.CreatorBar_tokenExpired__tY2g3 {
+  --creator-bar-token-expired-flex-shrink: 0;
+  --creator-bar-token-expired-margin-right: $spacing0d5Rem;
+  --creator-bar-token-expired-margin-right-lg: 0;
+  flex-shrink: var(--creator-bar-token-expired-flex-shrink);
+  margin-right: var(--creator-bar-token-expired-margin-right);
+}
+@media (max-width: 99999px) {
+  .CreatorBar_tokenExpired__tY2g3 {
+    margin-right: var(--creator-bar-token-expired-margin-right-lg);
+  }
+}

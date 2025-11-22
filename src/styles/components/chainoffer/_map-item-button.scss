@@ -1,26 +1,23 @@
 @import '../../variables/variables';
 
-
-
 // Chain Offer Map Button styles
 .chain-offer-map-button {
-  position:relative;
-     margin: 0;
-    padding: 10px 20px;
-    min-width: 60px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s;
-    white-space: nowrap;
-    align-self: center;
-    flex-shrink: 0;
-        background: linear-gradient(180deg, #ff5981 0%, #c83558 100%);
-    color: #fff;
-
+  position: relative;
+  margin: 0;
+  padding: 10px 20px;
+  min-width: 60px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  align-self: center;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #ff5981 0%, #c83558 100%);
+  color: #fff;
 
   &__lock {
     position: absolute;
@@ -35,17 +32,14 @@
     background-color: #1ec0d0;
     transform: rotate(-20deg);
 
-      width: 16px;
-      height: 16px;
-      font-size: 8px;
+    width: 16px;
+    height: 16px;
+    font-size: 8px;
   }
 
   &__text {
     font-weight: inherit;
   }
-
-
-
 }
 .buttonClaimed {
   background-color: var(--map-item-btn-claimed-background, $brandAccentSecondary75);

@@ -1,1 +1,14 @@
-.PromoModelContainer_root__rrUxd{max-width:99999px;margin:auto}.PromoModelContainer_root__rrUxd ul{list-style:disc}.PromoModelContainer_root__rrUxd ol{list-style:decimal}.PromoModelContainer_root__rrUxd ol,.PromoModelContainer_root__rrUxd ul{padding:0 16px 16px}
+.PromoModelContainer_root__rrUxd {
+  max-width: 99999px;
+  margin: auto;
+}
+.PromoModelContainer_root__rrUxd ul {
+  list-style: disc;
+}
+.PromoModelContainer_root__rrUxd ol {
+  list-style: decimal;
+}
+.PromoModelContainer_root__rrUxd ol,
+.PromoModelContainer_root__rrUxd ul {
+  padding: 0 16px 16px;
+}

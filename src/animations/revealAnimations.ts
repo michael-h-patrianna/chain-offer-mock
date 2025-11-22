@@ -42,7 +42,11 @@ export function getRevealAnimation(type: AnimationType): RevealAnimation {
 /**
  * Get all available animation types for selection
  */
-export function getAnimationOptions(): Array<{ value: AnimationType; label: string; description: string }> {
+export function getAnimationOptions(): Array<{
+  value: AnimationType
+  label: string
+  description: string
+}> {
   return Object.values(revealAnimations).map((anim) => ({
     value: anim.id,
     label: anim.name,

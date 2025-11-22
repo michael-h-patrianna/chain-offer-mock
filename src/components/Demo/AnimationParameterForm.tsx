@@ -33,7 +33,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
   const parameters = getParameters(animationType)
 
   // Updated logic to show parameters for all animations that use them
-  const isSpringAnimation = ['spring-physics', 'silk-unfold', 'orbital-reveal', 'elastic-bounce'].includes(animationType)
+  const isSpringAnimation = ['spring-physics', 'silk-unfold', 'orbital-reveal', 'elastic-bounce'].includes(
+    animationType,
+  )
   // Crystal Shimmer and Glitch Snap use keyframe arrays for scale, so they respond to wobble intensity.
   const isWobbleAnimation = ['elastic-bounce', 'scale-rotate', 'glitch-snap', 'crystal-shimmer'].includes(animationType)
   const isOrbitalAnimation = animationType === 'orbital-reveal'
@@ -50,7 +52,7 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
       version: '1.0',
       timestamp: new Date().toISOString(),
       animationType: animationType,
-      parameters: currentParams
+      parameters: currentParams,
     }
 
     const jsonString = JSON.stringify(exportData, null, 2)
@@ -58,25 +60,27 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
 
     // Try using File System Access API for "Save As" dialog
     interface FileSystemFileHandle {
-      createWritable: () => Promise<WritableStream>;
-      name: string;
+      createWritable: () => Promise<WritableStream>
+      name: string
     }
 
     interface WindowWithFileSystem extends Window {
       showSaveFilePicker: (options: {
-        suggestedName: string;
-        types: Array<{ description: string; accept: Record<string, string[]> }>;
-      }) => Promise<FileSystemFileHandle>;
+        suggestedName: string
+        types: Array<{ description: string; accept: Record<string, string[]> }>
+      }) => Promise<FileSystemFileHandle>
     }
 
     if ('showSaveFilePicker' in window) {
       try {
         const fileHandle = await (window as WindowWithFileSystem).showSaveFilePicker({
           suggestedName,
-          types: [{
-            description: 'JSON Files',
-            accept: { 'application/json': ['.json'] }
-          }]
+          types: [
+            {
+              description: 'JSON Files',
+              accept: { 'application/json': ['.json'] },
+            },
+          ],
         })
 
         const writable = await fileHandle.createWritable()
@@ -135,24 +139,24 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
       try {
         const content = e.target?.result as string
         const importData = JSON.parse(content) as {
-          animationType?: string;
+          animationType?: string
           parameters?: {
-            durationScale?: number;
-            delayOffset?: number;
-            staggerChildren?: number;
-            delayChildren?: number;
+            durationScale?: number
+            delayOffset?: number
+            staggerChildren?: number
+            delayChildren?: number
             spring?: {
-              stiffness?: number;
-              damping?: number;
-              mass?: number;
-            };
+              stiffness?: number
+              damping?: number
+              mass?: number
+            }
             wobble?: {
-              wobbleIntensity?: number;
-            };
+              wobbleIntensity?: number
+            }
             orbital?: {
-              orbitDistance?: number;
-            };
-          };
+              orbitDistance?: number
+            }
+          }
         }
 
         // Validate the imported data structure
@@ -177,15 +181,20 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
         const params = importData.parameters
 
         // Update base parameters
-        if (params.durationScale !== undefined) updateParameter(targetAnimationType, 'durationScale', params.durationScale)
+        if (params.durationScale !== undefined)
+          updateParameter(targetAnimationType, 'durationScale', params.durationScale)
         if (params.delayOffset !== undefined) updateParameter(targetAnimationType, 'delayOffset', params.delayOffset)
-        if (params.staggerChildren !== undefined) updateParameter(targetAnimationType, 'staggerChildren', params.staggerChildren)
-        if (params.delayChildren !== undefined) updateParameter(targetAnimationType, 'delayChildren', params.delayChildren)
+        if (params.staggerChildren !== undefined)
+          updateParameter(targetAnimationType, 'staggerChildren', params.staggerChildren)
+        if (params.delayChildren !== undefined)
+          updateParameter(targetAnimationType, 'delayChildren', params.delayChildren)
 
         // Update spring parameters if present
         if (params.spring) {
-          if (params.spring.stiffness !== undefined) updateSpringParameter(targetAnimationType, 'stiffness', params.spring.stiffness)
-          if (params.spring.damping !== undefined) updateSpringParameter(targetAnimationType, 'damping', params.spring.damping)
+          if (params.spring.stiffness !== undefined)
+            updateSpringParameter(targetAnimationType, 'stiffness', params.spring.stiffness)
+          if (params.spring.damping !== undefined)
+            updateSpringParameter(targetAnimationType, 'damping', params.spring.damping)
           if (params.spring.mass !== undefined) updateSpringParameter(targetAnimationType, 'mass', params.spring.mass)
         }
 
@@ -214,56 +223,44 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
 
   if (isNoneAnimation) {
     return (
-      <div className="animation-parameter-form">
-        <div className="animation-parameter-form__header">
-          <h2 className="animation-parameter-form__title">Parameters</h2>
+      <div className='animation-parameter-form'>
+        <div className='animation-parameter-form__header'>
+          <h2 className='animation-parameter-form__title'>Parameters</h2>
         </div>
-        <p className="animation-parameter-form__empty">
-          No parameters available for "No Animation" mode.
-        </p>
+        <p className='animation-parameter-form__empty'>No parameters available for "No Animation" mode.</p>
       </div>
     )
   }
 
   return (
-    <div className="animation-parameter-form">
-      <div className="animation-parameter-form__header">
-        <h2 className="animation-parameter-form__title">Parameters</h2>
-        <div className="animation-parameter-form__actions">
+    <div className='animation-parameter-form'>
+      <div className='animation-parameter-form__header'>
+        <h2 className='animation-parameter-form__title'>Parameters</h2>
+        <div className='animation-parameter-form__actions'>
           <button
-            className="animation-parameter-form__action-button"
+            className='animation-parameter-form__action-button'
             onClick={() => {
               void handleExport()
             }}
-            title="Export parameters to JSON file"
+            title='Export parameters to JSON file'
           >
             <Download size={16} />
           </button>
           <button
-            className="animation-parameter-form__action-button"
+            className='animation-parameter-form__action-button'
             onClick={handleImport}
-            title="Import parameters from JSON file"
+            title='Import parameters from JSON file'
           >
             <Upload size={16} />
           </button>
-          <button
-            className="animation-parameter-form__action-button"
-            onClick={handleReset}
-            title="Reset to defaults"
-          >
+          <button className='animation-parameter-form__action-button' onClick={handleReset} title='Reset to defaults'>
             <RotateCcw size={16} />
           </button>
         </div>
       </div>
-      <input
-        ref={fileInputRef}
-        type="file"
-        accept=".json"
-        onChange={handleFileChange}
-        style={{ display: 'none' }}
-      />
+      <input ref={fileInputRef} type='file' accept='.json' onChange={handleFileChange} style={{ display: 'none' }} />
 
-      <ParameterGroup title="Timing">
+      <ParameterGroup title='Timing'>
         <ParameterSlider
           key={`${animationType}-durationScale`}
           label={baseParameterConfigs[0].label}
@@ -290,7 +287,7 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
         />
       </ParameterGroup>
 
-      <ParameterGroup title="Stagger Effect" >
+      <ParameterGroup title='Stagger Effect'>
         <ParameterSlider
           key={`${animationType}-staggerChildren`}
           label={baseParameterConfigs[2].label}
@@ -318,7 +315,7 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
       </ParameterGroup>
 
       {isSpringAnimation && parameters.spring && (
-        <ParameterGroup title="Spring Physics" >
+        <ParameterGroup title='Spring Physics'>
           <ParameterSlider
             key={`${animationType}-stiffness`}
             label={springParameterConfigs[0].label}
@@ -359,7 +356,7 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
       )}
 
       {isWobbleAnimation && parameters.wobble && (
-        <ParameterGroup title="Wobble Effect" >
+        <ParameterGroup title='Wobble Effect'>
           <ParameterSlider
             key={`${animationType}-wobbleIntensity`}
             label={wobbleParameterConfigs[0].label}
@@ -376,7 +373,7 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
       )}
 
       {isOrbitalAnimation && parameters.orbital && (
-        <ParameterGroup title="Orbital Motion" >
+        <ParameterGroup title='Orbital Motion'>
           <ParameterSlider
             key={`${animationType}-orbitDistance`}
             label={orbitalParameterConfigs[0].label}

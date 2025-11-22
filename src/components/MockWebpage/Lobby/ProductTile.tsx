@@ -12,18 +12,18 @@ export const ProductTile = ({ code, title }: ProductTileProps) => {
   const imageUrl = `https://storage.googleapis.com/www.playfame.com/tiles/${code}/source.png`
 
   return (
-    <div className="ProductTile_root__Dqjo0 ProductTile_rootVisible__76TQE">
-      <div className="ProductTile_imageContainer__o2Irg" data-test={`game-tile-${code}`}>
+    <div className='ProductTile_root__Dqjo0 ProductTile_rootVisible__76TQE'>
+      <div className='ProductTile_imageContainer__o2Irg' data-test={`game-tile-${code}`}>
         {/* Placeholder for tags if needed */}
         {/* <div className="ProductTileTags_tags__CcUoq">...</div> */}
         <picture>
           <img
             alt={title}
-            className="styles_image__8mDPx ProductTile_image__KEVUt"
-            width="87"
-            height="116"
-            loading="lazy"
-            decoding="async"
+            className='styles_image__8mDPx ProductTile_image__KEVUt'
+            width='87'
+            height='116'
+            loading='lazy'
+            decoding='async'
             src={imageUrl}
             onError={(e) => {
               // Fallback to local placeholder if remote fails (optional, but good for dev)

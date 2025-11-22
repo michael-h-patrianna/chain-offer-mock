@@ -74,7 +74,12 @@ interface PreBurstParticleData {
 }
 
 // Helper component: Individual coin with squash/stretch
-const CoinElement = ({ coin, originX, originY, duration }: {
+const CoinElement = ({
+  coin,
+  originX,
+  originY,
+  duration,
+}: {
   coin: CoinData
   originX: number
   originY: number
@@ -136,8 +141,8 @@ const CoinElement = ({ coin, originX, originY, duration }: {
       }}
     >
       <img
-        src="/assets/tristan.jpeg"
-        alt=""
+        src='/assets/tristan.jpeg'
+        alt=''
         style={{
           width: '100%',
           height: '100%',
@@ -150,7 +155,13 @@ const CoinElement = ({ coin, originX, originY, duration }: {
 }
 
 // Helper component: Trailing particle
-const ParticleElement = ({ particle, coin, originX, originY, duration }: {
+const ParticleElement = ({
+  particle,
+  coin,
+  originX,
+  originY,
+  duration,
+}: {
   particle: ParticleData
   coin: CoinData
   originX: number
@@ -205,10 +216,7 @@ const ParticleElement = ({ particle, coin, originX, originY, duration }: {
 }
 
 // Helper component: Expanding burst ring at origin
-const BurstRing = ({ originX, originY }: {
-  originX: number
-  originY: number
-}) => {
+const BurstRing = ({ originX, originY }: { originX: number; originY: number }) => {
   return (
     <motion.div
       initial={{
@@ -243,9 +251,7 @@ const BurstRing = ({ originX, originY }: {
 }
 
 // Helper component: Sparkle burst at apex
-const SparkleElement = ({ sparkle }: {
-  sparkle: SparkleData
-}) => {
+const SparkleElement = ({ sparkle }: { sparkle: SparkleData }) => {
   const { x, y, size, rotation } = sparkle
 
   return (
@@ -300,11 +306,7 @@ const SparkleElement = ({ sparkle }: {
 }
 
 // Helper component: Ambient glow
-const AmbientGlow = ({ originX, originY, duration }: {
-  originX: number
-  originY: number
-  duration: number
-}) => {
+const AmbientGlow = ({ originX, originY, duration }: { originX: number; originY: number; duration: number }) => {
   return (
     <motion.div
       initial={{
@@ -338,7 +340,11 @@ const AmbientGlow = ({ originX, originY, duration }: {
 }
 
 // Helper component: Pre-burst particle
-const PreBurstParticle = ({ particle, originX, originY }: {
+const PreBurstParticle = ({
+  particle,
+  originX,
+  originY,
+}: {
   particle: PreBurstParticleData
   originX: number
   originY: number
@@ -395,7 +401,7 @@ export const ModalCelebrationsCoinsFountain = ({
       const velocity = 600 + Math.random() * 500 // 600-1100 px/s (MUCH higher!)
       const size = 60 + Math.random() * 60 // 60-120px
       const rotationSpeed = 180 + Math.random() * 360 // 180-540 deg/s
-      const delay = 0.12 + (i * 0.008) // Stagger by 8ms
+      const delay = 0.12 + i * 0.008 // Stagger by 8ms
 
       // Calculate apex point
       const angleRad = (angle * Math.PI) / 180
@@ -424,12 +430,7 @@ export const ModalCelebrationsCoinsFountain = ({
   // Pre-calculate particles (3-4 per coin for total ~80-100 particles)
   const particles = useMemo<ParticleData[]>(() => {
     const particlesPerCoin = 3
-    const particleColors = [
-      COLORS.goldPrimary,
-      COLORS.goldAccent,
-      COLORS.yellowBright,
-      COLORS.yellowPale,
-    ]
+    const particleColors = [COLORS.goldPrimary, COLORS.goldAccent, COLORS.yellowBright, COLORS.yellowPale]
 
     return coins.flatMap((coin) =>
       Array.from({ length: particlesPerCoin }, (_, i) => ({
@@ -440,7 +441,7 @@ export const ModalCelebrationsCoinsFountain = ({
         offsetDistance: 10 + Math.random() * 20, // 10-30px
         coinId: coin.id,
         opacity: 0.4 + Math.random() * 0.4, // 0.4-0.8
-      }))
+      })),
     )
   }, [coins])
 
