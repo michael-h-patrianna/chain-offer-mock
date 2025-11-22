@@ -46,18 +46,33 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
     resetToDefaults(animationType)
   }
 
-  const handleExport = async () => {
+  const handleExport = async (e?: React.MouseEvent) => {
+    console.log('[Export] Starting export process for:', animationType)
     const currentParams = getParameters(animationType)
+    console.log('[Export] Current parameters:', currentParams)
+    
     const exportData = {
       version: '1.0',
       timestamp: new Date().toISOString(),
       animationType: animationType,
       parameters: currentParams,
     }
+    console.log('[Export] Export data prepared:', exportData)
 
     const jsonString = JSON.stringify(exportData, null, 2)
+    console.log('[Export] JSON string length:', jsonString.length)
+    
     const blob = new Blob([jsonString], { type: 'application/json' })
+    console.log('[Export] Blob created, size:', blob.size)
+    
     const suggestedName = `animation-parameters-${animationType}-${String(Date.now())}.json`
+    console.log('[Export] Suggested filename:', suggestedName)
+
+    // Allow forcing fallback with Alt/Option key
+    const forceFallback = e?.altKey || e?.shiftKey
+    if (forceFallback) {
+      console.log('[Export] Force fallback requested via modifier key')
+    }
 
     // Try using File System Access API for "Save As" dialog
     interface FileSystemWritableFileStream extends WritableStream {
@@ -67,6 +82,7 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
 
     interface FileSystemFileHandle {
       createWritable: () => Promise<FileSystemWritableFileStream>
+      getFile: () => Promise<File>
       name: string
     }
 
@@ -77,8 +93,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
       }) => Promise<FileSystemFileHandle>
     }
 
-    if ('showSaveFilePicker' in window) {
+    if (!forceFallback && 'showSaveFilePicker' in window) {
       try {
+        console.log('[Export] Attempting File System Access API')
         const fileHandle = await (window as WindowWithFileSystem).showSaveFilePicker({
           suggestedName,
           types: [
@@ -88,15 +105,36 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
             },
           ],
         })
+        console.log('[Export] File handle obtained:', fileHandle.name)
 
         const writable = await fileHandle.createWritable()
+        console.log('[Export] Writable stream created')
+        
+        // Write the blob directly to the stream
         await writable.write(blob)
+        console.log('[Export] Data written to stream')
+        
+        // CRITICAL: Must close the writable stream to commit the file
         await writable.close()
+        console.log('[Export] Stream closed and file committed')
+        
+        // Verify the file was written by checking its size
+        try {
+          const file = await fileHandle.getFile()
+          console.log('[Export] Verification - File exists with size:', file.size, 'bytes')
+          if (file.size !== blob.size) {
+            console.error('[Export] WARNING: File size mismatch! Expected:', blob.size, 'Got:', file.size)
+          }
+        } catch (verifyError) {
+          console.error('[Export] Could not verify file:', verifyError)
+        }
+        
         toast.success(`Parameters exported to "${fileHandle.name}"!`)
         return // Success!
       } catch (error) {
         // User cancelled or error occurred with File System Access API
         if (error instanceof Error && error.name === 'AbortError') {
+          console.log('[Export] User cancelled File System Access API')
           return // User cancelled, don't show error
         }
         // If there was an error (not cancellation), fall through to fallback
@@ -106,19 +144,26 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
 
     // Fallback: Direct download (works in all browsers)
     try {
+      console.log('[Export] Using fallback download method')
       const url = URL.createObjectURL(blob)
+      console.log('[Export] Object URL created:', url)
+      
       const link = document.createElement('a')
       link.href = url
       link.download = suggestedName
       link.style.display = 'none'
       document.body.appendChild(link)
+      console.log('[Export] Link element added to body')
+      
       link.click()
+      console.log('[Export] Link clicked')
 
       // Cleanup after a longer delay to ensure download starts
       // When "Ask where to save" is enabled, the user might take time to select a location
       setTimeout(() => {
         document.body.removeChild(link)
         URL.revokeObjectURL(url)
+        console.log('[Export] Cleanup complete')
       }, 60000)
 
       toast.success(`Parameters exported to "${suggestedName}"!`)
@@ -244,10 +289,10 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
         <div className='animation-parameter-form__actions'>
           <button
             className='animation-parameter-form__action-button'
-            onClick={() => {
-              void handleExport()
+            onClick={(e) => {
+              void handleExport(e)
             }}
-            title='Export parameters to JSON file'
+            title='Export parameters to JSON file (Alt+Click to force download)'
           >
             <Download size={16} />
           </button>
