@@ -61,7 +61,6 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
     // Try using File System Access API for "Save As" dialog
     if ('showSaveFilePicker' in window) {
       try {
-        console.log('[Export] Using File System Access API')
         const fileHandle = await (window as any).showSaveFilePicker({
           suggestedName,
           types: [{
@@ -70,19 +69,15 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
           }]
         })
 
-        console.log('[Export] File selected, writing...', fileHandle.name)
         const writable = await fileHandle.createWritable()
         await writable.write(jsonString)
         await writable.close()
-        console.log('[Export] File written successfully')
         toast.success(`Parameters exported to "${fileHandle.name}"!`)
         return // Success!
       } catch (error) {
         // User cancelled or error occurred with File System Access API
         if (error instanceof Error && error.name === 'AbortError') {
-          // User cancelled, don't show error
-          console.log('[Export] User cancelled file save')
-          return
+          return // User cancelled, don't show error
         }
         // If there was an error (not cancellation), fall through to fallback
         console.error('[Export] File System Access API failed, using fallback:', error)
@@ -90,7 +85,6 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
     }
 
     // Fallback: Direct download (works in all browsers)
-    console.log('[Export] Using fallback download method')
     try {
       const blob = new Blob([jsonString], { type: 'application/json' })
       const url = URL.createObjectURL(blob)
@@ -99,7 +93,6 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
       link.download = suggestedName
       link.style.display = 'none'
       document.body.appendChild(link)
-      console.log('[Export] Triggering download for:', suggestedName)
       link.click()
 
       // Cleanup after a short delay
@@ -108,7 +101,6 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
         URL.revokeObjectURL(url)
       }, 100)
 
-      console.log('[Export] Download triggered successfully')
       toast.success(`Parameters exported to "${suggestedName}"!`)
     } catch (error) {
       console.error('[Export] Fallback download failed:', error)

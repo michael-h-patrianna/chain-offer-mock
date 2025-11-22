@@ -49,16 +49,17 @@ function AppInner() {
   }
 
   const handleItemButtonClick = (itemId: string) => {
-    console.log('[App] Item button clicked:', itemId)
     // Handle purchase logic here
+    void itemId
   }
 
   const handleQuestAction = (questId: string, status: string) => {
-    console.log('[App] Quest action:', questId, status)
+    void questId
+    void status
   }
 
   const handleClaimBonus = () => {
-    console.log('[App] Claiming bonus rewards')
+    // Handle claim logic here
   }
 
   const chainOfferDialogProps = isChainOfferDialogOpen ? getDemoChainOfferDialogProps() : null
