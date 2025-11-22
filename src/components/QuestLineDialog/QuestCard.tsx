@@ -30,7 +30,7 @@ export const QuestCard: React.FC<QuestCardProps> = ({
   const hasRewards = rewards.length > 0
   const canExpand = !isLocked && (description || hasRewards)
 
-  const handleActionClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleActionClick = () => {
     if (status === 'in_progress' && onAction) {
       onAction(questCode, 'go')
     } else if (status === 'unclaimed' && onAction) {
@@ -102,7 +102,7 @@ export const QuestCard: React.FC<QuestCardProps> = ({
               aria-valuenow={Math.round(progress)}
               aria-valuemin={0}
               aria-valuemax={100}
-              aria-label={`Quest progress: ${Math.round(progress)}%`}
+              aria-label={`Quest progress: ${String(Math.round(progress))}%`}
             >
               <div className="quest-card__progress-fill" data-progress={Math.round(progress / 5) * 5} />
               <span className="quest-card__progress-text" aria-hidden="true">{Math.round(progress)}%</span>
@@ -120,7 +120,9 @@ export const QuestCard: React.FC<QuestCardProps> = ({
           <button
             type="button"
             className="quest-card__footer"
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={() => {
+              setIsExpanded(!isExpanded)
+            }}
             aria-expanded={isExpanded}
             aria-label={isExpanded ? 'Hide quest details' : 'Show quest details'}
           >
@@ -141,7 +143,9 @@ export const QuestCard: React.FC<QuestCardProps> = ({
           key={animationKey}
           originX={fountainOrigin.x}
           originY={fountainOrigin.y}
-          onComplete={() => setShowCoinFountain(false)}
+          onComplete={() => {
+            setShowCoinFountain(false)
+          }}
         />
       )}
     </div>

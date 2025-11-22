@@ -1,4 +1,4 @@
-import { Download, Play, RotateCcw, Upload } from 'lucide-react'
+import { Download, RotateCcw, Upload } from 'lucide-react'
 import { useRef } from 'react'
 import toast from 'react-hot-toast'
 import { AnimationType } from '../../animations/revealAnimations'
@@ -26,8 +26,6 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
     updateWobbleParameter,
     updateOrbitalParameter,
     resetToDefaults,
-    getAllParameters,
-    setAllParameters
   } = useAnimationParameters()
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -56,12 +54,24 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
     }
 
     const jsonString = JSON.stringify(exportData, null, 2)
-    const suggestedName = `animation-parameters-${animationType}-${Date.now()}.json`
+    const suggestedName = `animation-parameters-${animationType}-${String(Date.now())}.json`
 
     // Try using File System Access API for "Save As" dialog
+    interface FileSystemFileHandle {
+      createWritable: () => Promise<WritableStream>;
+      name: string;
+    }
+
+    interface WindowWithFileSystem extends Window {
+      showSaveFilePicker: (options: {
+        suggestedName: string;
+        types: Array<{ description: string; accept: Record<string, string[]> }>;
+      }) => Promise<FileSystemFileHandle>;
+    }
+
     if ('showSaveFilePicker' in window) {
       try {
-        const fileHandle = await (window as any).showSaveFilePicker({
+        const fileHandle = await (window as WindowWithFileSystem).showSaveFilePicker({
           suggestedName,
           types: [{
             description: 'JSON Files',
@@ -70,8 +80,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
         })
 
         const writable = await fileHandle.createWritable()
-        await writable.write(jsonString)
-        await writable.close()
+        const writer = writable.getWriter()
+        await writer.write(jsonString)
+        await writer.close()
         toast.success(`Parameters exported to "${fileHandle.name}"!`)
         return // Success!
       } catch (error) {
@@ -109,7 +120,10 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
   }
 
   const handleImport = () => {
-    fileInputRef.current?.click()
+    const input = fileInputRef.current
+    if (!input) return
+
+    input.click()
   }
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -120,7 +134,26 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
     reader.onload = (e) => {
       try {
         const content = e.target?.result as string
-        const importData = JSON.parse(content)
+        const importData = JSON.parse(content) as {
+          animationType?: string;
+          parameters?: {
+            durationScale?: number;
+            delayOffset?: number;
+            staggerChildren?: number;
+            delayChildren?: number;
+            spring?: {
+              stiffness?: number;
+              damping?: number;
+              mass?: number;
+            };
+            wobble?: {
+              wobbleIntensity?: number;
+            };
+            orbital?: {
+              orbitDistance?: number;
+            };
+          };
+        }
 
         // Validate the imported data structure
         if (!importData.animationType || !importData.parameters) {
@@ -129,7 +162,7 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
         }
 
         // Check if the animation type matches
-        const targetAnimationType = importData.animationType
+        const targetAnimationType = importData.animationType as AnimationType
         if (targetAnimationType !== animationType) {
           // Switch to the imported animation type automatically
           if (onAnimationTypeChange) {
@@ -199,7 +232,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
         <div className="animation-parameter-form__actions">
           <button
             className="animation-parameter-form__action-button"
-            onClick={handleExport}
+            onClick={() => {
+              void handleExport()
+            }}
             title="Export parameters to JSON file"
           >
             <Download size={16} />
@@ -237,7 +272,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
           max={baseParameterConfigs[0].max}
           step={baseParameterConfigs[0].step}
           description={baseParameterConfigs[0].description}
-          onChange={(value) => updateParameter(animationType, 'durationScale', value)}
+          onChange={(value) => {
+            updateParameter(animationType, 'durationScale', value)
+          }}
         />
         <ParameterSlider
           key={`${animationType}-delayOffset`}
@@ -247,7 +284,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
           max={baseParameterConfigs[1].max}
           step={baseParameterConfigs[1].step}
           description={baseParameterConfigs[1].description}
-          onChange={(value) => updateParameter(animationType, 'delayOffset', value)}
+          onChange={(value) => {
+            updateParameter(animationType, 'delayOffset', value)
+          }}
         />
       </ParameterGroup>
 
@@ -260,7 +299,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
           max={baseParameterConfigs[2].max}
           step={baseParameterConfigs[2].step}
           description={baseParameterConfigs[2].description}
-          onChange={(value) => updateParameter(animationType, 'staggerChildren', value)}
+          onChange={(value) => {
+            updateParameter(animationType, 'staggerChildren', value)
+          }}
         />
         <ParameterSlider
           key={`${animationType}-delayChildren`}
@@ -270,7 +311,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
           max={baseParameterConfigs[3].max}
           step={baseParameterConfigs[3].step}
           description={baseParameterConfigs[3].description}
-          onChange={(value) => updateParameter(animationType, 'delayChildren', value)}
+          onChange={(value) => {
+            updateParameter(animationType, 'delayChildren', value)
+          }}
         />
       </ParameterGroup>
 
@@ -284,7 +327,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
             max={springParameterConfigs[0].max}
             step={springParameterConfigs[0].step}
             description={springParameterConfigs[0].description}
-            onChange={(value) => updateSpringParameter(animationType, 'stiffness', value)}
+            onChange={(value) => {
+              updateSpringParameter(animationType, 'stiffness', value)
+            }}
           />
           <ParameterSlider
             key={`${animationType}-damping`}
@@ -294,7 +339,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
             max={springParameterConfigs[1].max}
             step={springParameterConfigs[1].step}
             description={springParameterConfigs[1].description}
-            onChange={(value) => updateSpringParameter(animationType, 'damping', value)}
+            onChange={(value) => {
+              updateSpringParameter(animationType, 'damping', value)
+            }}
           />
           <ParameterSlider
             key={`${animationType}-mass`}
@@ -304,7 +351,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
             max={springParameterConfigs[2].max}
             step={springParameterConfigs[2].step}
             description={springParameterConfigs[2].description}
-            onChange={(value) => updateSpringParameter(animationType, 'mass', value)}
+            onChange={(value) => {
+              updateSpringParameter(animationType, 'mass', value)
+            }}
           />
         </ParameterGroup>
       )}
@@ -319,7 +368,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
             max={wobbleParameterConfigs[0].max}
             step={wobbleParameterConfigs[0].step}
             description={wobbleParameterConfigs[0].description}
-            onChange={(value) => updateWobbleParameter(animationType, 'wobbleIntensity', value)}
+            onChange={(value) => {
+              updateWobbleParameter(animationType, 'wobbleIntensity', value)
+            }}
           />
         </ParameterGroup>
       )}
@@ -334,7 +385,9 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
             max={orbitalParameterConfigs[0].max}
             step={orbitalParameterConfigs[0].step}
             description={orbitalParameterConfigs[0].description}
-            onChange={(value) => updateOrbitalParameter(animationType, 'orbitDistance', value)}
+            onChange={(value) => {
+              updateOrbitalParameter(animationType, 'orbitDistance', value)
+            }}
           />
         </ParameterGroup>
       )}

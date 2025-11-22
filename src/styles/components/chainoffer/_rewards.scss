@@ -1,0 +1,115 @@
+@import '../../variables/variables';
+
+// Chain Offer Rewards styles
+.chain-offer-rewards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px; // Match original gap of 0.5rem
+}
+
+.chain-offer-reward {
+  display: flex;
+  flex-direction: column; // Icon on top, text below
+  align-items: center;
+  justify-content: center;
+  gap: 0; // No gap between icon and text
+
+  &__icon {
+    display: block;
+    width: auto;
+
+      max-height: 30px;
+  }
+
+  &__icon-fallback {
+    font-size: 32px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__amount {
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.45);
+    font-weight: 700;
+    line-height: 1;
+
+      font-size: 12px;
+  }
+
+  &--gc &__amount {
+    color: #FFE33F; // Yellow for GC
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+  }
+
+  &--sc &__amount {
+    color: #c6ff77;
+  }
+
+  &--fs &__amount,
+  &--xp &__amount {
+    color: #f2f2f2;
+  }
+}
+
+
+.chain-offer-rewards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.chain-offer-reward {
+  display: flex;
+  flex-direction: column; /* Changed from row to column - icon on top, amount below */
+  align-items: center;
+  justify-content: center;
+  gap: 0; /* Remove gap for tighter spacing */
+}
+
+.chain-offer-reward__icon {
+  display: block;
+  width: auto;
+    max-height: 30px;
+}
+
+
+.chain-offer-reward__icon-fallback {
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chain-offer-reward__amount {
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 0.5px 0.5px rgba(0, 0, 0, 0.45);
+    font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+
+.chain-offer-reward--gc .chain-offer-reward__amount {
+  color: #FFE33F; /* Changed from cyan to yellow */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+}
+
+.chain-offer-reward--sc .chain-offer-reward__amount {
+  color: #c6ff77;
+}
+
+.chain-offer-reward--fs .chain-offer-reward__amount,
+.chain-offer-reward--xp .chain-offer-reward__amount {
+  color: #f2f2f2;
+}

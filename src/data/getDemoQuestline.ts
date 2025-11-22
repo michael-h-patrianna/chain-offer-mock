@@ -1,6 +1,6 @@
 import { transformQuestLineData } from '../utils/transformQuestLineData'
-import questlineRawData from './questlineData.json'
+import questlineRawDataUnknown from './questlineData.json'
 
 export function getDemoQuestlineDialogProps() {
-  return transformQuestLineData(questlineRawData as any)
+  return transformQuestLineData(questlineRawDataUnknown as Record<string, unknown>)
 }

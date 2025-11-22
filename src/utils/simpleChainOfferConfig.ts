@@ -48,7 +48,7 @@ export function buildDialogFromSimpleConfig(
 
   const items = config.items.map((item, idx) => {
     if (item.type === 'PURCHASE' && (item.price == null || isNaN(item.price))) {
-      throw new Error(`Purchase item at index ${idx} missing valid price`)
+      throw new Error(`Purchase item at index ${String(idx)} missing valid price`)
     }
 
   const rewards: Reward[] = item.rewards.map(r => {
@@ -63,16 +63,18 @@ export function buildDialogFromSimpleConfig(
           return { type: 'XP', amount: r.amount }
         case 'RANDOM':
           return { type: 'RANDOM', amount: 1, name: r.name }
-        default:
-          throw new Error(`Unsupported reward type: ${(r as any).type}`)
+        default: {
+          const unknownType: never = r
+          throw new Error(`Unsupported reward type: ${String((unknownType as { type: string }).type)}`)
+        }
       }
     })
 
     return {
-      id: `simple-${idx + 1}`,
-      name: `${item.type === 'PURCHASE' ? 'Purchase' : 'Free'} Step ${idx + 1}`,
+      id: `simple-${String(idx + 1)}`,
+      name: `${item.type === 'PURCHASE' ? 'Purchase' : 'Free'} Step ${String(idx + 1)}`,
       position: idx + 1,
-      status: (idx === 0 ? 'UNLOCKED' : 'LOCKED') as 'UNLOCKED' | 'LOCKED',
+      status: idx === 0 ? 'UNLOCKED' : 'LOCKED',
       type: item.type,
       price: item.type === 'PURCHASE' ? item.price : undefined,
       rewards,

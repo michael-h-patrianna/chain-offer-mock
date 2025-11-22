@@ -269,7 +269,7 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
 
                     {/* Dynamic Game Swimlanes */}
                     {mockLobbyData.categories.map((category) => {
-                        if (category.products && category.products.length > 0) {
+                        if (category.products.length > 0) {
                             return (
                                 <GameSwimlane
                                     key={category.code}

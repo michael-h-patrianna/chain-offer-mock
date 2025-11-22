@@ -1,29 +1,54 @@
-import React from 'react'
+import React from 'react';
+
+interface RewardService {
+  getRewards: () => Promise<{ rewards: unknown[] }>;
+}
+
+interface LoyaltyService {
+  getAccountVariants: () => Promise<{ variants: unknown[] }>;
+}
+
+interface OfferChainService {
+  getOfferChainInstances: () => Promise<{ items: unknown[] }>;
+  claimOffer: () => Promise<{ success: boolean }>;
+}
+
+interface RewardAmountProps {
+  text: string;
+  className?: string;
+}
+
+interface MapItemButtonProps {
+  children: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
+  onClick?: () => void;
+}
 
 export interface ChainOffersConfig {
   config: {
     serviceDependencies: {
-      reward: any
-      loyalty: any
-      offerchain: any
+      reward: RewardService;
+      loyalty: LoyaltyService;
+      offerchain: OfferChainService;
     }
     featureFlags: {
       autoReopen: boolean
     }
     customClassNames: Record<string, string>
-    RewardAmountSC: React.ComponentType<any>
-    RewardAmountGC: React.ComponentType<any>
-    RewardAmountFS: React.ComponentType<any>
-    RewardAmountXP: React.ComponentType<any>
-    MapItemButton: React.ComponentType<any>
+    RewardAmountSC: React.ComponentType<RewardAmountProps>
+    RewardAmountGC: React.ComponentType<RewardAmountProps>
+    RewardAmountFS: React.ComponentType<RewardAmountProps>
+    RewardAmountXP: React.ComponentType<RewardAmountProps>
+    MapItemButton: React.ComponentType<MapItemButtonProps>
   }
   dialogManager: {
-    openDialog: (data: any) => void
+    openDialog: (data: unknown) => void
     closeDialog: () => void
     openSnackBar: (params: { message: string }) => void
   }
   iconManager: {
-    setIcons: (icons: Record<string, any>) => void
+    setIcons: (icons: Record<string, unknown>) => void
   }
 }
 
@@ -32,25 +57,25 @@ export const chainOffersConfig: ChainOffersConfig = {
   config: {
     serviceDependencies: {
       reward: {
-        getRewards: async () => ({ rewards: [] }),
+        getRewards: () => ({ rewards: [] }),
       },
       loyalty: {
-        getAccountVariants: async () => ({ variants: [] }),
+        getAccountVariants: () => ({ variants: [] }),
       },
       offerchain: {
-        getOfferChainInstances: async () => ({ items: [] }),
-        claimOffer: async () => ({ success: true }),
+        getOfferChainInstances: () => ({ items: [] }),
+        claimOffer: () => ({ success: true }),
       },
     },
     featureFlags: { autoReopen: true },
     customClassNames: {},
     // Simple reward amount wrappers
-    RewardAmountSC: ({ text, className }: any) => React.createElement('span', { className }, text),
-    RewardAmountGC: ({ text, className }: any) => React.createElement('span', { className }, text),
-    RewardAmountFS: ({ text, className }: any) => React.createElement('span', { className }, text),
-    RewardAmountXP: ({ text, className }: any) => React.createElement('span', { className }, text),
+    RewardAmountSC: ({ text, className }: RewardAmountProps) => React.createElement('span', { className }, text),
+    RewardAmountGC: ({ text, className }: RewardAmountProps) => React.createElement('span', { className }, text),
+    RewardAmountFS: ({ text, className }: RewardAmountProps) => React.createElement('span', { className }, text),
+    RewardAmountXP: ({ text, className }: RewardAmountProps) => React.createElement('span', { className }, text),
     // Simple button component
-    MapItemButton: ({ children, className, disabled, onClick }: any) =>
+    MapItemButton: ({ children, className, disabled, onClick }: MapItemButtonProps) =>
       React.createElement('button', { className, disabled, onClick }, children),
   },
   dialogManager: {

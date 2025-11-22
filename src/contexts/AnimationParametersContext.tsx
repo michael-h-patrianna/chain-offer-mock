@@ -52,7 +52,7 @@ export function AnimationParametersProvider({ children }: AnimationParametersPro
 
   const getParameters = useCallback(
     (animationType: AnimationType): AnimationParameters => {
-      return parametersMap[animationType] || defaultAnimationParameters[animationType]
+      return parametersMap[animationType]
     },
     [parametersMap]
   )

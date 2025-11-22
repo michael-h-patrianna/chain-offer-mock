@@ -1,19 +1,20 @@
 // Export types
 export type { AnimationType, RevealAnimation } from './types'
+import type { AnimationType, RevealAnimation } from './types'
 
 // Import all animations
-import { staggerInView } from './animations/staggerInView'
-import { scaleRotate } from './animations/scaleRotate'
-import { flipReveal } from './animations/flipReveal'
-import { springPhysics } from './animations/springPhysics'
-import { fadeSlide } from './animations/fadeSlide'
-import { elasticBounce } from './animations/elasticBounce'
-import { orbitalReveal } from './animations/orbitalReveal'
-import { glitchSnap } from './animations/glitchSnap'
-import { silkUnfold } from './animations/silkUnfold'
 import { crystalShimmer } from './animations/crystalShimmer'
-import { velvetCascade } from './animations/velvetCascade'
+import { elasticBounce } from './animations/elasticBounce'
+import { fadeSlide } from './animations/fadeSlide'
+import { flipReveal } from './animations/flipReveal'
+import { glitchSnap } from './animations/glitchSnap'
 import { none } from './animations/none'
+import { orbitalReveal } from './animations/orbitalReveal'
+import { scaleRotate } from './animations/scaleRotate'
+import { silkUnfold } from './animations/silkUnfold'
+import { springPhysics } from './animations/springPhysics'
+import { staggerInView } from './animations/staggerInView'
+import { velvetCascade } from './animations/velvetCascade'
 
 // Build the animations record
 export const revealAnimations: Record<AnimationType, RevealAnimation> = {

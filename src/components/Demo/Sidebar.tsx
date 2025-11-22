@@ -3,12 +3,11 @@ import { AnimationParameterForm } from './AnimationParameterForm'
 
 interface SidebarProps {
   isOpen: boolean
-  onClose: () => void
   selectedAnimation: AnimationType
   onAnimationTypeChange?: (animationType: AnimationType) => void
 }
 
-export function Sidebar({ isOpen, onClose, selectedAnimation, onAnimationTypeChange }: SidebarProps) {
+export function Sidebar({ isOpen, selectedAnimation, onAnimationTypeChange }: SidebarProps) {
   const animationOptions = getAnimationOptions()
 
   return (

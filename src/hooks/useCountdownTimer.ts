@@ -36,7 +36,7 @@ export function useCountdownTimer(
 
       // Format like production: "Ends in 23:55:07" for <24h, "Ends in 6d 4h" for >24h
       if (days > 0) {
-        return `Ends in ${days}d ${hours}h`
+        return `Ends in ${String(days)}d ${String(hours)}h`
       } else {
         return `Ends in ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
       }
@@ -49,7 +49,9 @@ export function useCountdownTimer(
     updateTimer()
     const interval = setInterval(updateTimer, 1000)
 
-    return () => clearInterval(interval)
+    return () => {
+      clearInterval(interval)
+    }
   }, [endTime, onCountdownEnd, hasEnded])
 
   return timeLeft

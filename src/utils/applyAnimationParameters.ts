@@ -38,7 +38,7 @@ function applyToVariant(
   parameters: AnimationParameters,
   isContainer: boolean
 ): Variants {
-  if (!variant || typeof variant !== 'object') {
+  if (typeof variant !== 'object') {
     return variant
   }
 
@@ -46,7 +46,7 @@ function applyToVariant(
 
   // Process each state in the variant (hidden, visible, etc.)
   for (const [key, value] of Object.entries(variant)) {
-    if (value && typeof value === 'object') {
+    if (typeof value === 'object') {
       result[key] = applyToState(value as Record<string, unknown>, parameters, isContainer)
     } else {
       result[key] = value
@@ -64,10 +64,6 @@ function applyToState(
   parameters: AnimationParameters,
   isContainer: boolean
 ): Record<string, unknown> {
-  if (!state || typeof state !== 'object') {
-    return state
-  }
-
   const result: Record<string, unknown> = { ...state }
 
   // Apply wobble intensity to scale and rotate arrays
@@ -131,18 +127,14 @@ function applyToTransition(
   parameters: AnimationParameters,
   isContainer: boolean
 ): Record<string, unknown> {
-  if (!transition || typeof transition !== 'object') {
-    return transition
-  }
-
   const result: Record<string, unknown> = { ...transition }
 
   // Container-specific properties
   if (isContainer) {
-    if (typeof result.staggerChildren === 'number') {
+    if (result.staggerChildren !== undefined) {
       result.staggerChildren = parameters.staggerChildren
     }
-    if (typeof result.delayChildren === 'number') {
+    if (result.delayChildren !== undefined) {
       // Fix: Don't offset delayChildren with delayOffset twice
       result.delayChildren = parameters.delayChildren
     }

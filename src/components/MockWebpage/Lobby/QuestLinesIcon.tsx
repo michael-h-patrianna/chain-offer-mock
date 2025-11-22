@@ -8,12 +8,12 @@ export const QuestLinesIcon: React.FC<QuestLinesIconProps> = ({ onClick }) => {
   return (
     <section className="QuestLinesEntryLayout_root__h1YjJ QuestLines_questLineEntryRoot__E2d9m" onClick={onClick} style={{cursor: 'pointer'}}>
             <button type="button" className="QuestLinesEntryLayout_button__2uONe">
-              <img 
-                alt="questlines feature icon" 
-                src="/images/questline-icon.png" 
+              <img
+                alt="questlines feature icon"
+                src="/images/questline-icon.png"
               />
               <div className="QuestLinesEntryLayout_content__64GDs">          <div className="QuestLinesEntryLayout_progressBarWrapper__SnpVa in_progress">
-            <div className="ProgressBar_root__DqmA4" style={{'--quests-progress': '0%'} as any}>
+            <div className="ProgressBar_root__DqmA4" style={{'--quests-progress': '0%'} as React.CSSProperties}>
               <progress className="ProgressBar_progress__SXun8" value="0"></progress>
             </div>
           </div>

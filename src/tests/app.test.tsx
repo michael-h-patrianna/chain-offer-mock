@@ -1,16 +1,17 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { beforeAll, describe, expect, it } from 'vitest'
+import chainOfferListData from '../../public/chain-offer-list.json'
 import { App } from '../ui/App'
 
 beforeAll(() => {
   // mock fetch for JSON + images
-  global.fetch = (async (input: RequestInfo) => {
+  global.fetch = ((input: RequestInfo) => {
     if (typeof input === 'string' && input.endsWith('chain-offer-list.json')) {
-      return new Response(JSON.stringify(require('../../public/chain-offer-list.json')))
+      return new Response(JSON.stringify(chainOfferListData))
     }
     // image fetch stub
     return new Response(new Blob(['']))
-  }) as any
+  }) as typeof fetch
 })
 
 describe('Chain Offers Mock', () => {

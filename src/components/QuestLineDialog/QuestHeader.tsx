@@ -36,7 +36,7 @@ export const QuestHeader: React.FC<QuestHeaderProps> = ({
   isLocked = false,
 }) => {
   const progressValue = Math.min(100, Math.max(0, Math.round(progress)))
-  const progressClass = `quest-header__progress-fill--${progressValue}`
+  const progressClass = `quest-header__progress-fill--${String(progressValue)}`
 
   return (
     <div className="quest-header">
@@ -46,7 +46,7 @@ export const QuestHeader: React.FC<QuestHeaderProps> = ({
       <div className="quest-header__progress-bar">
         <div className={cx('quest-header__progress-fill', progressClass)} />
       </div>
-      <span className="quest-header__progress-text">{progressValue}%</span>
+      <span className="quest-header__progress-text">{String(progressValue)}%</span>
     </div>
   )
 }

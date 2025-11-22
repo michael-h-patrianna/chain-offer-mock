@@ -1,4 +1,32 @@
-import type { QuestLineDialogProps, Reward, RewardType } from '../types/questline'
+import type { QuestLineDialogProps, Reward, RewardType } from '../types/questline';
+
+interface RawReward {
+  type?: string;
+  amount?: number;
+  name?: string;
+  [key: string]: unknown;
+}
+
+interface RawQuest {
+  rewards?: RawReward[];
+  [key: string]: unknown;
+}
+
+interface RawBonusReward {
+  rewards?: RawReward[];
+  [key: string]: unknown;
+}
+
+interface RawQuestLineData {
+  questlineCode?: string;
+  title?: string;
+  description?: string;
+  expiresAt?: string;
+  termsUrl?: string;
+  quests?: RawQuest[];
+  bonusReward?: RawBonusReward;
+  [key: string]: unknown;
+}
 
 // Map reward types to icon URLs (served from public folder)
 const REWARD_ICON_MAP: Record<RewardType, string> = {
@@ -11,13 +39,14 @@ const REWARD_ICON_MAP: Record<RewardType, string> = {
 /**
  * Transform raw questline data into component props format
  */
-export function transformQuestLineData(rawData: any): QuestLineDialogProps {
-  const { questlineCode, title, description, expiresAt, termsUrl, quests, bonusReward } = rawData
+export function transformQuestLineData(rawData: Record<string, unknown>): QuestLineDialogProps {
+  const data = rawData as RawQuestLineData;
+  const { questlineCode, title, description, expiresAt, termsUrl, quests, bonusReward } = data
 
   // Transform quests and add icon URLs to rewards
-  const transformedQuests = quests.map((quest: any) => ({
+  const transformedQuests = (quests ?? []).map((quest) => ({
     ...quest,
-    rewards: quest.rewards.map((reward: any) => ({
+    rewards: (quest.rewards ?? []).map((reward) => ({
       ...reward,
       iconUrl: REWARD_ICON_MAP[reward.type as RewardType],
       freeAdornmentUrl: reward.type === 'FREE_SPINS' ? '/assets/images/reward icons/free.png' : undefined,
@@ -25,25 +54,25 @@ export function transformQuestLineData(rawData: any): QuestLineDialogProps {
   }))
 
   // Transform bonus rewards
-  const transformedBonusReward = {
+  const transformedBonusReward = bonusReward ? {
     ...bonusReward,
-    rewards: bonusReward.rewards.map((reward: any) => ({
+    rewards: (bonusReward.rewards ?? []).map((reward) => ({
       ...reward,
       iconUrl: REWARD_ICON_MAP[reward.type as RewardType],
       freeAdornmentUrl: reward.type === 'FREE_SPINS' ? '/assets/images/reward icons/free.png' : undefined,
     })),
-  }
+  } : { rewards: [] }
 
   return {
     isOpen: true,
-    questlineCode,
-    title,
-    description,
+    questlineCode: questlineCode ?? '',
+    title: title ?? '',
+    description: description ?? '',
     headerImageUrl: '/assets/images/questline-header.png',
-    endTime: expiresAt,
+    endTime: expiresAt ?? new Date(Date.now() + 7 * 24 * 3600 * 1000).toISOString(),
     quests: transformedQuests,
     bonusReward: transformedBonusReward,
-    termsUrl,
+    termsUrl: termsUrl ?? '#terms',
     onClose: () => {},
   }
 }

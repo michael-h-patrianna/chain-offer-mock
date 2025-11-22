@@ -19,7 +19,7 @@ export const MilestoneProgressBar: React.FC<MilestoneProgressBarProps> = ({
         aria-valuenow={progressPercent}
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-label={`Quest completion progress: ${completedQuests} of ${totalQuests} quests completed`}
+        aria-label={`Quest completion progress: ${String(completedQuests)} of ${String(totalQuests)} quests completed`}
       >
         <div
           className="milestone-progress__fill"

@@ -1,4 +1,3 @@
-import cx from 'classnames'
 import React, { useState } from 'react'
 import type { BonusRewardsProps } from '../../types/questline'
 import { formatRewardAmount, getRewardText } from '../../utils/transformQuestLineData'
@@ -14,10 +13,9 @@ export const BonusRewards: React.FC<BonusRewardsProps> = ({
   completedQuests,
   onClaim,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false)
+  const [isExpanded] = useState(false)
 
   const canClaim = completedQuests >= progressRequired && !claimed
-  const showMoreButton = rewards.length > MAX_REWARDS_PREVIEW
 
   const rewardsToShow = isExpanded ? rewards : rewards.slice(0, MAX_REWARDS_PREVIEW)
 
@@ -67,13 +65,11 @@ export const BonusRewards: React.FC<BonusRewardsProps> = ({
       </div>
       {canClaim && (
         <button
-          className={cx('bonus-rewards__claim-button', {
-            'bonus-rewards__claim-button--claimed': claimed,
-          })}
+          className="bonus-rewards__claim-button"
           onClick={onClaim}
-          disabled={claimed}
+          disabled={false}
         >
-          {claimed ? 'Claimed' : 'Claim Bonus'}
+          Claim Bonus
         </button>
       )}
     </div>

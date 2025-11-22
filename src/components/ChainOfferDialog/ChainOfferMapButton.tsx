@@ -23,7 +23,6 @@ export const ChainOfferMapButton: React.FC<ChainOfferMapButtonProps> = ({
 
   const getButtonText = () => {
     if (isClaimed) return 'CLAIMED'
-    if (type === 'FREE') return 'Free'
     if (type === 'PURCHASE' && price) return `$${price.toFixed(2)}`
     return 'Free'
   }
@@ -43,9 +42,8 @@ export const ChainOfferMapButton: React.FC<ChainOfferMapButtonProps> = ({
   const getAriaLabel = () => {
     if (isLocked) return 'Locked offer. Complete previous offers to unlock.'
     if (isClaimed) return 'Offer already claimed'
-    if (type === 'FREE') return 'Claim free offer'
     if (type === 'PURCHASE' && price) return `Purchase offer for $${price.toFixed(2)}`
-    return getButtonText()
+    return 'Claim free offer'
   }
 
   return (

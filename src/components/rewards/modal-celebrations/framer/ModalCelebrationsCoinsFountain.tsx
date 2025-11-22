@@ -24,10 +24,6 @@ const EASINGS = {
   glowPulse: [0.4, 0.0, 0.2, 1] as const,
 }
 
-const SPRING = {
-  settleBounce: { stiffness: 250, damping: 18 },
-}
-
 const COLORS = {
   goldPrimary: '#FFD700',
   goldAccent: '#FFA500',
@@ -84,7 +80,7 @@ const CoinElement: React.FC<{
   originY: number
   duration: number
 }> = ({ coin, originX, originY, duration }) => {
-  const { angle, velocity, size, rotationSpeed, delay, apexX, apexY } = coin
+  const { size, rotationSpeed, delay, apexX, apexY } = coin
 
   // FIREWORK FOUNTAIN: Launch from button, arc outward, fall back to button
   const buttonCenterX = originX - size / 2
@@ -162,11 +158,7 @@ const ParticleElement: React.FC<{
   duration: number
 }> = ({ particle, coin, originX, originY, duration }) => {
   const { color, size, offsetAngle, offsetDistance, opacity } = particle
-  const { angle, velocity, delay, apexX, apexY } = coin
-
-  const angleRad = (angle * Math.PI) / 180
-  const vx = Math.cos(angleRad) * velocity
-  const vy = Math.sin(angleRad) * velocity
+  const { delay, apexX, apexY } = coin
 
   // Particle follows curved path with offset
   const offsetRad = (offsetAngle * Math.PI) / 180
@@ -481,8 +473,12 @@ export const ModalCelebrationsCoinsFountain: React.FC<CoinFountainProps> = ({
 
   useEffect(() => {
     if (onComplete) {
-      const timer = setTimeout(onComplete, duration * 1000)
-      return () => clearTimeout(timer)
+      const timer = setTimeout(() => {
+        onComplete()
+      }, duration * 1000)
+      return () => {
+        clearTimeout(timer)
+      }
     }
   }, [duration, onComplete])
 
@@ -504,7 +500,7 @@ export const ModalCelebrationsCoinsFountain: React.FC<CoinFountainProps> = ({
       {/* Phase 1: Anticipation - Pre-burst particles */}
       {preBurstParticles.map((particle) => (
         <PreBurstParticle
-          key={`preburst-${particle.id}`}
+          key={`preburst-${String(particle.id)}`}
           particle={particle}
           originX={originX}
           originY={originY}
@@ -517,7 +513,7 @@ export const ModalCelebrationsCoinsFountain: React.FC<CoinFountainProps> = ({
       {/* Phase 2-4: Coins */}
       {coins.map((coin) => (
         <CoinElement
-          key={`coin-${coin.id}`}
+          key={`coin-${String(coin.id)}`}
           coin={coin}
           originX={originX}
           originY={originY}
@@ -530,7 +526,7 @@ export const ModalCelebrationsCoinsFountain: React.FC<CoinFountainProps> = ({
         const coin = coins[particle.coinId]
         return (
           <ParticleElement
-            key={`particle-${particle.id}`}
+            key={`particle-${String(particle.id)}`}
             particle={particle}
             coin={coin}
             originX={originX}
@@ -542,7 +538,7 @@ export const ModalCelebrationsCoinsFountain: React.FC<CoinFountainProps> = ({
 
       {/* Phase 3: Apex Sparkles */}
       {sparkles.map((sparkle) => (
-        <SparkleElement key={`sparkle-${sparkle.id}`} sparkle={sparkle} />
+        <SparkleElement key={`sparkle-${String(sparkle.id)}`} sparkle={sparkle} />
       ))}
     </div>
   )

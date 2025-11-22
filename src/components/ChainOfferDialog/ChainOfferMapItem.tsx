@@ -20,7 +20,6 @@ export interface ChainOfferMapItemProps {
 
 export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
   id,
-  name,
   position,
   status,
   type,
@@ -55,7 +54,7 @@ export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
 
   const wrapperRefCallback = useCallback((node: HTMLDivElement | null) => {
     if (node) {
-      node.style.setProperty('--offer-step-order', `${position}`)
+      node.style.setProperty('--offer-step-order', String(position))
       node.style.setProperty('--offer-step-total', '6')
     }
   }, [position])

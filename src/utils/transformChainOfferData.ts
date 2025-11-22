@@ -70,12 +70,12 @@ export function transformChainOfferData(rawData: RawChainOfferData): ChainOfferD
     // Content driven rewards
     item.content?.forEach((content) => {
       if (content.offerType === 'PURCHASE_OFFER' && content.purchaseOffer) {
-        if ((content.purchaseOffer.gc ?? 0) > 0) rewards.push({ type: 'GC', amount: content.purchaseOffer.gc! })
-        if ((content.purchaseOffer.sc ?? 0) > 0) rewards.push({ type: 'SC', amount: content.purchaseOffer.sc! })
+        if ((content.purchaseOffer.gc ?? 0) > 0) rewards.push({ type: 'GC', amount: content.purchaseOffer.gc ?? 0 })
+        if ((content.purchaseOffer.sc ?? 0) > 0) rewards.push({ type: 'SC', amount: content.purchaseOffer.sc ?? 0 })
       } else {
-        if ((content.gcAmount ?? 0) > 0) rewards.push({ type: 'GC', amount: content.gcAmount! })
-        if ((content.scAmount ?? 0) > 0) rewards.push({ type: 'SC', amount: content.scAmount! })
-        if ((content.freeSpinsAmount ?? 0) > 0) rewards.push({ type: 'FREE_SPINS', amount: content.freeSpinsAmount! })
+        if ((content.gcAmount ?? 0) > 0) rewards.push({ type: 'GC', amount: content.gcAmount ?? 0 })
+        if ((content.scAmount ?? 0) > 0) rewards.push({ type: 'SC', amount: content.scAmount ?? 0 })
+        if ((content.freeSpinsAmount ?? 0) > 0) rewards.push({ type: 'FREE_SPINS', amount: content.freeSpinsAmount ?? 0 })
       }
     })
 

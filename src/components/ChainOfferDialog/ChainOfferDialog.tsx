@@ -105,7 +105,7 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
           </header>
 
           {/* Items container */}
-          <section className="content chain-offer-dialog__content">
+          <section className="chain-offer-dialog__content">
             {/* Each item is staggered */}
             {items.map((item) => (
               <ChainOfferMapItem

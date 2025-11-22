@@ -14,18 +14,18 @@ export const ChainOfferMapRewards: React.FC<ChainOfferMapRewardsProps> = ({
   const getRewardText = (reward: Reward) => {
     switch (reward.type) {
       case 'GC':
-        return `GC ${reward.amount}`
+        return `GC ${String(reward.amount)}`
       case 'SC':
-        return `Free SC ${reward.amount}`
+        return `Free SC ${String(reward.amount)}`
       case 'FS':
       case 'FREE_SPINS':
-        return `${reward.amount} Free Spins`
+        return `${String(reward.amount)} Free Spins`
       case 'RANDOM':
         return reward.name ? reward.name : 'Mystery Reward'
       case 'XP':
-        return `${reward.amount} Stars`
+        return `${String(reward.amount)} Stars`
       default:
-        return `${reward.amount}`
+        return String(reward.amount)
     }
   }
 

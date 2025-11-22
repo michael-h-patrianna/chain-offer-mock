@@ -8,7 +8,6 @@ export interface CloseButtonProps {
 
 export const CloseButton: React.FC<CloseButtonProps> = ({
 	onClick,
-	className = '',
 	'aria-label': ariaLabel = 'Close dialog',
 }) => (
 	<button
