@@ -26,4 +26,15 @@ export default defineConfig({
     setupFiles: ['./src/tests/setup.ts'],
     exclude: ['**/node_modules/**', '**/dist/**', '**/e2e/**'],
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-rive': ['@rive-app/react-canvas'],
+          'vendor-motion': ['motion'],
+        },
+      },
+    },
+  },
 })

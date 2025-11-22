@@ -1,3 +1,4 @@
+import { Alignment, Fit, Layout, useRive } from '@rive-app/react-canvas'
 import React, { useEffect, useState } from 'react'
 import mockLobbyData from '../../../data/mockLobbyData.json'
 import { ChainOfferIcon } from './ChainOfferIcon'
@@ -9,6 +10,28 @@ interface LobbyLayoutProps {
   onChainOfferClick: () => void
   children: React.ReactNode
   isSidebarOpen?: boolean
+}
+
+const RiveHeaderBackground = () => {
+  const { RiveComponent, rive } = useRive({
+    src: '/assets/rive/emoji.riv',
+    autoplay: true,
+    layout: new Layout({
+      fit: Fit.Cover,
+      alignment: Alignment.Center,
+    }),
+  })
+
+  useEffect(() => {
+    if (rive) {
+      // If a state machine exists, use it as it typically handles looping/states better than default animation
+      if (rive.stateMachineNames.length > 0) {
+        rive.play(rive.stateMachineNames[0])
+      }
+    }
+  }, [rive])
+
+  return <RiveComponent className='BackgroungImage_cover__ZAkC9' />
 }
 
 export const LobbyLayout = ({
@@ -47,7 +70,7 @@ export const LobbyLayout = ({
             width: '100%',
             margin: '0 auto',
             minHeight: '100vh',
-            backgroundColor: '#120a21',
+            backgroundColor: '#3a125d',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative',
@@ -175,8 +198,8 @@ export const LobbyLayout = ({
               style={{ position: 'relative', zIndex: 1 }}
             >
               <div className='BackgroungImage_vars__WiRUP BackgroungImage_root__f3757 FeaturesIcons_root__H45hJ'>
-                <div className='BackgroungImage_coverContainer__Aa4N1'>
-                  <img alt='' className='BackgroungImage_cover__ZAkC9' src='/images/header.jpg' />
+                <div className='BackgroungImage_coverContainer__Aa4N1' style={{ background: 'linear-gradient(#4e187c 0%, rgba(58, 18, 93, 0.85) 100%)', paddingBottom: '128px' }}>
+                  <RiveHeaderBackground />
                 </div>
               </div>
               <div className='SwimlaneLayout_vars__9Bu1Y SwimlaneLayout_iconsSwimlane__ohefI'>
