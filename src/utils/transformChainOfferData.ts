@@ -1,4 +1,52 @@
 import type { ChainOfferDialogProps, ChainOfferMapItemProps } from '../components/ChainOfferDialog'
+import type { Reward } from '../types/chainoffer'
+
+// Raw data structure from backend API
+interface RawPurchaseOffer {
+  gc?: number
+  sc?: number
+  price?: number
+}
+
+interface RawContent {
+  offerType?: string
+  purchaseOffer?: RawPurchaseOffer
+  gcAmount?: number
+  scAmount?: number
+  freeSpinsAmount?: number
+}
+
+interface RawItemType {
+  code?: string
+}
+
+interface RawMapItem {
+  code?: string
+  name?: string
+  position?: number
+  status?: string
+  type?: RawItemType
+  content?: RawContent[]
+}
+
+interface RawMapTypeParams {
+  mapListHeader?: {
+    stringValue?: string
+  }
+}
+
+interface RawMapType {
+  params?: RawMapTypeParams
+}
+
+interface RawChainOfferData {
+  mapItems?: RawMapItem[]
+  expiresAt?: string
+  mapType?: RawMapType
+  displayTagline?: string
+  displayName?: string
+  termUrl?: string
+}
 
 // Local background images to use for map items
 const localBackgroundImages = [
@@ -10,29 +58,29 @@ const localBackgroundImages = [
 /**
  * Transform raw chain offer data into component props format
  */
-export function transformChainOfferData(rawData: any): ChainOfferDialogProps {
-  const { mapItems = [], expiresAt, mapType, displayTagline, displayName, termUrl } = rawData || {}
+export function transformChainOfferData(rawData: RawChainOfferData): ChainOfferDialogProps {
+  const { mapItems = [], expiresAt, mapType, displayTagline, displayName, termUrl } = rawData
 
   // Use local background images (prefer local over remote URLs from data)
   const backgroundImages: string[] = localBackgroundImages
 
-  const transformedItems: Omit<ChainOfferMapItemProps, 'onButtonClick'>[] = mapItems.map((item: any, index: number) => {
-    const rewards: Array<{ type: any; amount: number }> = []
+  const transformedItems: Omit<ChainOfferMapItemProps, 'onButtonClick'>[] = mapItems.map((item, index) => {
+    const rewards: Reward[] = []
 
     // Content driven rewards
-    item?.content?.forEach((content: any) => {
+    item.content?.forEach((content) => {
       if (content.offerType === 'PURCHASE_OFFER' && content.purchaseOffer) {
-        if (content.purchaseOffer.gc > 0) rewards.push({ type: 'GC', amount: content.purchaseOffer.gc })
-        if (content.purchaseOffer.sc > 0) rewards.push({ type: 'SC', amount: content.purchaseOffer.sc })
+        if ((content.purchaseOffer.gc ?? 0) > 0) rewards.push({ type: 'GC', amount: content.purchaseOffer.gc! })
+        if ((content.purchaseOffer.sc ?? 0) > 0) rewards.push({ type: 'SC', amount: content.purchaseOffer.sc! })
       } else {
-        if (content.gcAmount > 0) rewards.push({ type: 'GC', amount: content.gcAmount })
-        if (content.scAmount > 0) rewards.push({ type: 'SC', amount: content.scAmount })
-        if (content.freeSpinsAmount > 0) rewards.push({ type: 'FREE_SPINS', amount: content.freeSpinsAmount })
+        if ((content.gcAmount ?? 0) > 0) rewards.push({ type: 'GC', amount: content.gcAmount! })
+        if ((content.scAmount ?? 0) > 0) rewards.push({ type: 'SC', amount: content.scAmount! })
+        if ((content.freeSpinsAmount ?? 0) > 0) rewards.push({ type: 'FREE_SPINS', amount: content.freeSpinsAmount! })
       }
     })
 
     // Parse Stars / XP from the item name if present (e.g. "1,000 Gold Coins + 50 Stars")
-    if (typeof item?.name === 'string') {
+    if (typeof item.name === 'string') {
       const starMatch = item.name.match(/([0-9][0-9,]*)\s*Stars?/i)
       if (starMatch) {
         const starAmount = parseInt(starMatch[1].replace(/,/g, ''), 10)
@@ -44,8 +92,8 @@ export function transformChainOfferData(rawData: any): ChainOfferDialogProps {
 
     // Extract purchase price
     let price: number | undefined
-    if (item?.type?.code === 'PURCHASE') {
-      const purchaseContent = item.content?.find((c: any) => c.purchaseOffer)
+    if (item.type?.code === 'PURCHASE') {
+      const purchaseContent = item.content?.find((c) => c.purchaseOffer)
       price = purchaseContent?.purchaseOffer?.price
     }
 

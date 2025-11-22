@@ -5,7 +5,7 @@ export { MilestoneProgressBar } from './MilestoneProgressBar'
 export { QuestCard } from './QuestCard'
 export { QuestHeader } from './QuestHeader'
 export { QuestLineDialog } from './QuestLineDialog'
-export { QuestLineTimer } from './QuestLineTimer'
+export { QuestlineTimer } from './QuestlineTimer'
 export { QuestRewards } from './QuestRewards'
 
 

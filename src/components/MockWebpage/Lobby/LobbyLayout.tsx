@@ -238,8 +238,8 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                                 <img src="https://storage.googleapis.com/www.playfame.com/images/new-loyalty-program/loyalty-lounge-logo-v2.png" alt="Loyalty Logo" className="LoyaltyLogo_logo__Cji_Q"/>
                             </div>
                             <div className="SwimlaneV1_textsContainer__ut9oG">
-                                <h2 class="SwimlaneV1_title__Odbvh">Welcome to Fame Club!</h2>
-                                <p class="SwimlaneV1_description__eIIwR">Keep racking up FamePoints to hit the next level and unlock even bigger rewards!</p>
+                                <h2 className="SwimlaneV1_title__Odbvh">Welcome to Fame Club!</h2>
+                                <p className="SwimlaneV1_description__eIIwR">Keep racking up FamePoints to hit the next level and unlock even bigger rewards!</p>
                                 <a href="https://www.playfame.com/promotions/fameclub" className="DetailsLink_root__ZKSG2 SwimlaneV1_detailsLink__xMFyP">Learn More</a>
                             </div>
                             <div className="Card_root__NiHwD Card_primary__lSnRy ProgressCard_root__UvQdL SwimlaneV1_progressCard__A6C4v">

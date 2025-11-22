@@ -1,5 +1,5 @@
 import { ChainOfferDialogProps } from '../components/ChainOfferDialog'
-import type { Reward } from '../components/ChainOfferMapRewards'
+import type { Reward } from '../types/chainoffer'
 
 // Local background images to use for map items
 const localBackgroundImages = [
@@ -60,9 +60,9 @@ export function buildDialogFromSimpleConfig(
         case 'FREE_SPINS':
           return { type: 'FREE_SPINS', amount: r.amount }
         case 'STARS':
-          return { type: 'XP', amount: r.amount } as Reward // Map to existing XP styling
+          return { type: 'XP', amount: r.amount }
         case 'RANDOM':
-          return { type: 'RANDOM', amount: 1, name: r.name } as any
+          return { type: 'RANDOM', amount: 1, name: r.name }
         default:
           throw new Error(`Unsupported reward type: ${(r as any).type}`)
       }

@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import React, { useMemo } from 'react'
-import { getRevealAnimation } from '../../animations/revealAnimations'
+import { getRevealAnimation, type AnimationType } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
 import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
 import { CloseButton } from '../Shared/CloseButton'
@@ -46,12 +46,21 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
 
   if (!isOpen) return null
 
+  const dialogTitle = title || 'Chain Offer'
+
   return (
     <DialogBackdrop isOpen={isOpen} onClose={onClose} backdropClassName="dialog-backdrop">
-      <dialog open className={`chain-offer-dialog ${className}`}>
+      <dialog
+        open
+        className={`chain-offer-dialog ${className}`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="chain-offer-title"
+      >
+        <h1 id="chain-offer-title" className="sr-only">{dialogTitle}</h1>
         <CloseButton
           onClick={onClose}
-          aria-label="Close dialog"
+          aria-label="Close chain offer dialog"
         />
 
         {/* Stagger container */}

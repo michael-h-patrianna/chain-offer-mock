@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import type { Reward } from '../types/chainoffer'
 import { buildDialogFromSimpleConfig, createSimpleConfig } from '../utils/simpleChainOfferConfig'
 
 describe('simpleChainOfferConfig', () => {
@@ -14,8 +15,8 @@ describe('simpleChainOfferConfig', () => {
     const dialog = buildDialogFromSimpleConfig(config, { now: 0 })
     expect(dialog.items).toHaveLength(3)
     expect(dialog.items[0].type).toBe('PURCHASE')
-    expect(dialog.items[0].rewards.find(r => r.type === 'GC')?.amount).toBe(75000)
-    expect(dialog.items[1].rewards.find(r => r.type === 'FREE_SPINS')?.amount).toBe(20)
+    expect(dialog.items[0].rewards.find((r: Reward) => r.type === 'GC')?.amount).toBe(75000)
+    expect(dialog.items[1].rewards.find((r: Reward) => r.type === 'FREE_SPINS')?.amount).toBe(20)
     expect(dialog.items[2].rewards[0].type).toBe('RANDOM')
     // expiry check
     expect(new Date(dialog.endTime).getTime()).toBe(1800 * 1000)

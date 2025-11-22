@@ -46,8 +46,14 @@ export const ChainOfferTimer: React.FC<ChainOfferTimerProps> = ({
   }, [endTime, onCountdownEnd])
 
   return (
-    <div className="chain-offer-timer__inner">
-      <span>{timeLeft}</span>
+    <div
+      className="chain-offer-timer__inner"
+      role="timer"
+      aria-live="polite"
+      aria-atomic="true"
+      aria-label={`Time remaining: ${timeLeft}`}
+    >
+      <span aria-hidden="true">{timeLeft}</span>
     </div>
   )
 }

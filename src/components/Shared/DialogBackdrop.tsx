@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect } from 'react'
 
 export interface DialogBackdropProps {
   isOpen: boolean
@@ -7,12 +7,24 @@ export interface DialogBackdropProps {
   backdropClassName?: string
 }
 
-export const DialogBackdrop: React.FC<DialogBackdropProps> = ({
+export const DialogBackdrop = ({
   isOpen,
   onClose,
   children,
   backdropClassName = '',
-}) => {
+}: DialogBackdropProps) => {
+  // Add Escape key handler for accessibility
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen, onClose])
+
   if (!isOpen) return null
 
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {

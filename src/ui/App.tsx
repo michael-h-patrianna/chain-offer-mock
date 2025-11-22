@@ -15,10 +15,10 @@ function AppInner() {
   const [isChainOfferDialogOpen, setIsChainOfferDialogOpen] = useState(false)
   const [isQuestlineDialogOpen, setIsQuestlineDialogOpen] = useState(false)
   const [selectedAnimation, setSelectedAnimation] = useState<AnimationType>('stagger-inview')
-  const [isSidebarOpen, setIsSidebarOpen] = useState(() => {
-    // Default to open on desktop, closed on mobile
-    return typeof window !== 'undefined' && window.innerWidth > 768
-  })
+  const [isSidebarOpen, setIsSidebarOpen] = useState(
+    // Safe because app only runs in browser (no SSR)
+    window.innerWidth > 768
+  )
 
   const handleToggleSidebar = () => {
     setIsSidebarOpen(prev => !prev)
