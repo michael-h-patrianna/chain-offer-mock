@@ -18,7 +18,15 @@ export function Sidebar({ isOpen, onClose, selectedAnimation, onAnimationTypeCha
         <div
           className="sidebar-backdrop"
           onClick={onClose}
-          aria-hidden="true"
+          role="button"
+          tabIndex={0}
+          aria-label="Close sidebar"
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              onClose()
+            }
+          }}
         />
       )}
 
