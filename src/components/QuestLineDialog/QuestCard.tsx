@@ -95,9 +95,16 @@ export const QuestCard: React.FC<QuestCardProps> = ({
             )}
           </div>
           <div className="quest-card__progress-wrapper">
-            <div className="quest-card__progress-bar">
+            <div
+              className="quest-card__progress-bar"
+              role="progressbar"
+              aria-valuenow={Math.round(progress)}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label={`Quest progress: ${Math.round(progress)}%`}
+            >
               <div className="quest-card__progress-fill" data-progress={Math.round(progress / 5) * 5} />
-              <span className="quest-card__progress-text">{Math.round(progress)}%</span>
+              <span className="quest-card__progress-text" aria-hidden="true">{Math.round(progress)}%</span>
             </div>
           </div>
         </div>
@@ -109,12 +116,18 @@ export const QuestCard: React.FC<QuestCardProps> = ({
         )}
 
         {canExpand && (
-          <div className="quest-card__footer" onClick={() => setIsExpanded(!isExpanded)}>
+          <button
+            type="button"
+            className="quest-card__footer"
+            onClick={() => setIsExpanded(!isExpanded)}
+            aria-expanded={isExpanded}
+            aria-label={isExpanded ? 'Hide quest details' : 'Show quest details'}
+          >
             <span className="quest-card__footer-text">
               {isExpanded ? 'SHOW LESS' : 'SHOW DETAILS'}
             </span>
-            <span className="quest-card__footer-icon">{isExpanded ? '▲' : '▼'}</span>
-          </div>
+            <span className="quest-card__footer-icon" aria-hidden="true">{isExpanded ? '▲' : '▼'}</span>
+          </button>
         )}
 
         {isLocked && <LockedOverlay />}

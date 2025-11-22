@@ -42,10 +42,16 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
 
   return (
     <DialogBackdrop isOpen={isOpen} onClose={onClose} backdropClassName="dialog-backdrop">
-      <div className="questline-dialog">
+      <dialog
+        open
+        className="questline-dialog"
+        aria-modal="true"
+        aria-labelledby="questline-title"
+      >
+        <h1 id="questline-title" className="sr-only">{title}</h1>
         <CloseButton
           onClick={onClose}
-          aria-label="Close dialog"
+          aria-label="Close quest line dialog"
         />
 
         {/* Stagger container wrapping all content */}
@@ -132,7 +138,7 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
             </motion.div>
           )}
         </motion.div>
-      </div>
+      </dialog>
     </DialogBackdrop>
   )
 }

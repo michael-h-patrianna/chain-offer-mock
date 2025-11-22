@@ -133,16 +133,20 @@
   gap: 0;
   padding: 0;
   margin: 4px 0 0;
-  height: 30px;
+  min-height: 44px; /* Increased from 30px for better touch target (WCAG 2.5.5) */
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, background-color 0.2s;
   background: transparent;
+  border: none; /* Remove button default border */
+  width: 100%; /* Make button full width */
+  font: inherit; /* Inherit font from parent */
 }
 
 .quest-card__footer:hover {
   opacity: 0.7;
+  background-color: rgba(122, 70, 142, 0.2);
 }
 
 .quest-card__footer-text {

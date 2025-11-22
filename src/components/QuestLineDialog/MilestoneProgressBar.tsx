@@ -13,14 +13,21 @@ export const MilestoneProgressBar: React.FC<MilestoneProgressBarProps> = ({
 
   return (
     <div className="milestone-progress">
-      <div className="milestone-progress__bar">
+      <div
+        className="milestone-progress__bar"
+        role="progressbar"
+        aria-valuenow={progressPercent}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label={`Quest completion progress: ${completedQuests} of ${totalQuests} quests completed`}
+      >
         <div
           className="milestone-progress__fill"
           data-progress={progressPercent}
         />
       </div>
       <div className="milestone-progress__text">
-        <span className="milestone-progress__count">{progressPercent.toFixed(0)}%</span>
+        <span className="milestone-progress__count" aria-hidden="true">{progressPercent.toFixed(0)}%</span>
       </div>
     </div>
   )
