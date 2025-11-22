@@ -5,13 +5,19 @@ export interface CompletedOverlayProps {
 }
 
 export const CompletedOverlay: React.FC<CompletedOverlayProps> = ({ hasRewards }) => {
+  const statusText = hasRewards ? 'Claimed' : 'Quest Done'
+
   return (
     <>
-      <div className="completed-overlay" />
-      <div className="completed-status">
+      <div
+        className="completed-overlay"
+        role="status"
+        aria-label={`Quest completed: ${statusText}`}
+      />
+      <div className="completed-status" aria-hidden="true">
         <div className="completed-status__icon">✓</div>
         <span className="completed-status__text">
-          {hasRewards ? 'Claimed' : 'Quest Done'}
+          {statusText}
         </span>
       </div>
     </>

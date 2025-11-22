@@ -25,7 +25,7 @@ export const BonusRewards: React.FC<BonusRewardsProps> = ({
     <div className="bonus-rewards">
       <div className="bonus-rewards__card">
         <div className="bonus-rewards__header">
-          <p className="bonus-rewards__title">ULTIMATE REWARD</p>
+          <h3 className="bonus-rewards__title">ULTIMATE REWARD</h3>
         </div>
         <div className="bonus-rewards__content">
           {rewardsToShow.map((reward, index) => (

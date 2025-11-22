@@ -89,6 +89,7 @@ export const QuestCard: React.FC<QuestCardProps> = ({
                 ref={claimButtonRef}
                 className={getActionButtonClass()}
                 onClick={handleActionClick}
+                aria-label={`${getActionButtonText()} quest: ${title}`}
               >
                 {getActionButtonText()}
               </button>

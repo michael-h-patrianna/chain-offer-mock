@@ -40,12 +40,21 @@ export const ChainOfferMapButton: React.FC<ChainOfferMapButtonProps> = ({
     return classes.filter(Boolean).join(' ')
   }
 
+  const getAriaLabel = () => {
+    if (isLocked) return 'Locked offer. Complete previous offers to unlock.'
+    if (isClaimed) return 'Offer already claimed'
+    if (type === 'FREE') return 'Claim free offer'
+    if (type === 'PURCHASE' && price) return `Purchase offer for $${price.toFixed(2)}`
+    return getButtonText()
+  }
+
   return (
     <button
       type="button"
       className={getButtonClass()}
       disabled={isDisabled}
       onClick={onClick}
+      aria-label={getAriaLabel()}
     >
       {isLocked && (
         <span className="chain-offer-map-button__lock" aria-hidden>

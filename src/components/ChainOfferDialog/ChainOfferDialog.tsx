@@ -53,7 +53,6 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
       <dialog
         open
         className={`chain-offer-dialog ${className}`}
-        role="dialog"
         aria-modal="true"
         aria-labelledby="chain-offer-title"
       >

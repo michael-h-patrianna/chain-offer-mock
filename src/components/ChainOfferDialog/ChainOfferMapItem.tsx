@@ -88,9 +88,9 @@ export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
         </div>
       </div>
       {showDivider && (
-        <div className="chain-offer-map-item__divider" aria-hidden>
+        <div className="chain-offer-map-item__divider" aria-hidden="true">
           <img
-            alt="Next step"
+            alt=""
             className="chain-offer-map-item__divider-image"
             src="https://storage.googleapis.com/www.playfame.com/images/Arrow_icon.png"
           />

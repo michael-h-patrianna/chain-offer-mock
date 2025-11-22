@@ -2,13 +2,18 @@ import React from 'react'
 
 export const LockedOverlay: React.FC = () => {
   return (
-    <div className="locked-overlay">
+    <div
+      className="locked-overlay"
+      role="status"
+      aria-label="Quest locked. Complete previous quests to unlock."
+    >
       <img
         src="/assets/images/locked-questline.svg"
-        alt="Locked quest"
+        alt=""
         className="locked-overlay__icon"
+        aria-hidden="true"
       />
-      <p className="locked-overlay__text">Complete previous quests to unlock</p>
+      <p className="locked-overlay__text" aria-hidden="true">Complete previous quests to unlock</p>
     </div>
   )
 }

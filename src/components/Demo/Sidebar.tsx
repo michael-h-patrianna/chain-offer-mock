@@ -13,24 +13,7 @@ export function Sidebar({ isOpen, onClose, selectedAnimation, onAnimationTypeCha
 
   return (
     <>
-      {/* Backdrop for mobile - click to close */}
-      {isOpen && (
-        <div
-          className="sidebar-backdrop"
-          onClick={onClose}
-          role="button"
-          tabIndex={0}
-          aria-label="Close sidebar"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault()
-              onClose()
-            }
-          }}
-        />
-      )}
-
-      {/* Sidebar */}
+      {/* Sidebar - no backdrop needed for demo controls */}
       <aside className={`sidebar ${isOpen ? 'sidebar--open' : ''}`}>
         <div className="sidebar__content">
           <div className="sidebar__header">
