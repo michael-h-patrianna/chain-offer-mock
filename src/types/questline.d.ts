@@ -1,17 +1,13 @@
 // Questline Dialog Types
 import type { AnimationType } from '../animations/revealAnimations'
+import type { QuestlineReward } from './shared'
 
 export type QuestStatus = 'locked' | 'in_progress' | 'unclaimed' | 'completed'
 
 export type RewardType = 'GC' | 'FREE_SPINS' | 'BADGE' | 'RANDOM'
 
-export interface Reward {
-  type: RewardType
-  amount: number
-  iconUrl?: string
-  freeAdornmentUrl?: string
-  name?: string
-}
+// Re-export as Reward for backwards compatibility
+export type Reward = QuestlineReward
 
 export interface Quest {
   questCode: string

@@ -68,7 +68,6 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
           <motion.div variants={animation.questlineTimerVariants}>
             <QuestlineTimer
               endTime={endTime}
-              onCountdownEnd={() => {}}
               className="questline-dialog__timer"
             />
           </motion.div>

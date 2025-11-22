@@ -1,8 +1,4 @@
+import type { ChainOfferReward } from './shared'
 
-
-export interface Reward {
-  type: 'GC' | 'SC' | 'FS' | 'XP' | 'FREE_SPINS' | 'RANDOM'
-  amount: number
-  iconUrl?: string
-  name?: string // for RANDOM rewards
-}
+// Re-export as Reward for backwards compatibility
+export type Reward = ChainOfferReward

@@ -10,7 +10,7 @@ export function applyAnimationParameters(
   parameters: AnimationParameters
 ): RevealAnimation {
   // Deep clone to avoid mutating the original
-  const cloned = JSON.parse(JSON.stringify(baseAnimation))
+  const cloned = structuredClone(baseAnimation)
 
   // Recursively apply parameters to all variant objects
   return {
@@ -33,34 +33,42 @@ export function applyAnimationParameters(
 /**
  * Apply parameters to a variant object (recursive for all states)
  */
-function applyToVariant(variant: any, parameters: AnimationParameters, isContainer: boolean): any {
+function applyToVariant(
+  variant: Variants,
+  parameters: AnimationParameters,
+  isContainer: boolean
+): Variants {
   if (!variant || typeof variant !== 'object') {
     return variant
   }
 
-  const result: any = {}
+  const result: Record<string, unknown> = {}
 
   // Process each state in the variant (hidden, visible, etc.)
   for (const [key, value] of Object.entries(variant)) {
     if (value && typeof value === 'object') {
-      result[key] = applyToState(value, parameters, isContainer)
+      result[key] = applyToState(value as Record<string, unknown>, parameters, isContainer)
     } else {
       result[key] = value
     }
   }
 
-  return result
+  return result as Variants
 }
 
 /**
  * Apply parameters to a single state object
  */
-function applyToState(state: any, parameters: AnimationParameters, isContainer: boolean): any {
+function applyToState(
+  state: Record<string, unknown>,
+  parameters: AnimationParameters,
+  isContainer: boolean
+): Record<string, unknown> {
   if (!state || typeof state !== 'object') {
     return state
   }
 
-  const result: any = { ...state }
+  const result: Record<string, unknown> = { ...state }
 
   // Apply wobble intensity to scale and rotate arrays
   if (parameters.wobble) {
@@ -109,7 +117,7 @@ function applyToState(state: any, parameters: AnimationParameters, isContainer: 
 
   // If this state has a transition, apply parameters to it
   if (result.transition && typeof result.transition === 'object') {
-    result.transition = applyToTransition(result.transition, parameters, isContainer)
+    result.transition = applyToTransition(result.transition as Record<string, unknown>, parameters, isContainer)
   }
 
   return result
@@ -118,12 +126,16 @@ function applyToState(state: any, parameters: AnimationParameters, isContainer: 
 /**
  * Apply parameters to a transition object
  */
-function applyToTransition(transition: any, parameters: AnimationParameters, isContainer: boolean): any {
+function applyToTransition(
+  transition: Record<string, unknown>,
+  parameters: AnimationParameters,
+  isContainer: boolean
+): Record<string, unknown> {
   if (!transition || typeof transition !== 'object') {
     return transition
   }
 
-  const result: any = { ...transition }
+  const result: Record<string, unknown> = { ...transition }
 
   // Container-specific properties
   if (isContainer) {

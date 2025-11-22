@@ -22,16 +22,17 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 20; // Threshold for scroll
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      setScrolled(prev => {
+        if (prev !== isScrolled) return isScrolled;
+        return prev;
+      });
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [scrolled]);
+  }, []); // Register once, no dependencies
 
   const headerClasses = `mt-appbar Header_root__t1iyN ${scrolled ? 'Header_solidAppbar__GgDp9' : ''}`;
 
@@ -162,7 +163,9 @@ export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
                                                     <img alt="Rising Star 12" src="/images/134cce0e47648296d1dfabe3b9df1a88.png" style={{width: '48px', height: 'auto'}} />
                                                 </div>
 
-                                                <div className="ProgressBar_root__00qoq" style={{'--loyalty-progress-value': '84'} as any}>
+                                                <div className="ProgressBar_root__00qoq" style={{
+                                                  '--loyalty-progress-value': '84'
+                                                } as React.CSSProperties & { '--loyalty-progress-value': string }}>
                                                     <div className="ProgressBar_progressBar__5YY32 IconAwareProgressBar_progressBar__l1GWF IconAwareProgressBar_namedProgress__miLiN"></div>
                                                     <span className="ProgressBar_progressText__DcXRn">84%</span>
                                                 </div>

@@ -47,7 +47,7 @@ export function AnimationParametersProvider({ children }: AnimationParametersPro
   // Store parameters for each animation type in a Map-like object
   const [parametersMap, setParametersMap] = useState<Record<AnimationType, AnimationParameters>>(() => {
     // Initialize with deep copy of defaults
-    return JSON.parse(JSON.stringify(defaultAnimationParameters))
+    return structuredClone(defaultAnimationParameters)
   })
 
   const getParameters = useCallback(
@@ -125,7 +125,7 @@ export function AnimationParametersProvider({ children }: AnimationParametersPro
   const resetToDefaults = useCallback((animationType: AnimationType) => {
     setParametersMap((prev) => ({
       ...prev,
-      [animationType]: JSON.parse(JSON.stringify(defaultAnimationParameters[animationType])),
+      [animationType]: structuredClone(defaultAnimationParameters[animationType]),
     }))
   }, [])
 

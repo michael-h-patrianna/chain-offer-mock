@@ -78,7 +78,7 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
               className="chain-offer-header__image-box"
             >
               <img
-                alt="title"
+                alt={title || 'Chain offer header image'}
                 className="chain-offer-header__image"
                 src={imageSrc}
               />

@@ -15,8 +15,10 @@ export const DialogBackdrop = ({
 }: DialogBackdropProps) => {
   // Add Escape key handler for accessibility
   useEffect(() => {
+    if (!isOpen) return
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
+      if (e.key === 'Escape') {
         onClose()
       }
     }
