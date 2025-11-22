@@ -4,10 +4,10 @@ import toast from 'react-hot-toast'
 import { AnimationType } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
 import {
-  baseParameterConfigs,
-  orbitalParameterConfigs,
-  springParameterConfigs,
-  wobbleParameterConfigs,
+    baseParameterConfigs,
+    orbitalParameterConfigs,
+    springParameterConfigs,
+    wobbleParameterConfigs,
 } from '../../types/animationParameters'
 import './AnimationParameterForm.css'
 import { ParameterGroup } from './ParameterControls/ParameterGroup'
@@ -59,8 +59,13 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
     const suggestedName = `animation-parameters-${animationType}-${String(Date.now())}.json`
 
     // Try using File System Access API for "Save As" dialog
+    interface FileSystemWritableFileStream extends WritableStream {
+      write(data: string): Promise<void>
+      close(): Promise<void>
+    }
+
     interface FileSystemFileHandle {
-      createWritable: () => Promise<WritableStream>
+      createWritable: () => Promise<FileSystemWritableFileStream>
       name: string
     }
 
@@ -84,9 +89,8 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
         })
 
         const writable = await fileHandle.createWritable()
-        const writer = writable.getWriter()
-        await writer.write(jsonString)
-        await writer.close()
+        await writable.write(jsonString)
+        await writable.close()
         toast.success(`Parameters exported to "${fileHandle.name}"!`)
         return // Success!
       } catch (error) {
@@ -258,7 +262,14 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
           </button>
         </div>
       </div>
-      <input ref={fileInputRef} type='file' accept='.json' onChange={handleFileChange} style={{ display: 'none' }} />
+      <input
+        ref={fileInputRef}
+        type='file'
+        accept='.json'
+        onChange={handleFileChange}
+        className='animation-parameter-form__file-input'
+        aria-label='Import parameters'
+      />
 
       <ParameterGroup title='Timing'>
         <ParameterSlider

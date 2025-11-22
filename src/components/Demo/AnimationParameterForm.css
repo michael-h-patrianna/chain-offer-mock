@@ -80,3 +80,7 @@
   padding: 40px 20px;
   font-style: italic;
 }
+
+.animation-parameter-form__file-input {
+  display: none;
+}

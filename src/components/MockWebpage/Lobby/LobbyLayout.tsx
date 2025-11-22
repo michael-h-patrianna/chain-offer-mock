@@ -1,4 +1,4 @@
-import { Alignment, Fit, Layout, useRive } from '@rive-app/react-canvas'
+import { Alignment, Fit, Layout, useRive } from '@rive-app/react-canvas-lite'
 import React, { useEffect, useState } from 'react'
 import mockLobbyData from '../../../data/mockLobbyData.json'
 import { ChainOfferIcon } from './ChainOfferIcon'

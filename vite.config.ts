@@ -31,7 +31,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           'vendor-react': ['react', 'react-dom'],
-          'vendor-rive': ['@rive-app/react-canvas'],
+          'vendor-rive': ['@rive-app/react-canvas-lite'],
           'vendor-motion': ['motion'],
         },
       },
