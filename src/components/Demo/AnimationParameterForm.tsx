@@ -56,11 +56,12 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
     }
 
     const jsonString = JSON.stringify(exportData, null, 2)
+    const blob = new Blob([jsonString], { type: 'application/json' })
     const suggestedName = `animation-parameters-${animationType}-${String(Date.now())}.json`
 
     // Try using File System Access API for "Save As" dialog
     interface FileSystemWritableFileStream extends WritableStream {
-      write(data: string): Promise<void>
+      write(data: string | Blob): Promise<void>
       close(): Promise<void>
     }
 
@@ -89,7 +90,7 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
         })
 
         const writable = await fileHandle.createWritable()
-        await writable.write(jsonString)
+        await writable.write(blob)
         await writable.close()
         toast.success(`Parameters exported to "${fileHandle.name}"!`)
         return // Success!
@@ -105,7 +106,6 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
 
     // Fallback: Direct download (works in all browsers)
     try {
-      const blob = new Blob([jsonString], { type: 'application/json' })
       const url = URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = url
@@ -114,11 +114,12 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
       document.body.appendChild(link)
       link.click()
 
-      // Cleanup after a short delay
+      // Cleanup after a longer delay to ensure download starts
+      // When "Ask where to save" is enabled, the user might take time to select a location
       setTimeout(() => {
         document.body.removeChild(link)
         URL.revokeObjectURL(url)
-      }, 100)
+      }, 60000)
 
       toast.success(`Parameters exported to "${suggestedName}"!`)
     } catch (error) {
