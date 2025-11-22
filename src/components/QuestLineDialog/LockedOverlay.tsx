@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const LockedOverlay: React.FC = () => {
+export const LockedOverlay = () => {
   return (
     <div
       className="locked-overlay"

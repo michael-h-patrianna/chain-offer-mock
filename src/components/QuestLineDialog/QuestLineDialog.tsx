@@ -11,7 +11,7 @@ import { MilestoneProgressBar } from './MilestoneProgressBar'
 import { QuestCard } from './QuestCard'
 import { QuestlineTimer } from './QuestlineTimer'
 
-export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
+export const QuestLineDialog = ({
   isOpen,
   title,
   description,
@@ -24,7 +24,7 @@ export const QuestLineDialog: React.FC<QuestLineDialogProps> = ({
   onQuestAction,
   onClaimBonus,
   animationType = 'none',
-}) => {
+}: QuestLineDialogProps) => {
   const { getParameters } = useAnimationParameters()
 
   const completedQuests = useMemo(

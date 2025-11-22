@@ -6,13 +6,13 @@ const MAX_REWARDS_PREVIEW = 4
 
 
 
-export const BonusRewards: React.FC<BonusRewardsProps> = ({
+export const BonusRewards = ({
   rewards,
   claimed,
   progressRequired,
   completedQuests,
   onClaim,
-}) => {
+}: BonusRewardsProps) => {
   const [isExpanded] = useState(false)
 
   const canClaim = completedQuests >= progressRequired && !claimed

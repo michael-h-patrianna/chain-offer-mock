@@ -74,12 +74,12 @@ interface PreBurstParticleData {
 }
 
 // Helper component: Individual coin with squash/stretch
-const CoinElement: React.FC<{
+const CoinElement = ({ coin, originX, originY, duration }: {
   coin: CoinData
   originX: number
   originY: number
   duration: number
-}> = ({ coin, originX, originY, duration }) => {
+}) => {
   const { size, rotationSpeed, delay, apexX, apexY } = coin
 
   // FIREWORK FOUNTAIN: Launch from button, arc outward, fall back to button
@@ -150,13 +150,13 @@ const CoinElement: React.FC<{
 }
 
 // Helper component: Trailing particle
-const ParticleElement: React.FC<{
+const ParticleElement = ({ particle, coin, originX, originY, duration }: {
   particle: ParticleData
   coin: CoinData
   originX: number
   originY: number
   duration: number
-}> = ({ particle, coin, originX, originY, duration }) => {
+}) => {
   const { color, size, offsetAngle, offsetDistance, opacity } = particle
   const { delay, apexX, apexY } = coin
 
@@ -205,10 +205,10 @@ const ParticleElement: React.FC<{
 }
 
 // Helper component: Expanding burst ring at origin
-const BurstRing: React.FC<{
+const BurstRing = ({ originX, originY }: {
   originX: number
   originY: number
-}> = ({ originX, originY }) => {
+}) => {
   return (
     <motion.div
       initial={{
@@ -243,9 +243,9 @@ const BurstRing: React.FC<{
 }
 
 // Helper component: Sparkle burst at apex
-const SparkleElement: React.FC<{
+const SparkleElement = ({ sparkle }: {
   sparkle: SparkleData
-}> = ({ sparkle }) => {
+}) => {
   const { x, y, size, rotation } = sparkle
 
   return (
@@ -300,11 +300,11 @@ const SparkleElement: React.FC<{
 }
 
 // Helper component: Ambient glow
-const AmbientGlow: React.FC<{
+const AmbientGlow = ({ originX, originY, duration }: {
   originX: number
   originY: number
   duration: number
-}> = ({ originX, originY, duration }) => {
+}) => {
   return (
     <motion.div
       initial={{
@@ -338,11 +338,11 @@ const AmbientGlow: React.FC<{
 }
 
 // Helper component: Pre-burst particle
-const PreBurstParticle: React.FC<{
+const PreBurstParticle = ({ particle, originX, originY }: {
   particle: PreBurstParticleData
   originX: number
   originY: number
-}> = ({ particle, originX, originY }) => {
+}) => {
   const { angle, distance, size } = particle
   const angleRad = (angle * Math.PI) / 180
   const targetX = originX + Math.cos(angleRad) * distance
@@ -381,13 +381,13 @@ const PreBurstParticle: React.FC<{
   )
 }
 
-export const ModalCelebrationsCoinsFountain: React.FC<CoinFountainProps> = ({
+export const ModalCelebrationsCoinsFountain = ({
   originX,
   originY,
   coinCount = 35,
   duration = 2.8,
   onComplete,
-}) => {
+}: CoinFountainProps) => {
   // Pre-calculate all coin trajectories
   const coins = useMemo<CoinData[]>(() => {
     return Array.from({ length: coinCount }, (_, i) => {

@@ -4,7 +4,7 @@ interface ChainOfferIconProps {
   onClick: () => void
 }
 
-export const ChainOfferIcon: React.FC<ChainOfferIconProps> = ({ onClick }) => {
+export const ChainOfferIcon = ({ onClick }: ChainOfferIconProps) => {
   return (
     <div className="RandomRewardsHomePageIcon_root__JxS_V" onClick={onClick} style={{cursor: 'pointer'}}>
       <button className="RandomRewardsHomePageIcon_button__lKIUV">

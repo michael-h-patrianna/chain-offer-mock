@@ -4,7 +4,7 @@ export interface CompletedOverlayProps {
   hasRewards: boolean
 }
 
-export const CompletedOverlay: React.FC<CompletedOverlayProps> = ({ hasRewards }) => {
+export const CompletedOverlay = ({ hasRewards }: CompletedOverlayProps) => {
   const statusText = hasRewards ? 'Claimed' : 'Quest Done'
 
   return (

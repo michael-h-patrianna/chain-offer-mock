@@ -1,4 +1,4 @@
-import type { QuestLineDialogProps, Reward, RewardType } from '../types/questline';
+import type { BonusReward, Quest, QuestLineDialogProps, QuestStatus, Reward, RewardType } from '../types/questline';
 
 interface RawReward {
   type?: string;
@@ -14,6 +14,8 @@ interface RawQuest {
 
 interface RawBonusReward {
   rewards?: RawReward[];
+  claimed?: boolean;
+  progressRequired?: number;
   [key: string]: unknown;
 }
 
@@ -44,24 +46,34 @@ export function transformQuestLineData(rawData: Record<string, unknown>): QuestL
   const { questlineCode, title, description, expiresAt, termsUrl, quests, bonusReward } = data
 
   // Transform quests and add icon URLs to rewards
-  const transformedQuests = (quests ?? []).map((quest) => ({
-    ...quest,
+  const transformedQuests: Quest[] = (quests ?? []).map((quest) => ({
+    questCode: String(quest.questCode || ''),
+    title: String(quest.title || ''),
+    description: String(quest.description || ''),
+    status: (quest.status || 'locked') as QuestStatus,
+    progress: Number(quest.progress || 0),
+    ranking: Number(quest.ranking || 0),
     rewards: (quest.rewards ?? []).map((reward) => ({
-      ...reward,
-      iconUrl: REWARD_ICON_MAP[reward.type as RewardType],
+      type: (reward.type || 'GC') as RewardType,
+      amount: Number(reward.amount || 0),
+      name: reward.name,
+      iconUrl: REWARD_ICON_MAP[reward.type as RewardType] || '',
       freeAdornmentUrl: reward.type === 'FREE_SPINS' ? '/assets/images/reward icons/free.png' : undefined,
     })),
   }))
 
   // Transform bonus rewards
-  const transformedBonusReward = bonusReward ? {
-    ...bonusReward,
+  const transformedBonusReward: BonusReward = bonusReward ? {
+    claimed: !!bonusReward.claimed,
+    progressRequired: Number(bonusReward.progressRequired || 0),
     rewards: (bonusReward.rewards ?? []).map((reward) => ({
-      ...reward,
-      iconUrl: REWARD_ICON_MAP[reward.type as RewardType],
+      type: (reward.type || 'GC') as RewardType,
+      amount: Number(reward.amount || 0),
+      name: reward.name,
+      iconUrl: REWARD_ICON_MAP[reward.type as RewardType] || '',
       freeAdornmentUrl: reward.type === 'FREE_SPINS' ? '/assets/images/reward icons/free.png' : undefined,
     })),
-  } : { rewards: [] }
+  } : { rewards: [], claimed: false, progressRequired: 0 }
 
   return {
     isOpen: true,

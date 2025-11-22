@@ -11,12 +11,12 @@ interface LobbyLayoutProps {
   isSidebarOpen?: boolean
 }
 
-export const LobbyLayout: React.FC<LobbyLayoutProps> = ({
+export const LobbyLayout = ({
   onQuestLineClick,
   onChainOfferClick,
   children,
   isSidebarOpen = false
-}) => {
+}: LobbyLayoutProps) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {

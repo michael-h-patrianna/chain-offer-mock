@@ -7,7 +7,7 @@ interface ProductTileProps {
   tags?: string[] // Simplified for now
 }
 
-export const ProductTile: React.FC<ProductTileProps> = ({ code, title }) => {
+export const ProductTile = ({ code, title }: ProductTileProps) => {
   // Use remote URL pattern from the snapshot
   const imageUrl = `https://storage.googleapis.com/www.playfame.com/tiles/${code}/source.png`
 

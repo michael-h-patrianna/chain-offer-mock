@@ -7,11 +7,11 @@ export interface QuestlineTimerProps {
   className?: string
 }
 
-export const QuestlineTimer: React.FC<QuestlineTimerProps> = ({
+export const QuestlineTimer = ({
   endTime,
   onCountdownEnd,
   className = ''
-}) => {
+}: QuestlineTimerProps) => {
   const timeLeft = useCountdownTimer(endTime, onCountdownEnd)
 
   return (

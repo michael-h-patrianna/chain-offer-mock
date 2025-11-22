@@ -23,7 +23,7 @@ export interface ChainOfferDialogProps {
   animationType?: AnimationType
 }
 
-export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
+export const ChainOfferDialog = ({
   isOpen,
   imageSrc,
   endTime,
@@ -35,7 +35,7 @@ export const ChainOfferDialog: React.FC<ChainOfferDialogProps> = ({
   onCountdownEnd,
   className = '',
   animationType = 'none'
-}) => {
+}: ChainOfferDialogProps) => {
   const { getParameters } = useAnimationParameters()
 
   const animation = useMemo(() => {

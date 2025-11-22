@@ -74,7 +74,7 @@ export function buildDialogFromSimpleConfig(
       id: `simple-${String(idx + 1)}`,
       name: `${item.type === 'PURCHASE' ? 'Purchase' : 'Free'} Step ${String(idx + 1)}`,
       position: idx + 1,
-      status: idx === 0 ? 'UNLOCKED' : 'LOCKED',
+      status: (idx === 0 ? 'UNLOCKED' : 'LOCKED') as 'LOCKED' | 'UNLOCKED' | 'CLAIMED',
       type: item.type,
       price: item.type === 'PURCHASE' ? item.price : undefined,
       rewards,

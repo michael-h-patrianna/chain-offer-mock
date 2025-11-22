@@ -4,7 +4,7 @@ interface QuestLinesIconProps {
   onClick: () => void
 }
 
-export const QuestLinesIcon: React.FC<QuestLinesIconProps> = ({ onClick }) => {
+export const QuestLinesIcon = ({ onClick }: QuestLinesIconProps) => {
   return (
     <section className="QuestLinesEntryLayout_root__h1YjJ QuestLines_questLineEntryRoot__E2d9m" onClick={onClick} style={{cursor: 'pointer'}}>
             <button type="button" className="QuestLinesEntryLayout_button__2uONe">

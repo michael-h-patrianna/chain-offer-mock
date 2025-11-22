@@ -6,10 +6,10 @@ export interface CloseButtonProps {
 	'aria-label'?: string
 }
 
-export const CloseButton: React.FC<CloseButtonProps> = ({
+export const CloseButton = ({
 	onClick,
 	'aria-label': ariaLabel = 'Close dialog',
-}) => (
+}: CloseButtonProps) => (
 	<button
 		type="button"
 		className="dialog-close-button"

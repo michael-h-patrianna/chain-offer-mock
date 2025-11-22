@@ -10,7 +10,7 @@ export interface QuestCardProps extends Quest {
   onAction?: (questCode: string, action: 'go' | 'claim') => void
 }
 
-export const QuestCard: React.FC<QuestCardProps> = ({
+export const QuestCard = ({
   questCode,
   title,
   description,
@@ -18,7 +18,7 @@ export const QuestCard: React.FC<QuestCardProps> = ({
   progress,
   rewards,
   onAction,
-}) => {
+}: QuestCardProps) => {
   const [isExpanded, setIsExpanded] = React.useState(false)
   const [showCoinFountain, setShowCoinFountain] = React.useState(false)
   const [fountainOrigin, setFountainOrigin] = React.useState({ x: 0, y: 0 })

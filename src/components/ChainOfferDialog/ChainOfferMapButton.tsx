@@ -9,14 +9,14 @@ export interface ChainOfferMapButtonProps {
   className?: string
 }
 
-export const ChainOfferMapButton: React.FC<ChainOfferMapButtonProps> = ({
+export const ChainOfferMapButton = ({
   status,
   type,
   price,
   disabled,
   onClick,
   className = ''
-}) => {
+}: ChainOfferMapButtonProps) => {
   const isLocked = status === 'LOCKED'
   const isClaimed = status === 'CLAIMED'
   const isDisabled = disabled || isLocked || isClaimed

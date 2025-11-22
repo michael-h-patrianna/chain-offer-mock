@@ -7,17 +7,17 @@ beforeAll(() => {
   // mock fetch for JSON + images
   global.fetch = ((input: RequestInfo) => {
     if (typeof input === 'string' && input.endsWith('chain-offer-list.json')) {
-      return new Response(JSON.stringify(chainOfferListData))
+      return Promise.resolve(new Response(JSON.stringify(chainOfferListData)))
     }
     // image fetch stub
-    return new Response(new Blob(['']))
+    return Promise.resolve(new Response(new Blob([''])))
   }) as typeof fetch
 })
 
 describe('Chain Offers Mock', () => {
   it('renders icon and opens dialog', async () => {
     render(<App />)
-    const img = await screen.findByAltText('promo img')
+    const img = await screen.findByAltText('Random Rewards')
     expect(img).toBeInTheDocument()
     fireEvent.click(img)
     await waitFor(() => {

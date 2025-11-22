@@ -7,7 +7,7 @@ export interface QuestRewardsProps {
   large?: boolean
 }
 
-export const QuestRewards: React.FC<QuestRewardsProps> = ({ rewards, large = false }) => {
+export const QuestRewards = ({ rewards, large = false }: QuestRewardsProps) => {
   return (
     <div className="quest-rewards">
       <div className="quest-rewards__label">You get:</div>

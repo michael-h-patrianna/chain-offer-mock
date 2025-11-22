@@ -14,7 +14,7 @@ interface GameSwimlaneProps {
   categoryCode: string
 }
 
-export const GameSwimlane: React.FC<GameSwimlaneProps> = ({ title, products, categoryCode }) => {
+export const GameSwimlane = ({ title, products, categoryCode }: GameSwimlaneProps) => {
   return (
     <div className={`HomeContent_slotsRowContainer__vA7H_ ${categoryCode}`}>
       <div className="styles_root__TLTRh HomeContent_title__LYzGH gameRow">

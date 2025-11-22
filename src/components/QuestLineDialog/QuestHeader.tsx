@@ -14,11 +14,11 @@ export interface QuestHeaderContentProps {
   isLocked?: boolean
 }
 
-export const QuestHeaderContent: React.FC<QuestHeaderContentProps> = ({
+export const QuestHeaderContent = ({
   title,
   description,
   isLocked = false,
-}) => {
+}: QuestHeaderContentProps) => {
   return (
     <div className="quest-header__info">
       <h3 className="quest-header__title">{title}</h3>
@@ -29,12 +29,12 @@ export const QuestHeaderContent: React.FC<QuestHeaderContentProps> = ({
   )
 }
 
-export const QuestHeader: React.FC<QuestHeaderProps> = ({
+export const QuestHeader = ({
   title,
   description,
   progress,
   isLocked = false,
-}) => {
+}: QuestHeaderProps) => {
   const progressValue = Math.min(100, Math.max(0, Math.round(progress)))
   const progressClass = `quest-header__progress-fill--${String(progressValue)}`
 

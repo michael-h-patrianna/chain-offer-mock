@@ -5,9 +5,10 @@ interface SidebarProps {
   isOpen: boolean
   selectedAnimation: AnimationType
   onAnimationTypeChange?: (animationType: AnimationType) => void
+  onClose?: () => void
 }
 
-export function Sidebar({ isOpen, selectedAnimation, onAnimationTypeChange }: SidebarProps) {
+export function Sidebar({ isOpen, selectedAnimation, onAnimationTypeChange, onClose }: SidebarProps) {
   const animationOptions = getAnimationOptions()
 
   return (

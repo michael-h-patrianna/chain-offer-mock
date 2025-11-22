@@ -5,10 +5,10 @@ export interface MilestoneProgressBarProps {
   completedQuests: number
 }
 
-export const MilestoneProgressBar: React.FC<MilestoneProgressBarProps> = ({
+export const MilestoneProgressBar = ({
   totalQuests,
   completedQuests,
-}) => {
+}: MilestoneProgressBarProps) => {
   const progressPercent = (completedQuests / totalQuests) * 100
 
   return (

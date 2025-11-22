@@ -57,14 +57,14 @@ export const chainOffersConfig: ChainOffersConfig = {
   config: {
     serviceDependencies: {
       reward: {
-        getRewards: () => ({ rewards: [] }),
+        getRewards: () => Promise.resolve({ rewards: [] }),
       },
       loyalty: {
-        getAccountVariants: () => ({ variants: [] }),
+        getAccountVariants: () => Promise.resolve({ variants: [] }),
       },
       offerchain: {
-        getOfferChainInstances: () => ({ items: [] }),
-        claimOffer: () => ({ success: true }),
+        getOfferChainInstances: () => Promise.resolve({ items: [] }),
+        claimOffer: () => Promise.resolve({ success: true }),
       },
     },
     featureFlags: { autoReopen: true },

@@ -7,10 +7,10 @@ export interface ChainOfferMapRewardsProps {
   className?: string
 }
 
-export const ChainOfferMapRewards: React.FC<ChainOfferMapRewardsProps> = ({
+export const ChainOfferMapRewards = ({
   rewards,
   className = ''
-}) => {
+}: ChainOfferMapRewardsProps) => {
   const getRewardText = (reward: Reward) => {
     switch (reward.type) {
       case 'GC':

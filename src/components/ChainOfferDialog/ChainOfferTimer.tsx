@@ -6,10 +6,10 @@ export interface ChainOfferTimerProps {
   onCountdownEnd?: () => void
 }
 
-export const ChainOfferTimer: React.FC<ChainOfferTimerProps> = ({
+export const ChainOfferTimer = ({
   endTime,
   onCountdownEnd
-}) => {
+}: ChainOfferTimerProps) => {
   const timeLeft = useCountdownTimer(endTime, onCountdownEnd)
 
   return (

@@ -18,7 +18,7 @@ export interface ChainOfferMapItemProps {
   animationVariants?: Variants
 }
 
-export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
+export const ChainOfferMapItem = ({
   id,
   position,
   status,
@@ -29,7 +29,7 @@ export const ChainOfferMapItem: React.FC<ChainOfferMapItemProps> = ({
   onButtonClick,
   className = '',
   animationVariants
-}) => {
+}: ChainOfferMapItemProps) => {
   const handleButtonClick = () => {
     if (onButtonClick && status === 'UNLOCKED') {
       onButtonClick(id)
