@@ -13,7 +13,7 @@ export const orbitalReveal: RevealAnimation = {
       },
     },
   },
-  itemVariants: {
+  layer2Variants: {
     hidden: {
       opacity: 0,
       x: 100,
@@ -35,7 +35,7 @@ export const orbitalReveal: RevealAnimation = {
       },
     },
   },
-  headerImageVariants: {
+  layer1Variants: {
     hidden: {
       opacity: 0,
       y: -200,
@@ -54,166 +54,11 @@ export const orbitalReveal: RevealAnimation = {
         stiffness: 120,
         damping: 12,
         mass: 1.0,
-        delay: 0.1,
       },
     },
   },
-  timerVariants: {
-    hidden: {
-      opacity: 0,
-      x: 150,
-      y: 50,
-      scale: 0.3,
-      rotate: 180,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 0.3,
-      },
-    },
-  },
-  titleVariants: {
-    hidden: {
-      opacity: 0,
-      x: -80,
-      y: 40,
-      rotate: -45,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 0.5,
-      },
-    },
-  },
-  footerVariants: {
-    hidden: {
-      opacity: 0,
-      y: 60,
-      x: 40,
-      rotate: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 1.1,
-      },
-    },
-  },
-  questlineHeaderImageVariants: {
-    hidden: {
-      opacity: 0,
-      y: -250,
-      x: -80,
-      scale: 0.3,
-      rotate: -120,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 0.1,
-      },
-    },
-  },
-  questlineTimerVariants: {
-    hidden: {
-      opacity: 0,
-      x: 180,
-      y: 70,
-      scale: 0.2,
-      rotate: 200,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 0.25,
-      },
-    },
-  },
-  questlineDescriptionVariants: {
-    hidden: {
-      opacity: 0,
-      x: -100,
-      y: 50,
-      rotate: -60,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 0.45,
-      },
-    },
-  },
-  questlineBonusRewardsVariants: {
-    hidden: {
-      opacity: 0,
-      x: 120,
-      y: -80,
-      scale: 0.4,
-      rotate: -150,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 0.4,
-      },
-    },
-  },
-  questlineProgressBarVariants: {
+
+  layer3Variants: {
     hidden: {
       opacity: 0,
       x: -100,
@@ -230,137 +75,6 @@ export const orbitalReveal: RevealAnimation = {
         stiffness: 120,
         damping: 12,
         mass: 1.0,
-        delay: 0.6,
-      },
-    },
-  },
-  questlineFooterVariants: {
-    hidden: {
-      opacity: 0,
-      y: 70,
-      x: 50,
-      rotate: 30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 1.0,
-      },
-    },
-  },
-  simpleQuestHeaderImageVariants: {
-    hidden: {
-      opacity: 0,
-      y: -250,
-      x: -80,
-      scale: 0.3,
-      rotate: -120,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 0.1,
-      },
-    },
-  },
-  simpleQuestTimerVariants: {
-    hidden: {
-      opacity: 0,
-      x: 180,
-      y: 70,
-      scale: 0.2,
-      rotate: 200,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 0.25,
-      },
-    },
-  },
-  simpleQuestCardVariants: {
-    hidden: {
-      opacity: 0,
-      x: -100,
-      y: 50,
-      rotate: -60,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 0.45,
-      },
-    },
-  },
-  simpleQuestButtonVariants: {
-    hidden: {
-      opacity: 0,
-      y: 70,
-      x: 50,
-      rotate: 30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 0.8,
-      },
-    },
-  },
-  simpleQuestFooterVariants: {
-    hidden: {
-      opacity: 0,
-      y: 70,
-      x: 50,
-      rotate: 30,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      rotate: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 120,
-        damping: 12,
-        mass: 1.0,
-        delay: 1.0,
       },
     },
   },

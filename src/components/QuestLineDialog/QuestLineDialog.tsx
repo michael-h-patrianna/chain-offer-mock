@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { getRevealAnimation } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
 import type { QuestLineDialogProps } from '../../types/questline'
@@ -40,9 +40,6 @@ export const QuestLineDialog = ({
   return (
     <DialogBackdrop isOpen={isOpen} onClose={onClose} backdropClassName='dialog-backdrop'>
       <dialog open className='questline-dialog' aria-modal='true' aria-labelledby='questline-title'>
-        <h1 id='questline-title' className='sr-only'>
-          {title}
-        </h1>
         <CloseButton onClick={onClose} aria-label='Close quest line dialog' />
 
         {/* Stagger container wrapping all content */}
@@ -64,36 +61,38 @@ export const QuestLineDialog = ({
             src={headerImageUrl}
             alt={title}
             className='questline-dialog__header-image'
-            variants={animation.questlineHeaderImageVariants}
+            key='header-image'
+            variants={animation.layer1Variants}
           />
 
           {/* Timer */}
-          <motion.div variants={animation.questlineTimerVariants}>
+          <motion.div key='timer' variants={animation.layer1Variants}>
             <QuestlineTimer endTime={endTime} className='questline-dialog__timer' />
           </motion.div>
 
           {/* Description */}
           <motion.div
             className='questline-dialog__description-wrapper'
-            variants={animation.questlineDescriptionVariants}
+            key='description'
+            variants={animation.layer1Variants}
           >
             <p className='questline-dialog__description'>{description}</p>
           </motion.div>
 
           {/* Bonus Rewards */}
-          <motion.div style={{ width: '100%' }} variants={animation.questlineBonusRewardsVariants}>
+          <motion.div style={{ width: '100%' }} key='bonus-rewards' variants={animation.layer1Variants}>
             <BonusRewards {...bonusReward} completedQuests={completedQuests} onClaim={onClaimBonus} />
           </motion.div>
 
           {/* Progress Bar */}
-          <motion.div style={{ width: '100%' }} variants={animation.questlineProgressBarVariants}>
+          <motion.div style={{ width: '100%' }} key='progress-bar' variants={animation.layer3Variants}>
             <MilestoneProgressBar totalQuests={quests.length} completedQuests={completedQuests} />
           </motion.div>
 
           {/* Quest Cards - each staggered */}
           <div className='questline-dialog__quests'>
             {quests.map((quest) => (
-              <motion.div style={{ width: '100%' }} key={quest.questCode} variants={animation.itemVariants}>
+              <motion.div style={{ width: '100%' }} key={quest.questCode} variants={animation.layer2Variants}>
                 <QuestCard {...quest} onAction={onQuestAction} />
               </motion.div>
             ))}
@@ -101,7 +100,7 @@ export const QuestLineDialog = ({
 
           {/* Footer */}
           {termsUrl && (
-            <motion.div className='questline-dialog__footer' variants={animation.questlineFooterVariants}>
+            <motion.div className='questline-dialog__footer' key='footer' variants={animation.layer2Variants}>
               <a href={termsUrl} className='questline-dialog__terms-link' target='_blank' rel='noopener noreferrer'>
                 Terms & Conditions
               </a>

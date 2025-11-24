@@ -4,10 +4,10 @@ import toast from 'react-hot-toast'
 import { AnimationType } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
 import {
-  baseParameterConfigs,
-  orbitalParameterConfigs,
-  springParameterConfigs,
-  wobbleParameterConfigs,
+    baseParameterConfigs,
+    orbitalParameterConfigs,
+    springParameterConfigs,
+    wobbleParameterConfigs,
 } from '../../types/animationParameters'
 import './AnimationParameterForm.css'
 import { ParameterGroup } from './ParameterControls/ParameterGroup'

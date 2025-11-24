@@ -16,22 +16,9 @@ export function applyAnimationParameters(
   return {
     ...cloned,
     containerVariants: applyToVariant(cloned.containerVariants, parameters, true),
-    itemVariants: applyToVariant(cloned.itemVariants, parameters, false),
-    headerImageVariants: applyToVariant(cloned.headerImageVariants, parameters, false),
-    timerVariants: applyToVariant(cloned.timerVariants, parameters, false),
-    titleVariants: applyToVariant(cloned.titleVariants, parameters, false),
-    footerVariants: applyToVariant(cloned.footerVariants, parameters, false),
-    questlineHeaderImageVariants: applyToVariant(cloned.questlineHeaderImageVariants, parameters, false),
-    questlineTimerVariants: applyToVariant(cloned.questlineTimerVariants, parameters, false),
-    questlineDescriptionVariants: applyToVariant(cloned.questlineDescriptionVariants, parameters, false),
-    questlineBonusRewardsVariants: applyToVariant(cloned.questlineBonusRewardsVariants, parameters, false),
-    questlineProgressBarVariants: applyToVariant(cloned.questlineProgressBarVariants, parameters, false),
-    questlineFooterVariants: applyToVariant(cloned.questlineFooterVariants, parameters, false),
-    simpleQuestHeaderImageVariants: applyToVariant(cloned.simpleQuestHeaderImageVariants, parameters, false),
-    simpleQuestTimerVariants: applyToVariant(cloned.simpleQuestTimerVariants, parameters, false),
-    simpleQuestCardVariants: applyToVariant(cloned.simpleQuestCardVariants, parameters, false),
-    simpleQuestButtonVariants: applyToVariant(cloned.simpleQuestButtonVariants, parameters, false),
-    simpleQuestFooterVariants: applyToVariant(cloned.simpleQuestFooterVariants, parameters, false),
+    layer1Variants: applyToVariant(cloned.layer1Variants, parameters, false),
+    layer2Variants: applyToVariant(cloned.layer2Variants, parameters, false),
+    layer3Variants: applyToVariant(cloned.layer3Variants, parameters, false),
   }
 }
 

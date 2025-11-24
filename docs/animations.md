@@ -72,7 +72,7 @@ export type AnimationType =
 **Understanding Variants**:
 
 - `containerVariants`: Applied to parent `motion.div` (controls stagger timing)
-- `itemVariants`: Applied to child elements (defines the actual animation)
+- `layer2Variants`: Applied to child elements (defines the actual animation)
 - Specific variants: For different parts (header, timer, footer, etc.)
 
 **Template**:
@@ -97,7 +97,7 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
     },
 
     // Item animation (the actual effect)
-    itemVariants: {
+    layer2Variants: {
       hidden: {
         opacity: 0,
         y: 60, // Start 60px below
@@ -115,7 +115,7 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
     },
 
     // Specific variants for different component parts
-    headerImageVariants: {
+    layer1Variants: {
       hidden: { opacity: 0, y: -40, scale: 0.9 },
       visible: {
         opacity: 1,
@@ -125,14 +125,7 @@ export const revealAnimations: Record<AnimationType, RevealAnimation> = {
       },
     },
 
-    timerVariants: {
-      hidden: { opacity: 0, scale: 0.8 },
-      visible: {
-        opacity: 1,
-        scale: 1,
-        transition: { duration: 0.5, delay: 0.4 },
-      },
-    },
+
 
     // ... Add all required variant types (check interface)
   },
@@ -194,7 +187,7 @@ const TestAnimation = () => {
       {[1, 2, 3, 4].map(i => (
         <motion.div
           key={i}
-          variants={animation.itemVariants}
+          variants={animation.layer2Variants}
         >
           Item {i}
         </motion.div>
@@ -216,7 +209,7 @@ const TestAnimation = () => {
 
 ```typescript
 // Make animation faster
-itemVariants: {
+layer2Variants: {
   visible: {
     transition: {
       duration: 0.3,  // Changed from 0.6 (2x faster)
@@ -225,7 +218,7 @@ itemVariants: {
 }
 
 // Add delay
-itemVariants: {
+layer2Variants: {
   visible: {
     transition: {
       duration: 0.6,
@@ -243,7 +236,7 @@ itemVariants: {
 
 ```typescript
 // Increase slide distance
-itemVariants: {
+layer2Variants: {
   hidden: {
     opacity: 0,
     y: 120,  // Changed from 60 (slides from further down)
@@ -251,7 +244,7 @@ itemVariants: {
 }
 
 // Add rotation
-itemVariants: {
+layer2Variants: {
   hidden: {
     opacity: 0,
     rotate: -90,  // Start rotated 90° counter-clockwise
@@ -263,7 +256,7 @@ itemVariants: {
 }
 
 // Add scale
-itemVariants: {
+layer2Variants: {
   hidden: {
     opacity: 0,
     scale: 0.5,  // Start at 50% size
@@ -322,7 +315,7 @@ containerVariants: {
 **Template**:
 
 ```typescript
-itemVariants: {
+layer2Variants: {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -336,7 +329,7 @@ itemVariants: {
 **Template**:
 
 ```typescript
-itemVariants: {
+layer2Variants: {
   hidden: { opacity: 0, y: 20 },  // Slide from below
   visible: {
     opacity: 1,
@@ -356,7 +349,7 @@ itemVariants: {
 **Template**:
 
 ```typescript
-itemVariants: {
+layer2Variants: {
   hidden: { opacity: 0, scale: 0.8 },  // Start small
   visible: {
     opacity: 1,
@@ -371,7 +364,7 @@ itemVariants: {
 **Template**:
 
 ```typescript
-itemVariants: {
+layer2Variants: {
   hidden: { opacity: 0, rotate: -45 },  // Start rotated
   visible: {
     opacity: 1,
@@ -386,7 +379,7 @@ itemVariants: {
 **Template**:
 
 ```typescript
-itemVariants: {
+layer2Variants: {
   hidden: {
     opacity: 0,
     rotateY: 90,  // Flipped 90° (edge-on)
@@ -407,7 +400,7 @@ itemVariants: {
 **Template**:
 
 ```typescript
-itemVariants: {
+layer2Variants: {
   hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
@@ -427,7 +420,7 @@ itemVariants: {
 **Template**:
 
 ```typescript
-itemVariants: {
+layer2Variants: {
   hidden: { opacity: 0, y: 20, scale: 0.8 },
   visible: {
     opacity: 1,
@@ -484,8 +477,8 @@ const MyComponent = ({ animationType }) => {
     parameters
   )
 
-  const itemVariants = applyAnimationParameters(
-    animation.itemVariants,
+  const layer2Variants = applyAnimationParameters(
+    animation.layer2Variants,
     parameters
   )
 
@@ -574,7 +567,7 @@ const MyComponent = ({ items, animationType }) => {
         <motion.div
           key={item.id}
           className="item"
-          variants={animation.itemVariants}
+          variants={animation.layer2Variants}
         >
           {item.content}
         </motion.div>
@@ -587,7 +580,7 @@ const MyComponent = ({ items, animationType }) => {
 **Key Points**:
 
 - Parent has `containerVariants` (controls stagger)
-- Children have `itemVariants` (defines animation)
+- Children have `layer2Variants` (defines animation)
 - Children inherit `initial` and `animate` from parent (no need to repeat)
 
 ### Pattern 2: Multiple Variant Types
@@ -606,22 +599,15 @@ const MyComponent = ({ animationType }) => {
     >
       <motion.div
         className="header"
-        variants={animation.headerImageVariants}
+        variants={animation.layer1Variants}
       >
         Header Content
-      </motion.div>
-
-      <motion.div
-        className="timer"
-        variants={animation.timerVariants}
-      >
-        Timer Content
       </motion.div>
 
       {items.map(item => (
         <motion.div
           key={item.id}
-          variants={animation.itemVariants}
+          variants={animation.layer2Variants}
         >
           {item.content}
         </motion.div>
@@ -698,7 +684,7 @@ const MyComponent = ({ animationType, resetKey }) => {
 <motion.div
   initial="hidden"
   animate="visible"
-  variants={itemVariants}
+  variants={layer2Variants}
 >
   Content
 </motion.div>
@@ -719,7 +705,7 @@ import { AnimatePresence } from 'motion/react'
       initial="hidden"
       animate="visible"
       exit="hidden"  // Animate back to hidden state on unmount
-      variants={itemVariants}
+      variants={layer2Variants}
     >
       Content
     </motion.div>
@@ -758,7 +744,7 @@ const MyComponent = () => {
       ref={ref}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      variants={itemVariants}
+      variants={layer2Variants}
     >
       Animates when scrolled into view
     </motion.div>
@@ -793,10 +779,10 @@ const animation = revealAnimations[animationType];
 ### ❌ Don't: Forget stagger container
 
 ```typescript
-// Bad: Using itemVariants without container
+// Bad: Using layer2Variants without container
 <div>
   {items.map(item => (
-    <motion.div variants={itemVariants}>...</motion.div>
+    <motion.div variants={layer2Variants}>...</motion.div>
   ))}
 </div>
 ```
@@ -807,7 +793,7 @@ const animation = revealAnimations[animationType];
 // Good: Container controls stagger timing
 <motion.div variants={containerVariants} initial="hidden" animate="visible">
   {items.map(item => (
-    <motion.div variants={itemVariants}>...</motion.div>
+    <motion.div variants={layer2Variants}>...</motion.div>
   ))}
 </motion.div>
 ```
@@ -819,7 +805,7 @@ const animation = revealAnimations[animationType];
 ```typescript
 // Bad: Redundant props
 <motion.div variants={containerVariants} initial="hidden" animate="visible">
-  <motion.div variants={itemVariants} initial="hidden" animate="visible">
+  <motion.div variants={layer2Variants} initial="hidden" animate="visible">
     ...
   </motion.div>
 </motion.div>
@@ -830,7 +816,7 @@ const animation = revealAnimations[animationType];
 ```typescript
 // Good: Children inherit automatically
 <motion.div variants={containerVariants} initial="hidden" animate="visible">
-  <motion.div variants={itemVariants}>
+  <motion.div variants={layer2Variants}>
     ...
   </motion.div>
 </motion.div>

@@ -174,7 +174,7 @@ const RewardAnimation = ({ isVisible, onComplete }) => {
     },
   };
 
-  const itemVariants = {
+  const layer2Variants = {
     hidden: {
       scale: 0,
       rotate: -180,
@@ -208,15 +208,15 @@ const RewardAnimation = ({ isVisible, onComplete }) => {
           exit="exit"
           className="reward-container"
         >
-          <motion.div variants={itemVariants} className="glow-effect" />
-          <motion.div variants={itemVariants} className="main-icon">
+          <motion.div variants={layer2Variants} className="glow-effect" />
+          <motion.div variants={layer2Variants} className="main-icon">
             <img src="/coin.png" alt="Coin" />
           </motion.div>
-          <motion.div variants={itemVariants} className="sparkle-layer">
+          <motion.div variants={layer2Variants} className="sparkle-layer">
             {[...Array(6)].map((_, i) => (
               <motion.div
                 key={i}
-                variants={itemVariants}
+                variants={layer2Variants}
                 className="sparkle"
                 style={{
                   rotate: i * 60,

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { getRevealAnimation, type AnimationType } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
 import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
@@ -45,17 +45,11 @@ export const ChainOfferDialog = ({
 
   if (!isOpen) return null
 
-  const dialogTitle = title || 'Chain Offer'
-
   return (
     <DialogBackdrop isOpen={isOpen} onClose={onClose} backdropClassName='dialog-backdrop'>
       <dialog open className={`chain-offer-dialog ${className}`} aria-modal='true' aria-labelledby='chain-offer-title'>
-        <h1 id='chain-offer-title' className='sr-only'>
-          {dialogTitle}
-        </h1>
         <CloseButton onClick={onClose} aria-label='Close chain offer dialog' />
-
-        {/* Stagger container */}
+        {/* Stagger container wrapping all content */}
         <motion.div
           key={`chain-offer-stagger-${animationType}`}
           variants={animation.containerVariants}
@@ -66,17 +60,17 @@ export const ChainOfferDialog = ({
           {/* Header */}
           <header className='chain-offer-header'>
             {/* Header Image */}
-            <motion.div variants={animation.headerImageVariants} className='chain-offer-header__image-box'>
-              <img alt={title || 'Chain offer header image'} className='chain-offer-header__image' src={imageSrc} />
+            <motion.div variants={animation.layer1Variants} className='chain-offer-header__image-box'>
+              <img alt={title} className='chain-offer-header__image' src={imageSrc} />
 
               {/* Timer */}
-              <motion.div className='chain-offer-timer' variants={animation.timerVariants}>
+              <motion.div className='chain-offer-timer' key='timer' variants={animation.layer1Variants}>
                 <ChainOfferTimer endTime={endTime} onCountdownEnd={onCountdownEnd} />
               </motion.div>
             </motion.div>
             {/* Title */}
             {title && (
-              <motion.p className='chain-offer-header__title' variants={animation.titleVariants}>
+              <motion.p className='chain-offer-header__title' key='title' variants={animation.layer1Variants}>
                 {title}
               </motion.p>
             )}
@@ -86,18 +80,20 @@ export const ChainOfferDialog = ({
           <section className='chain-offer-dialog__content'>
             {/* Each item is staggered */}
             {items.map((item) => (
-              <ChainOfferMapItem
-                key={item.id}
-                {...item}
-                onButtonClick={onItemButtonClick}
-                animationVariants={animation.itemVariants}
-              />
+              <motion.div style={{ width: '100%' }} key={item.id} variants={animation.layer2Variants}>
+                <ChainOfferMapItem
+                  key={item.id}
+                  {...item}
+                  onButtonClick={onItemButtonClick}
+                  animationVariants={animation.layer2Variants}
+                />
+              </motion.div>
             ))}
           </section>
 
           {/* Footer */}
           {termsUrl && (
-            <motion.footer className='chain-offer-dialog__footer' variants={animation.footerVariants}>
+            <motion.footer className='chain-offer-dialog__footer' key='footer' variants={animation.layer2Variants}>
               <a href={termsUrl} className='chain-offer-dialog__terms-link' target='_blank' rel='noopener noreferrer'>
                 Terms & Conditions
               </a>

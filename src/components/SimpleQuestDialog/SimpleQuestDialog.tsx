@@ -1,15 +1,15 @@
 import cx from 'classnames'
 import { motion } from 'motion/react'
-import React, { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { getRevealAnimation } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
 import type { QuestLineDialogProps } from '../../types/questline'
 import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
+import { QuestlineTimer } from '../QuestLineDialog/QuestlineTimer'
 import { CloseButton } from '../Shared/CloseButton'
 import { DialogBackdrop } from '../Shared/DialogBackdrop'
 import { ModalCelebrationsCoinsFountain } from '../rewards/modal-celebrations/framer/ModalCelebrationsCoinsFountain'
 import { SimpleQuestRewards } from './SimpleQuestRewards'
-import { QuestlineTimer } from '../QuestLineDialog/QuestlineTimer'
 
 export const SimpleQuestDialog = ({
   isOpen,
@@ -95,11 +95,8 @@ export const SimpleQuestDialog = ({
         aria-modal='true'
         aria-labelledby='simple-quest-title'
       >
-        <h1 id='simple-quest-title' className='sr-only'>
-          {title}
-        </h1>
         <CloseButton onClick={onClose} aria-label='Close quest dialog' />
-
+        {/* Stagger container wrapping all content */}
         <motion.div
           key={`simple-quest-stagger-${animationType}`}
           variants={animation.containerVariants}
@@ -118,19 +115,20 @@ export const SimpleQuestDialog = ({
             src={headerImageUrl}
             alt={title}
             className='questline-dialog__header-image'
-            variants={animation.simpleQuestHeaderImageVariants}
+            variants={animation.layer1Variants}
           />
 
           {/* Timer */}
-          <motion.div variants={animation.simpleQuestTimerVariants}>
+          <motion.div key='timer' variants={animation.layer1Variants}>
             <QuestlineTimer endTime={endTime} className='questline-dialog__timer' />
           </motion.div>
 
           <div className='simple-quest-dialog__content-wrapper'>
             {/* Task Section */}
             <motion.div
+              key='task'
               className='simple-quest-dialog__card simple-quest-dialog__section'
-              variants={animation.simpleQuestCardVariants}
+              variants={animation.layer2Variants}
             >
               <div className='simple-quest-dialog__card-content'>
                 <h3 className='simple-quest-dialog__section-title'>DO THIS</h3>
@@ -154,7 +152,8 @@ export const SimpleQuestDialog = ({
             {/* Reward Section */}
             <motion.div
               className='simple-quest-dialog__card simple-quest-dialog__section'
-              variants={animation.simpleQuestCardVariants}
+              variants={animation.layer2Variants}
+              key='rewards'
             >
               <div className='simple-quest-dialog__card-content'>
                 <h3 className='simple-quest-dialog__section-title'>TO GET THIS</h3>
@@ -169,9 +168,10 @@ export const SimpleQuestDialog = ({
           {status !== 'locked' && (
             <motion.button
               ref={claimButtonRef}
+              key='button'
               className={getActionButtonClass()}
               onClick={handleActionClick}
-              variants={animation.simpleQuestButtonVariants}
+              variants={animation.layer2Variants}
               aria-label={`${getActionButtonText()} quest`}
               disabled={status === 'completed'}
             >
@@ -181,7 +181,7 @@ export const SimpleQuestDialog = ({
 
           {/* Footer */}
           {termsUrl && (
-            <motion.div className='questline-dialog__footer' variants={animation.simpleQuestFooterVariants}>
+            <motion.div className='questline-dialog__footer' key='footer' variants={animation.layer2Variants}>
               <a href={termsUrl} className='questline-dialog__terms-link' target='_blank' rel='noopener noreferrer'>
                 Terms & Conditions
               </a>
