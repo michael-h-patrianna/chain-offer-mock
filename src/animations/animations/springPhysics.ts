@@ -207,4 +207,91 @@ export const springPhysics: RevealAnimation = {
       },
     },
   },
+  simpleQuestHeaderImageVariants: {
+    hidden: {
+      scale: 0.4,
+      y: -180,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 160,
+        damping: 11,
+        mass: 1.8,
+        delay: 0.05,
+      },
+    },
+  },
+  simpleQuestTimerVariants: {
+    hidden: {
+      scale: 0,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 280,
+        damping: 20,
+        mass: 0.7,
+        delay: 0.25,
+      },
+    },
+  },
+  simpleQuestCardVariants: {
+    hidden: {
+      y: 60,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 180,
+        damping: 18,
+        mass: 1.1,
+        delay: 0.45,
+      },
+    },
+  },
+  simpleQuestButtonVariants: {
+    hidden: {
+      y: 40,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 140,
+        damping: 14,
+        mass: 0.8,
+        delay: 0.8,
+      },
+    },
+  },
+  simpleQuestFooterVariants: {
+    hidden: {
+      y: 40,
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 140,
+        damping: 14,
+        mass: 0.8,
+        delay: 1.0,
+      },
+    },
+  },
 }

@@ -189,4 +189,83 @@ export const scaleRotate: RevealAnimation = {
       },
     },
   },
+  simpleQuestHeaderImageVariants: {
+    hidden: {
+      scale: 0.6,
+      rotate: -15,
+      opacity: 0,
+    },
+    visible: {
+      scale: [0.6, 1.12, 1],
+      rotate: [-15, 5, 0],
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        delay: 0.05,
+        ease: [0.34, 1.56, 0.64, 1],
+      },
+    },
+  },
+  simpleQuestTimerVariants: {
+    hidden: {
+      scale: 0.4,
+      rotate: 10,
+      opacity: 0,
+    },
+    visible: {
+      scale: [0.4, 1.2, 1],
+      rotate: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.7,
+        delay: 0.25,
+        ease: [0.34, 1.56, 0.64, 1],
+      },
+    },
+  },
+  simpleQuestCardVariants: {
+    hidden: {
+      scale: 0.9,
+      opacity: 0,
+    },
+    visible: {
+      scale: [0.9, 1.05, 1],
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        delay: 0.4,
+        ease: [0.34, 1.56, 0.64, 1],
+      },
+    },
+  },
+  simpleQuestButtonVariants: {
+    hidden: {
+      scale: 0.9,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        delay: 0.6,
+        ease: [0.34, 1.56, 0.64, 1],
+      },
+    },
+  },
+  simpleQuestFooterVariants: {
+    hidden: {
+      scale: 0.9,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        delay: 0.8,
+        ease: [0.34, 1.56, 0.64, 1],
+      },
+    },
+  },
 }

@@ -25,10 +25,13 @@ export function getSimpleQuestlineDialogProps() {
         {
           type: 'GC' as const,
           amount: 5000,
+          iconUrl: '/assets/images/reward icons/reward-gc.png',
         },
         {
           type: 'FREE_SPINS' as const,
           amount: 10,
+          iconUrl: '/assets/images/reward icons/reward-free-spins.png',
+          freeAdornmentUrl: '/assets/images/reward icons/free.png',
         },
       ],
       claimed: false,

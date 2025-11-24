@@ -55,4 +55,24 @@ export const none: RevealAnimation = {
     hidden: { opacity: 1 },
     visible: { opacity: 1, transition: { duration: 0 } },
   },
+  simpleQuestHeaderImageVariants: {
+    hidden: { opacity: 1 },
+    visible: { opacity: 1, transition: { duration: 0 } },
+  },
+  simpleQuestTimerVariants: {
+    hidden: { opacity: 1 },
+    visible: { opacity: 1, transition: { duration: 0 } },
+  },
+  simpleQuestCardVariants: {
+    hidden: { opacity: 1 },
+    visible: { opacity: 1, transition: { duration: 0 } },
+  },
+  simpleQuestButtonVariants: {
+    hidden: { opacity: 1 },
+    visible: { opacity: 1, transition: { duration: 0 } },
+  },
+  simpleQuestFooterVariants: {
+    hidden: { opacity: 1 },
+    visible: { opacity: 1, transition: { duration: 0 } },
+  },
 }

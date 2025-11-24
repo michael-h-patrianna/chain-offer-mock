@@ -223,4 +223,99 @@ export const velvetCascade: RevealAnimation = {
       },
     },
   },
+  simpleQuestHeaderImageVariants: {
+    hidden: {
+      opacity: 0,
+      y: -150,
+      scale: 0.7,
+      rotateX: -30,
+      transformPerspective: 1400,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transformPerspective: 1400,
+      transition: {
+        duration: 1.4,
+        delay: 0.1,
+        ease: [0.16, 1.0, 0.3, 1.0],
+      },
+    },
+  },
+  simpleQuestTimerVariants: {
+    hidden: {
+      opacity: 0,
+      y: -70,
+      scale: 0.65,
+      rotateX: 25,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        duration: 1.25,
+        delay: 0.3,
+        ease: [0.16, 1.0, 0.3, 1.0],
+      },
+    },
+  },
+  simpleQuestCardVariants: {
+    hidden: {
+      opacity: 0,
+      y: -55,
+      rotateX: -14,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: {
+        duration: 1.05,
+        delay: 0.55,
+        ease: [0.16, 1.0, 0.3, 1.0],
+      },
+    },
+  },
+  simpleQuestButtonVariants: {
+    hidden: {
+      opacity: 0,
+      y: 45,
+      scale: 0.88,
+      rotateX: 18,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        duration: 1.0,
+        delay: 0.9,
+        ease: [0.16, 1.0, 0.3, 1.0],
+      },
+    },
+  },
+  simpleQuestFooterVariants: {
+    hidden: {
+      opacity: 0,
+      y: 45,
+      scale: 0.88,
+      rotateX: 18,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        duration: 1.0,
+        delay: 1.1,
+        ease: [0.16, 1.0, 0.3, 1.0],
+      },
+    },
+  },
 }

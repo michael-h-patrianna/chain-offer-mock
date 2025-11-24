@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import type { BonusRewardsProps } from '../../types/questline'
 import { formatRewardAmount, getRewardText } from '../../utils/transformQuestLineData'
 

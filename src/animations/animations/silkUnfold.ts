@@ -231,4 +231,104 @@ export const silkUnfold: RevealAnimation = {
       },
     },
   },
+  simpleQuestHeaderImageVariants: {
+    hidden: {
+      opacity: 0,
+      scaleY: 0.15,
+      scaleX: 0.88,
+    },
+    visible: {
+      opacity: 1,
+      scaleY: 1,
+      scaleX: 1,
+      x: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 105,
+        damping: 16,
+        mass: 1.0,
+        delay: 0.1,
+      },
+    },
+  },
+  simpleQuestTimerVariants: {
+    hidden: {
+      opacity: 0,
+      scaleY: 0.35,
+      scaleX: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      scaleY: 1,
+      scaleX: 1,
+      x: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 122,
+        damping: 18,
+        mass: 0.78,
+        delay: 0.35,
+      },
+    },
+  },
+  simpleQuestCardVariants: {
+    hidden: {
+      opacity: 0,
+      scaleY: 0.45,
+      scaleX: 0.94,
+    },
+    visible: {
+      opacity: 1,
+      scaleY: 1,
+      scaleX: 1,
+      x: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 117,
+        damping: 18,
+        mass: 0.83,
+        delay: 0.55,
+      },
+    },
+  },
+  simpleQuestButtonVariants: {
+    hidden: {
+      opacity: 0,
+      scaleY: 0.55,
+      scaleX: 0.96,
+    },
+    visible: {
+      opacity: 1,
+      scaleY: 1,
+      scaleX: 1,
+      x: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 116,
+        damping: 18,
+        mass: 0.84,
+        delay: 1.0,
+      },
+    },
+  },
+  simpleQuestFooterVariants: {
+    hidden: {
+      opacity: 0,
+      scaleY: 0.55,
+      scaleX: 0.96,
+    },
+    visible: {
+      opacity: 1,
+      scaleY: 1,
+      scaleX: 1,
+      x: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 116,
+        damping: 18,
+        mass: 0.84,
+        delay: 1.2,
+      },
+    },
+  },
 }

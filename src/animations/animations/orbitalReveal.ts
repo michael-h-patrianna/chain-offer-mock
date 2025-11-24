@@ -255,4 +255,113 @@ export const orbitalReveal: RevealAnimation = {
       },
     },
   },
+  simpleQuestHeaderImageVariants: {
+    hidden: {
+      opacity: 0,
+      y: -250,
+      x: -80,
+      scale: 0.3,
+      rotate: -120,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 120,
+        damping: 12,
+        mass: 1.0,
+        delay: 0.1,
+      },
+    },
+  },
+  simpleQuestTimerVariants: {
+    hidden: {
+      opacity: 0,
+      x: 180,
+      y: 70,
+      scale: 0.2,
+      rotate: 200,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 120,
+        damping: 12,
+        mass: 1.0,
+        delay: 0.25,
+      },
+    },
+  },
+  simpleQuestCardVariants: {
+    hidden: {
+      opacity: 0,
+      x: -100,
+      y: 50,
+      rotate: -60,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      rotate: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 120,
+        damping: 12,
+        mass: 1.0,
+        delay: 0.45,
+      },
+    },
+  },
+  simpleQuestButtonVariants: {
+    hidden: {
+      opacity: 0,
+      y: 70,
+      x: 50,
+      rotate: 30,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      rotate: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 120,
+        damping: 12,
+        mass: 1.0,
+        delay: 0.8,
+      },
+    },
+  },
+  simpleQuestFooterVariants: {
+    hidden: {
+      opacity: 0,
+      y: 70,
+      x: 50,
+      rotate: 30,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      rotate: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 120,
+        damping: 12,
+        mass: 1.0,
+        delay: 1.0,
+      },
+    },
+  },
 }

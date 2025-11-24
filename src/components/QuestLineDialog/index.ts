@@ -6,7 +6,6 @@ export { QuestCard } from './QuestCard'
 export { QuestHeader } from './QuestHeader'
 export { QuestLineDialog } from './QuestLineDialog'
 export { QuestlineTimer } from './QuestlineTimer'
-export { SimpleQuestDialog } from './SimpleQuestDialog'
 export { QuestRewards } from './QuestRewards'
 
 /*

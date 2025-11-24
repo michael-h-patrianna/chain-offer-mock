@@ -27,6 +27,11 @@ export function applyAnimationParameters(
     questlineBonusRewardsVariants: applyToVariant(cloned.questlineBonusRewardsVariants, parameters, false),
     questlineProgressBarVariants: applyToVariant(cloned.questlineProgressBarVariants, parameters, false),
     questlineFooterVariants: applyToVariant(cloned.questlineFooterVariants, parameters, false),
+    simpleQuestHeaderImageVariants: applyToVariant(cloned.simpleQuestHeaderImageVariants, parameters, false),
+    simpleQuestTimerVariants: applyToVariant(cloned.simpleQuestTimerVariants, parameters, false),
+    simpleQuestCardVariants: applyToVariant(cloned.simpleQuestCardVariants, parameters, false),
+    simpleQuestButtonVariants: applyToVariant(cloned.simpleQuestButtonVariants, parameters, false),
+    simpleQuestFooterVariants: applyToVariant(cloned.simpleQuestFooterVariants, parameters, false),
   }
 }
 

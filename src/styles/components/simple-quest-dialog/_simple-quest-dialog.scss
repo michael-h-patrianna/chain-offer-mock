@@ -4,7 +4,7 @@
   --quest-lines-simple-dialog-text-color: var(--base-50);
   --quest-lines-simple-dialog-text-font-size: 0.875rem;
   --quest-lines-simple-dialog-terms-color: var(--base-70);
-
+  
   // Variables provided by user
   --quest-lines-card-primary-background: var(--base-5);
   --quest-lines-card-primary-border-color: #7a468e;
@@ -12,7 +12,7 @@
   --quest-lines-card-secondary-border-color: var(--base-10);
   --quest-lines-card-border-width-2: 0.125rem;
   --quest-lines-card-border-style: solid;
-
+  
   // Action Button Variables
   --quest-lines-simple-dialog-action-button-in-progress-background: linear-gradient(
     180deg,
@@ -31,8 +31,12 @@
     #2fc5bc 10.85%,
     #035d76 83%
   );
-
-  --quest-lines-simple-dialog-action-button-unclaimed-background: linear-gradient(180deg, #47fff4 10.85%, #0586ae 83%);
+  
+  --quest-lines-simple-dialog-action-button-unclaimed-background: linear-gradient(
+    180deg,
+    #47fff4 10.85%,
+    #0586ae 83%
+  );
   --quest-lines-simple-dialog-action-button-unclaimed-text-color: var(--base-90);
   --quest-lines-simple-dialog-action-button-unclaimed-border: 0.125rem solid #9ffff8;
   --quest-lines-simple-dialog-action-button-unclaimed-background-hover: linear-gradient(
@@ -59,7 +63,7 @@
     color: var(--quest-lines-simple-dialog-terms-color);
   }
 
-  // Content Wrapper
+  // New Section Styles
   .simple-quest-dialog__content-wrapper {
     width: 100%;
     display: flex;
@@ -69,15 +73,15 @@
     padding: 0 1.5rem;
   }
 
-  // PRIMARY CARD STYLE (Matching user input)
   .simple-quest-dialog__card {
+    width: 100%;
     background: var(--quest-lines-card-primary-background, #191919);
     border-color: var(--quest-lines-card-primary-border-color, #333);
     display: flex;
     border-width: var(--quest-lines-card-border-width-2, 0.125rem);
     border-style: var(--quest-lines-card-border-style, solid);
     overflow: hidden;
-
+    
     // Additional layout
     flex-direction: column;
     border-radius: 0.5rem; // Card_borderRadius_2
@@ -85,7 +89,7 @@
   }
 
   .simple-quest-dialog__card-content {
-    padding: 1.5rem; // Space_size_6 (assuming 1.5rem/24px)
+    padding: 1.5rem; // Space_size_6
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -103,44 +107,75 @@
   }
 
   .simple-quest-dialog__description-container {
-    margin-bottom: 0.75rem; // Space between text and progress bar
+    margin-bottom: 0.75rem;
     width: 100%;
   }
 
-  // REWARDS SECTION FIXES
+  // REWARDS SECTION (Isolated styles)
   .simple-quest-dialog__rewards-wrapper {
     width: 100%;
-
-    // Hide the inner title of BonusRewards
-    .bonus-rewards__title {
-      display: none;
-    }
-
-    // Remove the container card style from BonusRewards
-    .bonus-rewards__card {
-      border: none;
-      background: transparent;
-      padding: 0;
-      overflow: visible; // Allow tooltips/popovers if any
-      border-radius: 0;
-    }
-
+    
     // Ensure content is centered
-    .bonus-rewards__content {
+    .simple-quest-rewards__content {
+      display: flex;
+      flex-direction: row;
       justify-content: center;
+      align-items: center;
       gap: 1rem;
       padding: 0;
     }
 
+    .simple-quest-rewards__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     // Target the reward item icon wrapper to match Card_secondary
-    .bonus-rewards__reward-icon-wrapper {
+    .simple-quest-rewards__icon-wrapper {
       background: var(--quest-lines-card-secondary-background, #7a468e);
       border: 0.125rem solid var(--quest-lines-card-secondary-border-color, var(--base-10));
       border-radius: 0.5rem; // Card_borderRadius_2
       overflow: hidden;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-sizing: border-box; 
+    }
 
-      // Ensure sizing if needed, though BonusRewards sets 64px
-      box-sizing: border-box;
+    .simple-quest-rewards__icon {
+      width: 85%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .simple-quest-rewards__free-adornment {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .simple-quest-rewards__text {
+      font-size: 0.6875rem; // 11px
+      color: #25ecff;
+      font-weight: 700;
+      line-height: 1.4;
+      margin: 0;
+      text-align: center;
+      max-width: 80px;
+    }
+
+    .simple-quest-rewards__amount {
+      font-weight: 700;
+      color: #25ecff;
     }
   }
 
@@ -149,7 +184,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    margin-top: 0; // Spacing handled by container
+    margin-top: 0;
     gap: 0.5rem;
   }
 
@@ -191,7 +226,6 @@
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  transition: all 0.2s ease-in-out;
   font-size: 1rem;
 
   // In Progress State
@@ -203,7 +237,7 @@
     &:hover {
       background: var(--quest-lines-simple-dialog-action-button-in-progress-background-hover);
     }
-
+    
     &:focus {
       background: var(--quest-lines-simple-dialog-action-button-in-progress-background-focus);
     }

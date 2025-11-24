@@ -8,8 +8,8 @@ import { applyAnimationParameters } from '../../utils/applyAnimationParameters'
 import { CloseButton } from '../Shared/CloseButton'
 import { DialogBackdrop } from '../Shared/DialogBackdrop'
 import { ModalCelebrationsCoinsFountain } from '../rewards/modal-celebrations/framer/ModalCelebrationsCoinsFountain'
-import { BonusRewards } from './BonusRewards'
-import { QuestlineTimer } from './QuestlineTimer'
+import { SimpleQuestRewards } from './SimpleQuestRewards'
+import { QuestlineTimer } from '../QuestLineDialog/QuestlineTimer'
 
 export const SimpleQuestDialog = ({
   isOpen,
@@ -31,11 +31,11 @@ export const SimpleQuestDialog = ({
   const claimButtonRef = useRef<HTMLButtonElement>(null)
 
   // Simple Quest Logic: Focus on the first quest
-  const activeQuest = quests[0]
+  const activeQuest = quests[0] || { status: 'locked', progress: 0, questCode: '' }
   const status = activeQuest.status
   const questCode = activeQuest.questCode
 
-  // For Simple Quest, "Bonus Reward" display usually reflects the main reward  // We use the bonusReward prop as the source of truth for the displayed reward
+  // For Simple Quest, "Bonus Reward" display usually reflects the main reward
   const completedQuests = status === 'completed' ? 1 : 0
 
   const animation = useMemo(() => {
@@ -118,31 +118,27 @@ export const SimpleQuestDialog = ({
             src={headerImageUrl}
             alt={title}
             className='questline-dialog__header-image'
-            variants={animation.questlineHeaderImageVariants}
+            variants={animation.simpleQuestHeaderImageVariants}
           />
 
           {/* Timer */}
-
-          <motion.div variants={animation.questlineTimerVariants}>
+          <motion.div variants={animation.simpleQuestTimerVariants}>
             <QuestlineTimer endTime={endTime} className='questline-dialog__timer' />
           </motion.div>
 
           <div className='simple-quest-dialog__content-wrapper'>
             {/* Task Section */}
-
             <motion.div
               className='simple-quest-dialog__card simple-quest-dialog__section'
-              variants={animation.questlineDescriptionVariants}
+              variants={animation.simpleQuestCardVariants}
             >
               <div className='simple-quest-dialog__card-content'>
                 <h3 className='simple-quest-dialog__section-title'>DO THIS</h3>
-
                 <div className='simple-quest-dialog__description-container'>
                   <p className='questline-dialog__description'>{description}</p>
                 </div>
 
                 {/* Progress Bar */}
-
                 <div className='simple-quest-dialog__progress-bar'>
                   <div className='simple-quest-dialog__progress-track'>
                     <div
@@ -150,35 +146,32 @@ export const SimpleQuestDialog = ({
                       style={{ width: `${String(activeQuest.progress)}%` }}
                     ></div>
                   </div>
-
                   <span className='simple-quest-dialog__progress-value'>{Math.round(activeQuest.progress)}%</span>
                 </div>
               </div>
             </motion.div>
 
             {/* Reward Section */}
-
             <motion.div
               className='simple-quest-dialog__card simple-quest-dialog__section'
-              variants={animation.questlineBonusRewardsVariants}
+              variants={animation.simpleQuestCardVariants}
             >
               <div className='simple-quest-dialog__card-content'>
                 <h3 className='simple-quest-dialog__section-title'>TO GET THIS</h3>
-
                 <div className='simple-quest-dialog__rewards-wrapper'>
-                  <BonusRewards {...bonusReward} completedQuests={completedQuests} />
+                  <SimpleQuestRewards {...bonusReward} completedQuests={completedQuests} />
                 </div>
               </div>
             </motion.div>
           </div>
 
-          {/* Action Button - Integrated directly into dialog body */}
+          {/* Action Button */}
           {status !== 'locked' && (
             <motion.button
               ref={claimButtonRef}
               className={getActionButtonClass()}
               onClick={handleActionClick}
-              variants={animation.itemVariants} // Animate button in
+              variants={animation.simpleQuestButtonVariants}
               aria-label={`${getActionButtonText()} quest`}
               disabled={status === 'completed'}
             >
@@ -188,7 +181,7 @@ export const SimpleQuestDialog = ({
 
           {/* Footer */}
           {termsUrl && (
-            <motion.div className='questline-dialog__footer' variants={animation.questlineFooterVariants}>
+            <motion.div className='questline-dialog__footer' variants={animation.simpleQuestFooterVariants}>
               <a href={termsUrl} className='questline-dialog__terms-link' target='_blank' rel='noopener noreferrer'>
                 Terms & Conditions
               </a>

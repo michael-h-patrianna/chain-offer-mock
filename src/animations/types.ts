@@ -32,4 +32,10 @@ export interface RevealAnimation {
   questlineBonusRewardsVariants: Variants
   questlineProgressBarVariants: Variants
   questlineFooterVariants: Variants
+  // Simple Quest variants
+  simpleQuestHeaderImageVariants: Variants
+  simpleQuestTimerVariants: Variants
+  simpleQuestCardVariants: Variants
+  simpleQuestButtonVariants: Variants
+  simpleQuestFooterVariants: Variants
 }
