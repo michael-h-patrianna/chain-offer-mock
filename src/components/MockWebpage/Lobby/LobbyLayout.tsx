@@ -9,6 +9,7 @@ interface LobbyLayoutProps {
   onQuestLineClick: () => void
   onChainOfferClick: () => void
   onSimpleQuestClick?: () => void
+  onFigmaQuestClick?: () => void
   children: React.ReactNode
   isSidebarOpen?: boolean
 }
@@ -39,6 +40,7 @@ export const LobbyLayout = ({
   onQuestLineClick,
   onChainOfferClick,
   onSimpleQuestClick,
+  onFigmaQuestClick,
   children,
   isSidebarOpen = false,
 }: LobbyLayoutProps) => {
@@ -310,13 +312,33 @@ export const LobbyLayout = ({
                     </div>
                     {/* 4. Daily Rewards */}
                     <div className='SwimlaneLayout_swimlaneItem__T471I FeaturesIcons_swimlaneItem__ovgn4'>
-                      <button data-feature-id='daily_rewards_102' className='Feature_iconWrapper__DM0lH'>
-                        <img
-                          alt=''
-                          className='Feature_icon__eN4Mv'
-                          src='/images/4c9db3d4efe4b1ef3532c448de751573.png'
-                        />
-                      </button>
+                      <div
+                        data-feature-id='daily_rewards_102'
+                        className='Placeholder_placeholderWrapper__CbrcB FeaturesIcons_placeholderWrapper__O88P1'
+                      >
+                        <section
+                          className='QuestLinesEntryLayout_root__h1YjJ QuestLines_questLineEntryRoot__E2d9m'
+                          onClick={onFigmaQuestClick}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          <button type='button' className='QuestLinesEntryLayout_button__2uONe'>
+                            <img alt='' src='/images/4c9db3d4efe4b1ef3532c448de751573.png' />
+                            <div className='QuestLinesEntryLayout_content__64GDs'>
+                              <div className='QuestLinesEntryLayout_progressBarWrapper__SnpVa in_progress'>
+                                <div
+                                  className='ProgressBar_root__DqmA4'
+                                  style={{ '--quests-progress': '75%' } as React.CSSProperties}
+                                >
+                                  <progress className='ProgressBar_progress__SXun8' value='75'></progress>
+                                </div>
+                              </div>
+                              <div className='Timer_root__k0daR QuestLinesEntryLayout_timerWrapper__fOtlc in_progress QuestLines_questLineEntryTimerWrapper__RMgBz'>
+                                04:20:00
+                              </div>
+                            </div>
+                          </button>
+                        </section>
+                      </div>
                     </div>
                   </div>
                 </div>

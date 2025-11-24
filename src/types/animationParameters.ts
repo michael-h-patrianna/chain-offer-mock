@@ -6,8 +6,6 @@ import { AnimationType } from '../animations/revealAnimations'
 export interface BaseAnimationParameters {
   /** Multiplier for all duration values (0.5 = half speed, 2.0 = double speed) */
   durationScale: number
-  /** Offset added to all delay values in seconds */
-  delayOffset: number
   /** Time between staggered child animations in seconds */
   staggerChildren: number
   /** Initial delay before children start animating in seconds */
@@ -70,25 +68,21 @@ export interface ParameterConfig {
 export const defaultAnimationParameters: Record<AnimationType, AnimationParameters> = {
   'stagger-inview': {
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0.1,
     delayChildren: 0.2,
   },
   'scale-rotate': {
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0.15,
     delayChildren: 0.1,
   },
   'flip-reveal': {
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0.12,
     delayChildren: 0.15,
   },
   'spring-physics': {
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0.08,
     delayChildren: 0.1,
     spring: {
@@ -99,13 +93,11 @@ export const defaultAnimationParameters: Record<AnimationType, AnimationParamete
   },
   'fade-slide': {
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0.1,
     delayChildren: 0.15,
   },
   'elastic-bounce': {
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0.08,
     delayChildren: 0,
     wobble: {
@@ -115,7 +107,6 @@ export const defaultAnimationParameters: Record<AnimationType, AnimationParamete
   'orbital-reveal': {
     spring: { stiffness: 120, damping: 12, mass: 1.0 },
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0.12,
     delayChildren: 0.1,
     orbital: {
@@ -124,31 +115,26 @@ export const defaultAnimationParameters: Record<AnimationType, AnimationParamete
   },
   'glitch-snap': {
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0.06,
     delayChildren: 0.05,
   },
   'silk-unfold': {
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0.12,
     delayChildren: 0.15,
   },
   'crystal-shimmer': {
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0.1,
     delayChildren: 0.2,
   },
   'velvet-cascade': {
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0.08,
     delayChildren: 0.25,
   },
   none: {
     durationScale: 1.0,
-    delayOffset: 0,
     staggerChildren: 0,
     delayChildren: 0,
   },
@@ -166,15 +152,6 @@ export const baseParameterConfigs: ParameterConfig[] = [
     max: 3.0,
     step: 0.1,
     defaultValue: 1.0,
-  },
-  {
-    key: 'delayOffset',
-    label: 'Delay',
-    description: 'Add or subtract delay from all animations',
-    min: -1.0,
-    max: 2.0,
-    step: 0.1,
-    defaultValue: 0,
   },
   {
     key: 'staggerChildren',

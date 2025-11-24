@@ -143,7 +143,6 @@ export const defaultAnimationParameters: Record<AnimationType, AnimationParamete
   // ... existing defaults
   'your-new-animation': {
     durationScale: 1.0, // Speed multiplier
-    delayOffset: 0, // Additional delay
     staggerChildren: 0.1, // Time between children
     delayChildren: 0.2, // Initial delay
 
@@ -447,7 +446,6 @@ layer2Variants: {
 **Four Base Parameters** (apply to all animations):
 
 - `durationScale`: Multiplier for all durations (0.5 = half speed, 2.0 = double speed)
-- `delayOffset`: Added to all delays (seconds)
 - `staggerChildren`: Time between staggered children (seconds)
 - `delayChildren`: Initial delay before children start (seconds)
 
@@ -532,7 +530,6 @@ export const myCustomParameterConfigs: ParameterConfig[] = [
 ```typescript
 'my-animation': {
   durationScale: 1.0,
-  delayOffset: 0,
   staggerChildren: 0.1,
   delayChildren: 0.2,
   myCustom: {

@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import { m, LazyMotion, domAnimation } from 'motion/react'
 import React, { useEffect, useMemo } from 'react'
 
 export interface CoinFountainProps {
@@ -96,7 +96,7 @@ const CoinElement = ({
   const peakY = apexY - size / 2
 
   return (
-    <motion.div
+    <m.div
       initial={{
         x: buttonCenterX,
         y: buttonCenterY,
@@ -150,7 +150,7 @@ const CoinElement = ({
           borderRadius: '50%',
         }}
       />
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -182,7 +182,7 @@ const ParticleElement = ({
   const midY = apexY + offsetY * 1.2
 
   return (
-    <motion.div
+    <m.div
       initial={{
         x: startX,
         y: startY,
@@ -218,7 +218,7 @@ const ParticleElement = ({
 // Helper component: Expanding burst ring at origin
 const BurstRing = ({ originX, originY }: { originX: number; originY: number }) => {
   return (
-    <motion.div
+    <m.div
       initial={{
         x: originX - 30,
         y: originY - 30,
@@ -255,7 +255,7 @@ const SparkleElement = ({ sparkle }: { sparkle: SparkleData }) => {
   const { x, y, size, rotation } = sparkle
 
   return (
-    <motion.div
+    <m.div
       initial={{
         x: x - size / 2,
         y: y - size / 2,
@@ -301,14 +301,14 @@ const SparkleElement = ({ sparkle }: { sparkle: SparkleData }) => {
           transform: 'rotate(45deg)',
         }}
       />
-    </motion.div>
+    </m.div>
   )
 }
 
 // Helper component: Ambient glow
 const AmbientGlow = ({ originX, originY, duration }: { originX: number; originY: number; duration: number }) => {
   return (
-    <motion.div
+    <m.div
       initial={{
         x: originX - 100,
         y: originY - 100,
@@ -355,7 +355,7 @@ const PreBurstParticle = ({
   const targetY = originY + Math.sin(angleRad) * distance
 
   return (
-    <motion.div
+    <m.div
       initial={{
         x: originX,
         y: originY,
@@ -484,63 +484,65 @@ export const ModalCelebrationsCoinsFountain = ({
   }, [duration, onComplete])
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        pointerEvents: 'none',
-        zIndex: 10000,
-      }}
-    >
-      {/* Phase 1: Anticipation - Ambient Glow */}
-      <AmbientGlow originX={originX} originY={originY} duration={duration} />
+    <LazyMotion features={domAnimation}>
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          pointerEvents: 'none',
+          zIndex: 10000,
+        }}
+      >
+        {/* Phase 1: Anticipation - Ambient Glow */}
+        <AmbientGlow originX={originX} originY={originY} duration={duration} />
 
-      {/* Phase 1: Anticipation - Pre-burst particles */}
-      {preBurstParticles.map((particle) => (
-        <PreBurstParticle
-          key={`preburst-${String(particle.id)}`}
-          particle={particle}
-          originX={originX}
-          originY={originY}
-        />
-      ))}
-
-      {/* Phase 2: Burst - Origin Ring */}
-      <BurstRing originX={originX} originY={originY} />
-
-      {/* Phase 2-4: Coins */}
-      {coins.map((coin) => (
-        <CoinElement
-          key={`coin-${String(coin.id)}`}
-          coin={coin}
-          originX={originX}
-          originY={originY}
-          duration={duration}
-        />
-      ))}
-
-      {/* Phase 2-4: Particles */}
-      {particles.map((particle) => {
-        const coin = coins[particle.coinId]
-        return (
-          <ParticleElement
-            key={`particle-${String(particle.id)}`}
+        {/* Phase 1: Anticipation - Pre-burst particles */}
+        {preBurstParticles.map((particle) => (
+          <PreBurstParticle
+            key={`preburst-${String(particle.id)}`}
             particle={particle}
+            originX={originX}
+            originY={originY}
+          />
+        ))}
+
+        {/* Phase 2: Burst - Origin Ring */}
+        <BurstRing originX={originX} originY={originY} />
+
+        {/* Phase 2-4: Coins */}
+        {coins.map((coin) => (
+          <CoinElement
+            key={`coin-${String(coin.id)}`}
             coin={coin}
             originX={originX}
             originY={originY}
             duration={duration}
           />
-        )
-      })}
+        ))}
 
-      {/* Phase 3: Apex Sparkles */}
-      {sparkles.map((sparkle) => (
-        <SparkleElement key={`sparkle-${String(sparkle.id)}`} sparkle={sparkle} />
-      ))}
-    </div>
+        {/* Phase 2-4: Particles */}
+        {particles.map((particle) => {
+          const coin = coins[particle.coinId]
+          return (
+            <ParticleElement
+              key={`particle-${String(particle.id)}`}
+              particle={particle}
+              coin={coin}
+              originX={originX}
+              originY={originY}
+              duration={duration}
+            />
+          )
+        })}
+
+        {/* Phase 3: Apex Sparkles */}
+        {sparkles.map((sparkle) => (
+          <SparkleElement key={`sparkle-${String(sparkle.id)}`} sparkle={sparkle} />
+        ))}
+      </div>
+    </LazyMotion>
   )
 }

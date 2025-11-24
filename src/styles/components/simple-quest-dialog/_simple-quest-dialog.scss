@@ -4,7 +4,7 @@
   --quest-lines-simple-dialog-text-color: var(--base-50);
   --quest-lines-simple-dialog-text-font-size: 0.875rem;
   --quest-lines-simple-dialog-terms-color: var(--base-70);
-  
+
   // Variables provided by user
   --quest-lines-card-primary-background: var(--base-5);
   --quest-lines-card-primary-border-color: #7a468e;
@@ -12,7 +12,7 @@
   --quest-lines-card-secondary-border-color: var(--base-10);
   --quest-lines-card-border-width-2: 0.125rem;
   --quest-lines-card-border-style: solid;
-  
+
   // Action Button Variables
   --quest-lines-simple-dialog-action-button-in-progress-background: linear-gradient(
     180deg,
@@ -31,12 +31,8 @@
     #2fc5bc 10.85%,
     #035d76 83%
   );
-  
-  --quest-lines-simple-dialog-action-button-unclaimed-background: linear-gradient(
-    180deg,
-    #47fff4 10.85%,
-    #0586ae 83%
-  );
+
+  --quest-lines-simple-dialog-action-button-unclaimed-background: linear-gradient(180deg, #47fff4 10.85%, #0586ae 83%);
   --quest-lines-simple-dialog-action-button-unclaimed-text-color: var(--base-90);
   --quest-lines-simple-dialog-action-button-unclaimed-border: 0.125rem solid #9ffff8;
   --quest-lines-simple-dialog-action-button-unclaimed-background-hover: linear-gradient(
@@ -81,7 +77,7 @@
     border-width: var(--quest-lines-card-border-width-2, 0.125rem);
     border-style: var(--quest-lines-card-border-style, solid);
     overflow: hidden;
-    
+
     // Additional layout
     flex-direction: column;
     border-radius: 0.5rem; // Card_borderRadius_2
@@ -114,7 +110,7 @@
   // REWARDS SECTION (Isolated styles)
   .simple-quest-dialog__rewards-wrapper {
     width: 100%;
-    
+
     // Ensure content is centered
     .simple-quest-rewards__content {
       display: flex;
@@ -144,7 +140,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      box-sizing: border-box; 
+      box-sizing: border-box;
     }
 
     .simple-quest-rewards__icon {
@@ -237,7 +233,7 @@
     &:hover {
       background: var(--quest-lines-simple-dialog-action-button-in-progress-background-hover);
     }
-    
+
     &:focus {
       background: var(--quest-lines-simple-dialog-action-button-in-progress-background-focus);
     }

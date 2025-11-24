@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 import { AnimationType } from '../animations/revealAnimations'
 import { ChainOfferDialog } from '../components/ChainOfferDialog/ChainOfferDialog'
+import { FigmaQuestDialog } from '../components/FigmaQuestDialog/FigmaQuestDialog'
 import { HamburgerButton } from '../components/Demo/HamburgerButton'
 import { Sidebar } from '../components/Demo/Sidebar'
 import { LobbyLayout } from '../components/MockWebpage/Lobby/LobbyLayout'
@@ -16,7 +17,9 @@ function AppInner() {
   const [isChainOfferDialogOpen, setIsChainOfferDialogOpen] = useState(false)
   const [isQuestlineDialogOpen, setIsQuestlineDialogOpen] = useState(false)
   const [isSimpleQuestDialogOpen, setIsSimpleQuestDialogOpen] = useState(false)
+  const [isFigmaQuestDialogOpen, setIsFigmaQuestDialogOpen] = useState(false)
   const [selectedAnimation, setSelectedAnimation] = useState<AnimationType>('stagger-inview')
+  const [replayTrigger, setReplayTrigger] = useState(0)
   const [isSidebarOpen, setIsSidebarOpen] = useState(
     // Safe because app only runs in browser (no SSR)
     window.innerWidth > 768,
@@ -24,6 +27,10 @@ function AppInner() {
 
   const handleToggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev)
+  }
+
+  const handleReplay = () => {
+    setReplayTrigger((prev) => prev + 1)
   }
 
   const handleOpenChainOfferDialog = () => {
@@ -48,6 +55,14 @@ function AppInner() {
 
   const handleCloseSimpleQuestDialog = () => {
     setIsSimpleQuestDialogOpen(false)
+  }
+
+  const handleOpenFigmaQuestDialog = () => {
+    setIsFigmaQuestDialogOpen(true)
+  }
+
+  const handleCloseFigmaQuestDialog = () => {
+    setIsFigmaQuestDialogOpen(false)
   }
 
   const handleItemButtonClick = (itemId: string) => {
@@ -97,6 +112,7 @@ function AppInner() {
         isOpen={isSidebarOpen}
         selectedAnimation={selectedAnimation}
         onAnimationTypeChange={setSelectedAnimation}
+        onReplay={handleReplay}
       />
 
       {/* Hamburger Menu Button */}
@@ -115,11 +131,13 @@ function AppInner() {
           onQuestLineClick={handleOpenQuestlineDialog}
           onChainOfferClick={handleOpenChainOfferDialog}
           onSimpleQuestClick={handleOpenSimpleQuestDialog}
+          onFigmaQuestClick={handleOpenFigmaQuestDialog}
           isSidebarOpen={isSidebarOpen}
         >
           {/* Chain Offer Dialog */}
           {chainOfferDialogProps && (
             <ChainOfferDialog
+              key={`chain-offer-${replayTrigger}`}
               {...chainOfferDialogProps}
               isOpen={isChainOfferDialogOpen}
               onClose={handleCloseChainOfferDialog}
@@ -127,10 +145,10 @@ function AppInner() {
               animationType={selectedAnimation}
             />
           )}
-
           {/* Questline Dialog */}
           {questlineDialogProps && (
             <QuestLineDialog
+              key={`questline-${replayTrigger}`}
               {...questlineDialogProps}
               isOpen={isQuestlineDialogOpen}
               onClose={handleCloseQuestlineDialog}
@@ -139,10 +157,10 @@ function AppInner() {
               animationType={selectedAnimation}
             />
           )}
-
           {/* Simple Quest Dialog */}
           {simpleQuestDialogProps && (
             <SimpleQuestDialog
+              key={`simple-quest-${replayTrigger}`}
               {...simpleQuestDialogProps}
               isOpen={isSimpleQuestDialogOpen}
               onClose={handleCloseSimpleQuestDialog}
@@ -150,6 +168,13 @@ function AppInner() {
               animationType={selectedAnimation}
             />
           )}
+          {/* Figma Quest Dialog */}
+          <FigmaQuestDialog
+            isOpen={isFigmaQuestDialogOpen}
+            onClose={handleCloseFigmaQuestDialog}
+            animationType={selectedAnimation}
+            replayTrigger={replayTrigger}
+          />
         </LobbyLayout>
       </div>
 

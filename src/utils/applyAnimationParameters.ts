@@ -128,17 +128,7 @@ function applyToTransition(
     }
   }
 
-  // Apply duration scale
-  if (typeof result.duration === 'number') {
-    result.duration = result.duration * parameters.durationScale
-  }
-
-  // Apply delay offset
-  if (typeof result.delay === 'number') {
-    result.delay = Math.max(0, result.delay + parameters.delayOffset)
-  }
-
-  // Apply spring physics parameters
+  // Apply spring physics parameters first (so they can be scaled by duration)
   if (result.type === 'spring' && parameters.spring) {
     if (typeof result.stiffness === 'number') {
       result.stiffness = parameters.spring.stiffness
@@ -148,6 +138,23 @@ function applyToTransition(
     }
     if (typeof result.mass === 'number') {
       result.mass = parameters.spring.mass
+    }
+  }
+
+  // Apply duration scale
+  if (typeof result.duration === 'number') {
+    result.duration = result.duration * parameters.durationScale
+  } else if (result.type === 'spring' && parameters.durationScale !== 1) {
+    // For springs, simulate duration change by scaling stiffness and damping
+    // Slower (higher duration) = lower stiffness
+    // stiffness is proportional to 1/duration^2
+    const scale = parameters.durationScale
+    if (result.stiffness !== undefined && typeof result.stiffness === 'number') {
+      result.stiffness /= scale * scale
+    }
+    // damping is proportional to 1/duration to maintain damping ratio
+    if (result.damping !== undefined && typeof result.damping === 'number') {
+      result.damping /= scale
     }
   }
 

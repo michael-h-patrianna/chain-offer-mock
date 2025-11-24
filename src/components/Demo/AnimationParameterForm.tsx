@@ -1,13 +1,13 @@
-import { Download, RotateCcw, Upload } from 'lucide-react'
+import { Download, PlayCircle, RotateCcw, Upload } from 'lucide-react'
 import { useRef } from 'react'
 import toast from 'react-hot-toast'
 import { AnimationType } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
 import {
-    baseParameterConfigs,
-    orbitalParameterConfigs,
-    springParameterConfigs,
-    wobbleParameterConfigs,
+  baseParameterConfigs,
+  orbitalParameterConfigs,
+  springParameterConfigs,
+  wobbleParameterConfigs,
 } from '../../types/animationParameters'
 import './AnimationParameterForm.css'
 import { ParameterGroup } from './ParameterControls/ParameterGroup'
@@ -16,9 +16,14 @@ import { ParameterSlider } from './ParameterControls/ParameterSlider'
 interface AnimationParameterFormProps {
   animationType: AnimationType
   onAnimationTypeChange?: (animationType: AnimationType) => void
+  onReplay?: () => void
 }
 
-export function AnimationParameterForm({ animationType, onAnimationTypeChange }: AnimationParameterFormProps) {
+export function AnimationParameterForm({
+  animationType,
+  onAnimationTypeChange,
+  onReplay,
+}: AnimationParameterFormProps) {
   const {
     getParameters,
     updateParameter,
@@ -192,7 +197,6 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
           animationType?: string
           parameters?: {
             durationScale?: number
-            delayOffset?: number
             staggerChildren?: number
             delayChildren?: number
             spring?: {
@@ -233,7 +237,6 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
         // Update base parameters
         if (params.durationScale !== undefined)
           updateParameter(targetAnimationType, 'durationScale', params.durationScale)
-        if (params.delayOffset !== undefined) updateParameter(targetAnimationType, 'delayOffset', params.delayOffset)
         if (params.staggerChildren !== undefined)
           updateParameter(targetAnimationType, 'staggerChildren', params.staggerChildren)
         if (params.delayChildren !== undefined)
@@ -285,8 +288,10 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
   return (
     <div className='animation-parameter-form'>
       <div className='animation-parameter-form__header'>
-        <h2 className='animation-parameter-form__title'>Parameters</h2>
         <div className='animation-parameter-form__actions'>
+          <button className='animation-parameter-form__action-button' onClick={onReplay} title='Replay animation'>
+            <PlayCircle size={16} />
+          </button>
           <button
             className='animation-parameter-form__action-button'
             onClick={(e) => {
@@ -317,7 +322,7 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
         aria-label='Import parameters'
       />
 
-      <ParameterGroup title='Timing'>
+      <ParameterGroup>
         <ParameterSlider
           key={`${animationType}-durationScale`}
           label={baseParameterConfigs[0].label}
@@ -330,41 +335,27 @@ export function AnimationParameterForm({ animationType, onAnimationTypeChange }:
             updateParameter(animationType, 'durationScale', value)
           }}
         />
+
         <ParameterSlider
-          key={`${animationType}-delayOffset`}
+          key={`${animationType}-staggerChildren`}
           label={baseParameterConfigs[1].label}
-          value={parameters.delayOffset}
+          value={parameters.staggerChildren}
           min={baseParameterConfigs[1].min}
           max={baseParameterConfigs[1].max}
           step={baseParameterConfigs[1].step}
           description={baseParameterConfigs[1].description}
-          onChange={(value) => {
-            updateParameter(animationType, 'delayOffset', value)
-          }}
-        />
-      </ParameterGroup>
-
-      <ParameterGroup title='Stagger Effect'>
-        <ParameterSlider
-          key={`${animationType}-staggerChildren`}
-          label={baseParameterConfigs[2].label}
-          value={parameters.staggerChildren}
-          min={baseParameterConfigs[2].min}
-          max={baseParameterConfigs[2].max}
-          step={baseParameterConfigs[2].step}
-          description={baseParameterConfigs[2].description}
           onChange={(value) => {
             updateParameter(animationType, 'staggerChildren', value)
           }}
         />
         <ParameterSlider
           key={`${animationType}-delayChildren`}
-          label={baseParameterConfigs[3].label}
+          label={baseParameterConfigs[2].label}
           value={parameters.delayChildren}
-          min={baseParameterConfigs[3].min}
-          max={baseParameterConfigs[3].max}
-          step={baseParameterConfigs[3].step}
-          description={baseParameterConfigs[3].description}
+          min={baseParameterConfigs[2].min}
+          max={baseParameterConfigs[2].max}
+          step={baseParameterConfigs[2].step}
+          description={baseParameterConfigs[2].description}
           onChange={(value) => {
             updateParameter(animationType, 'delayChildren', value)
           }}

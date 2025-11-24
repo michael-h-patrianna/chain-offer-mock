@@ -6,9 +6,10 @@ interface SidebarProps {
   selectedAnimation: AnimationType
   onAnimationTypeChange?: (animationType: AnimationType) => void
   onClose?: () => void
+  onReplay?: () => void
 }
 
-export function Sidebar({ isOpen, selectedAnimation, onAnimationTypeChange }: SidebarProps) {
+export function Sidebar({ isOpen, selectedAnimation, onAnimationTypeChange, onReplay }: SidebarProps) {
   const animationOptions = getAnimationOptions()
 
   return (
@@ -16,14 +17,7 @@ export function Sidebar({ isOpen, selectedAnimation, onAnimationTypeChange }: Si
       {/* Sidebar - no backdrop needed for demo controls */}
       <aside className={`sidebar ${isOpen ? 'sidebar--open' : ''}`}>
         <div className='sidebar__content'>
-          <div className='sidebar__header'>
-            <h2 className='sidebar__title'>Controls</h2>
-          </div>
-
           <div className='sidebar__section'>
-            <label htmlFor='animation-select' className='sidebar__label'>
-              Animation Type
-            </label>
             <select
               id='animation-select'
               className='sidebar__select'
@@ -38,12 +32,11 @@ export function Sidebar({ isOpen, selectedAnimation, onAnimationTypeChange }: Si
             </select>
           </div>
 
-          <div className='sidebar__divider' />
-
           <AnimationParameterForm
             key={selectedAnimation}
             animationType={selectedAnimation}
             onAnimationTypeChange={onAnimationTypeChange}
+            onReplay={onReplay}
           />
         </div>
       </aside>

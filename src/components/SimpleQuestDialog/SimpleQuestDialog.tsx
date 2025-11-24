@@ -1,5 +1,5 @@
 import cx from 'classnames'
-import { motion } from 'motion/react'
+import { m, LazyMotion, domAnimation } from 'motion/react'
 import { useMemo, useRef, useState } from 'react'
 import { getRevealAnimation } from '../../animations/revealAnimations'
 import { useAnimationParameters } from '../../hooks/useAnimationParameters'
@@ -96,98 +96,100 @@ export const SimpleQuestDialog = ({
         aria-labelledby='simple-quest-title'
       >
         <CloseButton onClick={onClose} aria-label='Close quest dialog' />
-        {/* Stagger container wrapping all content */}
-        <motion.div
-          key={`simple-quest-stagger-${animationType}`}
-          variants={animation.containerVariants}
-          initial='hidden'
-          animate='visible'
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            flex: 1,
-            minHeight: 0,
-            alignItems: 'center',
-          }}
-        >
-          {/* Header Image */}
-          <motion.img
-            src={headerImageUrl}
-            alt={title}
-            className='questline-dialog__header-image'
-            variants={animation.layer1Variants}
-          />
+        <LazyMotion features={domAnimation}>
+          {/* Stagger container wrapping all content */}
+          <m.div
+            key={`simple-quest-stagger-${animationType}`}
+            variants={animation.containerVariants}
+            initial='hidden'
+            animate='visible'
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              flex: 1,
+              minHeight: 0,
+              alignItems: 'center',
+            }}
+          >
+            {/* Header Image */}
+            <m.img
+              src={headerImageUrl}
+              alt={title}
+              className='questline-dialog__header-image'
+              variants={animation.layer1Variants}
+            />
 
-          {/* Timer */}
-          <motion.div key='timer' variants={animation.layer1Variants}>
-            <QuestlineTimer endTime={endTime} className='questline-dialog__timer' />
-          </motion.div>
+            {/* Timer */}
+            <m.div key='timer' variants={animation.layer1Variants}>
+              <QuestlineTimer endTime={endTime} className='questline-dialog__timer' />
+            </m.div>
 
-          <div className='simple-quest-dialog__content-wrapper'>
-            {/* Task Section */}
-            <motion.div
-              key='task'
-              className='simple-quest-dialog__card simple-quest-dialog__section'
-              variants={animation.layer2Variants}
-            >
-              <div className='simple-quest-dialog__card-content'>
-                <h3 className='simple-quest-dialog__section-title'>DO THIS</h3>
-                <div className='simple-quest-dialog__description-container'>
-                  <p className='questline-dialog__description'>{description}</p>
-                </div>
-
-                {/* Progress Bar */}
-                <div className='simple-quest-dialog__progress-bar'>
-                  <div className='simple-quest-dialog__progress-track'>
-                    <div
-                      className='simple-quest-dialog__progress-fill'
-                      style={{ width: `${String(activeQuest.progress)}%` }}
-                    ></div>
+            <div className='simple-quest-dialog__content-wrapper'>
+              {/* Task Section */}
+              <m.div
+                key='task'
+                className='simple-quest-dialog__card simple-quest-dialog__section'
+                variants={animation.layer2Variants}
+              >
+                <div className='simple-quest-dialog__card-content'>
+                  <h3 className='simple-quest-dialog__section-title'>DO THIS</h3>
+                  <div className='simple-quest-dialog__description-container'>
+                    <p className='questline-dialog__description'>{description}</p>
                   </div>
-                  <span className='simple-quest-dialog__progress-value'>{Math.round(activeQuest.progress)}%</span>
+
+                  {/* Progress Bar */}
+                  <div className='simple-quest-dialog__progress-bar'>
+                    <div className='simple-quest-dialog__progress-track'>
+                      <div
+                        className='simple-quest-dialog__progress-fill'
+                        style={{ width: `${String(activeQuest.progress)}%` }}
+                      ></div>
+                    </div>
+                    <span className='simple-quest-dialog__progress-value'>{Math.round(activeQuest.progress)}%</span>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </m.div>
 
-            {/* Reward Section */}
-            <motion.div
-              className='simple-quest-dialog__card simple-quest-dialog__section'
-              variants={animation.layer2Variants}
-              key='rewards'
-            >
-              <div className='simple-quest-dialog__card-content'>
-                <h3 className='simple-quest-dialog__section-title'>TO GET THIS</h3>
-                <div className='simple-quest-dialog__rewards-wrapper'>
-                  <SimpleQuestRewards {...bonusReward} completedQuests={completedQuests} />
+              {/* Reward Section */}
+              <m.div
+                className='simple-quest-dialog__card simple-quest-dialog__section'
+                variants={animation.layer2Variants}
+                key='rewards'
+              >
+                <div className='simple-quest-dialog__card-content'>
+                  <h3 className='simple-quest-dialog__section-title'>TO GET THIS</h3>
+                  <div className='simple-quest-dialog__rewards-wrapper'>
+                    <SimpleQuestRewards {...bonusReward} completedQuests={completedQuests} />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          </div>
+              </m.div>
+            </div>
 
-          {/* Action Button */}
-          {status !== 'locked' && (
-            <motion.button
-              ref={claimButtonRef}
-              key='button'
-              className={getActionButtonClass()}
-              onClick={handleActionClick}
-              variants={animation.layer2Variants}
-              aria-label={`${getActionButtonText()} quest`}
-              disabled={status === 'completed'}
-            >
-              {getActionButtonText()}
-            </motion.button>
-          )}
+            {/* Action Button */}
+            {status !== 'locked' && (
+              <m.button
+                ref={claimButtonRef}
+                key='button'
+                className={getActionButtonClass()}
+                onClick={handleActionClick}
+                variants={animation.layer2Variants}
+                aria-label={`${getActionButtonText()} quest`}
+                disabled={status === 'completed'}
+              >
+                {getActionButtonText()}
+              </m.button>
+            )}
 
-          {/* Footer */}
-          {termsUrl && (
-            <motion.div className='questline-dialog__footer' key='footer' variants={animation.layer2Variants}>
-              <a href={termsUrl} className='questline-dialog__terms-link' target='_blank' rel='noopener noreferrer'>
-                Terms & Conditions
-              </a>
-            </motion.div>
-          )}
-        </motion.div>
+            {/* Footer */}
+            {termsUrl && (
+              <m.div className='questline-dialog__footer' key='footer' variants={animation.layer2Variants}>
+                <a href={termsUrl} className='questline-dialog__terms-link' target='_blank' rel='noopener noreferrer'>
+                  Terms & Conditions
+                </a>
+              </m.div>
+            )}
+          </m.div>
+        </LazyMotion>
       </dialog>
 
       {/* Coin Fountain Animation */}
