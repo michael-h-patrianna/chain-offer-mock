@@ -198,7 +198,13 @@ export const LobbyLayout = ({
               style={{ position: 'relative', zIndex: 1 }}
             >
               <div className='BackgroungImage_vars__WiRUP BackgroungImage_root__f3757 FeaturesIcons_root__H45hJ'>
-                <div className='BackgroungImage_coverContainer__Aa4N1' style={{ background: 'linear-gradient(#4e187c 0%, rgba(58, 18, 93, 0.85) 100%)', paddingBottom: '128px' }}>
+                <div
+                  className='BackgroungImage_coverContainer__Aa4N1'
+                  style={{
+                    background: 'linear-gradient(#4e187c 0%, rgba(58, 18, 93, 0.85) 100%)',
+                    paddingBottom: '128px',
+                  }}
+                >
                   <RiveHeaderBackground />
                 </div>
               </div>
@@ -254,13 +260,33 @@ export const LobbyLayout = ({
                   <div className='styles_scrollContainer__SPCjI SwimlaneLayout_iconsSwimlaneContainer__3e_Q6'>
                     {/* 1. Purchase Offer */}
                     <div className='SwimlaneLayout_swimlaneItem__T471I FeaturesIcons_swimlaneItem__ovgn4'>
-                      <button data-feature-id='purchase_offers_101' className='Feature_iconWrapper__DM0lH'>
-                        <img
-                          alt=''
-                          className='Feature_icon__eN4Mv'
-                          src='/images/561248f9780b3500d53ff1a5f1e46de7.png'
-                        />
-                      </button>
+                      <div
+                        data-feature-id='purchase_offers_101'
+                        className='Placeholder_placeholderWrapper__CbrcB FeaturesIcons_placeholderWrapper__O88P1'
+                      >
+                        <section
+                          className='QuestLinesEntryLayout_root__h1YjJ QuestLines_questLineEntryRoot__E2d9m'
+                          onClick={onQuestLineClick}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          <button type='button' className='QuestLinesEntryLayout_button__2uONe'>
+                            <img alt='' src='/images/561248f9780b3500d53ff1a5f1e46de7.png' />
+                            <div className='QuestLinesEntryLayout_content__64GDs'>
+                              <div className='QuestLinesEntryLayout_progressBarWrapper__SnpVa in_progress'>
+                                <div
+                                  className='ProgressBar_root__DqmA4'
+                                  style={{ '--quests-progress': '50%' } as React.CSSProperties}
+                                >
+                                  <progress className='ProgressBar_progress__SXun8' value='50'></progress>
+                                </div>
+                              </div>
+                              <div className='Timer_root__k0daR QuestLinesEntryLayout_timerWrapper__fOtlc in_progress QuestLines_questLineEntryTimerWrapper__RMgBz'>
+                                13:31:19
+                              </div>
+                            </div>
+                          </button>
+                        </section>
+                      </div>
                     </div>
                     {/* 2. Quest Lines */}
                     <div className='SwimlaneLayout_swimlaneItem__T471I FeaturesIcons_swimlaneItem__ovgn4'>
