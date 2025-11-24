@@ -5,15 +5,16 @@ import { ChainOfferDialog } from '../components/ChainOfferDialog/ChainOfferDialo
 import { HamburgerButton } from '../components/Demo/HamburgerButton'
 import { Sidebar } from '../components/Demo/Sidebar'
 import { LobbyLayout } from '../components/MockWebpage/Lobby/LobbyLayout'
-import { QuestLineDialog } from '../components/QuestLineDialog/QuestLineDialog'
+import { SimpleQuestDialog } from '../components/QuestLineDialog/SimpleQuestDialog'
 import { AnimationParametersProvider } from '../contexts/AnimationParametersProvider'
 import { getDemoChainOfferDialogProps } from '../data/getDemoChainOffer'
-import { getDemoQuestlineDialogProps } from '../data/getDemoQuestline'
+import { getDemoQuestlineDialogProps, getSimpleQuestlineDialogProps } from '../data/getDemoQuestline'
 import '../styles/main.scss'
 
 function AppInner() {
   const [isChainOfferDialogOpen, setIsChainOfferDialogOpen] = useState(false)
   const [isQuestlineDialogOpen, setIsQuestlineDialogOpen] = useState(false)
+  const [isSimpleQuestDialogOpen, setIsSimpleQuestDialogOpen] = useState(false)
   const [selectedAnimation, setSelectedAnimation] = useState<AnimationType>('stagger-inview')
   const [isSidebarOpen, setIsSidebarOpen] = useState(
     // Safe because app only runs in browser (no SSR)
@@ -40,6 +41,14 @@ function AppInner() {
     setIsQuestlineDialogOpen(false)
   }
 
+  const handleOpenSimpleQuestDialog = () => {
+    setIsSimpleQuestDialogOpen(true)
+  }
+
+  const handleCloseSimpleQuestDialog = () => {
+    setIsSimpleQuestDialogOpen(false)
+  }
+
   const handleItemButtonClick = (itemId: string) => {
     // Handle purchase logic here
     void itemId
@@ -56,6 +65,7 @@ function AppInner() {
 
   const chainOfferDialogProps = isChainOfferDialogOpen ? getDemoChainOfferDialogProps() : null
   const questlineDialogProps = isQuestlineDialogOpen ? getDemoQuestlineDialogProps() : null
+  const simpleQuestDialogProps = isSimpleQuestDialogOpen ? getSimpleQuestlineDialogProps() : null
 
   return (
     <div className='app-container'>
@@ -103,6 +113,7 @@ function AppInner() {
         <LobbyLayout
           onQuestLineClick={handleOpenQuestlineDialog}
           onChainOfferClick={handleOpenChainOfferDialog}
+          onSimpleQuestClick={handleOpenSimpleQuestDialog}
           isSidebarOpen={isSidebarOpen}
         >
           {/* Chain Offer Dialog */}
@@ -124,6 +135,17 @@ function AppInner() {
               onClose={handleCloseQuestlineDialog}
               onQuestAction={handleQuestAction}
               onClaimBonus={handleClaimBonus}
+              animationType={selectedAnimation}
+            />
+          )}
+
+          {/* Simple Quest Dialog */}
+          {simpleQuestDialogProps && (
+            <SimpleQuestDialog
+              {...simpleQuestDialogProps}
+              isOpen={isSimpleQuestDialogOpen}
+              onClose={handleCloseSimpleQuestDialog}
+              onQuestAction={handleQuestAction}
               animationType={selectedAnimation}
             />
           )}

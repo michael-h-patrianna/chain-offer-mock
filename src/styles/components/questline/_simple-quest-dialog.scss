@@ -1,0 +1,235 @@
+.simple-quest-dialog {
+  --quest-lines-simple-dialog-main-title-color: var(--brand-accent-secondary-100);
+  --quest-lines-simple-dialog-main-title-fail-color: var(--system-error);
+  --quest-lines-simple-dialog-text-color: var(--base-50);
+  --quest-lines-simple-dialog-text-font-size: 0.875rem;
+  --quest-lines-simple-dialog-terms-color: var(--base-70);
+
+  // Variables provided by user
+  --quest-lines-card-primary-background: var(--base-5);
+  --quest-lines-card-primary-border-color: #7a468e;
+  --quest-lines-card-secondary-background: #7a468e;
+  --quest-lines-card-secondary-border-color: var(--base-10);
+  --quest-lines-card-border-width-2: 0.125rem;
+  --quest-lines-card-border-style: solid;
+
+  // Action Button Variables
+  --quest-lines-simple-dialog-action-button-in-progress-background: linear-gradient(
+    180deg,
+    #47fff4 10.85%,
+    #0586ae 83%
+  );
+  --quest-lines-simple-dialog-action-button-in-progress-text-color: var(--base-90);
+  --quest-lines-simple-dialog-action-button-in-progress-border: 0.125rem solid #9ffff8;
+  --quest-lines-simple-dialog-action-button-in-progress-background-hover: linear-gradient(
+    180deg,
+    #3be2d8 10.85%,
+    #047192 83%
+  );
+  --quest-lines-simple-dialog-action-button-in-progress-background-focus: linear-gradient(
+    180deg,
+    #2fc5bc 10.85%,
+    #035d76 83%
+  );
+
+  --quest-lines-simple-dialog-action-button-unclaimed-background: linear-gradient(180deg, #47fff4 10.85%, #0586ae 83%);
+  --quest-lines-simple-dialog-action-button-unclaimed-text-color: var(--base-90);
+  --quest-lines-simple-dialog-action-button-unclaimed-border: 0.125rem solid #9ffff8;
+  --quest-lines-simple-dialog-action-button-unclaimed-background-hover: linear-gradient(
+    180deg,
+    #3be2d8 10.85%,
+    #047192 83%
+  );
+  --quest-lines-simple-dialog-action-button-unclaimed-background-focus: linear-gradient(
+    180deg,
+    #2fc5bc 10.85%,
+    #035d76 83%
+  );
+  --quest-lines-simple-dialog-action-button-unclaimed-box-shadow:
+    0 -0.25rem 1.25rem 0 rgba(71, 255, 244, 0.8), 0 0.25rem 1.25rem 0 rgba(5, 134, 174, 0.8);
+
+  // Apply text color to description
+  .questline-dialog__description {
+    color: var(--quest-lines-simple-dialog-text-color);
+    font-size: var(--quest-lines-simple-dialog-text-font-size);
+  }
+
+  // Terms link color override
+  .questline-dialog__terms-link {
+    color: var(--quest-lines-simple-dialog-terms-color);
+  }
+
+  // Content Wrapper
+  .simple-quest-dialog__content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0.5rem 0 1rem;
+    padding: 0 1.5rem;
+  }
+
+  // PRIMARY CARD STYLE (Matching user input)
+  .simple-quest-dialog__card {
+    background: var(--quest-lines-card-primary-background, #191919);
+    border-color: var(--quest-lines-card-primary-border-color, #333);
+    display: flex;
+    border-width: var(--quest-lines-card-border-width-2, 0.125rem);
+    border-style: var(--quest-lines-card-border-style, solid);
+    overflow: hidden;
+
+    // Additional layout
+    flex-direction: column;
+    border-radius: 0.5rem; // Card_borderRadius_2
+    width: 100%;
+  }
+
+  .simple-quest-dialog__card-content {
+    padding: 1.5rem; // Space_size_6 (assuming 1.5rem/24px)
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .simple-quest-dialog__section-title {
+    color: var(--quest-lines-simple-dialog-terms-color);
+    font-size: 0.875rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  .simple-quest-dialog__description-container {
+    margin-bottom: 0.75rem; // Space between text and progress bar
+    width: 100%;
+  }
+
+  // REWARDS SECTION FIXES
+  .simple-quest-dialog__rewards-wrapper {
+    width: 100%;
+
+    // Hide the inner title of BonusRewards
+    .bonus-rewards__title {
+      display: none;
+    }
+
+    // Remove the container card style from BonusRewards
+    .bonus-rewards__card {
+      border: none;
+      background: transparent;
+      padding: 0;
+      overflow: visible; // Allow tooltips/popovers if any
+      border-radius: 0;
+    }
+
+    // Ensure content is centered
+    .bonus-rewards__content {
+      justify-content: center;
+      gap: 1rem;
+      padding: 0;
+    }
+
+    // Target the reward item icon wrapper to match Card_secondary
+    .bonus-rewards__reward-icon-wrapper {
+      background: var(--quest-lines-card-secondary-background, #7a468e);
+      border: 0.125rem solid var(--quest-lines-card-secondary-border-color, var(--base-10));
+      border-radius: 0.5rem; // Card_borderRadius_2
+      overflow: hidden;
+
+      // Ensure sizing if needed, though BonusRewards sets 64px
+      box-sizing: border-box;
+    }
+  }
+
+  // Progress Bar
+  .simple-quest-dialog__progress-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 0; // Spacing handled by container
+    gap: 0.5rem;
+  }
+
+  .simple-quest-dialog__progress-track {
+    flex: 1;
+    height: 0.5rem;
+    background: var(--quest-lines-dialog-progress-bar-track-background);
+    border-radius: 0.25rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .simple-quest-dialog__progress-fill {
+    height: 100%;
+    background: var(--quest-lines-two-edged-entry-progress-bar-after-background, #c6ff77);
+    border-radius: 0.25rem;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .simple-quest-dialog__progress-value {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--base-50);
+    min-width: 2rem;
+    text-align: right;
+  }
+}
+
+// Action Button Styles
+.simple-quest-dialog__action-button {
+  border-radius: 3.125rem;
+  padding: 0;
+  font-weight: 900;
+  height: 2.5rem;
+  width: 10rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  font-size: 1rem;
+
+  // In Progress State
+  &--in-progress {
+    background: var(--quest-lines-simple-dialog-action-button-in-progress-background);
+    color: var(--quest-lines-simple-dialog-action-button-in-progress-text-color);
+    border: var(--quest-lines-simple-dialog-action-button-in-progress-border);
+
+    &:hover {
+      background: var(--quest-lines-simple-dialog-action-button-in-progress-background-hover);
+    }
+
+    &:focus {
+      background: var(--quest-lines-simple-dialog-action-button-in-progress-background-focus);
+    }
+  }
+
+  // Unclaimed State
+  &--unclaimed {
+    background: var(--quest-lines-simple-dialog-action-button-unclaimed-background);
+    color: var(--quest-lines-simple-dialog-action-button-unclaimed-text-color);
+    border: var(--quest-lines-simple-dialog-action-button-unclaimed-border);
+    box-shadow: var(--quest-lines-simple-dialog-action-button-unclaimed-box-shadow);
+
+    &:hover {
+      background: var(--quest-lines-simple-dialog-action-button-unclaimed-background-hover);
+    }
+
+    &:focus {
+      background: var(--quest-lines-simple-dialog-action-button-unclaimed-background-focus);
+    }
+  }
+
+  // Completed State (Fallback/Generic)
+  &--completed {
+    background: var(--base-20);
+    color: var(--base-50);
+    border: 1px solid var(--base-30);
+    cursor: default;
+  }
+}

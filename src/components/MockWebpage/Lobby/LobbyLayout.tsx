@@ -8,6 +8,7 @@ import { QuestLinesIcon } from './QuestLinesIcon'
 interface LobbyLayoutProps {
   onQuestLineClick: () => void
   onChainOfferClick: () => void
+  onSimpleQuestClick?: () => void
   children: React.ReactNode
   isSidebarOpen?: boolean
 }
@@ -37,6 +38,7 @@ const RiveHeaderBackground = () => {
 export const LobbyLayout = ({
   onQuestLineClick,
   onChainOfferClick,
+  onSimpleQuestClick,
   children,
   isSidebarOpen = false,
 }: LobbyLayoutProps) => {
@@ -266,7 +268,7 @@ export const LobbyLayout = ({
                       >
                         <section
                           className='QuestLinesEntryLayout_root__h1YjJ QuestLines_questLineEntryRoot__E2d9m'
-                          onClick={onQuestLineClick}
+                          onClick={onSimpleQuestClick || onQuestLineClick}
                           style={{ cursor: 'pointer' }}
                         >
                           <button type='button' className='QuestLinesEntryLayout_button__2uONe'>
