@@ -10,6 +10,7 @@ interface LobbyLayoutProps {
   onChainOfferClick: () => void
   onSimpleQuestClick?: () => void
   onFigmaQuestClick?: () => void
+  onLoyaltyClick?: () => void
   children: React.ReactNode
   isSidebarOpen?: boolean
 }
@@ -41,6 +42,7 @@ export const LobbyLayout = ({
   onChainOfferClick,
   onSimpleQuestClick,
   onFigmaQuestClick,
+  onLoyaltyClick,
   children,
   isSidebarOpen = false,
 }: LobbyLayoutProps) => {
@@ -214,7 +216,11 @@ export const LobbyLayout = ({
               </div>
               <div className='SwimlaneLayout_vars__9Bu1Y SwimlaneLayout_iconsSwimlane__ohefI'>
                 <div className='WidgetContainer_vars__5xkTP WidgetContainer_widgetWrapper___GVpc WidgetContainer_bottom__SuNn_ WidgetContainer_swimlane__piJeN WidgetContainer_samePlacement__QG_gF'>
-                  <div className='WidgetContainer_widgetContainer__C77Iu'>
+                  <div
+                    className='WidgetContainer_widgetContainer__C77Iu'
+                    onClick={onLoyaltyClick}
+                    style={{ cursor: onLoyaltyClick ? 'pointer' : 'default' }}
+                  >
                     <div>
                       <section className='WidgetV1_root__JlI6g WidgetV1_namedProgress__U8z19 Loyalty_widget__CyXWY'>
                         <div className='ProgressBarWithLevel_wrapper__TmLRK WidgetV1_progressBar__J4tw_'>
@@ -388,7 +394,11 @@ export const LobbyLayout = ({
               </div>
             </div>
             <div className='HomeContent_pageContent__2Pf5O HomeContent_pageContentRow__tyE8x'>
-              <section className='SwimlaneV1_root__5ys9P Loyalty_swimlane__wjnB2'>
+              <section
+                className='SwimlaneV1_root__5ys9P Loyalty_swimlane__wjnB2'
+                onClick={onLoyaltyClick}
+                style={{ cursor: onLoyaltyClick ? 'pointer' : 'default' }}
+              >
                 <div className='LoyaltyLogo_root__Z5jN1 SwimlaneV1_logo__NeaUS'>
                   <div className='LevelBackground_root__ByQhM LoyaltyLogo_background__3u9Sn SwimlaneV1_backgroundLogo__kbt0s'>
                     <img

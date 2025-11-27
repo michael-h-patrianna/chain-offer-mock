@@ -1,0 +1,10 @@
+// Main loyalty styles - imports all component styles
+
+// Variables first
+@import 'variables/variables';
+
+// Component styles
+@import 'components/loyalty/dialog';
+@import 'components/loyalty/level-icon';
+@import 'components/loyalty/level-name';
+@import 'components/loyalty/progress-bar';

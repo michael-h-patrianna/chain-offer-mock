@@ -1,0 +1,15 @@
+// Loyalty Level Name styles
+// Based on production LevelName component
+
+.loyalty-level-name {
+  font-family: $fontFamilyPrimary; // Lato, not DaysOne
+  font-size: 2.5rem; // text-[40px] from original - larger than I had
+  font-weight: $fontWeightPrimaryBold;
+  color: $base100; // color-base100
+  text-align: center;
+  line-height: 90%; // leading-90%
+  text-shadow: 2px 2px 0 #270808; // [text-shadow:2px_2px_0_#270808]
+  -webkit-text-stroke: 1px #260505; // [-webkit-text-stroke:1px_#260505]
+  margin: 0 0 $sizing1Rem 0; // Add bottom margin for spacing before progress bar
+  text-transform: none; // Original doesn't uppercase
+}

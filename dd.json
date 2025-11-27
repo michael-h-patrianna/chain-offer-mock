@@ -1,0 +1,379 @@
+{
+  "questlineId": "thanksgiving-tidy",
+  "frameSize": {
+    "width": 414,
+    "height": 724
+  },
+  "timer": {
+    "position": {
+      "x": 207,
+      "y": 221
+    },
+    "dimensions": {
+      "width": 96,
+      "height": 32
+    },
+    "borderRadius": 100,
+    "backgroundFill": {
+      "type": "solid",
+      "color": "#0c0c0c"
+    },
+    "isAutolayout": true,
+    "layoutSizing": {
+      "horizontal": "HUG",
+      "vertical": "HUG"
+    },
+    "padding": {
+      "vertical": 8,
+      "horizontal": 16
+    },
+    "stroke": {
+      "width": 1,
+      "color": "#4d4d4d"
+    },
+    "textStyle": {
+      "fontSize": 16,
+      "color": "#ffffff",
+      "fontWeight": 500,
+      "textAlignHorizontal": "CENTER",
+      "textAlignVertical": "CENTER"
+    }
+  },
+  "header": {
+    "stateBounds": {
+      "active": {
+        "x": 207.5,
+        "y": 73.5,
+        "width": 275,
+        "height": 147,
+        "rotation": 0
+      },
+      "success": {
+        "x": 207.5,
+        "y": 73.5,
+        "width": 275,
+        "height": 147,
+        "rotation": 0
+      },
+      "fail": {
+        "x": 207.5,
+        "y": 73.5,
+        "width": 275,
+        "height": 147,
+        "rotation": 0
+      }
+    }
+  },
+  "rewards": {
+    "stateBounds": {
+      "active": {
+        "x": 207,
+        "y": 156.5,
+        "width": 366,
+        "height": 145,
+        "rotation": 0
+      },
+      "fail": {
+        "x": 207,
+        "y": 156.5,
+        "width": 366,
+        "height": 145,
+        "rotation": 0
+      },
+      "unclaimed": {
+        "x": 207,
+        "y": 156.5,
+        "width": 366,
+        "height": 145,
+        "rotation": 0
+      },
+      "claimed": {
+        "x": 207,
+        "y": 156.5,
+        "width": 366,
+        "height": 145,
+        "rotation": 0
+      }
+    }
+  },
+  "button": {
+    "position": {
+      "x": 207,
+      "y": 645
+    },
+    "stateStyles": {
+      "default": {
+        "frame": {
+          "borderRadius": 16,
+          "backgroundFill": {
+            "type": "solid",
+            "color": "#fa114f"
+          },
+          "isAutolayout": true,
+          "layoutMode": "HORIZONTAL",
+          "layoutSizing": {
+            "horizontal": "FIXED",
+            "vertical": "FIXED"
+          },
+          "primaryAxisAlignItems": "CENTER",
+          "counterAxisAlignItems": "CENTER",
+          "dimensions": {
+            "width": 154,
+            "height": 58
+          },
+          "padding": {
+            "vertical": 20,
+            "horizontal": 40
+          }
+        },
+        "text": {
+          "fontSize": 18,
+          "color": "#ffffff",
+          "fontWeight": 700,
+          "textAlignHorizontal": "CENTER",
+          "textAlignVertical": "CENTER",
+          "lineHeightPx": 18
+        }
+      },
+      "disabled": {
+        "frame": {
+          "borderRadius": 16,
+          "backgroundFill": {
+            "type": "solid",
+            "color": "#fa114f66"
+          },
+          "isAutolayout": true,
+          "layoutMode": "HORIZONTAL",
+          "layoutSizing": {
+            "horizontal": "FIXED",
+            "vertical": "FIXED"
+          },
+          "primaryAxisAlignItems": "CENTER",
+          "counterAxisAlignItems": "CENTER",
+          "dimensions": {
+            "width": 154,
+            "height": 58
+          },
+          "padding": {
+            "vertical": 0,
+            "horizontal": 0
+          }
+        },
+        "text": {
+          "fontSize": 20,
+          "color": "#ffffff33",
+          "fontWeight": 500,
+          "textAlignHorizontal": "CENTER",
+          "textAlignVertical": "CENTER",
+          "lineHeightPx": 20
+        }
+      },
+      "hover": {
+        "frame": {
+          "borderRadius": 16,
+          "backgroundFill": {
+            "type": "solid",
+            "color": "#bc0d3b"
+          },
+          "isAutolayout": true,
+          "layoutMode": "HORIZONTAL",
+          "layoutSizing": {
+            "horizontal": "FIXED",
+            "vertical": "FIXED"
+          },
+          "primaryAxisAlignItems": "CENTER",
+          "counterAxisAlignItems": "CENTER",
+          "dimensions": {
+            "width": 154,
+            "height": 58
+          },
+          "padding": {
+            "vertical": 0,
+            "horizontal": 0
+          }
+        },
+        "text": {
+          "fontSize": 20,
+          "color": "#ffffff",
+          "fontWeight": 500,
+          "textAlignHorizontal": "CENTER",
+          "textAlignVertical": "CENTER",
+          "lineHeightPx": 20
+        }
+      },
+      "active": {
+        "frame": {
+          "borderRadius": 16,
+          "backgroundFill": {
+            "type": "solid",
+            "color": "#7d0828"
+          },
+          "isAutolayout": true,
+          "layoutMode": "HORIZONTAL",
+          "layoutSizing": {
+            "horizontal": "FIXED",
+            "vertical": "FIXED"
+          },
+          "primaryAxisAlignItems": "CENTER",
+          "counterAxisAlignItems": "CENTER",
+          "dimensions": {
+            "width": 154,
+            "height": 58
+          },
+          "padding": {
+            "vertical": 0,
+            "horizontal": 0
+          }
+        },
+        "text": {
+          "fontSize": 20,
+          "color": "#ffffff",
+          "fontWeight": 500,
+          "textAlignHorizontal": "CENTER",
+          "textAlignVertical": "CENTER",
+          "lineHeightPx": 20
+        }
+      }
+    }
+  },
+  "quests": [
+    {
+      "questKey": "quest4",
+      "stateBounds": {
+        "locked": {
+          "x": 206,
+          "y": 340,
+          "width": 146,
+          "height": 199,
+          "rotation": 0
+        },
+        "active": {
+          "x": 206,
+          "y": 340,
+          "width": 146,
+          "height": 199,
+          "rotation": 0
+        },
+        "unclaimed": {
+          "x": 206,
+          "y": 340,
+          "width": 146,
+          "height": 199,
+          "rotation": 0
+        },
+        "completed": {
+          "x": 206,
+          "y": 340,
+          "width": 146,
+          "height": 199,
+          "rotation": 0
+        }
+      }
+    },
+    {
+      "questKey": "quest2",
+      "stateBounds": {
+        "locked": {
+          "x": 191,
+          "y": 444,
+          "width": 93,
+          "height": 72,
+          "rotation": 0
+        },
+        "active": {
+          "x": 191,
+          "y": 444,
+          "width": 93,
+          "height": 72,
+          "rotation": 0
+        },
+        "unclaimed": {
+          "x": 191,
+          "y": 444,
+          "width": 93,
+          "height": 72,
+          "rotation": 0
+        },
+        "completed": {
+          "x": 191,
+          "y": 444,
+          "width": 93,
+          "height": 72,
+          "rotation": 0
+        }
+      }
+    },
+    {
+      "questKey": "quest3",
+      "stateBounds": {
+        "locked": {
+          "x": 279,
+          "y": 452,
+          "width": 144,
+          "height": 94,
+          "rotation": 0
+        },
+        "active": {
+          "x": 279,
+          "y": 452,
+          "width": 144,
+          "height": 94,
+          "rotation": 0
+        },
+        "unclaimed": {
+          "x": 279,
+          "y": 452,
+          "width": 144,
+          "height": 94,
+          "rotation": 0
+        },
+        "completed": {
+          "x": 279,
+          "y": 452,
+          "width": 144,
+          "height": 94,
+          "rotation": 0
+        }
+      }
+    },
+    {
+      "questKey": "quest1",
+      "stateBounds": {
+        "locked": {
+          "x": 109,
+          "y": 454,
+          "width": 121,
+          "height": 89,
+          "rotation": 0
+        },
+        "active": {
+          "x": 109,
+          "y": 454,
+          "width": 121,
+          "height": 89,
+          "rotation": 0
+        },
+        "unclaimed": {
+          "x": 109,
+          "y": 454,
+          "width": 121,
+          "height": 89,
+          "rotation": 0
+        },
+        "completed": {
+          "x": 109,
+          "y": 454,
+          "width": 121,
+          "height": 89,
+          "rotation": 0
+        }
+      }
+    }
+  ],
+  "exportedAt": "2025-11-06T12:33:12.645Z",
+  "metadata": {
+    "totalQuests": 4,
+    "exportFormat": "png",
+    "version": "2.1"
+  }
+}

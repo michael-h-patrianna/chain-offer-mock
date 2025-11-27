@@ -327,7 +327,7 @@ export const QuestlineViewer: React.FC<QuestlineViewerProps> = ({
 
     return (
       <m.div
-        variants={animationConfig?.layer3Variants}
+        variants={animationConfig?.layer2Variants}
         style={{
           position: 'relative',
           zIndex: 30,

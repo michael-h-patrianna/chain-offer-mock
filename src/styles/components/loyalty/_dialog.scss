@@ -1,0 +1,211 @@
+// Loyalty Dialog main container styles
+// Based on production LoyaltyProgressDialogV2 styles
+// Original Tailwind: bg-base-50 max-w-120 w-full p-4 rounded-none border-2 border-base-60
+
+.loyalty-dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 480px; // max-w-120 = 30rem = 480px
+  max-height: 90vh;
+  margin: auto;
+  padding: $sizing1Rem; // p-4 = 16px
+  background-color: $base5;
+  border: none;
+  border-radius: $radiusLG; // 16px
+  color: $base100;
+  overflow: hidden;
+
+  // Close button positioning (absolute top-4 right-4)
+  .close-button {
+    position: absolute;
+    top: $sizing1Rem;
+    right: $sizing1Rem;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    gap: 0.75rem; // --loyalty-progress-dialog-content-gap
+  }
+
+  &__header {
+    text-align: center;
+    margin-top: $sizing1Rem; // 16px
+    margin-bottom: $sizing1Rem; // mb-4 = 16px
+  }
+
+  &__title {
+    font-family: $fontFamilyPrimary;
+    font-size: 1.5rem; // --loyalty-progress-dialog-title-font-size
+    font-weight: $fontWeightPrimaryBold;
+    color: $base100;
+    margin: 0;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  // Tabs styling based on original: w-full mb-5 p-0
+  &__tabs {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    margin-bottom: $sizing1d25Rem; // mb-5 = 20px
+    padding: 0;
+  }
+
+  // Tab trigger: min-h-10 bg-base-60 capitalize
+  &__tab {
+    flex: 1;
+    min-height: 40px; // min-h-10 = 40px
+    padding: $sizing0d75Rem $sizing1Rem;
+    background-color: $base10; // bg-base-60 in dark theme context
+    border: none;
+    color: $base50;
+    font-family: $fontFamilyPrimary;
+    font-size: 0.875rem;
+    font-weight: $fontWeightPrimarySemiBold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: capitalize;
+
+    &:hover {
+      color: $base100;
+    }
+
+    &--active {
+      color: $base100;
+      border: 1px solid $base30;
+      border-bottom: none;
+    }
+
+    // Inactive tabs have no border
+    &:not(&--active) {
+      border: none;
+    }
+  }
+
+  // Tab content: relative overflow-hidden
+  &__content {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+  }
+
+  &__my-level {
+    position: relative;
+    padding: 0;
+    min-height: 280px;
+    overflow: hidden;
+  }
+
+  // Background image: absolute top-0 left-0 w-full h-full
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    // No opacity - original shows full image
+  }
+
+  // Content wrapper: relative
+  &__level-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 0 $sizing1Rem; // Left/right padding
+  }
+
+  // Progress bar wrapper: max-h-[25px] mb-8
+  &__progress-wrapper {
+    width: 100%;
+    max-height: 25px; // max-h-[25px]
+    margin-bottom: $sizing2Rem; // mb-8 = 32px
+    position: relative;
+  }
+
+  // Description: text-center (using TypographyP)
+  &__description {
+    text-align: center;
+    color: $base100;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__how-to-earn {
+    padding: 0;
+    min-height: 200px;
+  }
+
+  &__earn-card {
+    background-color: $base5;
+    border-radius: $radiusSM;
+    padding: $sizing1d5Rem;
+    border: 1px solid $base20;
+  }
+
+  &__earn-title {
+    font-family: $fontFamilyPrimary;
+    font-size: 1.125rem;
+    font-weight: $fontWeightPrimaryBold;
+    color: $base100;
+    margin: 0 0 $sizing1Rem;
+    text-align: center;
+  }
+
+  &__earn-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      position: relative;
+      padding: $sizing0d5Rem 0 $sizing0d5Rem $sizing1d5Rem;
+      color: $base60;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 8px;
+        height: 8px;
+        background-color: $brandAccentSecondary;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  // Footer: --loyalty-progress-dialog-footer-padding: 0.5rem
+  &__footer {
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  &__terms-link {
+    color: $base50;
+    font-size: 0.75rem;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $base100;
+    }
+  }
+}

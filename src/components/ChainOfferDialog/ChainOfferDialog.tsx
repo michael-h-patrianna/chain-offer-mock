@@ -22,6 +22,18 @@ export interface ChainOfferDialogProps {
   animationType?: AnimationType
 }
 
+const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+}
+
+let a = containerVariants;
+
 export const ChainOfferDialog = ({
   isOpen,
   imageSrc,

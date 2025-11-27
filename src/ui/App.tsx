@@ -4,12 +4,14 @@ import { AnimationType } from '../animations/revealAnimations'
 import { ChainOfferDialog } from '../components/ChainOfferDialog/ChainOfferDialog'
 import { FigmaQuestDialog } from '../components/FigmaQuestDialog/FigmaQuestDialog'
 import { HamburgerButton } from '../components/Demo/HamburgerButton'
+import { LoyaltyDialog } from '../components/LoyaltyDialog'
 import { Sidebar } from '../components/Demo/Sidebar'
 import { LobbyLayout } from '../components/MockWebpage/Lobby/LobbyLayout'
 import { QuestLineDialog } from '../components/QuestLineDialog/QuestLineDialog'
 import { SimpleQuestDialog } from '../components/SimpleQuestDialog/SimpleQuestDialog'
 import { AnimationParametersProvider } from '../contexts/AnimationParametersProvider'
 import { getDemoChainOfferDialogProps } from '../data/getDemoChainOffer'
+import { getDemoLoyaltyDialogProps } from '../data/getDemoLoyalty'
 import { getDemoQuestlineDialogProps, getSimpleQuestlineDialogProps } from '../data/getDemoQuestline'
 import '../styles/main.scss'
 
@@ -18,6 +20,7 @@ function AppInner() {
   const [isQuestlineDialogOpen, setIsQuestlineDialogOpen] = useState(false)
   const [isSimpleQuestDialogOpen, setIsSimpleQuestDialogOpen] = useState(false)
   const [isFigmaQuestDialogOpen, setIsFigmaQuestDialogOpen] = useState(false)
+  const [isLoyaltyDialogOpen, setIsLoyaltyDialogOpen] = useState(false)
   const [selectedAnimation, setSelectedAnimation] = useState<AnimationType>('stagger-inview')
   const [replayTrigger, setReplayTrigger] = useState(0)
   const [isSidebarOpen, setIsSidebarOpen] = useState(
@@ -65,6 +68,14 @@ function AppInner() {
     setIsFigmaQuestDialogOpen(false)
   }
 
+  const handleOpenLoyaltyDialog = () => {
+    setIsLoyaltyDialogOpen(true)
+  }
+
+  const handleCloseLoyaltyDialog = () => {
+    setIsLoyaltyDialogOpen(false)
+  }
+
   const handleItemButtonClick = (itemId: string) => {
     // Handle purchase logic here
     void itemId
@@ -82,6 +93,7 @@ function AppInner() {
   const chainOfferDialogProps = isChainOfferDialogOpen ? getDemoChainOfferDialogProps() : null
   const questlineDialogProps = isQuestlineDialogOpen ? getDemoQuestlineDialogProps() : null
   const simpleQuestDialogProps = isSimpleQuestDialogOpen ? getSimpleQuestlineDialogProps() : null
+  const loyaltyDialogProps = isLoyaltyDialogOpen ? getDemoLoyaltyDialogProps() : null
 
   return (
     <div className='app-container'>
@@ -132,6 +144,7 @@ function AppInner() {
           onChainOfferClick={handleOpenChainOfferDialog}
           onSimpleQuestClick={handleOpenSimpleQuestDialog}
           onFigmaQuestClick={handleOpenFigmaQuestDialog}
+          onLoyaltyClick={handleOpenLoyaltyDialog}
           isSidebarOpen={isSidebarOpen}
         >
           {/* Chain Offer Dialog */}
@@ -175,6 +188,16 @@ function AppInner() {
             animationType={selectedAnimation}
             replayTrigger={replayTrigger}
           />
+          {/* Loyalty Dialog */}
+          {loyaltyDialogProps && (
+            <LoyaltyDialog
+              key={`loyalty-${replayTrigger}`}
+              {...loyaltyDialogProps}
+              isOpen={isLoyaltyDialogOpen}
+              onClose={handleCloseLoyaltyDialog}
+              animationType={selectedAnimation}
+            />
+          )}
         </LobbyLayout>
       </div>
 
